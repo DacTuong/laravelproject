@@ -95,6 +95,8 @@ class CartController extends Controller
         }
 
         $output = '';
+
+
         $output = $quantity;
         echo $output;
     }

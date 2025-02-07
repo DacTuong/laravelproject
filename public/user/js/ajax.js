@@ -2,16 +2,25 @@ $(document).ready(function() {
    
 
 
-    // function show_cart_quantity() {
-    //     $.ajax({
-    //         url: "/count-cart",
-    //         method: "GET",
-    //         success: function(data) {
-    //             $('#quantity-cart').html(data);
-    //         }
-    //     });
-    // }
-    // show_cart_quantity();
+    function show_cart_quantity() {
+        $.ajax({
+            url: "/count-cart",
+            method: "GET",
+            success: function(data) {
+
+                if (data==0) {
+                    $('#quantity-cart').html(0);
+                }else{
+                    $('#quantity-cart').html(data);
+                }
+                
+            },
+            error: function() {
+                alert('Không thể thực hiện yêu cầu!');
+            }
+        });
+    }
+    show_cart_quantity();
 
 
 
@@ -200,11 +209,6 @@ $(document).ready(function() {
         });
     };
     check_favorite();
-
-
-    //show quantity cart
-
-
 
 
     // thực hiện thêm sản phẩm vào giỏ hàng

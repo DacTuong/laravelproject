@@ -34,15 +34,16 @@ $name = Session::get('name_customer')
             <div class="main-header">
                 <div class="container-xl">
                     <!-- header with search -->
-                    <div class="header-nav row" style="margin: 0">
-                        <div class="col-lg-2 col-md-3 col-sm-5 col-5">
-                            <a href="{{URL::to('/')}}" class="header__logo-home">
-                                <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="col-lg-8 col-md-5 col-sm-7 col-7">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="header__search col-lg-11 col-md-9 col-sm-9 ">
+                    <div class="header-nav">
+                        <div class="row align-items-center" style="margin:0;">
+                            <div class="col-lg-2 col-md-3 col-sm-5 col-5">
+                                <a href="{{URL::to('/')}}" class="header__logo-home">
+                                    <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
+                                </a>
+                            </div>
+                            <div class="col-lg-8 col-md-5 col-sm-7 col-7">
+
+                                <div class="header__search">
                                     <form action="{{URL::to('/search')}}" method="POST">
                                         {{csrf_field()}}
                                         <div class="header__search-input-warp">
@@ -55,31 +56,36 @@ $name = Session::get('name_customer')
                                         </button>
                                     </form>
                                 </div>
-                                <div class="cart-row col-lg-1 col-md-3 col-sm-3">
+
+
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-5 p-0 header-right">
+
+                                <div class="cart-row">
                                     <a class="cart-link" href="{{URL::to('/cart')}}"><img
                                             src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt=""></a>
                                     <span id="quantity-cart">
                                     </span>
                                 </div>
+                                <div class="customer">
+                                    @if (Session::get('id_customer'))
+                                    <!-- User is logged in -->
+                                    <p href="" class="user-customer" onclick="openSidebar()">
+                                        {{Session::get('name_customer')}}
+                                    </p>
+
+                                    @else
+                                    <!-- User is not logged in -->
+                                    <a href="{{ URL::to('/login-index') }}" class="sign-in-btn">Đăng nhập</a>
+                                    <a href="{{ URL::to('/register-index') }}" class="sign-up-btn">Đăng ký</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-4 col-sm-5 p-0">
-                            <div class="customer">
-                                @if (Session::get('id_customer'))
-                                <!-- User is logged in -->
-                                <p href="" class="user-customer" onclick="openSidebar()">
-                                    {{Session::get('name_customer')}}
-                                </p>
 
-                                @else
-                                <!-- User is not logged in -->
-                                <a href="{{ URL::to('/login-index') }}" class="sign-in-btn">Đăng nhập</a>
-                                <a href="{{ URL::to('/register-index') }}" class="sign-up-btn">Đăng ký</a>
-                                @endif
 
-                            </div>
 
-                        </div>
+
                     </div>
                 </div>
             </div>
