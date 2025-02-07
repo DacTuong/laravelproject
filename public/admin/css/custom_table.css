@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.table-wrapper {
+    overflow-x: auto; /* Bật thanh cuộn ngang */
+    margin: 20px 0;
+    border: 1px solid #ddd; /* Thêm đường viền cho rõ ràng */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Đặt chiều rộng tối thiểu để tạo cuộn ngang */
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4; /* Màu nền cho tiêu đề */
+}
