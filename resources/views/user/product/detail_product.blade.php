@@ -75,6 +75,10 @@
                             <i class="fa-regular fa-heart"></i>
                         </div>
                     </button>
+
+                    <button type="button" class="buy-now" data-id_product="" name="">
+                        Mua ngay
+                    </button>
                 </form>
             </div>
 
@@ -136,7 +140,8 @@
                         <div class="list-star">
                         </div>
                         <br>
-                        <a href="{{URL::to('/review-product'.'/'.$product_detail->product_id)}}" class="boxReview-score__count">
+                        <a href="{{URL::to('/review-product'.'/'.$product_detail->product_id)}}"
+                            class="boxReview-score__count">
 
                         </a>
                     </div>
