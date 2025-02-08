@@ -86,77 +86,16 @@ class CartController extends Controller
 
     public function count_cart()
     {
-        $cartQuantity = Session::get('cart');
-
-        // Hoặc bạn có thể sử dụng model để lấy dữ liệu
-        $quantity = 0;
-        foreach ($cartQuantity as $item) {
-            $quantity += $item['soluong'];
+        $cart_quantity = count(Session::get('cart'));
+        if ($cart_quantity) {
+            $ouput = '';
+            $ouput .= '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">' . $cart_quantity . '</span>';
+            echo $ouput;
+        } else {
+            echo $ouput = '';
         }
-
-        $output = '';
-
-
-        $output = $quantity;
-        echo $output;
     }
 
-    // public function increaseProduct($product_id)
-    // {
-    //     $cart = Session::get('cart');
-
-    //     $soluong = 1;
-    //     if ($cart == true) {
-    //         foreach ($cart as $key => $val) {
-    //             if ($val['masp'] == $product_id) {
-    //                 $cart[$key]['soluong'] += $soluong;
-
-    //                 $cart[$key]['total'] = $cart[$key]['soluong'] * $cart[$key]['gia'];
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     Session::put('cart', $cart);
-
-    //     $total_price = 0;
-    //     foreach ($cart as $item) {
-    //         $total_price += $item['total'];
-    //     }
-    //     Session::put('total_price', $total_price);
-    //     Session::save();
-    //     return Redirect::to('cart');
-    // }
-
-    // public function decreaseProduct($product_id)
-    // {
-    //     $cart = Session::get('cart');
-    //     $soluong = 1;
-    //     if ($cart == true) {
-    //         foreach ($cart as $key => $val) {
-    //             if ($val['masp'] == $product_id) {
-    //                 $new_qty = $cart[$key]['soluong'] -= $soluong;
-    //                 if ($new_qty < 1) {
-    //                     $new_qty = 1;
-    //                     return redirect()->back()->with('message', 'You can add min than 1 of this product to the cart');
-    //                 }
-    //                 $cart[$key]['soluong'] = $new_qty;
-
-    //                 $cart[$key]['total'] = $cart[$key]['soluong'] * $cart[$key]['gia'];
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     Session::put('cart', $cart);
-    //     $total_price = 0;
-    //     foreach ($cart as $item) {
-    //         $total_price += $item['total'];
-    //     }
-    //     Session::put('total_price', $total_price);
-
-    //     Session::save();
-
-    //     return Redirect::to('cart');
-    // }
 
     public function delete($session_id)
     {

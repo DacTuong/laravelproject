@@ -1,23 +1,12 @@
 $(document).ready(function() {
-   
-
-
     function show_cart_quantity() {
         $.ajax({
-            url: "/count-cart",
+            url: '/count-cart',
             method: "GET",
             success: function(data) {
-
-                if (data==0) {
-                    $('#quantity-cart').html(0);
-                }else{
                     $('#quantity-cart').html(data);
-                }
-                
-            },
-            error: function() {
-                alert('Không thể thực hiện yêu cầu!');
             }
+           
         });
     }
     show_cart_quantity();
@@ -91,7 +80,7 @@ $(document).ready(function() {
             var allValid = false;
             checkReason.style.display = "block";
         }
-        //  alert(_token);
+      
         // Bạn có thể gửi dữ liệu này lên server qua Ajax
 
         if (allValid) {

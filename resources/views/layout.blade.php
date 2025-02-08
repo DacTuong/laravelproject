@@ -83,9 +83,6 @@ $name = Session::get('name_customer')
                             </div>
                         </div>
 
-
-
-
                     </div>
                 </div>
             </div>
@@ -210,113 +207,113 @@ $name = Session::get('name_customer')
     <script src="{{asset("user/js/toastr.js")}}"></script>
 
     <script>
-    function updateCheckboxFilter(filterName, element) {
-        // Lấy giá trị checkbox được thay đổi
-        const value = element.value;
+        function updateCheckboxFilter(filterName, element) {
+            // Lấy giá trị checkbox được thay đổi
+            const value = element.value;
 
-        // Lấy URL hiện tại
-        const currentUrl = new URL(window.location.href);
+            // Lấy URL hiện tại
+            const currentUrl = new URL(window.location.href);
 
-        // Lấy danh sách giá trị hiện có trong URL
-        let filterValues = currentUrl.searchParams.get(filterName) ?
-            currentUrl.searchParams.get(filterName).split(',') : [];
+            // Lấy danh sách giá trị hiện có trong URL
+            let filterValues = currentUrl.searchParams.get(filterName) ?
+                currentUrl.searchParams.get(filterName).split(',') : [];
 
-        if (element.checked) {
-            // Nếu checkbox được chọn, thêm giá trị nếu chưa có
-            if (!filterValues.includes(value)) {
-                filterValues.push(value);
+            if (element.checked) {
+                // Nếu checkbox được chọn, thêm giá trị nếu chưa có
+                if (!filterValues.includes(value)) {
+                    filterValues.push(value);
+                }
+            } else {
+                // Nếu checkbox bị bỏ chọn, xóa giá trị khỏi danh sách
+                filterValues = filterValues.filter(val => val !== value);
             }
-        } else {
-            // Nếu checkbox bị bỏ chọn, xóa giá trị khỏi danh sách
-            filterValues = filterValues.filter(val => val !== value);
+
+            // Cập nhật giá trị cho tham số URL hoặc xóa nếu rỗng
+            if (filterValues.length > 0) {
+                currentUrl.searchParams.set(filterName, filterValues.join(','));
+            } else {
+                currentUrl.searchParams.delete(filterName);
+            }
+
+            // Reload trang với URL mới
+            window.location.href = currentUrl.toString();
         }
 
-        // Cập nhật giá trị cho tham số URL hoặc xóa nếu rỗng
-        if (filterValues.length > 0) {
-            currentUrl.searchParams.set(filterName, filterValues.join(','));
-        } else {
-            currentUrl.searchParams.delete(filterName);
+        function updateFilter(param, value) {
+            let url = new URL(window.location.href);
+            if (value === "none") {
+                url.searchParams.delete(param);
+            } else {
+                url.searchParams.set(param, value);
+            }
+            window.location.href = url.toString();
+        }
+        // Mở sidebar
+        function openSidebar() {
+            // Hiển thị sidebar bằng cách đặt left về 0
+            document.getElementById('sidebar').style.right = '0';
+            // Hiển thị overlay bằng cách thay đổi display thành block
+            document.getElementById('overlay').style.display = 'block';
         }
 
-        // Reload trang với URL mới
-        window.location.href = currentUrl.toString();
-    }
-
-    function updateFilter(param, value) {
-        let url = new URL(window.location.href);
-        if (value === "none") {
-            url.searchParams.delete(param);
-        } else {
-            url.searchParams.set(param, value);
+        // Đóng sidebar
+        function closeSidebar() {
+            // Hiển thị sidebar bằng cách đặt left về 0
+            document.getElementById('sidebar').style.right = '-300px';
+            // Hiển thị overlay bằng cách thay đổi display thành block
+            document.getElementById('overlay').style.display = 'none';
         }
-        window.location.href = url.toString();
-    }
-    // Mở sidebar
-    function openSidebar() {
-        // Hiển thị sidebar bằng cách đặt left về 0
-        document.getElementById('sidebar').style.right = '0';
-        // Hiển thị overlay bằng cách thay đổi display thành block
-        document.getElementById('overlay').style.display = 'block';
-    }
 
-    // Đóng sidebar
-    function closeSidebar() {
-        // Hiển thị sidebar bằng cách đặt left về 0
-        document.getElementById('sidebar').style.right = '-300px';
-        // Hiển thị overlay bằng cách thay đổi display thành block
-        document.getElementById('overlay').style.display = 'none';
-    }
+        function openSpecifications() {
+            // Hiển thị overlay bằng cách thay đổi display thành block
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('specifications-popup').style.display = 'block';
+        }
 
-    function openSpecifications() {
-        // Hiển thị overlay bằng cách thay đổi display thành block
-        document.getElementById('overlay').style.display = 'block';
-        document.getElementById('specifications-popup').style.display = 'block';
-    }
+        function closeSpecifications() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('specifications-popup').style.display = 'none';
+        }
 
-    function closeSpecifications() {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('specifications-popup').style.display = 'none';
-    }
+        // mở overlay và  review popup
+        function openReviewPopup() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('review-form-popup').style.display = 'block';
+        }
+        // đóng overlay và  review popup
+        function closeReviewPopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('review-form-popup').style.display = 'none';
 
-    // mở overlay và  review popup
-    function openReviewPopup() {
-        document.getElementById('overlay').style.display = 'block';
-        document.getElementById('review-form-popup').style.display = 'block';
-    }
-    // đóng overlay và  review popup
-    function closeReviewPopup() {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('review-form-popup').style.display = 'none';
+        }
 
-    }
+        function openReviewPopup2() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('boxReview-popup').style.display = 'block';
+        }
 
-    function openReviewPopup2() {
-        document.getElementById('overlay').style.display = 'block';
-        document.getElementById('boxReview-popup').style.display = 'block';
-    }
+        function closeReviewPopup2() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('boxReview-popup').style.display = 'none';
+        }
 
-    function closeReviewPopup2() {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('boxReview-popup').style.display = 'none';
-    }
+        function filterOrders() {
+            // Lấy giá trị từ các input
+            const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
+            const orderDate = document.getElementById('orderDate').value || ''; // Mặc định là rỗng
+            const orderStatus = document.getElementById('orderStatus').value || ''; // Mặc định là 1 (Chờ xử lý)
 
-    function filterOrders() {
-        // Lấy giá trị từ các input
-        const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
-        const orderDate = document.getElementById('orderDate').value || ''; // Mặc định là rỗng
-        const orderStatus = document.getElementById('orderStatus').value || ''; // Mặc định là 1 (Chờ xử lý)
+            // Tạo URL mới với tất cả các tham số
+            const params = new URLSearchParams({
+                order_code: orderCode,
+                order_date: orderDate,
+                order_status: orderStatus
+            });
 
-        // Tạo URL mới với tất cả các tham số
-        const params = new URLSearchParams({
-            order_code: orderCode,
-            order_date: orderDate,
-            order_status: orderStatus
-        });
-
-        // Reload lại URL với tham số
-        const currentUrl = window.location.origin + window.location.pathname;
-        window.location.href = `${currentUrl}?${params.toString()}`;
-    }
+            // Reload lại URL với tham số
+            const currentUrl = window.location.origin + window.location.pathname;
+            window.location.href = `${currentUrl}?${params.toString()}`;
+        }
     </script>
 
 
