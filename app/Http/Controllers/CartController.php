@@ -86,14 +86,10 @@ class CartController extends Controller
 
     public function count_cart()
     {
-        $cart_quantity = count(Session::get('cart'));
-        if ($cart_quantity) {
-            $ouput = '';
-            $ouput .= '<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">' . $cart_quantity . '</span>';
-            echo $ouput;
-        } else {
-            echo $ouput = '';
-        }
+        $cart = Session::get('cart', []); // Lấy giỏ hàng hoặc mặc định là mảng rỗng
+        $cart_quantity = is_array($cart) ? count($cart) : 0;
+
+        echo $cart_quantity;
     }
 
 

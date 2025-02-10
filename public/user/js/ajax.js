@@ -795,8 +795,9 @@ $(document).ready(function () {
                     if (response.status === "error") {
                         alert(response.message);
                     } else if (response.status === "success") {
-                        // alert(response.message);
-                        location.reload();
+                        alert(response.message);
+                        // location.reload();
+                        // show_cart_quantity();
                     }
                 },
                 error: function () {

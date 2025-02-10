@@ -64,7 +64,7 @@ $name = Session::get('name_customer')
                                 <div class="cart-row">
                                     <a class="cart-link" href="{{URL::to('/cart')}}"><img
                                             src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt=""></a>
-                                    <span id="quantity-cart">
+                                    <span class="quantity_cart" id="quantity-cart">
                                     </span>
                                 </div>
                                 <div class="customer">

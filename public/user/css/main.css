@@ -65,6 +65,7 @@
 }
 
 .cart-row {
+    display: inline-block;
     position: relative;
 }
 
@@ -75,7 +76,7 @@
 .cart-link img {
     height: 50px;
 }
-#quantity-cart {
+/* .quantity-cart {
     font-size: 14px;
     background-color: red;
     color: #fff;
@@ -84,6 +85,22 @@
     top: 0px;
     right: 3px;
     border-radius: 50%;
+} */
+
+
+.quantity_cart {
+    background-color: red;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0px 6px;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: -2px;
+    min-width: 20px;
+    text-align: center;
 }
 
 .quantity {
