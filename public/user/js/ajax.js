@@ -6,6 +6,9 @@ $(document).ready(function () {
             success: function (data) {
                 $("#quantity-cart").html(data);
             },
+            error: function () {
+                alert("Không thể lấy được danh sách giỏ hàng!");
+            },
         });
     }
     show_cart_quantity();

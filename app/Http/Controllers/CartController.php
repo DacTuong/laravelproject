@@ -86,9 +86,12 @@ class CartController extends Controller
 
     public function count_cart()
     {
-        $cart = Session::get('cart', []); // Lấy giỏ hàng hoặc mặc định là mảng rỗng
-        $cart_quantity = is_array($cart) ? count($cart) : 0;
+        $cart = Session::get('cart', []);
 
+        // Biến đếm số lượng sản phẩm
+        $cart_quantity = count($cart);
+
+        // Hiển thị số lượng sản phẩm trong giỏ hàng
         echo $cart_quantity;
     }
 
