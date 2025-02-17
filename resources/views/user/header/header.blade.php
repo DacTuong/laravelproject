@@ -53,14 +53,16 @@
                                         <p>Không có sản phẩm trong giỏ hàng của bạn</p>
                                     </div> -->
 
-                                    <form action="">
+                                    <div>
                                         <div class="title_cart_hea">
                                             Giỏ hàng
                                         </div>
-                                        <div>
+                                        <div class="row info hover-cart-item">
+                                            <div class="col-md-3 imageProduct col-3">
 
+                                            </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

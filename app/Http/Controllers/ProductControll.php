@@ -121,6 +121,7 @@ class ProductControll extends Controller
         $product->warranty_period = $data['warranty_period'];
         $product->product_status = $data['product_status'];
         $product->wifi_technology = $data['wifi_technology'];
+        $product->varian_product = $data['varian_product'];
 
 
         $get_image = $request->file('product_image');
@@ -186,8 +187,9 @@ class ProductControll extends Controller
         $product->other_connections = $data['other_connections'];
         $product->warranty_period = $data['warranty_period'];
         $product->wifi_technology = $data['wifi_technology'];
-
+        $product->varian_product = $data['varian_product'];
         $get_image = $request->file('product_image');
+
         $old_image = $product->product_image;
 
         if ($get_image) {
@@ -205,9 +207,6 @@ class ProductControll extends Controller
         }
 
         $product->save();
-
-
-
         Session::put('message_success', 'Cập nhật thành công!');
         return Redirect::to('list-product');
     }

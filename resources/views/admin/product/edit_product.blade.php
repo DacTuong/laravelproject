@@ -15,6 +15,13 @@
             <input type="text" class="form-control" id="product_name" name="product_name"
                 value="{{$products->product_name}}">
         </div>
+
+        <div class="form-group">
+            <label for="varian_product">Dòng sản phẩm:</label>
+            <input type="text" class="form-control" id="varian_product" name="varian_product"
+                value="{{$products->varian_product}}">
+        </div>
+
         <div class="form-group">
             <label for="purchase_price">Giá Nhập Hàng:</label>
             <input type="number" class="form-control" id="purchase_price" name="purchase_price"

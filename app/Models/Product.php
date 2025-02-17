@@ -50,6 +50,7 @@ class Product extends Model
         'warranty_period', // Thời gian bảo hành
         'sold',
         'product_status', // Trạng thái sản phẩm (Còn hàng/hết hàng)
+        'varian_product',
     ];
 
     protected $primaryKey = 'product_id';

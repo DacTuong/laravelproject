@@ -39,12 +39,30 @@
     </div>
     <div class="col-lg-5 col-md-6 col-sm-12">
         <div class="box-right">
+
+
             <div class="box-product-variants">
                 <p class="product-code">Mã sản phẩm: {{$product_detail->product_code}}</p>
                 <strong>Giá bán:</strong>
                 <span class="product-price">{{ number_format($product_detail->sale_price, 0, ',', '.') }}đ</span>
                 <p>Loại điện thoại: {{$product_detail->category->category_name}}</p>
                 <p>Thương hiệu: {{$product_detail->brand->brand_name}}</p>
+
+                <div>
+                    @foreach ($varians as $varian)
+                    <a class="varian__product" href="{{ URL::to('/detail-product'.'/' . $varian->product_id) }}">
+                        <img class="imageVarian" src="{{ URL::to('uploads/product/' . $varian->product_image) }}"
+                            alt="">
+                        <div>
+                            <span>
+                                {{ $varian->ram }}/{{ $varian->storage }}
+                            </span>
+                            <br>
+                            <span>{{ $varian->color }}</span>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
             </div>
 
 
@@ -76,7 +94,7 @@
                         </div>
                     </button>
 
-                    <button type="button" class="buy-now" data-id_product="" name="">
+                    <button type="button" class="buy-now" data-id_product="{{ $product_detail->product_id }}" name="">
                         Mua ngay
                     </button>
                 </form>

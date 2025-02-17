@@ -142,9 +142,15 @@ class HomeController extends Controller
         $banners = BannerModel::all();
         $detail_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $product_id)->first();
         $product_price = $detail_product->sale_price;
+        $product_varian = $detail_product->varian_product;
         $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
             ->where('product_id', '!=', $product_id)
             ->get();
+
+        $list_varian = Product::where('varian_product', $product_varian)
+            ->where('product_id', '!=', $product_id)
+            ->get();
+
 
         $get_review = ReviewModel::with(['name_customer'])->where('id_phone_review', $product_id)->limit(5)->get();
         return view('user.product.detail_product')
@@ -152,6 +158,7 @@ class HomeController extends Controller
             ->with('brands', $brand)
             ->with('categorys', $category)
             ->with('similars', $similar_product)
+            ->with('varians', $list_varian)
             ->with('reviews', $get_review)
             ->with('banners', $banners)
 
@@ -166,7 +173,7 @@ class HomeController extends Controller
         $keyword = $request->keywords_search;
 
         $search_product = Product::with(['category', 'brand'])
-        ->where('product_name', 'like', '%' . $keyword . '%')
+            ->where('product_name', 'like', '%' . $keyword . '%')
             ->where('product_status', 1)
             ->get();
 

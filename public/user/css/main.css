@@ -729,6 +729,20 @@
     padding: 10px 0px 10px 0px;
     justify-content: center;
 }
+
+.varian__product {
+    border: 1px solid blue;
+    padding: 3px 6px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 6px;
+    display: inline-flex;
+    border-radius: 5px;
+}
+
+.imageVarian {
+    height: 50px;
+}
 .specifications {
     background-color: #ffffff;
     border: 1px solid black;

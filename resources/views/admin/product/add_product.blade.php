@@ -74,6 +74,11 @@ Session::put('message_success', null);
         </div>
 
         <div class="form-group">
+            <label for="varian_product">Dòng sản phẩm:</label>
+            <input type="text" class="form-control" id="varian_product" name="varian_product">
+        </div>
+
+        <div class="form-group">
             <label for="operating_system">Hệ Điều Hành:</label>
             <input type="text" class="form-control" id="operating_system" name="operating_system">
         </div>

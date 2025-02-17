@@ -745,8 +745,42 @@ $(document).ready(function () {
     // lấy các review ra
 
     $(document).on("click", ".buy-now", function () {
-        alert("Bạn đã ấn mua ngay");
-        window.location.href = "/checkout";
+        // alert("Bạn đã ấn mua ngay");
+        var id = $(this).data("id_product");
+
+        // alert(id);
+        var id = $(this).data("id_product");
+        //  alert(id);
+
+        // Lấy thông tin sản phẩm từ các input ẩn, dùng class để đảm bảo đúng dữ liệu
+        var productData = {
+            cart_product_id: $(".product_id_" + id).val(),
+            cart_product_name: $(".product_name_" + id).val(),
+            cart_product_image: $(".product_image_" + id).val(),
+            cart_product_price: $(".product_price_" + id).val(),
+            cart_product_qty: $(".product_qty_" + id).val(),
+            cart_product_color: $(".product_color_" + id).val(),
+            _token: $('input[name="_token"]').val(), // CSRF token để xác thực
+        };
+
+        // Gửi yêu cầu Ajax đến server
+        $.ajax({
+            url: "/add-cart", // Đường dẫn API trên server
+            method: "POST", // Phương thức gửi
+            data: productData,
+            success: function (response) {
+                // Hiển thị thông báo thành công bằng Toastr
+                window.location.href = "/checkout";
+
+                // Cập nhật số lượng giỏ hàng
+                show_cart_quantity();
+            },
+            error: function (xhr, status, error) {
+                // Xử lý lỗi nếu có
+                toastr.error("Thêm sản phẩm không thành công", "");
+                console.error("Lỗi:", error);
+            },
+        });
     });
 
     $(document).on("click", ".change-pass", function () {
