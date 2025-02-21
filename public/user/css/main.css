@@ -71,9 +71,9 @@
 }
 
 .cart-content {
-    display: none;
+    display: block;
     background-color: white;
-    min-width: 340px;
+    min-width: 400px;
     height: 217px;
     right: -14px;
     position: absolute;
@@ -90,7 +90,9 @@
     border-right: 10px solid transparent;
     border-bottom: 10px solid white; /* Màu tam giác phải giống với nền giỏ hàng */
 }
-
+.cart-message {
+    padding: 4px 5px;
+}
 .cart-content::after {
     content: "";
     position: absolute;
@@ -115,7 +117,18 @@
     padding: 6px;
     font-weight: 500;
 }
+.imageProduct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imageProduct img {
+    height: 78px;
+}
 
+.hover-cart-item {
+    margin-bottom: 4px;
+}
 .cart-link {
     position: relative;
     font-size: 20px;

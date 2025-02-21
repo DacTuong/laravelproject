@@ -249,4 +249,21 @@ class CartController extends Controller
 
         ]);
     }
+
+    public function cart_message()
+    {
+        $cart = Session::get('cart', []);
+
+        $cart_quantity = count($cart);
+        $message_cart = '   <div class="cart-message">
+                                        <img src="https://web.nvnstatic.net/tp/T0199/img/empty_cart.png?v=7" alt="">
+                                        <p>Không có sản phẩm trong giỏ hàng của bạn</p>
+                                    </div>';
+
+
+        if ($cart_quantity > 0) {
+            $message_cart = $cart_quantity;
+        }
+        echo $message_cart;
+    }
 }

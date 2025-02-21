@@ -136,6 +136,7 @@ Route::get('/delete-all', [CartController::class, 'delete_all_cart']);
 Route::get('/delete-coupon', [CartController::class, 'delete_coupon']);
 
 Route::get('/count-cart', [CartController::class, 'count_cart']);
+Route::get('/cart-message', [CartController::class, 'cart_message']);
 Route::post('/check-coupon', [CartController::class, 'check_coupon']);
 Route::post('/update-quantity-cart', [CartController::class, 'update_quantity_cart']);
 

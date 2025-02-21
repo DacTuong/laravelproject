@@ -53,14 +53,27 @@
                                         <p>Không có sản phẩm trong giỏ hàng của bạn</p>
                                     </div> -->
 
-                                    <div>
+                                    <div class="cart-view">
                                         <div class="title_cart_hea">
                                             Giỏ hàng
                                         </div>
-                                        <div class="row info hover-cart-item">
-                                            <div class="col-md-3 imageProduct col-3">
+                                        <div>
+                                            <div class="row info hover-cart-item" style="margin: 0;">
+                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
+                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
+                                                        alt="">
+                                                </div>
+                                                <div class="col-md-6 col-6">
+                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
+                                                </div>
+                                                <div class="col-md-3 col-3">
+                                                    <span>Số lượng</span>
+                                                    <br>
+                                                    <span>x1</span>
+                                                </div>
 
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

@@ -1,4 +1,17 @@
 $(document).ready(function () {
+    // function cart_message() {
+    //     $.ajax({
+    //         url: "/cart-message",
+    //         method: "GET",
+    //         success: function (data) {
+    //             $(".cardHeaderContainer").html(data);
+    //         },
+    //         error: function () {
+    //             alert("Không thể lấy được danh sách giỏ hàng!");
+    //         },
+    //     });
+    // }
+    // cart_message();
     function show_cart_quantity() {
         $.ajax({
             url: "/count-cart",
@@ -227,6 +240,7 @@ $(document).ready(function () {
 
                 // Cập nhật số lượng giỏ hàng
                 show_cart_quantity();
+                cart_message();
             },
             error: function (xhr, status, error) {
                 // Xử lý lỗi nếu có
