@@ -18,6 +18,8 @@ $name = Session::get('name_customer')
     <link rel="stylesheet" href="{{asset("user/css/toastr.css")}}">
     <link rel="stylesheet" href="{{asset("user/css/bootstrap.css")}}">
 
+
+
     <!-- Link font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -129,6 +131,8 @@ $name = Session::get('name_customer')
     <script src="{{asset("user/js/jquery-3.6.0.min.js")}}"></script>
     <script src="{{asset("user/js/sweetalert2.js")}}"></script>
     <script src="{{asset("user/js/toastr.js")}}"></script>
+
+    <script src="{{asset("user/js/bootstrap.bundle.min.js")}}"></script>
 
     <script>
         function updateCheckboxFilter(filterName, element) {
@@ -266,6 +270,11 @@ $name = Session::get('name_customer')
                     $(".reason_cancellation").hide();
                 }
             });
+        });
+
+        $(document).on("click", ".cancel-submit", function() {
+            var id = $(this).data("id_order");
+            alert(id);
         });
     </script>
 </body>

@@ -188,9 +188,8 @@ body {
 
 /* MEDIA */
 
-@media (max-width: 768px) {
-    /* Ẩn khi màn hình nhỏ hơn 768px (tablet và mobile) */
+/* @media (max-width: 768px) {
     .box__search {
         display: none;
     }
-}
+} */

@@ -141,7 +141,7 @@
             <button>
                 Đóng
             </button>
-            <button type="submit">Xác nhận</button>
+            <button class="cancel-submit" data-id_order="{{$order_historys->order_code}}">Xác nhận</button>
         </div>
     </form>
 
