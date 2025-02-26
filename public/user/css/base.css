@@ -185,3 +185,12 @@ body {
 }
 
 /* ====================Footer============= */
+
+/* MEDIA */
+
+@media (max-width: 768px) {
+    /* Ẩn khi màn hình nhỏ hơn 768px (tablet và mobile) */
+    .box__search {
+        display: none;
+    }
+}

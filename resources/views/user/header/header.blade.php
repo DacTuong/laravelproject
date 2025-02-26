@@ -3,13 +3,15 @@
         <div class="container-xl">
             <!-- header with search -->
             <div class="header-nav">
-                <div class="row align-items-center" style="margin:0;">
-                    <div class="col-8 col-lg-3 col-md-8">
+                <div class="row align-items-center justify-content-between" style="margin:0;">
+                    <div class="col-sm-3">
                         <a href="{{URL::to('/')}}" class="header__logo-home">
                             <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
                         </a>
                     </div>
-                    <div class="col-12 col-md-12 col-lg-4 ">
+
+                    <!-- Phần tìm kiếm, sẽ ẩn khi màn hình nhỏ -->
+                    <div class="col-sm-6">
                         <div class="box__search">
                             <form action="{{URL::to('/search')}}" method="POST">
                                 {{csrf_field()}}
@@ -23,64 +25,29 @@
                                 </button>
                             </form>
                         </div>
-
-
                     </div>
-                    <div class="col-4 col-lg-5 col-md-4 header-right">
+
+                    <div class="col-sm-3">
                         <div class="customer">
                             @if (Session::get('id_customer'))
-                            <!-- User is logged in -->
                             <p href="" class="user-customer" onclick="openSidebar()">
                                 {{Session::get('name_customer')}}
                             </p>
                             @else
-                            <!-- User is not logged in -->
                             <a href="{{ URL::to('/login-index') }}" class="sign-in-btn">Đăng nhập</a>
                             <a href="{{ URL::to('/register-index') }}" class="sign-up-btn">Đăng ký</a>
                             @endif
                         </div>
-                        <div class="cart-row">
+                        <div class="cart-row ms-3">
                             <a class="cart-link" href="{{URL::to('/cart')}}">
                                 <img src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt="">
-                                <span class="quantity_cart" id="quantity-cart">
-                                </span>
+                                <span class="quantity_cart" id="quantity-cart"></span>
                                 <span class="cart-title">Giỏ hàng</span>
                             </a>
-                            <div class="cart-content">
-                                <div class="cardHeaderContainer">
-                                    <!-- <div class="cart-message">
-                                        <img src="https://web.nvnstatic.net/tp/T0199/img/empty_cart.png?v=7" alt="">
-                                        <p>Không có sản phẩm trong giỏ hàng của bạn</p>
-                                    </div> -->
-
-                                    <div class="cart-view">
-                                        <div class="title_cart_hea">
-                                            Giỏ hàng
-                                        </div>
-                                        <div>
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>

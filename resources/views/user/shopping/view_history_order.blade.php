@@ -9,7 +9,6 @@
 </div>
 <div>
     Đơn hàng <span id="order_code"> {{$order_historys->order_code}}</span>
-
 </div>
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12">
@@ -103,21 +102,49 @@
         </div>
         <div class="border-white">
             <div>
-                <form action="">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete>
-                    <label for="" class="reason-label" style="display: none; color: red;">Vui lòng điền
-                        thông tin!</label>
-                    <textarea name="cancel-reason" id="cancel-reason" class="cancel-reason"></textarea>
-                    <br>
-                    <button type="button" class="cancel-order" id="cancel-order"
-                        data-order_code="{{$order_historys->order_code}}">
-                        Hủy đơn hàng
-                    </button>
-
+                <button class="cancel-order">Hủy đơn hàng</button>
             </div>
         </div>
     </div>
 </div>
 
+
+
+<div class="model-cancel-order ">
+    <div>
+        <h1>Hủy đơn hàng</h1>
+    </div>
+    <form action="">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete>
+        <label for="">Có thể cho chúng tôi biết lý do hủy đơn hàng</label>
+        <div class="mb3">
+            <div>
+                <input type="radio" name="reason" id="reason1" value="Thay đổi quyết định">
+                <label for="reason1">Thay đổi quyết định</label>
+            </div>
+            <div>
+                <input type="radio" name="reason" id="reason2" value="Tìm được giá tốt hơn">
+                <label for="reason2">Tìm được giá tốt hơn</label>
+            </div>
+            <div>
+                <input type="radio" name="reason" id="reason3" value="Đơn hàng bị trể">
+                <label for="reason3">Đơn hàng bị trể</label>
+            </div>
+            <div>
+                <input type="radio" name="reason" id="reason4" value="Khác">
+                <label for="reason4">Khác</label>
+            </div>
+            <textarea name="" id="" class="reason_cancellation form-control"
+                style="height: 90px;">Vui lòng nhập lý do</textarea>
+        </div>
+        <div class="model-footer">
+            <button>
+                Đóng
+            </button>
+            <button type="submit">Xác nhận</button>
+        </div>
+    </form>
+
+</div>
 
 @endsection

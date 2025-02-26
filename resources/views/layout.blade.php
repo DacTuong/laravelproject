@@ -23,9 +23,6 @@ $name = Session::get('name_customer')
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link font-awesome -->
-
-
-
 </head>
 
 <body>
@@ -62,7 +59,7 @@ $name = Session::get('name_customer')
         <!-- sidebar -->
 
         <div class="app_container">
-            <div class="container-xl">
+            <div class="container">
                 @yield('content')
 
             </div>
@@ -224,6 +221,7 @@ $name = Session::get('name_customer')
             document.getElementById('boxReview-popup').style.display = 'none';
         }
 
+
         function filterOrders() {
             // Lấy giá trị từ các input
             const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
@@ -249,6 +247,27 @@ $name = Session::get('name_customer')
 
     <script src="{{asset('user/js/ajax.js')}}"></script>
 
+
+    <script>
+        $(document).on("click", ".cancel-order", function() {
+            // alert('Bạn đã ấn nút hủy đơn hàng');
+            $(".model-cancel-order").addClass("show");
+            $(".overlay").addClass("show");
+        })
+
+        $(document).ready(function() {
+            // Ẩn textarea khi trang được tải
+            $(".reason_cancellation").hide();
+
+            $("input[name='reason']").change(function() {
+                if ($("#reason4").is(":checked")) {
+                    $(".reason_cancellation").show();
+                } else {
+                    $(".reason_cancellation").hide();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
