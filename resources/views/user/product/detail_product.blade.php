@@ -43,26 +43,16 @@
 
             <div class="box-product-variants">
                 <p class="product-code">Mã sản phẩm: {{$product_detail->product_code}}</p>
+                <div>
+                    <span class="option-version" data-value="256">256</span>
+                    <span class="option-version" data-value="512">512</span>
+                </div>
                 <strong>Giá bán:</strong>
                 <span class="product-price">{{ number_format($product_detail->sale_price, 0, ',', '.') }}đ</span>
                 <p>Loại điện thoại: {{$product_detail->category->category_name}}</p>
                 <p>Thương hiệu: {{$product_detail->brand->brand_name}}</p>
 
-                <div>
-                    @foreach ($varians as $varian)
-                    <a class="varian__product" href="{{ URL::to('/detail-product'.'/' . $varian->product_id) }}">
-                        <img class="imageVarian" src="{{ URL::to('uploads/product/' . $varian->product_image) }}"
-                            alt="">
-                        <div>
-                            <span>
-                                {{ $varian->ram }}/{{ $varian->storage }}
-                            </span>
-                            <br>
-                            <span>{{ $varian->color }}</span>
-                        </div>
-                    </a>
-                    @endforeach
-                </div>
+
             </div>
 
 

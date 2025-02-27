@@ -272,9 +272,15 @@ $name = Session::get('name_customer')
             });
         });
 
-        $(document).on("click", ".cancel-submit", function() {
-            var id = $(this).data("id_order");
-            alert(id);
+        document.querySelectorAll('.option-version').forEach(item => {
+            item.addEventListener('click', function() {
+                let storageValue = this.getAttribute('data-value');
+                // alert(storageValue);
+
+                let url = new URL(window.location);
+                url.searchParams.set('storage', storageValue);
+                window.location.href = url; // Chuyển hướng trang với URL mới
+            });
         });
     </script>
 </body>

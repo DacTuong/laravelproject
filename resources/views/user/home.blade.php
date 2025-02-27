@@ -115,6 +115,7 @@
             <div class="filter-item">
                 <b>Giá bán</b>
                 <br>
+
                 <label>
                     <input type="checkbox" name="filter_price" value="1000000-5000000"
                         {{ in_array('1000000-5000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
@@ -157,7 +158,6 @@
                         onchange="updateCheckboxFilter('filter_price', this)">
                     Trên 30000000 triệu
                 </label><br>
-
             </div>
         </div>
         <div class="body-content">

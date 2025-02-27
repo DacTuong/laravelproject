@@ -16,11 +16,14 @@
                 value="{{$products->product_name}}">
         </div>
 
+
         <div class="form-group">
-            <label for="varian_product">Dòng sản phẩm:</label>
-            <input type="text" class="form-control" id="varian_product" name="varian_product"
-                value="{{$products->varian_product}}">
+            <label for="model_product">Model Sản Phẩm:</label>
+            <input type="text" class="form-control" value="{{ $products->model_product }}" id="model_product"
+                name="model_product">
         </div>
+
+
 
         <div class="form-group">
             <label for="purchase_price">Giá Nhập Hàng:</label>
@@ -115,6 +118,11 @@
             <input type="number" class="form-control" id="storage" name="storage" value="{{$products->storage}}">
         </div>
 
+        <div class="form-group">
+            <label for="varian_product">Biến thể sản phẩm:</label>
+            <input type="text" class="form-control" id="varian_product" name="varian_product"
+                value="{{$products->varian_product}}">
+        </div>
         <div class="form-group">
             <label for="expandable_storage">Hỗ Trợ Thẻ Nhớ Ngoài:</label>
             <select class="form-control" id="expandable_storage" name="expandable_storage">

@@ -603,7 +603,7 @@
 }
 .action-buttons {
     width: 29px;
-    top: 0px;
+    top: 30px;
     right: -29px;
     position: absolute;
     display: flex;

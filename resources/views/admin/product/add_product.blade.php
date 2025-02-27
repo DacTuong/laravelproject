@@ -24,6 +24,10 @@ Session::put('message_success', null);
             <input type="text" class="form-control" data-slug-source="product_name" id="product_name"
                 name="product_name">
         </div>
+        <div class="form-group">
+            <label for="model_product">Model Sản Phẩm:</label>
+            <input type="text" class="form-control" id="model_product" name="model_product">
+        </div>
 
         <div class="form-group">
             <label for="purchase_price">Giá Nhập Hàng:</label>
@@ -67,14 +71,13 @@ Session::put('message_success', null);
             </select>
         </div>
 
-
         <div class="form-group">
             <label for="release_date">Ngày Phát Hành:</label>
             <input type="date" class="form-control" id="release_date" name="release_date">
         </div>
 
         <div class="form-group">
-            <label for="varian_product">Dòng sản phẩm:</label>
+            <label for="varian_product">Biến thể sản phẩm:</label>
             <input type="text" class="form-control" id="varian_product" name="varian_product">
         </div>
 

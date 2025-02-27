@@ -84,6 +84,8 @@ class ProductControll extends Controller
         $product = new Product;
         $product->product_code = $data['product_code'];
         $product->product_name =  $data['product_name'];
+
+        $product->model_product = $data['model_product'];
         $product->sale_price = $data['sale_price'];
         $product->purchase_price = $data['purchase_price'];
         $product->old_price = $data['old_price'];
@@ -151,6 +153,8 @@ class ProductControll extends Controller
 
         $product->product_code = $data['product_code'];
         $product->product_name =  $data['product_name'];
+
+        $product->model_product = $data['model_product'];
         $product->sale_price = $data['sale_price'];
         $product->purchase_price = $data['purchase_price'];
         $product->old_price = $data['old_price'];

@@ -13,6 +13,7 @@ class Product extends Model
         'product_code', // Mã sản phẩm
         'product_name', // Tên sản phẩm
         'product_image', // Hình ảnh sản phẩm
+        'model_product',
         'purchase_price', // Giá nhập hàng
         'old_price', // Giá bán củ
         'sale_price', // Giá bán
