@@ -279,7 +279,8 @@ $name = Session::get('name_customer')
 
                 let url = new URL(window.location);
                 url.searchParams.set('storage', storageValue);
-                window.location.href = url; // Chuyển hướng trang với URL mới
+                window.location.href = url;
+                // Chuyển hướng trang với URL mới
             });
         });
     </script>

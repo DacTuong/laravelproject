@@ -43,9 +43,27 @@
 
             <div class="box-product-variants">
                 <p class="product-code">Mã sản phẩm: {{$product_detail->product_code}}</p>
-                <div>
-                    <span class="option-version" data-value="256">256</span>
-                    <span class="option-version" data-value="512">512</span>
+                <div class="storage">
+                    @foreach ($varians as $varian )
+                    <span class="option-version 
+                    @if ($varian->varian_product == $product_detail->varian_product)
+                    atc
+                    @endif
+                    " data-value="{{ $varian->varian_product }}">{{ $varian->varian_product }}</span>
+                    @endforeach
+                </div>
+                <div class="color">
+                    @foreach ($colors as $color )
+                    <a class="color-item 
+                    @if ($color->color == $product_detail->color)
+                    atc
+                    @endif
+                    " href="{{ URL::to('/detail-product'.'/'.$color->product_id) }}">
+                        <span class="code-color"></span>
+                        {{ $color->color }}
+                    </a>
+
+                    @endforeach
                 </div>
                 <strong>Giá bán:</strong>
                 <span class="product-price">{{ number_format($product_detail->sale_price, 0, ',', '.') }}đ</span>

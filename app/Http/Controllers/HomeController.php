@@ -135,33 +135,51 @@ class HomeController extends Controller
         ;
     }
 
-    public function detail_product($product_id)
+    public function detail_product(Request $request, $product_id)
     {
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
-        $detail_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $product_id)->first();
+        $detail_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $product_id)
+            ->first();
+
+
+
         $product_price = $detail_product->sale_price;
-        $product_varian = $detail_product->varian_product;
+
+        $model_product = $detail_product->model_product;
+        $varian = $detail_product->varian_product;
+
+        $storage = request()->query('storage');
+        if ($storage) {
+            $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+                ->where('varian_product', $storage)->first();
+            if ($storage_product) {
+                $detail_product = $storage_product;
+            }
+        }
+
+        $colors = Product::where('varian_product', $varian)
+            ->get();
         $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
             ->where('product_id', '!=', $product_id)
             ->get();
 
-        $list_varian = Product::where('varian_product', $product_varian)
-            ->where('product_id', '!=', $product_id)
+        $list_varian = Product::where('model_product', $model_product)
+            ->select('varian_product')
+            ->groupBy('varian_product')
+            ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
             ->get();
 
 
-        $get_review = ReviewModel::with(['name_customer'])->where('id_phone_review', $product_id)->limit(5)->get();
         return view('user.product.detail_product')
             ->with('product_detail', $detail_product)
             ->with('brands', $brand)
             ->with('categorys', $category)
             ->with('similars', $similar_product)
             ->with('varians', $list_varian)
-            ->with('reviews', $get_review)
+            ->with('colors', $colors)
             ->with('banners', $banners)
-
         ;
     }
 

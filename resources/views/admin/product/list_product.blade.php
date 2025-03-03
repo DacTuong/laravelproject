@@ -38,7 +38,7 @@
                     <td><img src="{{ URL::to('uploads/product/' . $product->product_image) }}" alt=""
                             style="height: 90px;"></td>
                     <td>{{$product->product_name}}</td>
-                    <td>{{$product->product_price}}</td>
+                    <td>{{$product->sale_price}}</td>
                     <td>{{$product->product_quantity}}</td>
                     <td>{{$product->category->category_name}}</td>
                     <td>{{$product->brand->brand_name}}</td>

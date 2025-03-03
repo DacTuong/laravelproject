@@ -262,7 +262,8 @@ class CartController extends Controller
 
 
         if ($cart_quantity > 0) {
-            $message_cart = $cart_quantity;
+            $message_cart .= '
+            ';
         }
         echo $message_cart;
     }
