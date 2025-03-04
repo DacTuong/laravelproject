@@ -54,15 +54,14 @@
                 </div>
                 <div class="color">
                     @foreach ($colors as $color )
-                    <a class="color-item 
+                    <div class="color-item 
                     @if ($color->color == $product_detail->color)
                     atc
                     @endif
-                    " href="{{ URL::to('/detail-product'.'/'.$color->product_id) }}">
+                    " data-id="{{ $color->product_id }}">
                         <span class="code-color"></span>
                         {{ $color->color }}
-                    </a>
-
+                    </div>
                     @endforeach
                 </div>
                 <strong>Giá bán:</strong>

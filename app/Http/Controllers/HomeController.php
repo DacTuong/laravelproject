@@ -150,17 +150,29 @@ class HomeController extends Controller
         $model_product = $detail_product->model_product;
         $varian = $detail_product->varian_product;
 
+        $colors = Product::where('varian_product', $varian)
+            ->where('model_product', $model_product)
+            ->get();
+
+
         $storage = request()->query('storage');
         if ($storage) {
             $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
                 ->where('varian_product', $storage)->first();
+
+            $colors_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+                ->where('varian_product', $storage)->get();
             if ($storage_product) {
                 $detail_product = $storage_product;
-            }
-        }
+            };
 
-        $colors = Product::where('varian_product', $varian)
-            ->get();
+            if ($colors_product) {
+                $colors = $colors_product;
+            };
+        }
+        $sku_product = request()->query('sku');
+
+
         $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
             ->where('product_id', '!=', $product_id)
             ->get();

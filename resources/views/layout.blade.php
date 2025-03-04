@@ -283,6 +283,16 @@ $name = Session::get('name_customer')
                 // Chuyển hướng trang với URL mới
             });
         });
+
+        document.querySelectorAll('.color-item').forEach(color => {
+            color.addEventListener('click', function() {
+                let colorValue = this.getAttribute('data-id');
+                // alert(colorValue);
+                let url = new URL(window.location);
+                url.searchParams.set('sku', colorValue);
+                window.location.href = url;
+            })
+        })
     </script>
 </body>
 
