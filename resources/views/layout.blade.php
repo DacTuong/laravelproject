@@ -278,8 +278,9 @@ $name = Session::get('name_customer')
                 // alert(storageValue);
 
                 let url = new URL(window.location);
+                url.searchParams.delete('sku')
                 url.searchParams.set('storage', storageValue);
-                window.location.href = url;
+                window.location.href = url.toString();
                 // Chuyển hướng trang với URL mới
             });
         });

@@ -135,7 +135,7 @@ class HomeController extends Controller
         ;
     }
 
-    public function detail_product(Request $request, $product_id)
+    public function detail_product($product_id)
     {
         $brand = Brand::get();
         $category = Category::get();
@@ -155,6 +155,7 @@ class HomeController extends Controller
             ->get();
 
 
+
         $storage = request()->query('storage');
         if ($storage) {
             $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
@@ -170,7 +171,7 @@ class HomeController extends Controller
                 $colors = $colors_product;
             };
         }
-        $sku_product = request()->query('sku');
+
 
 
         $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
@@ -183,7 +184,13 @@ class HomeController extends Controller
             ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
             ->get();
 
-
+        $sku = request()->query('sku');
+        if ($sku) {
+            $sku_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $sku)->first();
+            if ($sku_product) {
+                $detail_product = $sku_product;
+            }
+        }
         return view('user.product.detail_product')
             ->with('product_detail', $detail_product)
             ->with('brands', $brand)
@@ -192,6 +199,7 @@ class HomeController extends Controller
             ->with('varians', $list_varian)
             ->with('colors', $colors)
             ->with('banners', $banners)
+            ->with('sku', $sku)
         ;
     }
 
@@ -507,37 +515,43 @@ class HomeController extends Controller
             }
 
             $output .= '
-              <div class="col-lg-3 col-md-3 col-sm-12 col-12" style="padding-bottom: 12px;">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-12" style="padding-bottom: 12px;">
         <div class="product-content">
-        <div class="thumbnail-product-img">
-     <img class="home-product-img" src="' . $imagePath . '" alt="" />   
-        </div>
+            <div class="thumbnail-product-img">
+                <img class="home-product-img" src="' . $imagePath . '" alt="" />
+            </div>
 
-  <h5 class="productinfo__name">
-                        <a class="link-product"
-                            href="' . $detailLink . '">' . $productFavorite->product_name . '
-                        </a>
-                    </h5>
-                     <div class="productinfo__price">
-                      <span class="productinfo__price-current">
-                            ' .  number_format($salePrice, 0, ',', '.') . '
-                        </span>
-                          ' . $oldPriceText . '
-                     </div>
-                    <span> ' . $brandName . ' </span>
+            <h5 class="productinfo__name">
+                <a class="link-product" href="' . $detailLink . '">' . $productFavorite->product_name . '
+                </a>
+            </h5>
+            <div class="productinfo__price">
+                <span class="productinfo__price-current">
+                    ' . number_format($salePrice, 0, ',', '.') . '
+                </span>
+                ' . $oldPriceText . '
+            </div>
+            <span> ' . $brandName . ' </span>
             <div class="action-buttons">
-                      <form>
-                           <input type="hidden" name="_token" value="' . csrf_token() . '">
-                            <input type="hidden" value="' . $product->favorite_phone_id . '" class="product_id_' . $product->favorite_phone_id . '">
-                            <input type="hidden" value="' . $productFavorite->product_name . '" class="product_name_' . $product->favorite_phone_id . '">
-                            <input type="hidden" value="' . $productFavorite->product_image . '" class="product_image_' . $product->favorite_phone_id . '">
-                            <input type="hidden" value="' . $salePrice . '" class="product_price_' . $product->favorite_phone_id . '">
-                            <input type="hidden" value="' . $productFavorite->color . '" class="product_color_' . $product->favorite_phone_id . '">
-                            <input type="hidden" value="1" class="cart_product_qty_' . $product->favorite_phone_id . '">
-                            <button type="button" class="add-to-cart" data-id_product="' . $product->favorite_phone_id . '" name="add-to-cart"><i class="fa-solid fa-cart-shopping"></i></button>
-                            <button type="button" class="delete-favorite" data-id_product="' . $product->favorite_phone_id . '" name="delete-favorite">X</button>
-                            </form>
-                    </div>
+                <form>
+                    <input type="hidden" name="_token" value="' . csrf_token() . '">
+                    <input type="hidden" value="' . $product->favorite_phone_id . '"
+                        class="product_id_' . $product->favorite_phone_id . '">
+                    <input type="hidden" value="' . $productFavorite->product_name . '"
+                        class="product_name_' . $product->favorite_phone_id . '">
+                    <input type="hidden" value="' . $productFavorite->product_image . '"
+                        class="product_image_' . $product->favorite_phone_id . '">
+                    <input type="hidden" value="' . $salePrice . '"
+                        class="product_price_' . $product->favorite_phone_id . '">
+                    <input type="hidden" value="' . $productFavorite->color . '"
+                        class="product_color_' . $product->favorite_phone_id . '">
+                    <input type="hidden" value="1" class="cart_product_qty_' . $product->favorite_phone_id . '">
+                    <button type="button" class="add-to-cart" data-id_product="' . $product->favorite_phone_id . '"
+                        name="add-to-cart"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <button type="button" class="delete-favorite" data-id_product="' . $product->favorite_phone_id . '"
+                        name="delete-favorite">X</button>
+                </form>
+            </div>
         </div>
     </div>';
         }

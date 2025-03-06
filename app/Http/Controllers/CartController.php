@@ -262,7 +262,73 @@ class CartController extends Controller
 
 
         if ($cart_quantity > 0) {
-            $message_cart .= '
+            $message_cart = '
+                          <div class="cart-view">
+                                        <div class="title_cart_hea">
+                                            Giỏ hàng
+                                        </div>
+                                        <div class="cart-body">';
+            foreach ($cart as  $value) {
+
+                $value_name = $value['tensp'];
+                $value_color = $value['color'];
+                $value_price = number_format($value['gia'], 0, ',', '.') . '₫';
+                $imagePath = asset('uploads/product/' . $value['image']);
+                $pathLink = url('/detail-product' . '/' .  $value['masp']);
+                $message_cart .= '
+                                            <div class="info hover-cart-item">
+                                                <div class="row" style="margin: 0;">
+                                                    <div class="col-md-3 imageProduct col-3"
+                                                        style="border:1px solid black">
+                                                        <img src="' . $imagePath . '"
+                                                            alt="">
+                                                    </div>
+                                                    <div class="col-md-8 cartInfo col-8">
+                                                        <div class="cart_item_detail">
+                                                            <a class="cart_item_name" href="' . $pathLink . '">' .  $value_name . '</a>
+                                                            <br>
+                                                            <span>
+                                                                ' . $value_color . '
+                                                            </span>
+                                                        </div>
+                                                        <div class="cart_item_price">
+                                                            <span class="cart_qty">' . $value['soluong'] . '</span>
+                                                            <span class="cart_price">' . $value_price . '</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1 col-1 ">
+                                                        <button class="remove_cart_sub">X</button>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        ';
+            }
+
+            $message_cart .= '    
+                </div>
+                                      <div class="cart-footer">
+                                            <div class="subtotal">
+                                                <div class="cart__subtotal">
+                                                    <div>
+                                                        Tổng tiền:
+                                                    </div>
+                                                    <div>
+                                                        <span>
+                                                            90.000.000
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a href=""> Thanh toán</a>
+                                            </div>
+                                        </div>
+
+                                    </div>        
+
+            
             ';
         }
         echo $message_cart;

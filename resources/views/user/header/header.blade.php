@@ -1,7 +1,7 @@
 <header>
     <div class="main-header">
         <div class="container">
-            <!-- header with search -->
+
             <div class="header-nav">
                 <div class="row align-items-center" style="margin:0;">
                     <div class="col-2 col-lg-2 order-1 order-lg-1" style="border:1px solid black">
@@ -50,119 +50,16 @@
                             </a>
                             <div class="cart-content">
                                 <div class="cardHeaderContainer">
-                                    <div class="cart-view">
-                                        <div class="title_cart_hea">
-                                            Giỏ hàng
-                                        </div>
-                                        <div class="cart-body">
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
 
-                                            </div>
-
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
-
-                                            </div>
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
-
-                                            </div>
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
-
-                                            </div>
-                                            <div class="row info hover-cart-item" style="margin: 0;">
-                                                <div class="col-md-3 imageProduct col-3" style="border:1px solid black">
-                                                    <img src="https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1669244328_galaxy-s21-ultrmain7791020png.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <span>Samsung Galaxy S21 Ultra 5G</span>
-                                                </div>
-                                                <div class="col-md-3 col-3">
-                                                    <span>Số lượng</span>
-                                                    <br>
-                                                    <span>x1</span>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="cart-footer">
-                                            <button>
-                                                Thanh toán
-                                            </button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
     <div class="nav-heading-container">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">

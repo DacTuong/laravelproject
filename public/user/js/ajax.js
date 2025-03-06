@@ -1,17 +1,17 @@
 $(document).ready(function () {
-    // function cart_message() {
-    //     $.ajax({
-    //         url: "/cart-message",
-    //         method: "GET",
-    //         success: function (data) {
-    //             $(".cardHeaderContainer").html(data);
-    //         },
-    //         error: function () {
-    //             alert("Không thể lấy được danh sách giỏ hàng!");
-    //         },
-    //     });
-    // }
-    // cart_message();
+    function cart_message() {
+        $.ajax({
+            url: "/cart-message",
+            method: "GET",
+            success: function (data) {
+                $(".cardHeaderContainer").html(data);
+            },
+            error: function () {
+                alert("Không thể lấy được danh sách giỏ hàng!");
+            },
+        });
+    }
+    cart_message();
     function show_cart_quantity() {
         $.ajax({
             url: "/count-cart",
@@ -126,34 +126,34 @@ $(document).ready(function () {
     }
     getWishlist();
 
-    getInforOrder();
+    // getInforOrder();
 
-    function getInforOrder() {
-        let orderCode = $("#order_code").text();
-        //  console.log(orderCode);
-        $.ajax({
-            url: "/getInforOrder",
-            method: "GET",
-            data: {
-                order_code: orderCode,
-            },
-            success: function (data) {
-                $("#order_status").text(data.orderStatusText);
-                $("#cancel_reason").text(data.orderReason);
-                if (
-                    data.orderStatusText === "Đã hủy" ||
-                    data.orderStatusText === "Đã xác nhận"
-                ) {
-                    // Ẩn nút "Hủy đơn hàng"
-                    const cancelBtn = document.querySelector(".cancel-order");
-                    cancelBtn.disabled = true;
-                }
-            },
-            error: function (err) {
-                console.error("Đã có lỗi xảy ra", err);
-            },
-        });
-    }
+    // function getInforOrder() {
+    //     let orderCode = $("#order_code").text();
+    //     //  console.log(orderCode);
+    //     $.ajax({
+    //         url: "/getInforOrder",
+    //         method: "GET",
+    //         data: {
+    //             order_code: orderCode,
+    //         },
+    //         success: function (data) {
+    //             $("#order_status").text(data.orderStatusText);
+    //             $("#cancel_reason").text(data.orderReason);
+    //             if (
+    //                 data.orderStatusText === "Đã hủy" ||
+    //                 data.orderStatusText === "Đã xác nhận"
+    //             ) {
+    //                 // Ẩn nút "Hủy đơn hàng"
+    //                 const cancelBtn = document.querySelector(".cancel-order");
+    //                 cancelBtn.disabled = true;
+    //             }
+    //         },
+    //         error: function (err) {
+    //             console.error("Đã có lỗi xảy ra", err);
+    //         },
+    //     });
+    // }
 
     // tính tổng trung bình sao của 1 sản phẩm
     function averageStart() {

@@ -10,7 +10,8 @@
 <div class="product-detail row" style="margin: 0px; padding: 0px;">
     <!-- Product Item -->
     <div class="border-white">
-        <h1>{{ $product_detail->product_name}}</h1>
+        <h1>{{ $product_detail->product_name}} {{ $sku }}</h1>
+
     </div>
     <input type="hidden" value="{{ $product_detail->product_id }}" class="product_id">
     <div class="col-lg-7 col-md-6 col-sm-12">
@@ -45,20 +46,20 @@
                 <p class="product-code">Mã sản phẩm: {{$product_detail->product_code}}</p>
                 <div class="storage">
                     @foreach ($varians as $varian )
-                    <span class="option-version 
-                    @if ($varian->varian_product == $product_detail->varian_product)
-                    atc
-                    @endif
-                    " data-value="{{ $varian->varian_product }}">{{ $varian->varian_product }}</span>
+
+                    @php
+                    $isActVarian = ($varian->varian_product == $product_detail->varian_product)? 'act' : '';
+                    @endphp
+                    <span class="option-version {{  $isActVarian }}"
+                        data-value="{{ $varian->varian_product }}">{{ $varian->varian_product }}</span>
                     @endforeach
                 </div>
                 <div class="color">
                     @foreach ($colors as $color )
-                    <div class="color-item 
-                    @if ($color->color == $product_detail->color)
-                    atc
-                    @endif
-                    " data-id="{{ $color->product_id }}">
+                    @php
+                    $isActColor = ($color->color == $product_detail->color)? 'act' : '';
+                    @endphp
+                    <div class="color-item {{  $isActColor }}" data-id="{{ $color->product_id }}">
                         <span class="code-color"></span>
                         {{ $color->color }}
                     </div>
@@ -68,8 +69,6 @@
                 <span class="product-price">{{ number_format($product_detail->sale_price, 0, ',', '.') }}đ</span>
                 <p>Loại điện thoại: {{$product_detail->category->category_name}}</p>
                 <p>Thương hiệu: {{$product_detail->brand->brand_name}}</p>
-
-
             </div>
 
 

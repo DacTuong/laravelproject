@@ -52,8 +52,6 @@ $coupon_session = Session::get('coupon');
                                 <input type="hidden" name="" class="masp" id="" value="{{ $item['masp'] }}">
                                 <button type="button" style="display:none;">update</button>
                             </form>
-
-
                         </td>
                         <td>{{ number_format($item['total'], 0, ',', '.') }} đ</td>
                         <th><a href="{{ URL::to('/delete') . '/' . $item['session_id'] }}"
