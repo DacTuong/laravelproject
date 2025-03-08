@@ -235,6 +235,13 @@
                                     name="add-to-cart">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
+
+                                <button type="button" class="toggle-favorite" id="toggle-favorite"
+                                    name="toggle-favorite" data-id_product="{{ $product->product_id }}">
+                                    <div class="show-favorite" id="show-favorite">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </div>
+                                </button>
                             </form>
                         </div>
 

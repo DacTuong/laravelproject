@@ -261,13 +261,13 @@ class HomeController extends Controller
         }
     }
 
-    public function check_favorite(Request $request)
+    public function check_favorite($product_id)
     {
-        $product_favorite = $request->all();
+        // $product_favorite = $request->all();
         $id_user = Session::get('id_customer');
-        $product_favorite_id = $product_favorite['product_id'];
 
-        $isFavorite = FavoriteModel::where("favorite_phone_id", $product_favorite_id)
+
+        $isFavorite = FavoriteModel::where("favorite_phone_id", $product_id)
             ->where("favorite_user_id", $id_user)->exists();
         $output = '';
         if ($isFavorite) {

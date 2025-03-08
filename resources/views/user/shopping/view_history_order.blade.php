@@ -110,16 +110,16 @@
 
 
 
-<div class="model-cancel-order ">
+<div class="model-cancel-order">
     <div>
         <h1>Hủy đơn hàng</h1>
     </div>
-    <form action="">
+    <form>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete>
         <label for="">Có thể cho chúng tôi biết lý do hủy đơn hàng</label>
         <div class="mb3">
             <div>
-                <input type="radio" name="reason" id="reason1" value="Thay đổi quyết định">
+                <input type="radio" name="reason" class="reason1" id="reason1" value="Thay đổi quyết định" checked>
                 <label for="reason1">Thay đổi quyết định</label>
             </div>
             <div>
@@ -134,14 +134,14 @@
                 <input type="radio" name="reason" id="reason4" value="Khác">
                 <label for="reason4">Khác</label>
             </div>
-            <textarea name="" id="" class="reason_cancellation form-control"
-                style="height: 90px;">Vui lòng nhập lý do</textarea>
+            <textarea name="" id="" class="reason_cancellation form-control" style="height: 90px;"
+                placeholder="Vui lòng nhập lý do"></textarea>
         </div>
         <div class="model-footer">
-            <button>
+            <button class="close-model">
                 Đóng
             </button>
-            <button class="cancel-submit" data-id_order="{{$order_historys->order_code}}">Xác nhận</button>
+            <button data-id_order="{{$order_historys->order_code}}" class="send-cancel-resson">Xác nhận</button>
         </div>
     </form>
 

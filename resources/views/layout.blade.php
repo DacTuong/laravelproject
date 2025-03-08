@@ -259,10 +259,18 @@ $name = Session::get('name_customer')
             $(".overlay").addClass("show");
         })
 
+        $(document).on('click', '.close-model', function(e) {
+            e.preventDefault();
+            $(".model-cancel-order").removeClass("show");
+            $(".overlay").removeClass("show");
+            $(".reason1").prop("checked", true);
+            $(".reason_cancellation").val("");
+            $(".reason_cancellation").hide();
+        })
+
         $(document).ready(function() {
             // Ẩn textarea khi trang được tải
             $(".reason_cancellation").hide();
-
             $("input[name='reason']").change(function() {
                 if ($("#reason4").is(":checked")) {
                     $(".reason_cancellation").show();
@@ -271,6 +279,25 @@ $name = Session::get('name_customer')
                 }
             });
         });
+
+
+
+        $(document).ready(function() {
+            function checkTextarea() {
+                if ($(".reason_cancellation").val().trim() === "") {
+                    $(".send-cancel-resson").prop("disabled", true);
+                } else {
+                    $(".send-cancel-resson").prop("disabled", false);
+                }
+            }
+            checkTextarea();
+
+            $(".reason_cancellation").on("input", checkTextarea);
+        })
+
+
+
+
 
         document.querySelectorAll('.option-version').forEach(item => {
             item.addEventListener('click', function() {
@@ -288,12 +315,11 @@ $name = Session::get('name_customer')
         document.querySelectorAll('.color-item').forEach(color => {
             color.addEventListener('click', function() {
                 let colorValue = this.getAttribute('data-id');
-                // alert(colorValue);
                 let url = new URL(window.location);
                 url.searchParams.set('sku', colorValue);
                 window.location.href = url;
             })
-        })
+        });
     </script>
 </body>
 

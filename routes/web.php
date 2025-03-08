@@ -84,7 +84,7 @@ Route::post('/search', [HomeController::class, 'search']);
 
 
 Route::post('/favorite-toggle', [HomeController::class, 'favorite_toggle']);
-Route::post('/check-favorite', [HomeController::class, 'check_favorite']);
+Route::get('/check-favorite/{product_id}', [HomeController::class, 'check_favorite']);
 Route::post('/delete-favorite', [HomeController::class, 'delete_favorite']);
 
 Route::post('/send-review', [HomeController::class, 'send_review']);

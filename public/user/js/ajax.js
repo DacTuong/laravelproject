@@ -190,14 +190,11 @@ $(document).ready(function () {
     // hàm kiểm tra xem đã thích hay chưa
     function check_favorite() {
         var product_id = $(".product_id").val();
-        var _token = $('input[name="_token"]').val();
+        // alert(product_id);
         $.ajax({
-            url: "/check-favorite",
-            method: "POST",
-            data: {
-                product_id: product_id,
-                _token: _token,
-            },
+            url: `/check-favorite/${product_id}`,
+            method: "GET",
+
             success: function (data) {
                 $("#show-favorite").html(data);
             },
@@ -207,6 +204,34 @@ $(document).ready(function () {
         });
     }
     check_favorite();
+
+    // Lắng nghe sự kiện nhấn nút yêu thích
+    $(document).on("click", ".toggle-favorite", function () {
+        var button = $(this);
+        var product_id = button.data("id_product");
+        let _token = $('input[name="_token"]').val();
+
+        $.ajax({
+            url: "/favorite-toggle", // Đường dẫn đến route xử lý yêu thích
+            method: "POST",
+            data: {
+                _token: _token, // CSRF token để bảo vệ yêu cầu
+                product_id: product_id,
+            },
+            success: function (response) {
+                if (response.status === "error") {
+                    alert(response.message);
+                } else if (response.status === "add") {
+                    check_favorite();
+                } else {
+                    check_favorite();
+                }
+            },
+            error: function () {
+                alert("Không thể thực hiện yêu cầu!");
+            },
+        });
+    });
 
     // thực hiện thêm sản phẩm vào giỏ hàng
     $(document).on("click", ".add-to-cart", function () {
@@ -264,33 +289,6 @@ $(document).ready(function () {
             },
             success: function (response) {
                 getWishlist();
-            },
-            error: function () {
-                alert("Không thể thực hiện yêu cầu!");
-            },
-        });
-    });
-    // Lắng nghe sự kiện nhấn nút yêu thích
-    $(document).on("click", ".toggle-favorite", function () {
-        var button = $(this);
-        var product_id = button.data("id_product");
-        let _token = $('input[name="_token"]').val();
-
-        $.ajax({
-            url: "/favorite-toggle", // Đường dẫn đến route xử lý yêu thích
-            method: "POST",
-            data: {
-                _token: _token, // CSRF token để bảo vệ yêu cầu
-                product_id: product_id,
-            },
-            success: function (response) {
-                if (response.status === "error") {
-                    alert(response.message);
-                } else if (response.status === "add") {
-                    check_favorite();
-                } else {
-                    check_favorite();
-                }
             },
             error: function () {
                 alert("Không thể thực hiện yêu cầu!");
@@ -856,5 +854,22 @@ $(document).ready(function () {
                 },
             });
         }
+    });
+
+    $(document).on("click", ".remove_cart_sub", function () {
+        var session_id = $(this).data("remove");
+        // alert(session_id);
+        $.ajax({
+            url: `/delete/${session_id}`,
+            method: "GET",
+            success: function () {
+                // alert("Đã xóa thành công");
+                show_cart_quantity();
+                cart_message();
+            },
+            error: function () {
+                alert("Xóa không thành công");
+            },
+        });
     });
 });

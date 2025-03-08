@@ -253,6 +253,7 @@ class CartController extends Controller
     public function cart_message()
     {
         $cart = Session::get('cart', []);
+        $total_price = Session::get('total_price', []);
 
         $cart_quantity = count($cart);
         $message_cart = '   <div class="cart-message">
@@ -278,8 +279,7 @@ class CartController extends Controller
                 $message_cart .= '
                                             <div class="info hover-cart-item">
                                                 <div class="row" style="margin: 0;">
-                                                    <div class="col-md-3 imageProduct col-3"
-                                                        style="border:1px solid black">
+                                                    <div class="col-md-3 imageProduct col-3">
                                                         <img src="' . $imagePath . '"
                                                             alt="">
                                                     </div>
@@ -297,10 +297,11 @@ class CartController extends Controller
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-1 col-1 ">
-                                                        <button class="remove_cart_sub">X</button>
+                                                        <button class="remove_cart_sub" data-remove="' . $value['session_id'] . '"
+                                                        title="Xóa"
+                                                        >X</button>
                                                     </div>
                                                 </div>
-
 
                                             </div>
                                         ';
@@ -316,13 +317,13 @@ class CartController extends Controller
                                                     </div>
                                                     <div>
                                                         <span>
-                                                            90.000.000
+                                                            ' . number_format($total_price, 0, ',', '.') . '₫' . '
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
-                                                <a href=""> Thanh toán</a>
+                                                <a href="' . url('/checkout') . '" title="Thanh toán"> Thanh toán</a>
                                             </div>
                                         </div>
 
