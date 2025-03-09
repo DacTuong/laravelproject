@@ -253,6 +253,38 @@ $name = Session::get('name_customer')
 
 
     <script>
+        function checkReason() {
+            var reasonRadios = document.querySelectorAll('input[name="reason"]');
+            var reasonTextarea = document.querySelector('.reason_cancellation');
+            var reason4 = document.querySelector('.reason4');
+            var sendButton = document.querySelector('.send-cancel-resson');
+
+            // Kiểm tra nếu nút radio "Khác" được chọn
+            var isOtherChecked = reason4 ? reason4.checked : false;
+
+            // Kiểm tra nếu textarea rỗng khi "Khác" được chọn
+            if (isOtherChecked && reasonTextarea.value.trim() === '') {
+                sendButton.classList.add('dab');
+                sendButton.disabled = true; // Cách đúng để vô hiệu hóa nút
+            } else {
+                sendButton.classList.remove('dab');
+                sendButton.disabled = false;
+            }
+        }
+
+        // Lắng nghe sự kiện thay đổi radio
+        document.querySelectorAll('input[name="reason"]').forEach(function(radio) {
+            radio.addEventListener('change', checkReason); // Khi thay đổi lựa chọn radio
+        });
+
+        // Lắng nghe sự kiện thay đổi trong textarea
+        document.querySelector('.reason_cancellation').addEventListener('input', checkReason); // Khi nhập vào textarea
+
+        // Kiểm tra ngay khi tải trang
+        document.addEventListener('DOMContentLoaded', checkReason);
+
+
+
         $(document).on("click", ".cancel-order", function() {
             // alert('Bạn đã ấn nút hủy đơn hàng');
             $(".model-cancel-order").addClass("show");
@@ -272,7 +304,7 @@ $name = Session::get('name_customer')
             // Ẩn textarea khi trang được tải
             $(".reason_cancellation").hide();
             $("input[name='reason']").change(function() {
-                if ($("#reason4").is(":checked")) {
+                if ($(".reason4").is(":checked")) {
                     $(".reason_cancellation").show();
                 } else {
                     $(".reason_cancellation").hide();
@@ -281,21 +313,21 @@ $name = Session::get('name_customer')
         });
 
 
+        $(document).on('click', '.send-cancel-resson', function(e) {
+            e.preventDefault();
+            let selectedReason = document.querySelector('input[name="reason"]:checked').value;
+            let otherReason = document.querySelector('.reason_cancellation').value.trim();
 
-        $(document).ready(function() {
-            function checkTextarea() {
-                if ($(".reason_cancellation").val().trim() === "") {
-                    $(".send-cancel-resson").prop("disabled", true);
-                } else {
-                    $(".send-cancel-resson").prop("disabled", false);
-                }
+            // Sửa lỗi toán tử & thành &&
+            if (selectedReason === "Khác" && otherReason === "") {
+                // $(".send-cancel-resson").prop("disabled", true); // Nếu muốn vô hiệu hóa nút
+                $(".send-cancel-resson").addClass("dab"); // Không cần dấu "." khi thêm class
+                alert("Vui lòng nhập lý do hủy đơn hàng!");
+                return;
             }
-            checkTextarea();
 
-            $(".reason_cancellation").on("input", checkTextarea);
-        })
-
-
+            alert(selectedReason === "Khác" ? `Lý do: ${otherReason}` : `Lý do: ${selectedReason}`);
+        });
 
 
 

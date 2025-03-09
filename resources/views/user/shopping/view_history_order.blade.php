@@ -123,15 +123,15 @@
                 <label for="reason1">Thay đổi quyết định</label>
             </div>
             <div>
-                <input type="radio" name="reason" id="reason2" value="Tìm được giá tốt hơn">
+                <input type="radio" name="reason" class="reason2" id="reason2" value="Tìm được giá tốt hơn">
                 <label for="reason2">Tìm được giá tốt hơn</label>
             </div>
             <div>
-                <input type="radio" name="reason" id="reason3" value="Đơn hàng bị trể">
+                <input type="radio" name="reason" class="reason3" id="reason3" value="Đơn hàng bị trể">
                 <label for="reason3">Đơn hàng bị trể</label>
             </div>
             <div>
-                <input type="radio" name="reason" id="reason4" value="Khác">
+                <input type="radio" name="reason" class="reason4" id="reason4" value="Khác">
                 <label for="reason4">Khác</label>
             </div>
             <textarea name="" id="" class="reason_cancellation form-control" style="height: 90px;"
@@ -141,7 +141,8 @@
             <button class="close-model">
                 Đóng
             </button>
-            <button data-id_order="{{$order_historys->order_code}}" class="send-cancel-resson">Xác nhận</button>
+            <button data-id_order="{{$order_historys->order_code}}" class="send-cancel-resson">Xác
+                nhận</button>
         </div>
     </form>
 
