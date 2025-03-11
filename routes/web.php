@@ -160,7 +160,6 @@ Route::post('/update-status-order', [OrderController::class, 'update_status_orde
 
 Route::get('/history-order', [OrderController::class, 'history_order']);
 Route::get('/view-history-order/{order_code}', [OrderController::class, 'view_history']);
-Route::get('/getInforOrder', [OrderController::class, 'getInforOrder']);
 Route::post('/cancel-order', [OrderController::class, 'cancel_order']);
 // SLIDE CONTROLL
 

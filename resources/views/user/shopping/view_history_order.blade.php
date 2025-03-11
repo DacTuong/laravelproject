@@ -8,7 +8,7 @@
     <a href="{{URL::to('/view-history-order'.'/'.$order_historys->order_code)}}">{{$order_historys->order_code}}</a>
 </div>
 <div>
-    Đơn hàng <span id="order_code"> {{$order_historys->order_code}}</span>
+    Đơn hàng <span class="order_code">{{$order_historys->order_code}}</span>
 </div>
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12">
@@ -80,18 +80,26 @@
             <p><strong>Tên khách hàng:</strong> {{$order_historys->shippingAddress->fullname}}</p>
             <p><strong>Email:</strong> {{$order_historys->order_email}}</p>
             <p><strong>Số điện thoại:</strong> {{$order_historys->shippingAddress->order_phone}}</p>
-        </div>
-        <div class="border-white">
-            <b>Lý do hủy đơn hàng:</b>
-            <p id="cancel_reason" class="cancel_reason">
-
-            </p>
+            <p><strong>Ghi chú:</strong> Ghi chú</p>
         </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="border-white">
-            <h6>Ghi chú khách hàng</h6>
-            <p>{{$order_historys->order_note}}</p>
+            <h6>Tình trạng đơn hàng</h6>
+            @if ($order_historys->order_status == 1)
+            <label class="mb-3 fw-bold fs-6 status-label"><i class="fa-solid fa-circle color-loading"></i>
+                Trạng thái</label>
+            <span class="status-loading"><i class="fa-solid fa-hourglass-half"></i> Đang chờ xử
+                lý...</span>
+            @elseif($order_historys->order_status == 2)
+            <label class="mb-3 fw-bold fs-6 status-label"><i class="fa-solid fa-circle color-success"></i>
+                Trạng thái</label>
+            <span class="status-success"><i class="fa-solid fa-check-circle"></i> Đã giao hàng</span>
+            @elseif($order_historys->order_status == 3)
+            <label class="mb-3 fw-bold fs-6 status-label"><i class="fa-solid fa-circle color-destroy"></i>
+                Trạng thái</label>
+            <span class="status-destroy"><i class="fa-solid fa-times-circle"></i> Đã bị huỷ</span>
+            @endif
         </div>
         <div class="border-white">
             <h6>Địa chỉ giao hàng</h6>
@@ -101,9 +109,13 @@
             <p><strong>Địa chỉ :</strong> {{$order_historys->shippingAddress->diachi}}</p>
         </div>
         <div class="border-white">
-            <div>
-                <button class="cancel-order">Hủy đơn hàng</button>
-            </div>
+@if ($order_historys->order_status ==3)
+<label for="">Lý do hủy đơn</label>
+<p>{{$order_historys->order_cancellation_reason}}</p>
+@else
+<button class="cancel-order">Hủy đơn hàng</button>
+@endif
+
         </div>
     </div>
 </div>

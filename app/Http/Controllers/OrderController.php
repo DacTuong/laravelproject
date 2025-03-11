@@ -205,11 +205,11 @@ class OrderController extends Controller
                     * $order_detail->product_sale_quantity;
                 $count_item += $order_detail->product_sale_quantity;
             }
-          
+
             // Cập nhật tất cả đơn hàng đã xác nhật
         }
         $order_update->save();
-       
+
 
         foreach ($order_details as $oderDetail) {
             $product = Product::find($oderDetail->order_phone_id);
@@ -220,12 +220,12 @@ class OrderController extends Controller
 
         if ($orderStatus == 2) {
 
-           
+
             $currentDate = Carbon::now()->format('Y-m-d');
             $santistical = SantisticalModel::where('order_date', $currentDate)->first();
             $totalOrder =
-            OrderProduct::where('order_code', $orderCode)->value('order_total');
-           
+                OrderProduct::where('order_code', $orderCode)->value('order_total');
+
 
             if ($santistical) {
                 $santistical->order_date = $currentDate;

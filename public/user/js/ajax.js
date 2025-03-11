@@ -79,38 +79,38 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", ".cancel-order", function () {
-        var cancelReason = $("#cancel-reason").val(); // Lấy nội dung textarea
+    // $(document).on("click", ".cancel-order", function () {
+    //     var cancelReason = $("#cancel-reason").val(); // Lấy nội dung textarea
 
-        var orderCode = $(this).data("order_code"); // Lấy mã đơn hàng từ data attribute của nút
-        var _token = $('input[name="_token"]').val();
-        var allValid = true;
-        const checkReason = document.querySelector(".reason-label");
-        if (cancelReason === "") {
-            var allValid = false;
-            checkReason.style.display = "block";
-        }
+    //     var orderCode = $(this).data("order_code"); // Lấy mã đơn hàng từ data attribute của nút
+    //     var _token = $('input[name="_token"]').val();
+    //     var allValid = true;
+    //     const checkReason = document.querySelector(".reason-label");
+    //     if (cancelReason === "") {
+    //         var allValid = false;
+    //         checkReason.style.display = "block";
+    //     }
 
-        // Bạn có thể gửi dữ liệu này lên server qua Ajax
+    //     // Bạn có thể gửi dữ liệu này lên server qua Ajax
 
-        if (allValid) {
-            $.ajax({
-                url: "/cancel-order",
-                method: "POST",
-                data: {
-                    order_code: orderCode,
-                    cancel_reason: cancelReason,
-                    _token: _token,
-                },
-                success: function (data) {
-                    getInforOrder();
-                },
-                error: function (err) {
-                    console.error("Đã có lỗi xảy ra", err);
-                },
-            });
-        }
-    });
+    //     if (allValid) {
+    //         $.ajax({
+    //             url: "/cancel-order",
+    //             method: "POST",
+    //             data: {
+    //                 order_code: orderCode,
+    //                 cancel_reason: cancelReason,
+    //                 _token: _token,
+    //             },
+    //             success: function (data) {
+    //                 getInforOrder();
+    //             },
+    //             error: function (err) {
+    //                 console.error("Đã có lỗi xảy ra", err);
+    //             },
+    //         });
+    //     }
+    // });
 
     function getWishlist() {
         $.ajax({
@@ -125,35 +125,6 @@ $(document).ready(function () {
         });
     }
     getWishlist();
-
-    // getInforOrder();
-
-    // function getInforOrder() {
-    //     let orderCode = $("#order_code").text();
-    //     //  console.log(orderCode);
-    //     $.ajax({
-    //         url: "/getInforOrder",
-    //         method: "GET",
-    //         data: {
-    //             order_code: orderCode,
-    //         },
-    //         success: function (data) {
-    //             $("#order_status").text(data.orderStatusText);
-    //             $("#cancel_reason").text(data.orderReason);
-    //             if (
-    //                 data.orderStatusText === "Đã hủy" ||
-    //                 data.orderStatusText === "Đã xác nhận"
-    //             ) {
-    //                 // Ẩn nút "Hủy đơn hàng"
-    //                 const cancelBtn = document.querySelector(".cancel-order");
-    //                 cancelBtn.disabled = true;
-    //             }
-    //         },
-    //         error: function (err) {
-    //             console.error("Đã có lỗi xảy ra", err);
-    //         },
-    //     });
-    // }
 
     // tính tổng trung bình sao của 1 sản phẩm
     function averageStart() {
