@@ -303,7 +303,8 @@ $name = Session::get('name_customer')
                 _token: _token,
             },
             success: function() {
-                alert('Gửi lý do thành công')
+                // alert('Gửi lý do thành công')
+                location.reload();
 
             },
             error: function(err) {

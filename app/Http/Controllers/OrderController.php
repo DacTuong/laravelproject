@@ -151,6 +151,7 @@ class OrderController extends Controller
                 // Giảm giá theo phần trăm
                 $discount = $coupon->discount_amount . ' %';
             }
+            $code = $coupon->coupon_code;
         } else {
             // Nếu không tìm thấy coupon
             $discount = 0 . ' VNĐ'; // Không có giảm giá
@@ -172,6 +173,7 @@ class OrderController extends Controller
             ->with("orderStatus", $order_status)
             ->with("code_coupon", $coupon)
             ->with("discount_price", $discount)
+            ->with("code_coupon", $code)
         ;
     }
 

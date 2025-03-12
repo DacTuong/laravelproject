@@ -84,18 +84,22 @@
                         {{$history->shippingAddress->fullname}}
                     </td>
                     <td>
-
                         {{$history->orderDetail->sum('product_sale_quantity')}}
-
                     </td>
                     <td>
                         {{ number_format($history->order_total, 0, ',', '.') }} đ
                     </td>
                     <td>
-                        {{$history->created_at}}
+                        {{ \Carbon\Carbon::parse($history->created_at)->format('H:i:s, d-m-Y') }}
                     </td>
                     <td>
-                        {{$history->order_status}}
+                        @if ($history->order_status == 1)
+                        <span class="order-status-waitting">Đang chờ xử lý...</span>
+                        @elseif($history->order_status == 2)
+                        <span class="order-status-delivered">Đã giao hàng</span>
+                        @else
+                        <span class="order-status-cancle">Đã huỷ</span>
+                        @endif
                     </td>
                     <td>
                         <a href="{{URL::to('/view-history-order'.'/'.$history->order_code)}}">Xem</a>

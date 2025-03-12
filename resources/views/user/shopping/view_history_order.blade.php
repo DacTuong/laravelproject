@@ -1,23 +1,41 @@
 @extends('layout')
 @section('content')
-
-
 <div class="breadcrumbs">
     <a href="{{ URL::to('/') }}">Trang chủ /</a>
     <a href="{{ URL::to('/history-order') }}">Lịch sử mua hàng /</a>
-    <a href="{{URL::to('/view-history-order'.'/'.$order_historys->order_code)}}">{{$order_historys->order_code}}</a>
+    <a href="{{ URL::to('/view-history-order' . '/' . $order_historys->order_code) }}">
+        {{ $order_historys->order_code }}
+    </a>
 </div>
 <div>
-    Đơn hàng <span class="order_code">{{$order_historys->order_code}}</span>
+    Đơn hàng <span class="order_code">{{ $order_historys->order_code }}</span>
 </div>
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12">
         <div class="border-white">
-            <div class="d-flex">
-                <span class="me-3">{{$order_historys->created_at}}</span>
-                <span class="me-3"> {{$order_historys->order_code}}</span>
-                <span class="me-3" id="order_status"></span>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h6>
+                        Mã đơn hàng
+                    </h6>
+                    <a href="{{ URL::to('/view-history-order' . '/' . $order_historys->order_code) }}">
+                        {{ $order_historys->order_code }}
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <h6>Tên khách hàng</h6>
+                    <span>
+                        {{ $order_historys->shippingAddress->fullname }}
+                    </span>
+                </div>
+                <div class="col-sm-4">
+                    <h6>Mua hàng vào lúc:</h6>
+                    <span>{{ \Carbon\Carbon::parse($order_historys->created_at)->format('H:i:s, d-m-Y') }}</span>
+                </div>
             </div>
+        </div>
+        <div class="border-white">
+            <h6>Sản phẩm đã mua</h6>
             <table class="table-cart">
                 <tbody>
                     @foreach ($order_infomations as $info)
@@ -25,18 +43,18 @@
                         <td>
                             <div class="d-flex mb-2">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ URL::to('uploads/product/'.$info->phone->product_image ) }}" alt=""
-                                        width="35" class="img-fluid">
+                                    <img src="{{ URL::to('uploads/product/' . $info->phone->product_image) }}" alt=""
+                                        class="img-order">
                                 </div>
                                 <div class="flex-lg-grow-1 ms-3">
                                     <h6 class="small mb-0">
-                                        <a href="#" class="text-reset">{{$info->phone->product_name}}</a>
+                                        <a href="#" class="text-reset">{{ $info->phone->product_name }}</a>
                                     </h6>
-                                    <span class="small">Color: Black</span>
+                                    <span class="small">Color: {{ $info->phone->color }}</span>
                                 </div>
                             </div>
                         </td>
-                        <td>{{$info->product_sale_quantity}}</td>
+                        <td>{{ $info->product_sale_quantity }}</td>
                         <td class="text-end"> {{ number_format($info->product_price, 0, ',', '.') }}</td>
                     </tr>
                     @endforeach
@@ -46,21 +64,13 @@
                         <td colspan="2">
                             Tổng đơn hàng
                         </td>
-                        <td class="text-end">{{number_format($grandTotal, 0, ',', '.') . ' VNĐ';}}</td>
+                        <td class="text-end">{{ number_format($grandTotal, 0, ',', '.') . ' VNĐ' }}</td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             Phí vận chuyển
                         </td>
                         <td class="text-end"> {{ number_format($order_historys->feeship, 0, ',', '.') }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            Giảm giá
-                        </td>
-                        <td class="text-end">
-                            {{$discount_price}}
-                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -77,9 +87,9 @@
         </div>
         <div class="border-white">
             <h2>Thông tin khách hàng</h2>
-            <p><strong>Tên khách hàng:</strong> {{$order_historys->shippingAddress->fullname}}</p>
-            <p><strong>Email:</strong> {{$order_historys->order_email}}</p>
-            <p><strong>Số điện thoại:</strong> {{$order_historys->shippingAddress->order_phone}}</p>
+            <p><strong>Tên khách hàng:</strong> {{ $order_historys->shippingAddress->fullname }}</p>
+            <p><strong>Email:</strong> {{ $order_historys->order_email }}</p>
+            <p><strong>Số điện thoại:</strong> {{ $order_historys->shippingAddress->order_phone }}</p>
             <p><strong>Ghi chú:</strong> Ghi chú</p>
         </div>
     </div>
@@ -102,19 +112,35 @@
             @endif
         </div>
         <div class="border-white">
-            <h6>Địa chỉ giao hàng</h6>
-            <p><strong>Tỉnh/thành:</strong> {{$order_historys->shippingAddress->province->name}}</p>
-            <p><strong>Quận Huyện:</strong> {{$order_historys->shippingAddress->districts->name}}</p>
-            <p><strong>Xã/phường:</strong> {{$order_historys->shippingAddress->wards->name}}</p>
-            <p><strong>Địa chỉ :</strong> {{$order_historys->shippingAddress->diachi}}</p>
+            <h6>
+                Mã giảm giá:
+            </h6>
+            @if ($code_coupon)
+            <span>Mã giảm giá</span>
+            <span>{{ $code_coupon->coupon_code }}</span>
+            @else
+            <span>Không có mã giảm giá</span>
+            @endif
+            <br>
+            <span>
+                Số tiền giảm: {{ $discount_price }}
+            </span>
+
         </div>
         <div class="border-white">
-@if ($order_historys->order_status ==3)
-<label for="">Lý do hủy đơn</label>
-<p>{{$order_historys->order_cancellation_reason}}</p>
-@else
-<button class="cancel-order">Hủy đơn hàng</button>
-@endif
+            <h6>Địa chỉ giao hàng</h6>
+            <p><strong>Tỉnh/thành:</strong> {{ $order_historys->shippingAddress->province->name }}</p>
+            <p><strong>Quận Huyện:</strong> {{ $order_historys->shippingAddress->districts->name }}</p>
+            <p><strong>Xã/phường:</strong> {{ $order_historys->shippingAddress->wards->name }}</p>
+            <p><strong>Địa chỉ :</strong> {{ $order_historys->shippingAddress->diachi }}</p>
+        </div>
+        <div class="border-white">
+            @if ($order_historys->order_status == 3)
+            <label for="">Lý do hủy đơn</label>
+            <p>{{ $order_historys->order_cancellation_reason }}</p>
+            @else
+            <button class="cancel-order">Hủy đơn hàng</button>
+            @endif
 
         </div>
     </div>
@@ -153,11 +179,10 @@
             <button class="close-model">
                 Đóng
             </button>
-            <button data-id_order="{{$order_historys->order_code}}" class="send-cancel-resson">Xác
+            <button data-id_order="{{ $order_historys->order_code }}" class="send-cancel-resson">Xác
                 nhận</button>
         </div>
     </form>
 
 </div>
-
 @endsection

@@ -79,39 +79,6 @@ $(document).ready(function () {
         }
     });
 
-    // $(document).on("click", ".cancel-order", function () {
-    //     var cancelReason = $("#cancel-reason").val(); // Lấy nội dung textarea
-
-    //     var orderCode = $(this).data("order_code"); // Lấy mã đơn hàng từ data attribute của nút
-    //     var _token = $('input[name="_token"]').val();
-    //     var allValid = true;
-    //     const checkReason = document.querySelector(".reason-label");
-    //     if (cancelReason === "") {
-    //         var allValid = false;
-    //         checkReason.style.display = "block";
-    //     }
-
-    //     // Bạn có thể gửi dữ liệu này lên server qua Ajax
-
-    //     if (allValid) {
-    //         $.ajax({
-    //             url: "/cancel-order",
-    //             method: "POST",
-    //             data: {
-    //                 order_code: orderCode,
-    //                 cancel_reason: cancelReason,
-    //                 _token: _token,
-    //             },
-    //             success: function (data) {
-    //                 getInforOrder();
-    //             },
-    //             error: function (err) {
-    //                 console.error("Đã có lỗi xảy ra", err);
-    //             },
-    //         });
-    //     }
-    // });
-
     function getWishlist() {
         $.ajax({
             url: "/data-wishlist",
