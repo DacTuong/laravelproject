@@ -1,105 +1,77 @@
 <header class="header">
-    <div class="main-header">
-        <div class="container">
-
-            <div class="header-nav">
-                <div class="row align-items-center" style="margin:0;">
-                    <div class="col-2 col-lg-2 order-1 order-lg-1" style="border:1px solid black">
-                        <a href="{{URL::to('/')}}" class="header__logo-home">
-                            <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
-                        </a>
-                    </div>
-                    <div class="col-12 col-lg-7 order-3 order-lg-2 mt-3 mt-lg-0" style="border:1px solid red">
-                        <div class="box__search">
-                            <form action="{{URL::to('/search')}}" method="POST">
-                                {{csrf_field()}}
-                                <div class="box__search-input-warp">
-                                    <input type="text" class="box__search-input" name='keywords_search'
-                                        placeholder="Nhập để tìm kiếm">
-                                </div>
-                                <button class="box__search-btn" type="submit" name="search">
-                                    <i class="box__search-btn-icon fa-solid fa-magnifying-glass"></i>
-                                    Tìm
-                                </button>
-                            </form>
+    <div class="container py-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div style="border: 1px solid red;">
+                <a href="{{URL::to('/')}}" class="header__logo-home">
+                    <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
+                </a>
+            </div>
+            <!-- Phần tìm kiếm -->
+            <div class="d-none d-lg-flex flex-grow-1 mx-3" style="border: 1px solid black;">
+                <div class="box__search">
+                    <form action="{{URL::to('/search')}}" method="POST">
+                        {{csrf_field()}}
+                        <div class="box__search-input-warp">
+                            <input type="text" class="box__search-input" name='keywords_search'
+                                placeholder="Nhập để tìm kiếm">
                         </div>
+                        <button class="box__search-btn" type="submit" name="search">
+                            <!-- <i class="box__search-btn-icon fa-solid fa-magnifying-glass"></i> -->
+                            <i class="bi bi-search"></i>
+                            Tìm kiếm
+                        </button>
+                    </form>
+                </div>
+            </div>
 
+            <!-- User& Cart hiển thị khi chế độ màn hình lớn -->
+            <div class="d-flex align-items-center" style="border: 1px solid red;">
+                <button class="desktop-only"><i class="bi bi-person"></i> Tài khoản </button>
+                <div class="cart-row desktop-only">
+                    <a class="cart-link" href="{{URL::to('/cart')}}">
+                        <!-- <img src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt=""> -->
+                        <i class="bi bi-cart"></i>
+                        <span class="quantity_cart" id="quantity-cart">
+                        </span>
+                        <span class="cart-title">Giỏ hàng</span>
+                    </a>
+                    <div class="cart-content">
+                        <div class="cardHeaderContainer">
 
-                    </div>
-                    <div class="col-10 col-lg-3 header-right order-2 order-lg-3 d-flex justify-content-end "
-                        style="border:1px solid white">
-                        <div class="customer">
-                            @if (Session::get('id_customer'))
-                            <!-- User is logged in -->
-                            <p href="" class="user-customer" onclick="openSidebar()">
-                                {{Session::get('name_customer')}}
-                            </p>
-                            @else
-                            <!-- User is not logged in -->
-                            <a href="{{ URL::to('/login-index') }}" class="sign-in-btn">Đăng nhập</a>
-                            <a href="{{ URL::to('/register-index') }}" class="sign-up-btn">Đăng ký</a>
-                            @endif
-
-                        </div>
-                        <div class="cart-row">
-                            <a class="cart-link" href="{{URL::to('/cart')}}">
-                                <img src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt="">
-                                <span class="quantity_cart" id="quantity-cart">
-                                </span>
-                                <span class="cart-title">Giỏ hàng</span>
-                            </a>
-                            <div class="cart-content">
-                                <div class="cardHeaderContainer">
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <!-- phần toggle này sẽ ẩn khi màn hình bình thường và sẽ xuất hiện khi màn hình dưới 991px -->
+            <div class="d-flex gap-2">
+                <button class="btn d-lg-none search-toggle"><i class="bi bi-search"></i></button>
+                <button class="btn d-lg-none user-toggle"><i class="bi bi-person"></i></button>
+                <a href="{{URL::to('/cart')}}" class=" btn d-lg-none">
+                    <i class="bi bi-cart"></i>
+                    <span class="badge bg-danger" id="quantity-cart"></span>
+                </a>
+                <button class="btn d-lg-none menu-toggle"><i class="bi bi-list"></i></button>
+            </div>
         </div>
     </div>
 
-    <div class="nav-heading-container">
+
+    <div class="nav-menu">
         <div class="container">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                            </li>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
-
     </div>
-
 </header>

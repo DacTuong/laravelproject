@@ -136,7 +136,7 @@
         </div>
         <div class="border-white">
             @if ($order_historys->order_status == 3)
-            <label for="">Lý do hủy đơn</label>
+            <label>Lý do hủy đơn</label>
             <p>{{ $order_historys->order_cancellation_reason }}</p>
             @else
             <button class="cancel-order">Hủy đơn hàng</button>

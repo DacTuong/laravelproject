@@ -52,18 +52,18 @@ $message = Session::get('message');
 </body>
 
 <script>
-    document.getElementById('toggle-password').addEventListener('click', function() {
-        const passwordInput = document.getElementById('password');
-        const button = this;
+document.getElementById('toggle-password').addEventListener('click', function() {
+    const passwordInput = document.getElementById('password');
+    const button = this;
 
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            button.textContent = 'Ẩn';
-        } else {
-            passwordInput.type = 'password';
-            button.textContent = 'Hiện';
-        }
-    });
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        button.textContent = 'Ẩn';
+    } else {
+        passwordInput.type = 'password';
+        button.textContent = 'Hiện';
+    }
+});
 </script>
 
 </html>
