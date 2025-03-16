@@ -364,11 +364,30 @@ $name = Session::get('name_customer')
     <script>
         $(document).ready(function() {
             $(document).on('click', '.menu-toggle', function() {
-                // alert('Bạn đã ấn vào toggle-menu');
-                $(".nav-menu").addClass('show');
                 $("#navbarNav").toggleClass("show");
-            })
+            });
+
+            $(document).on('click', '.search-toggle', function() {
+                // alert("Bạn đã ấn nút toggle search")
+                $(".responsiveSearch").toggleClass('show');
+            });
         })
+    </script>
+
+    <script>
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     // Toggle navbar khi nhấn menu
+
+        //     // Toggle tìm kiếm khi nhấn kính lúp
+        //     document.getElementById("search-toggle").addEventListener("click", function() {
+        //         document.getElementById("responsiveSearch").classList.toggle("show");
+        //     });
+
+        //     // Hiển thị thông báo đăng nhập khi nhấn vào nút login (hoặc chuyển hướng)
+        //     document.getElementById("login-toggle").addEventListener("click", function() {
+        //         alert("Chuyển đến trang đăng nhập!"); // Bạn có thể thay đổi thành modal đăng nhập nếu cần
+        //     });
+        // });
     </script>
 </body>
 

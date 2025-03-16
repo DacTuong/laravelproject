@@ -10,7 +10,7 @@ $coupon_session = Session::get('coupon');
 ?>
 <h1>Giỏ hàng của bạn</h1>
 <div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-12">
+    <div class="col-12 col-lg-8 col-md-8 col-sm-12">
         <div class="shopping-cart">
             @if ($cart && count($cart) > 0)
             <table class="table-cart">
@@ -56,7 +56,7 @@ $coupon_session = Session::get('coupon');
                         <td>{{ number_format($item['total'], 0, ',', '.') }} đ</td>
                         <th><a href="{{ URL::to('/delete') . '/' . $item['session_id'] }}"
                                 title="Xoá sản phẩm ra khỏi giỏ">
-                                <i class="fa-solid fa-trash"></i></a>
+                                <i class="bi bi-trash"></i>
                         </th>
                     </tr>
                     @endforeach
@@ -69,7 +69,7 @@ $coupon_session = Session::get('coupon');
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
         <div class="summary-cart">
             <div>
                 <span>Tổng cộng :</span>

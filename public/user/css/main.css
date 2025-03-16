@@ -24,6 +24,7 @@
     /* flex: 1; */
     height: 40px;
     border-radius: 2px;
+    width: 100%;
 }
 .box__search form {
     background-color: var(--white-color);
@@ -78,6 +79,11 @@
 
 .cart-link img {
     height: 50px;
+}
+
+.quantity {
+    width: 40px;
+    text-align: center;
 }
 .quantity_cart {
     display: flex;
@@ -184,6 +190,7 @@
     justify-content: space-between;
     width: 100%; /* Đảm bảo phần tử chiếm toàn bộ chiều rộng */
 }
+
 .remove_cart_sub {
     width: 18px; /* Giảm kích thước */
     height: 18px;
@@ -214,12 +221,13 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    position: relative;
 }
 
 .user-customer {
     font-weight: 500;
-    color: white;
     margin: 0px;
+    padding: 3px 6px;
     font-size: 15px;
     cursor: pointer;
     text-decoration: none;
@@ -230,6 +238,19 @@
     border-radius: 50%;
     height: 40px;
     object-fit: cover;
+}
+
+.customer__sub {
+    position: absolute;
+    background-color: white;
+    top: 34px;
+    padding: 0px;
+    z-index: 999;
+    margin: 0px;
+    list-style: none;
+    max-width: 400px;
+    min-width: 150px;
+    /* display: none; */
 }
 
 .sign-up-btn {
@@ -254,7 +275,7 @@
     font-size: 18px;
     text-decoration: none;
 }
-
+/* Chú ý */
 .menu {
     display: flex;
     justify-content: space-between;
@@ -359,7 +380,7 @@
     color: white;
     background-color: #007bff;
 }
-
+/* chú ý */
 .app_container {
     background: #e0e0e0;
 }
@@ -1781,14 +1802,12 @@ tbody tr {
     background-color: aqua;
 }
 /* MEDIA */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
     .desktop-only {
         display: none;
     }
-    .nav-menu {
-        display: none;
-    }
-    .nav-menu.show {
-        display: block;
+
+    .responsiveSearch.show {
+        display: block !important;
     }
 }

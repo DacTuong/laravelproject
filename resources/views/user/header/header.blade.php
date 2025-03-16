@@ -7,8 +7,8 @@
                 </a>
             </div>
             <!-- Phần tìm kiếm -->
-            <div class="d-none d-lg-flex flex-grow-1 mx-3" style="border: 1px solid black;">
-                <div class="box__search">
+            <div class="d-none d-lg-flex flex-grow-1 mx-4" style="border: 1px solid black;">
+                <div class="box__search" style="border: 1px solid yellow;">
                     <form action="{{URL::to('/search')}}" method="POST">
                         {{csrf_field()}}
                         <div class="box__search-input-warp">
@@ -25,8 +25,19 @@
             </div>
 
             <!-- User& Cart hiển thị khi chế độ màn hình lớn -->
-            <div class="d-flex align-items-center" style="border: 1px solid red;">
-                <button class="desktop-only"><i class="bi bi-person"></i> Tài khoản </button>
+            <div class="d-flex align-items-center gap-3" style="border: 1px solid red;">
+                <div class="desktop-only customer">
+                    <button class="user-customer"><i class="bi bi-person"></i> Tài khoản
+                    </button>
+                    <ul class="customer__sub">
+                        <li>
+                            <a href=""><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="bi bi-person-plus-fill"></i> Đăng ký</a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="cart-row desktop-only">
                     <a class="cart-link" href="{{URL::to('/cart')}}">
                         <!-- <img src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt=""> -->
@@ -57,6 +68,20 @@
         </div>
     </div>
 
+    <div class="container py-2 d-lg-none responsiveSearch" style="display:none;">
+        <div class="box__search">
+            <form action="{{URL::to('/search')}}" method="POST">
+                {{csrf_field()}}
+                <div class="box__search-input-warp">
+                    <input type="text" class="box__search-input" name='keywords_search' placeholder="Nhập để tìm kiếm">
+                </div>
+                <button class="box__search-btn" type="submit" name="search">
+                    <i class="bi bi-search"></i>
+                    Tìm kiếm
+                </button>
+            </form>
+        </div>
+    </div>
 
     <div class="nav-menu">
         <div class="container">
@@ -74,4 +99,6 @@
             </nav>
         </div>
     </div>
+
+
 </header>
