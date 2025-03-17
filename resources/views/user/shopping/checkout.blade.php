@@ -133,8 +133,41 @@ $coupon_session = Session::get('coupon');
             <hr>
             <div class="flex-center-between row-summary">
 
+                @if ($coupon_session)
                 <div>
-                    <span>Tổng cộng :</span>
+                    <span>Đã áp dụng mã giảm giá</span>
+                    <span> <a class="btn-delete-coupon" href="{{URL::to('/delete-coupon-checkout')}}">Xóa mã giảm
+                            giá</a></span>
+                </div>
+                @endif
+                <div>
+
+                    <div class="coupon-container">
+                        <form action="{{ URL::to('/check-coupon') }}" method="POST" class="">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete="off">
+                            <label>Dùng code giảm giá nếu có</label>
+                            <br>
+                            @if (Session::get('id_customer'))
+                            <div class="discount-code-area">
+                                <input class="coupon-input" type="text" name="code_coupon"
+                                    placeholder="Dùng mã giảm giá (nếu có)" required>
+                                <input class="coupon-check" type="submit" name="use_code" value="Dùng mã">
+                            </div>
+                            @else
+                            <div class="discount-code-area">
+                                <input class="coupon-input" type="text" name="code_coupon"
+                                    placeholder="Dùng mã giảm giá (nếu có)" required>
+                                <input class="coupon-check disable" type="submit" name="use_code" value="Dùng mã"
+                                    disabled>
+                            </div>
+                            @endif
+
+                        </form>
+                    </div>
+
+                </div>
+                <div>
+                    <span>Tạm tính :</span>
                     <span>
                         {{ number_format($total_price, 0, ',', '.') }} đ
                     </span>

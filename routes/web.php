@@ -126,6 +126,7 @@ Route::post('/order-product', [CheckoutController::class, 'order_product']);
 
 // Cart Product
 use App\Http\Controllers\CartController;
+use App\Models\Coupons;
 
 Route::get('/cart', [CartController::class, 'index']);
 
@@ -133,11 +134,11 @@ Route::post('/add-cart', [CartController::class, 'addToCart']);
 
 Route::get('/delete/{session_id}', [CartController::class, 'delete']);
 Route::get('/delete-all', [CartController::class, 'delete_all_cart']);
-Route::get('/delete-coupon', [CartController::class, 'delete_coupon']);
+
 
 Route::get('/count-cart', [CartController::class, 'count_cart']);
 Route::get('/cart-message', [CartController::class, 'cart_message']);
-Route::post('/check-coupon', [CartController::class, 'check_coupon']);
+
 Route::post('/update-quantity-cart', [CartController::class, 'update_quantity_cart']);
 
 // Coupons
@@ -149,6 +150,8 @@ Route::post('/save-coupon', [CouponsController::class, 'save_coupons']);
 Route::get('/list-coupons', [CouponsController::class, 'list_coupons']);
 Route::get('/update-coupon/{id_coupon}', [CouponsController::class, 'update_coupon']);
 Route::get('/delete-coupon/{id_coupon}', [CouponsController::class, 'delete_coupon']);
+Route::get('/delete-coupon-checkout', [CouponsController::class, 'delete_coupon_checkout']);
+Route::post('/check-coupon', [CouponsController::class, 'check_coupon']);
 
 use App\Http\Controllers\OrderController;
 

@@ -27,14 +27,38 @@
             <!-- User& Cart hiển thị khi chế độ màn hình lớn -->
             <div class="d-flex align-items-center gap-3" style="border: 1px solid red;">
                 <div class="desktop-only customer">
-                    <button class="user-customer"><i class="bi bi-person"></i> Tài khoản
+                    <button class="user-customer" onclick="openSidebar()"><i class="bi bi-person"></i>
+                        @if (Session::get('id_customer'))
+                        {{Session::get('name_customer')}}
+                        @else
+                        Tài khoản
+                        @endif
                     </button>
                     <ul class="customer__sub">
-                        <li>
-                            <a href=""><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+                        <li class="customer__sub-item">
+                            @if (Session::get('id_customer'))
+                            <a href="{{ URL::to('/thong-tin-ca-nhan') }}" class="customer__sub-link">
+                                <i class="bi bi-person"></i>
+                                Thông tin khách hàng
+                            </a>
+                            @else
+                            <a href="{{ URL::to('/login-index') }}" class="customer__sub-link"><i
+                                    class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+                            @endif
                         </li>
-                        <li>
-                            <a href=""><i class="bi bi-person-plus-fill"></i> Đăng ký</a>
+                        <li class="customer__sub-item">
+                            @if (Session::get('id_customer'))
+                            <a href="{{ URL::to('/logout') }}" class="customer__sub-link">
+                                <i class="bi bi-box-arrow-in-left"></i>
+                                Đăng xuất
+                            </a>
+                            @else
+                            <a href="{{ URL::to('/register-index') }}" class="customer__sub-link"><i
+                                    class="bi bi-person-plus-fill"></i> Đăng ký</a>
+                            @endif
+                        </li>
+                        <li class="customer__sub-item">
+                            <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu thích</a>
                         </li>
                     </ul>
                 </div>
@@ -89,7 +113,7 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{URL::to('/')}}">Trang chủ</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>

@@ -128,74 +128,7 @@ class CartController extends Controller
         return Redirect::to('cart');
     }
 
-    public function check_coupon(Request $request)
-    {
-        $data = $request->all();
-        $id_user = Session::get('id_customer');
 
-        $coupon = Coupons::where('coupon_code', $data['code_coupon'])->where('coupon_status', 1)->first();
-
-        if ($coupon) {
-            $cou[] = array(
-                'coupon_id' => $coupon->id_coupon,
-                'coupon_code' => $coupon->coupon_code,
-                'coupon_type' => $coupon->coupon_type,
-                'discount' => $coupon->discount_amount,
-            );
-            Session::put('coupon', $cou);
-
-
-
-            Session::save();
-
-            $extist_id = explode(',', $coupon->customer_id);
-            if (in_array($id_user, $extist_id)) {
-                echo 'Bạn đã sử dụng mã giảm giá này rồi';
-            } else {
-                if ($coupon->customer_id) {
-                    $coupon->customer_id .= ',' . $id_user;
-                } else {
-                    $coupon->customer_id = $id_user;
-                }
-                $coupon->coupon_qty = $coupon->coupon_qty - 1;
-                // Session::forget('final_total');
-                $coupon->save();
-                echo 'Dùng mã giảm giá thành công';
-            }
-        }
-        return Redirect::to('cart');
-    }
-
-    public function delete_coupon()
-    {
-        // Lấy thông tin mã giảm giá từ session
-        $coupon_session = Session::get('coupon');
-        $id_customer = Session::get('id_customer');
-
-        if ($coupon_session && $id_customer) {
-            foreach ($coupon_session as $coupon) {
-                // Truy vấn mã giảm giá từ cơ sở dữ liệu theo coupon_code
-                $coupon_data = Coupons::where('coupon_code', $coupon['coupon_code'])->first();
-
-                if ($coupon_data) {
-                    // Lấy danh sách ID khách hàng hiện tại
-                    $exist_ids = explode(',', $coupon_data->customer_id);
-
-                    // Xóa id_customer khỏi danh sách
-                    $updated_ids = array_diff($exist_ids, [$id_customer]);
-                    $coupon_data->customer_id = implode(',', $updated_ids);
-                    $coupon_data->coupon_qty = $coupon_data->coupon_qty + 1;
-                    // Lưu lại thay đổi vào cơ sở dữ liệu
-                    $coupon_data->save();
-                }
-            }
-            // Xóa toàn bộ session coupon
-            Session::forget('coupon');
-        }
-
-        // Chuyển hướng lại giỏ hàng
-        return Redirect::to('cart');
-    }
 
     public function update_quantity_cart(Request $request)
     {
@@ -323,7 +256,7 @@ class CartController extends Controller
                                                 </div>
                                             </div>
                                             <div>
-                                                <a href="' . url('/checkout') . '" title="Thanh toán"> Thanh toán</a>
+                                                <a class="checkout-link" href="' . url('/checkout') . '" title="Thanh toán"> Thanh toán</a>
                                             </div>
                                         </div>
 
