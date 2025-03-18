@@ -4,8 +4,7 @@
     <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="border-white">
             <div class="image-customer">
-                <img class="avatar-customer" src=""
-                    alt="">
+                <img class="avatar-customer" src="" alt="">
             </div>
             <div class="infomation-customer">
                 <div class="flex-inline"><strong>Tên khách hàng:</strong><span>{{$informations->name_user}}</span>
@@ -13,7 +12,7 @@
                 <div class="flex-inline"><strong>Email:</strong><span>{{$informations->email_user}}</span></div>
                 <div class="flex-inline"><strong>Số điện thoại:</strong><span>{{$informations->phone_user}}</span>
                 </div>
-                
+
             </div>
         </div>
     </div>
