@@ -571,10 +571,10 @@ class HomeController extends Controller
 
 
         $informations = User::where('id_user', $id_user_session)->first();
-        return view('user.profile.setting')->with('brands', $brand)
+        return view('user.profile.personal_infor')->with('brands', $brand)
             ->with('categorys', $category)
             ->with('informations', $informations)
-
+            ->with('showSetting', true)
         ;
     }
 

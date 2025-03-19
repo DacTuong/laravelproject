@@ -101,7 +101,7 @@ Route::get('/thong-tin-ca-nhan', [HomeController::class, 'thong_tin_ca_nhan']);
 
 Route::get('/wishlist', [HomeController::class, 'wishlist']);
 Route::get('/data-wishlist', [HomeController::class, 'data_wishlist']);
-Route::get('/setting', [HomeController::class, 'setting']);
+Route::get('/thong-tin-ca-nhan/setting', [HomeController::class, 'setting']);
 Route::post('/change-password', [HomeController::class, 'change_password']);
 Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
 // // Users s
