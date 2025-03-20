@@ -10,7 +10,7 @@
 <div class="product-detail row" style="margin: 0px; padding: 0px;">
     <!-- Product Item -->
     <div class="border-white">
-        <h1>{{ $product_detail->product_name}} {{ $sku }}</h1>
+        <h1>{{ $product_detail->product_name}}</h1>
 
     </div>
     <input type="hidden" value="{{ $product_detail->product_id }}" class="product_id">

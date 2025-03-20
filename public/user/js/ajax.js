@@ -17,7 +17,7 @@ $(document).ready(function () {
             url: "/count-cart",
             method: "GET",
             success: function (data) {
-                $("#quantity-cart").html(data);
+                $(".quantity_cart").html(data);
             },
             error: function () {
                 alert("Không thể lấy được danh sách giỏ hàng!");
@@ -749,7 +749,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     alert(response.message);
-                    location.reload;
+                    location.reload();
                 } else {
                     alert(response.message);
                 }

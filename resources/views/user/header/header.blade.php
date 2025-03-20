@@ -27,7 +27,7 @@
             <!-- User& Cart hiển thị khi chế độ màn hình lớn -->
             <div class="d-flex align-items-center gap-3" style="border: 1px solid red;">
                 <div class="desktop-only customer">
-                    <button class="user-customer" onclick="openSidebar()"><i class="bi bi-person"></i>
+                    <button class="user-customer"><i class="bi bi-person"></i>
                         @if (Session::get('id_customer'))
                         {{Session::get('name_customer')}}
                         @else
@@ -87,12 +87,16 @@
 
             <!-- phần toggle này sẽ ẩn khi màn hình bình thường và sẽ xuất hiện khi màn hình dưới 991px -->
             <div class="d-flex gap-2">
-                <button class="btn d-lg-none search-toggle"><i class="bi bi-search"></i></button>
+                <button class="d-lg-none search-toggle"><i class="bi bi-search"></i></button>
                 <button class="btn d-lg-none user-toggle"><i class="bi bi-person"></i></button>
-                <a href="{{URL::to('/cart')}}" class=" btn d-lg-none">
+
+                <a class="cart-toggle d-lg-none d-flex" href="{{URL::to('/cart')}}">
                     <i class="bi bi-cart"></i>
-                    <span class="badge bg-danger" id="quantity-cart"></span>
+                    <span class="quantity_cart">
+                    </span>
                 </a>
+
+
                 <button class="btn d-lg-none menu-toggle"><i class="bi bi-list"></i></button>
             </div>
         </div>
