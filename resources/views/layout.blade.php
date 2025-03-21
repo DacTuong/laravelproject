@@ -137,6 +137,29 @@ $name = Session::get('name_customer')
     <script src="{{asset("user/js/bootstrap.bundle.min.js")}}"></script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // Xử lý dropdown trên mobile (toggle khi nhấn)
+            const productDropdown = document.getElementById("productDropdown");
+            const productDropdownMenu = document.getElementById("productDropdownMenu");
+
+            productDropdown.addEventListener("click", function(e) {
+                if (window.innerWidth <= 991) { // Chỉ hoạt động trên mobile
+                    e.preventDefault();
+                    productDropdownMenu.classList.toggle("show");
+                }
+            });
+
+            // Ẩn dropdown menu khi nhấn bên ngoài (trên mobile)
+            document.addEventListener("click", function(event) {
+                if (!productDropdown.contains(event.target)) {
+                    productDropdownMenu.classList.remove("show");
+                }
+            });
+        });
+    </script>
+
+    <script>
         function updateCheckboxFilter(filterName, element) {
             // Lấy giá trị checkbox được thay đổi
             const value = element.value;

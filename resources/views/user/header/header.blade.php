@@ -88,7 +88,11 @@
             <!-- phần toggle này sẽ ẩn khi màn hình bình thường và sẽ xuất hiện khi màn hình dưới 991px -->
             <div class="d-flex gap-2">
                 <button class="d-lg-none search-toggle"><i class="bi bi-search"></i></button>
-                <button class="btn d-lg-none user-toggle"><i class="bi bi-person"></i></button>
+
+                <button class="d-lg-none user-toggle"><i class="bi bi-person"></i></button>
+
+
+
 
                 <a class="cart-toggle d-lg-none d-flex" href="{{URL::to('/cart')}}">
                     <i class="bi bi-cart"></i>
@@ -96,8 +100,7 @@
                     </span>
                 </a>
 
-
-                <button class="btn d-lg-none menu-toggle"><i class="bi bi-list"></i></button>
+                <button class="d-lg-none menu-toggle"><i class="bi bi-list"></i></button>
             </div>
         </div>
     </div>
@@ -124,7 +127,16 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="{{URL::to('/')}}">Trang chủ</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="productDropdown" role="button">
+                                    Sản phẩm
+                                </a>
+                                <ul class="dropdown-menu" id="productDropdownMenu">
+                                    <li><a class="dropdown-item" href="#">Điện thoại</a></li>
+                                    <li><a class="dropdown-item" href="#">Laptop</a></li>
+                                    <li><a class="dropdown-item" href="#">Phụ kiện</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
                         </ul>

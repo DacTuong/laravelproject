@@ -2,10 +2,10 @@
     width: 100%;
     background-color: blue;
 }
-
-.nav-menu {
-    background-color: blue;
+.navbar-bg {
+    background-color: transparent;
 }
+
 .box-header {
     display: flex;
     align-items: center;
@@ -305,23 +305,13 @@
 
 .search-toggle {
     display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
     background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    border-radius: 0.375rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    border: 1px solid black;
+    padding: 0px 10px;
+    border: none;
+    font-size: 24px;
+    color: white;
 }
+
 .cart-toggle {
     position: relative;
     display: inline-block;
@@ -334,111 +324,24 @@
     position: absolute;
     right: -5px;
 }
+
+.user-toggle {
+    background-color: transparent;
+    padding: 0px 10px;
+    border: none;
+    font-size: 24px;
+    color: white;
+}
+
+.menu-toggle {
+    background-color: transparent;
+    padding: 0px 10px;
+    border: none;
+    font-size: 24px;
+    color: white;
+}
 /* Chú ý */
-.menu {
-    display: flex;
-    justify-content: space-between;
-}
-.megamenu {
-    position: relative;
-    list-style: none;
-    background-color: aqua;
-    /* padding: 5px 6px 5px 6px; */
-}
-.megamenu:hover .sub-megamenu {
-    opacity: 1; /* Hiển thị khi hover */
-    visibility: visible; /* Bỏ ẩn */
-}
-.sub-megamenu {
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.4); /* Nền tối trong suốt */
-    position: absolute;
-    border-radius: 5px;
-    display: flex;
-    min-width: 300px;
-    max-width: 300px;
-    flex-wrap: wrap;
-    padding: 10px;
-    margin: 0px;
-    list-style: none; /* Loại bỏ dấu đầu dòng của danh sách */
 
-    opacity: 0; /* Ẩn ban đầu */
-    visibility: hidden; /* Ngăn hiển thị sub-megamenu */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Hiệu ứng chuyển tiếp */
-}
-
-.sub-megamenu li {
-    padding: 4px 4px;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 5px;
-    background-color: #fff;
-}
-.sub-megamenu li:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-.sub-megamenu li a {
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.sub-megamenu li a:hover {
-    color: white;
-}
-
-.megamenu-blog {
-    position: relative;
-    list-style: none;
-    background-color: aqua;
-    margin: 0px;
-    padding: 0px;
-    /* padding: 5px 6px 5px 6px; */
-}
-.megamenu-blog:hover .sub-megamenu_blog {
-    opacity: 1; /* Hiển thị khi hover */
-    visibility: visible; /* Bỏ ẩn */
-}
-.sub-megamenu_blog {
-    z-index: 1;
-    /* background: rgba(0, 0, 0, 0.4);
-     */
-    background-color: white;
-    position: absolute;
-    border-radius: 5px;
-    /* display: flex; */
-    min-width: 300px;
-    max-width: 300px;
-    padding: 0;
-    /* flex-wrap: wrap; */
-    /* padding: 10px; */
-    margin: 0;
-    list-style: none; /* Loại bỏ dấu đầu dòng của danh sách */
-    opacity: 0; /* Ẩn ban đầu */
-    visibility: hidden; /* Ngăn hiển thị sub-megamenu */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Hiệu ứng chuyển tiếp */
-}
-
-.sub-megamenu_blog li:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-.sub-megamenu_blog a {
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    display: block;
-    padding: 5px 10px;
-}
-
-.sub-megamenu_blog a:hover {
-    color: white;
-    background-color: #007bff;
-}
 /* chú ý */
 .app_container {
     background: #e0e0e0;
@@ -1857,14 +1760,25 @@ tbody tr {
 .footer {
     background-color: aqua;
 }
+
 /* MEDIA */
 
 @media (max-width: 991px) {
+    #navbarNav.show {
+        display: block !important;
+    }
+
     .desktop-only {
         display: none;
     }
 
     .responsiveSearch.show {
         display: block !important;
+    }
+}
+@media (min-width: 991px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Đảm bảo không có khoảng trống khi hover */
     }
 }

@@ -33,7 +33,7 @@
                 <button type="button" class="btn btn-primary w-100 filter-order" onclick="filterOrders()">Lọc</button>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 col-12 mb-2">
-                <a href="" class="btn btn-secondary w-100">Tải lại</a>
+                <a href="{{ URL::to("history-order") }}" class="btn btn-secondary w-100">Tải lại</a>
             </div>
         </div>
 
