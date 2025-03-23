@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="container py-3">
+    <div class="container-xl py-3">
         <div class="d-flex justify-content-between align-items-center">
             <div style="border: 1px solid red;">
                 <a href="{{URL::to('/')}}" class="header__logo-home">
@@ -7,8 +7,8 @@
                 </a>
             </div>
             <!-- Phần tìm kiếm -->
-            <div class="d-none d-lg-flex flex-grow-1 mx-4" style="border: 1px solid black;">
-                <div class="box__search" style="border: 1px solid yellow;">
+            <div class="d-none d-lg-flex flex-grow-1 mx-4">
+                <div class="box__search">
                     <form action="{{URL::to('/search')}}" method="POST">
                         {{csrf_field()}}
                         <div class="box__search-input-warp">
@@ -25,7 +25,7 @@
             </div>
 
             <!-- User& Cart hiển thị khi chế độ màn hình lớn -->
-            <div class="d-flex align-items-center gap-3" style="border: 1px solid red;">
+            <div class="d-flex align-items-center gap-3">
                 <div class="desktop-only customer">
                     <button class="user-customer"><i class="bi bi-person"></i>
                         @if (Session::get('id_customer'))
@@ -89,10 +89,42 @@
             <div class="d-flex gap-2">
                 <button class="d-lg-none search-toggle"><i class="bi bi-search"></i></button>
 
-                <button class="d-lg-none user-toggle"><i class="bi bi-person"></i></button>
-
-
-
+                <div class="customer">
+                    <button class="d-lg-none user-toggle"><i class="bi bi-person"></i></button>
+                    <ul class="customer__sub">
+                        <li class="customer__sub-item">
+                            @if (Session::get('id_customer'))
+                            <a href="{{ URL::to('/thong-tin-ca-nhan') }}" class="customer__sub-link">
+                                <i class="bi bi-person"></i>
+                                Thông tin khách hàng
+                            </a>
+                            @else
+                            <a href="{{ URL::to('/login-index') }}" class="customer__sub-link"><i
+                                    class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+                            @endif
+                        </li>
+                        <li class="customer__sub-item">
+                            @if (Session::get('id_customer'))
+                            <a href="{{ URL::to('/logout') }}" class="customer__sub-link">
+                                <i class="bi bi-box-arrow-in-left"></i>
+                                Đăng xuất
+                            </a>
+                            @else
+                            <a href="{{ URL::to('/register-index') }}" class="customer__sub-link"><i
+                                    class="bi bi-person-plus-fill"></i> Đăng ký</a>
+                            @endif
+                        </li>
+                        <li class="customer__sub-item">
+                            <a class="customer__sub-link" href="{{ URL::to('/setting') }}">Cài đặt</a>
+                        </li>
+                        <li class="customer__sub-item">
+                            <a class="customer__sub-link" href="{{ URL::to('/history-order') }}">Lịch sử mua hàng</a>
+                        </li>
+                        <li class="customer__sub-item">
+                            <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu thích</a>
+                        </li>
+                    </ul>
+                </div>
 
                 <a class="cart-toggle d-lg-none d-flex" href="{{URL::to('/cart')}}">
                     <i class="bi bi-cart"></i>
@@ -105,7 +137,7 @@
         </div>
     </div>
 
-    <div class="container py-2 d-lg-none responsiveSearch" style="display:none;">
+    <div class="container-xl py-2 d-lg-none responsiveSearch" style="display:none;">
         <div class="box__search">
             <form action="{{URL::to('/search')}}" method="POST">
                 {{csrf_field()}}
@@ -121,7 +153,7 @@
     </div>
 
     <div class="nav-menu">
-        <div class="container">
+        <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNav">

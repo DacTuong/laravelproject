@@ -327,10 +327,11 @@
 
 .user-toggle {
     background-color: transparent;
-    padding: 0px 10px;
+    /* padding: 0px 10px; */
     border: none;
     font-size: 24px;
     color: white;
+    /* border: 1px solid black; */
 }
 
 .menu-toggle {
@@ -500,9 +501,10 @@
 /* ============================SLIDE BANNER==================================== */
 
 /*==========================HOME PRODUCT=====================*/
-.sort {
+.filter-tool {
     background-color: #f1f1f1;
     margin-bottom: 5px;
+    display: flex;
 }
 .product-content {
     padding-block: 10px;
@@ -1764,10 +1766,29 @@ tbody tr {
 /* MEDIA */
 
 @media (max-width: 991px) {
+    .home-product {
+        position: relative;
+    }
+    .left-contaner {
+        position: absolute;
+        left: 0px;
+        z-index: 888;
+    }
+    .left-contaner.show {
+        display: block !important;
+    }
+
+    .customer {
+        padding: 0px 12px;
+    }
+
     #navbarNav.show {
         display: block !important;
     }
 
+    .nav-menu {
+        background-color: blue;
+    }
     .desktop-only {
         display: none;
     }

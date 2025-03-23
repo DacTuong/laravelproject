@@ -39,7 +39,7 @@ $name = Session::get('name_customer')
         <div id="sidebar">
             <!-- Nội dung sidebar -->
 
-            <div class="sidebar-header">
+            <!-- <div class="sidebar-header">
                 <a href="" class="user-customer-sidebar" onclick="openSidebar()">
                     <img src="{{ URL::to('user/image/avatar-user.png') }}" alt="">
                     {{Session::get('name_customer')}}
@@ -57,13 +57,13 @@ $name = Session::get('name_customer')
                     <li> <a href="{{ URL::to('/setting') }}">Cài đặt</a></li>
                     <li> <a href="{{ URL::to('/logout') }}">Đăng xuất</a></li>
                 </ul>
-            </div>
+            </div> -->
 
         </div>
         <!-- sidebar -->
 
         <div class="app_container">
-            <div class="container">
+            <div class="container-xl">
                 @yield('content')
 
             </div>
@@ -135,6 +135,9 @@ $name = Session::get('name_customer')
     <script src="{{asset("user/js/toastr.js")}}"></script>
 
     <script src="{{asset("user/js/bootstrap.bundle.min.js")}}"></script>
+
+
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -394,23 +397,25 @@ $name = Session::get('name_customer')
                 // alert("Bạn đã ấn nút toggle search")
                 $(".responsiveSearch").toggleClass('show');
             });
+
+            $(document).on("click", ".filter-toggle", function() {
+                // alert('bạn đã click filter-toggle');
+                $(".left-contaner").toggleClass('show');
+                $(".overlay").toggleClass("show");
+            });
+
+            $(document).on("click", ".overlay", function() {
+                if ($(this).hasClass("show")) {
+                    $(".left-contaner").removeClass('show');
+                    $(this).removeClass("show");
+                }
+            });
+
         })
     </script>
 
     <script>
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     // Toggle navbar khi nhấn menu
 
-        //     // Toggle tìm kiếm khi nhấn kính lúp
-        //     document.getElementById("search-toggle").addEventListener("click", function() {
-        //         document.getElementById("responsiveSearch").classList.toggle("show");
-        //     });
-
-        //     // Hiển thị thông báo đăng nhập khi nhấn vào nút login (hoặc chuyển hướng)
-        //     document.getElementById("login-toggle").addEventListener("click", function() {
-        //         alert("Chuyển đến trang đăng nhập!"); // Bạn có thể thay đổi thành modal đăng nhập nếu cần
-        //     });
-        // });
     </script>
 </body>
 
