@@ -2,6 +2,11 @@
 @section('content')
 <div class="content-main">
     <div class="banner-container">
+        <div class="slider">
+            @foreach ($banners as $banner )
+            <img src="{{ URL::to('uploads/slide/'.$banner->banner_image) }}" alt="">
+            @endforeach
+        </div>
     </div>
 
     <div class="home-product">

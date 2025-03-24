@@ -58,10 +58,12 @@
                             @endif
                         </li>
                         <li class="customer__sub-item">
-                            <a class="customer__sub-link" href="{{ URL::to('/setting') }}">Cài đặt</a>
+                            <a class="customer__sub-link" href="{{ URL::to('/thong-tin-ca-nhan/setting') }}"><i
+                                    class="bi bi-gear"></i> Cài đặt</a>
                         </li>
                         <li class="customer__sub-item">
-                            <a class="customer__sub-link" href="{{ URL::to('/history-order') }}">Lịch sử mua hàng</a>
+                            <a class="customer__sub-link" href="{{ URL::to('/history-order') }}"><i
+                                    class="bi bi-clock-history"></i> Lịch sử mua hàng</a>
                         </li>
                         <li class="customer__sub-item">
                             <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu thích</a>

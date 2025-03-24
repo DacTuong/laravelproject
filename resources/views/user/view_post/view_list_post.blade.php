@@ -9,7 +9,7 @@ Trang bài viết sản phẩm
 
 <div class="row">
     @foreach ($posts as $post)
-    <div class="col-lg-3 col-md-3 col-sm-12 col-12" style="padding-bottom: 12px;">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="padding-bottom: 12px;">
         {{$post->name_article}}
     </div>
     @endforeach

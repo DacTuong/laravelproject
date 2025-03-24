@@ -287,6 +287,10 @@
     background-color: rgba(52, 51, 51, 0.4);
     border-radius: 4px;
 }
+
+.customer__sub-link {
+    display: block;
+}
 .customer__sub-item:hover .customer__sub-link {
     color: white;
 }
@@ -494,8 +498,19 @@
     background: #e0e0e0;
     margin-bottom: 10px;
 }
-.banner-item {
-    background-color: #007bff;
+.slider {
+    margin: 0px auto;
+    display: flex;
+    max-width: 1200px;
+    /* max-height: 500px; */
+    overflow: hidden;
+    border: 1px solid red;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ tỉ lệ ảnh, không bị méo */
 }
 
 /* ============================SLIDE BANNER==================================== */
