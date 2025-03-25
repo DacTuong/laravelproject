@@ -6,7 +6,13 @@
             @foreach ($banners as $banner )
             <img src="{{ URL::to('uploads/slide/'.$banner->banner_image) }}" alt="">
             @endforeach
+
+            <div class="btns-slider">
+                <button class="slide-pre">Trước</button>
+                <button class="slide-next">Sau</button>
+            </div>
         </div>
+
     </div>
 
     <div class="home-product">
