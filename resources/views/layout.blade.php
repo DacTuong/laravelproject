@@ -458,16 +458,28 @@ $name = Session::get('name_customer')
                 nextSlide();
             })
 
+            function handleSwipe() {
+                const driff = startX - endX;
+                if (Math.abs(driff) > 50) {
+                    if (driff > 0) {
+                        nextSlide();
+                    } else {
+                        previousSlide();
+                    }
+                }
+            }
 
             $(".slider").on("touchstart", function(e) {
                 startX = e.originalEvent.touches[0].clientX; // Lấy vị trí ngón tay bắt đầu
-                console.log("startX:", startX); // In ra giá trị startX
+                // console.log("startX:", startX); 
+                // In ra giá trị startX
             });
 
             $(".slider").on("touchend", function(e) {
                 endX = e.originalEvent.changedTouches[0].clientX; // Lấy vị trí ngón tay kết thúc
-                console.log("endX:", endX); // In ra giá trị endX
-                // handleSwipe();
+                // console.log("endX:", endX); 
+                // In ra giá trị endX
+                handleSwipe();
             });
 
             setInterval(nextSlide, 4000);

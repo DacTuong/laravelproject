@@ -1833,16 +1833,7 @@ tbody tr {
     .responsiveSearch.show {
         display: block !important;
     }
-    /* .slider {
-        height: 150px;
-        border: 1px solid red;
-    }
 
-    .slider img {
-        height: 150px;
-        border: 1px solid black;
-        object-fit: contain;
-    } */
     .btns-slider {
         display: none;
     }
