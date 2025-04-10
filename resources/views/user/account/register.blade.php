@@ -11,6 +11,10 @@
 <body>
     <div class="wrap">
         <h1 class="title">ĐĂNG KÝ THÀNH VIÊN MỚI</h1>
+
+        @if(Session::has('error'))
+        <span class="errorMessage">{{ Session::get('error') }}</span>
+        @endif
         <form method="POST" action="{{URL::to('/add-customer')}}" class="form">
             {{csrf_field()}}
             <div class="row-form">

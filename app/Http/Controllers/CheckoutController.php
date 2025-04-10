@@ -50,6 +50,20 @@ class CheckoutController extends Controller
     public function add_customer(Request $request)
     {
         $data = $request->all();
+
+        $checkEmail = User::where('email_user', $data['user_email'])->first();
+
+
+        $checkPhone = User::where('phone_user', $data['user_phone'])->first();
+        if ($checkEmail && $checkPhone) {
+            return Redirect::back()->with('error', 'Email và số điện thoại đã được sử dụng!');
+        } elseif ($checkEmail) {
+            return Redirect::back()->with('error', 'Email đã được sử dụng!');
+        } elseif ($checkPhone) {
+            return Redirect::back()->with('error', 'Số điện thoại đã được sử dụng!');
+        }
+
+
         $user_add = new User;
         $user_add->name_user = $data['user_name'];
         $user_add->email_user = $data['user_email'];

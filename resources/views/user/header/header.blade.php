@@ -154,11 +154,11 @@
         </div>
     </div>
 
-    <div class="nav-menu">
+    <div class="nav-menu d-none d-md-block">
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="{{URL::to('/')}}">Trang chủ</a></li>
                             <li class="nav-item dropdown">

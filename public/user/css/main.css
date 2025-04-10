@@ -26,6 +26,7 @@
     border-radius: 2px;
     width: 100%;
 }
+
 .box__search form {
     background-color: var(--white-color);
     display: flex;
@@ -1804,11 +1805,12 @@ tbody tr {
 
 @media (max-width: 991px) {
     .home-product {
-        position: relative;
+        /* position: relative; */
     }
     .left-contaner {
-        position: absolute;
-        left: 0px;
+        /* position: absolute; */
+        /* left: 0px; */
+        transform: translateY(50%);
         z-index: 888;
     }
     .left-contaner.show {
@@ -1823,9 +1825,6 @@ tbody tr {
         display: block !important;
     }
 
-    .nav-menu {
-        background-color: blue;
-    }
     .desktop-only {
         display: none;
     }
@@ -1843,11 +1842,9 @@ tbody tr {
     }
 }
 
-/* @media screen and (max-width: 991px) {
-} */
 @media (min-width: 991px) {
     .dropdown:hover .dropdown-menu {
         display: block;
-        margin-top: 0; /* Đảm bảo không có khoảng trống khi hover */
+        margin-top: 0;
     }
 }

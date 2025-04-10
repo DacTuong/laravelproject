@@ -22,9 +22,12 @@ body {
 }
 
 .form {
-    padding: 30px 20px 25px 25px;
+    padding: 10px 20px;
 }
-
+.errorMessage {
+    color: red;
+    padding: 0px 0px 0px 20px;
+}
 .row-form {
     height: 40px;
     margin-bottom: 35px;
