@@ -23,9 +23,9 @@ $name = Session::get('name_customer')
     <!-- Bootstrap Icons -->
 
     <!-- Link font-awesome -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link font-awesome -->
 </head>
 
@@ -140,137 +140,137 @@ $name = Session::get('name_customer')
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
 
-            // Xử lý dropdown trên mobile (toggle khi nhấn)
-            const productDropdown = document.getElementById("productDropdown");
-            const productDropdownMenu = document.getElementById("productDropdownMenu");
+        // Xử lý dropdown trên mobile (toggle khi nhấn)
+        const productDropdown = document.getElementById("productDropdown");
+        const productDropdownMenu = document.getElementById("productDropdownMenu");
 
-            productDropdown.addEventListener("click", function(e) {
-                if (window.innerWidth <= 991) { // Chỉ hoạt động trên mobile
-                    e.preventDefault();
-                    productDropdownMenu.classList.toggle("show");
-                }
-            });
-
-            // Ẩn dropdown menu khi nhấn bên ngoài (trên mobile)
-            document.addEventListener("click", function(event) {
-                if (!productDropdown.contains(event.target)) {
-                    productDropdownMenu.classList.remove("show");
-                }
-            });
+        productDropdown.addEventListener("click", function(e) {
+            if (window.innerWidth <= 991) { // Chỉ hoạt động trên mobile
+                e.preventDefault();
+                productDropdownMenu.classList.toggle("show");
+            }
         });
+
+        // Ẩn dropdown menu khi nhấn bên ngoài (trên mobile)
+        document.addEventListener("click", function(event) {
+            if (!productDropdown.contains(event.target)) {
+                productDropdownMenu.classList.remove("show");
+            }
+        });
+    });
     </script>
 
     <script>
-        function updateCheckboxFilter(filterName, element) {
-            // Lấy giá trị checkbox được thay đổi
-            const value = element.value;
+    function updateCheckboxFilter(filterName, element) {
+        // Lấy giá trị checkbox được thay đổi
+        const value = element.value;
 
-            // Lấy URL hiện tại
-            const currentUrl = new URL(window.location.href);
+        // Lấy URL hiện tại
+        const currentUrl = new URL(window.location.href);
 
-            // Lấy danh sách giá trị hiện có trong URL
-            let filterValues = currentUrl.searchParams.get(filterName) ?
-                currentUrl.searchParams.get(filterName).split(',') : [];
+        // Lấy danh sách giá trị hiện có trong URL
+        let filterValues = currentUrl.searchParams.get(filterName) ?
+            currentUrl.searchParams.get(filterName).split(',') : [];
 
-            if (element.checked) {
-                // Nếu checkbox được chọn, thêm giá trị nếu chưa có
-                if (!filterValues.includes(value)) {
-                    filterValues.push(value);
-                }
-            } else {
-                // Nếu checkbox bị bỏ chọn, xóa giá trị khỏi danh sách
-                filterValues = filterValues.filter(val => val !== value);
+        if (element.checked) {
+            // Nếu checkbox được chọn, thêm giá trị nếu chưa có
+            if (!filterValues.includes(value)) {
+                filterValues.push(value);
             }
-
-            // Cập nhật giá trị cho tham số URL hoặc xóa nếu rỗng
-            if (filterValues.length > 0) {
-                currentUrl.searchParams.set(filterName, filterValues.join(','));
-            } else {
-                currentUrl.searchParams.delete(filterName);
-            }
-
-            // Reload trang với URL mới
-            window.location.href = currentUrl.toString();
+        } else {
+            // Nếu checkbox bị bỏ chọn, xóa giá trị khỏi danh sách
+            filterValues = filterValues.filter(val => val !== value);
         }
 
-        function updateFilter(param, value) {
-            let url = new URL(window.location.href);
-            if (value === "none") {
-                url.searchParams.delete(param);
-            } else {
-                url.searchParams.set(param, value);
-            }
-            window.location.href = url.toString();
-        }
-        // Mở sidebar
-        function openSidebar() {
-            // Hiển thị sidebar bằng cách đặt left về 0
-            document.getElementById('sidebar').style.right = '0';
-            // Hiển thị overlay bằng cách thay đổi display thành block
-            document.getElementById('overlay').style.display = 'block';
+        // Cập nhật giá trị cho tham số URL hoặc xóa nếu rỗng
+        if (filterValues.length > 0) {
+            currentUrl.searchParams.set(filterName, filterValues.join(','));
+        } else {
+            currentUrl.searchParams.delete(filterName);
         }
 
-        // Đóng sidebar
-        function closeSidebar() {
-            // Hiển thị sidebar bằng cách đặt left về 0
-            document.getElementById('sidebar').style.right = '-300px';
-            // Hiển thị overlay bằng cách thay đổi display thành block
-            document.getElementById('overlay').style.display = 'none';
+        // Reload trang với URL mới
+        window.location.href = currentUrl.toString();
+    }
+
+    function updateFilter(param, value) {
+        let url = new URL(window.location.href);
+        if (value === "none") {
+            url.searchParams.delete(param);
+        } else {
+            url.searchParams.set(param, value);
         }
+        window.location.href = url.toString();
+    }
+    // Mở sidebar
+    function openSidebar() {
+        // Hiển thị sidebar bằng cách đặt left về 0
+        document.getElementById('sidebar').style.right = '0';
+        // Hiển thị overlay bằng cách thay đổi display thành block
+        document.getElementById('overlay').style.display = 'block';
+    }
 
-        function openSpecifications() {
-            // Hiển thị overlay bằng cách thay đổi display thành block
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('specifications-popup').style.display = 'block';
-        }
+    // Đóng sidebar
+    function closeSidebar() {
+        // Hiển thị sidebar bằng cách đặt left về 0
+        document.getElementById('sidebar').style.right = '-300px';
+        // Hiển thị overlay bằng cách thay đổi display thành block
+        document.getElementById('overlay').style.display = 'none';
+    }
 
-        function closeSpecifications() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('specifications-popup').style.display = 'none';
-        }
+    function openSpecifications() {
+        // Hiển thị overlay bằng cách thay đổi display thành block
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('specifications-popup').style.display = 'block';
+    }
 
-        // mở overlay và  review popup
-        function openReviewPopup() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('review-form-popup').style.display = 'block';
-        }
-        // đóng overlay và  review popup
-        function closeReviewPopup() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('review-form-popup').style.display = 'none';
+    function closeSpecifications() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('specifications-popup').style.display = 'none';
+    }
 
-        }
+    // mở overlay và  review popup
+    function openReviewPopup() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('review-form-popup').style.display = 'block';
+    }
+    // đóng overlay và  review popup
+    function closeReviewPopup() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('review-form-popup').style.display = 'none';
 
-        function openReviewPopup2() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('boxReview-popup').style.display = 'block';
-        }
+    }
 
-        function closeReviewPopup2() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('boxReview-popup').style.display = 'none';
-        }
+    function openReviewPopup2() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('boxReview-popup').style.display = 'block';
+    }
+
+    function closeReviewPopup2() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('boxReview-popup').style.display = 'none';
+    }
 
 
-        function filterOrders() {
-            // Lấy giá trị từ các input
-            const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
-            const orderDate = document.getElementById('orderDate').value || ''; // Mặc định là rỗng
-            const orderStatus = document.getElementById('orderStatus').value || ''; // Mặc định là 1 (Chờ xử lý)
+    function filterOrders() {
+        // Lấy giá trị từ các input
+        const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
+        const orderDate = document.getElementById('orderDate').value || ''; // Mặc định là rỗng
+        const orderStatus = document.getElementById('orderStatus').value || ''; // Mặc định là 1 (Chờ xử lý)
 
-            // Tạo URL mới với tất cả các tham số
-            const params = new URLSearchParams({
-                order_code: orderCode,
-                order_date: orderDate,
-                order_status: orderStatus
-            });
+        // Tạo URL mới với tất cả các tham số
+        const params = new URLSearchParams({
+            order_code: orderCode,
+            order_date: orderDate,
+            order_status: orderStatus
+        });
 
-            // Reload lại URL với tham số
-            const currentUrl = window.location.origin + window.location.pathname;
-            window.location.href = `${currentUrl}?${params.toString()}`;
-        }
+        // Reload lại URL với tham số
+        const currentUrl = window.location.origin + window.location.pathname;
+        window.location.href = `${currentUrl}?${params.toString()}`;
+    }
     </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
@@ -281,210 +281,210 @@ $name = Session::get('name_customer')
 
 
     <script>
-        $(document).ready(function() {
-            function checkReason() {
-                var reason4 = $('.reason4');
-                var reasonTextarea = $('.reason_cancellation');
-                var sendButton = $('.send-cancel-resson');
+    $(document).ready(function() {
+        function checkReason() {
+            var reason4 = $('.reason4');
+            var reasonTextarea = $('.reason_cancellation');
+            var sendButton = $('.send-cancel-resson');
 
-                var isOtherChecked = reason4.length && reason4.prop('checked');
-                var isTextareaEmpty = reasonTextarea.length && reasonTextarea.val().trim() === '';
+            var isOtherChecked = reason4.length && reason4.prop('checked');
+            var isTextareaEmpty = reasonTextarea.length && reasonTextarea.val().trim() === '';
 
-                if (isOtherChecked && isTextareaEmpty) {
-                    sendButton.addClass('dab').prop('disabled', true);
-                } else {
-                    sendButton.removeClass('dab').prop('disabled', false);
-                }
+            if (isOtherChecked && isTextareaEmpty) {
+                sendButton.addClass('dab').prop('disabled', true);
+            } else {
+                sendButton.removeClass('dab').prop('disabled', false);
             }
+        }
 
-            $('input[name="reason"]').on('change', checkReason);
-            $('.reason_cancellation').on('input', checkReason);
-            checkReason();
+        $('input[name="reason"]').on('change', checkReason);
+        $('.reason_cancellation').on('input', checkReason);
+        checkReason();
+    });
+
+
+    $(document).ready(function() {
+        // Ẩn textarea khi trang được tải
+        $(".reason_cancellation").hide();
+        $("input[name='reason']").change(function() {
+            if ($(".reason4").is(":checked")) {
+                $(".reason_cancellation").show();
+            } else {
+                $(".reason_cancellation").hide();
+            }
         });
+    });
 
+    $(document).on('click', '.send-cancel-resson', function(e) {
+        e.preventDefault();
+        var _token = $('input[name="_token"]').val();
+        let selectedReason = document.querySelector('input[name="reason"]:checked').value;
+        let otherReason = document.querySelector('.reason_cancellation').value.trim();
+        let order_code = document.querySelector('.order_code').textContent.trim();
+        var message = selectedReason === "Khác" ? `${otherReason}` : `${selectedReason}`
+        $.ajax({
+            url: '/cancel-order',
+            method: 'POST',
+            data: {
+                order_code: order_code,
+                cancel_reason: message,
+                _token: _token,
+            },
+            success: function() {
+                // alert('Gửi lý do thành công')
+                location.reload();
 
-        $(document).ready(function() {
-            // Ẩn textarea khi trang được tải
-            $(".reason_cancellation").hide();
-            $("input[name='reason']").change(function() {
-                if ($(".reason4").is(":checked")) {
-                    $(".reason_cancellation").show();
-                } else {
-                    $(".reason_cancellation").hide();
-                }
-            });
+            },
+            error: function(err) {
+                console.error("Đã có lỗi xảy ra", err);
+            },
         });
+    });
 
-        $(document).on('click', '.send-cancel-resson', function(e) {
-            e.preventDefault();
-            var _token = $('input[name="_token"]').val();
-            let selectedReason = document.querySelector('input[name="reason"]:checked').value;
-            let otherReason = document.querySelector('.reason_cancellation').value.trim();
-            let order_code = document.querySelector('.order_code').textContent.trim();
-            var message = selectedReason === "Khác" ? `${otherReason}` : `${selectedReason}`
-            $.ajax({
-                url: '/cancel-order',
-                method: 'POST',
-                data: {
-                    order_code: order_code,
-                    cancel_reason: message,
-                    _token: _token,
-                },
-                success: function() {
-                    // alert('Gửi lý do thành công')
-                    location.reload();
+    $(document).on("click", ".cancel-order", function(e) {
+        e.preventDefault();
+        // alert('Bạn đã ấn nút hủy đơn hàng');
+        $(".model-cancel-order").addClass("show");
+        $(".overlay").addClass("show");
+    })
 
-                },
-                error: function(err) {
-                    console.error("Đã có lỗi xảy ra", err);
-                },
-            });
+
+
+    $(document).on('click', '.close-model', function(e) {
+        e.preventDefault();
+        $(".model-cancel-order").removeClass("show");
+        $(".overlay").removeClass("show");
+        $(".reason1").prop("checked", true);
+        $(".reason_cancellation").val("");
+        $(".reason_cancellation").hide();
+    })
+
+
+
+
+    document.querySelectorAll('.option-version').forEach(item => {
+        item.addEventListener('click', function() {
+            let storageValue = this.getAttribute('data-value');
+            // alert(storageValue);
+
+            let url = new URL(window.location);
+            url.searchParams.delete('sku')
+            url.searchParams.set('storage', storageValue);
+            window.location.href = url.toString();
+            // Chuyển hướng trang với URL mới
         });
+    });
 
-        $(document).on("click", ".cancel-order", function(e) {
-            e.preventDefault();
-            // alert('Bạn đã ấn nút hủy đơn hàng');
-            $(".model-cancel-order").addClass("show");
-            $(".overlay").addClass("show");
+    document.querySelectorAll('.color-item').forEach(color => {
+        color.addEventListener('click', function() {
+            let colorValue = this.getAttribute('data-id');
+            let url = new URL(window.location);
+            url.searchParams.set('sku', colorValue);
+            window.location.href = url;
         })
-
-
-
-        $(document).on('click', '.close-model', function(e) {
-            e.preventDefault();
-            $(".model-cancel-order").removeClass("show");
-            $(".overlay").removeClass("show");
-            $(".reason1").prop("checked", true);
-            $(".reason_cancellation").val("");
-            $(".reason_cancellation").hide();
-        })
-
-
-
-
-        document.querySelectorAll('.option-version').forEach(item => {
-            item.addEventListener('click', function() {
-                let storageValue = this.getAttribute('data-value');
-                // alert(storageValue);
-
-                let url = new URL(window.location);
-                url.searchParams.delete('sku')
-                url.searchParams.set('storage', storageValue);
-                window.location.href = url.toString();
-                // Chuyển hướng trang với URL mới
-            });
-        });
-
-        document.querySelectorAll('.color-item').forEach(color => {
-            color.addEventListener('click', function() {
-                let colorValue = this.getAttribute('data-id');
-                let url = new URL(window.location);
-                url.searchParams.set('sku', colorValue);
-                window.location.href = url;
-            })
-        });
+    });
     </script>
 
 
     <!-- xữ lý tắt mở search & nav-menu -->
     <script>
-        $(document).ready(function() {
-            $(document).on('click', '.menu-toggle', function() {
-                $("#navbarNav").toggleClass("show");
-            });
+    $(document).ready(function() {
+        $(document).on('click', '.menu-toggle', function() {
+            $("#navbarNav").toggleClass("show");
+        });
 
-            $(document).on('click', '.search-toggle', function() {
-                // alert("Bạn đã ấn nút toggle search")
-                $(".responsiveSearch").toggleClass('show');
-            });
+        $(document).on('click', '.search-toggle', function() {
+            // alert("Bạn đã ấn nút toggle search")
+            $(".responsiveSearch").toggleClass('show');
+        });
 
-            $(document).on("click", ".filter-toggle", function() {
-                // alert('bạn đã click filter-toggle');
-                $(".left-contaner").toggleClass('show');
-                $(".overlay").toggleClass("show");
-            });
+        $(document).on("click", ".filter-toggle", function() {
+            // alert('bạn đã click filter-toggle');
+            $(".left-contaner").toggleClass('show');
+            $(".overlay").toggleClass("show");
+        });
 
-            $(document).on("click", ".overlay", function() {
-                if ($(this).hasClass("show")) {
-                    $(".left-contaner").removeClass('show');
-                    $(this).removeClass("show");
-                }
-            });
+        $(document).on("click", ".overlay", function() {
+            if ($(this).hasClass("show")) {
+                $(".left-contaner").removeClass('show');
+                $(this).removeClass("show");
+            }
+        });
 
-        })
+    })
     </script>
 
     <script>
-        $(document).ready(function() {
-            const slider = $(".slider");
-            const images = $(".slider img");
-            const totalImage = images.length;
-            const widthImage = images.width();
-            let index = 0;
+    $(document).ready(function() {
+        const slider = $(".slider");
+        const images = $(".slider img");
+        const totalImage = images.length;
+        const widthImage = images.width();
+        let index = 0;
 
-            function nextSlide() {
-                index++;
+        function nextSlide() {
+            index++;
 
-                if (index >= totalImage) {
-                    index = 0;
-                }
-                images.css("transform", `translateX(-${index * widthImage}px)`);
-
-                // const test = index * widthImage;
-                // console.log(test);
+            if (index >= totalImage) {
+                index = 0;
             }
+            images.css("transform", `translateX(-${index * widthImage}px)`);
 
-            function previousSlide() {
-                index--;
-                if (index < 0) {
-                    index = totalImage - 1; // Chỉ số ảnh cuối cùng
-                }
-                images.css("transform", `translateX(-${index * widthImage}px)`);
+            // const test = index * widthImage;
+            // console.log(test);
+        }
 
-                // const test = index * widthImage;
-                // console.log(test);
+        function previousSlide() {
+            index--;
+            if (index < 0) {
+                index = totalImage - 1; // Chỉ số ảnh cuối cùng
             }
+            images.css("transform", `translateX(-${index * widthImage}px)`);
 
-            let startX = 0,
-                endX = 0;
+            // const test = index * widthImage;
+            // console.log(test);
+        }
+
+        let startX = 0,
+            endX = 0;
 
 
 
-            $(".slide-pre").on("click", function() {
-                previousSlide();
-            })
+        $(".slide-pre").on("click", function() {
+            previousSlide();
+        })
 
-            $(".slide-next").on("click", function() {
-                nextSlide();
-            })
+        $(".slide-next").on("click", function() {
+            nextSlide();
+        })
 
-            function handleSwipe() {
-                const driff = startX - endX;
-                if (Math.abs(driff) > 50) {
-                    if (driff > 0) {
-                        nextSlide();
-                    } else {
-                        previousSlide();
-                    }
+        function handleSwipe() {
+            const driff = startX - endX;
+            if (Math.abs(driff) > 50) {
+                if (driff > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
                 }
             }
+        }
 
-            $(".slider").on("touchstart", function(e) {
-                startX = e.originalEvent.touches[0].clientX; // Lấy vị trí ngón tay bắt đầu
-                // console.log("startX:", startX); 
-                // In ra giá trị startX
-            });
-
-            $(".slider").on("touchend", function(e) {
-                endX = e.originalEvent.changedTouches[0].clientX; // Lấy vị trí ngón tay kết thúc
-                // console.log("endX:", endX); 
-                // In ra giá trị endX
-                handleSwipe();
-            });
-
-            setInterval(nextSlide, 4000);
-
+        $(".slider").on("touchstart", function(e) {
+            startX = e.originalEvent.touches[0].clientX; // Lấy vị trí ngón tay bắt đầu
+            // console.log("startX:", startX); 
+            // In ra giá trị startX
         });
+
+        $(".slider").on("touchend", function(e) {
+            endX = e.originalEvent.changedTouches[0].clientX; // Lấy vị trí ngón tay kết thúc
+            // console.log("endX:", endX); 
+            // In ra giá trị endX
+            handleSwipe();
+        });
+
+        setInterval(nextSlide, 4000);
+
+    });
     </script>
 </body>
 

@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->where('product_status', 1);
 
 
-        $banners = BannerModel::all();
+        $banners = BannerModel::where('status_banner', 1)->get();
 
 
         // Lọc theo giá

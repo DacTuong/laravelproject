@@ -16,7 +16,7 @@
     </div>
 
     <div class="home-product">
-        <div class="left-contaner d-none d-md-block">
+        <div class="left-contaner">
             <div class="filter-item">
                 <b>Dung lượng ram</b><br>
                 <label>

@@ -154,7 +154,7 @@
         </div>
     </div>
 
-    <div class="nav-menu d-none d-md-block">
+    <div class="nav-menu show">
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">

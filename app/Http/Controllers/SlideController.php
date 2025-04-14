@@ -60,8 +60,4 @@ class SlideController extends Controller
 
         return Redirect::to('list-banner');
     }
-
-    // usser
-
-
 }

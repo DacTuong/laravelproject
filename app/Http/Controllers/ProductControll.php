@@ -199,9 +199,11 @@ class ProductControll extends Controller
         if ($get_image) {
             // Nếu có hình ảnh mới, thực hiện các bước sau:
             // 1. Xóa hình ảnh cũ
-            $product_image_path = '/uploads/product/' . $old_image;
-            if (file_exists($product_image_path)) {
-                unlink($product_image_path);
+            if (!empty($old_image)) {
+                $product_image_path = 'uploads/product/' . $old_image;
+                if (file_exists($product_image_path)) {
+                    unlink($product_image_path);
+                }
             }
 
             // 2. Lưu hình ảnh mới
@@ -225,9 +227,9 @@ class ProductControll extends Controller
             $product_image_path = 'uploads/product/' . $product->product_image;
 
             // Kiểm tra xem tập tin ảnh có tồn tại không và xóa nó
-            // if (file_exists($product_image_path)) {
-            //     unlink($product_image_path);
-            // }
+            if (file_exists($product_image_path)) {
+                unlink($product_image_path);
+            }
             // Xóa dữ liệu sản phẩm từ cơ sở dữ liệu
             Product::where('product_id', $product_id)->delete();
             Session::put('message_success', 'Xóa thành công!');
