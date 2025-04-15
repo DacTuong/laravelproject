@@ -125,50 +125,15 @@
             <div class="filter-item">
                 <b>Giá bán</b>
                 <br>
+                <p>
+                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="hidden" name="min_price" id="min_price">
+                    <input type="hidden" name="max_price" id="max_price">
+                </p>
 
-                <label>
-                    <input type="checkbox" name="filter_price" value="1000000-5000000"
-                        {{ in_array('1000000-5000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    1 đến 5 triệu
-                </label><br>
-                <label>
-                    <input type="checkbox" name="filter_price" value="5000000-10000000"
-                        {{ in_array('5000000-10000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    5 đến 10 triệu
-                </label><br>
-                <label>
-                    <input type="checkbox" name="filter_price" value="10000000-15000000"
-                        {{ in_array('10000000-19000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    10 đến 15 triệu
-                </label><br>
-                <label>
-                    <input type="checkbox" name="filter_price" value="15000000-20000000"
-                        {{ in_array('15000000-20000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    15 đến 20 triệu
-                </label><br>
-                <label>
-                    <input type="checkbox" name="filter_refresh_rates" value="20000000-25000000"
-                        {{ in_array('20000000-25000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    29 đến 25 triệu
-                </label><br>
-                <label>
-                    <input type="checkbox" name="filter_price" value="25000000-30000000"
-                        {{ in_array('25000000-30000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    25 đến 30 triệu
-                </label><br>
-                <label>
-                    <input type="checkbox" name="filter_price" value=">30000000"
-                        {{ in_array('>30000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                        onchange="updateCheckboxFilter('filter_price', this)">
-                    Trên 30000000 triệu
-                </label><br>
+                <div id="slider-range"></div>
             </div>
+
         </div>
         <div class="body-content">
             <div class="filter-tool">

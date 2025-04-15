@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container-xl py-3">
         <div class="d-flex justify-content-between align-items-center">
-            <div style="border: 1px solid red;">
+            <div>
                 <a href="{{URL::to('/')}}" class="header__logo-home">
                     <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
                 </a>
@@ -154,7 +154,7 @@
         </div>
     </div>
 
-    <div class="nav-menu show">
+    <div class="nav-menu">
         <div class="container-xl">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
