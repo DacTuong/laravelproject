@@ -171,28 +171,26 @@
                             </a>
                         </h5>
                         <div class="productinfo__price">
-                            @if ($product->old_price > 0)
-                            <span class="productinfo__price-old">
-                                {{ number_format($product->old_price, 0, ',', '.') }}đ
+                            <span class="productinfo__price-current">
+                                {{ number_format($product->sale_price, 0, ',', '.') }}đ
                             </span>
-                            @endif
                             @if ($product->old_price > 0)
-                            <div class="product__price--percent">
-                                <p class="product__price--percent-detail">
+                            <div class="productinfo__price-discount">
+                                <span class="productinfo__price-old">
+                                    {{ number_format($product->old_price, 0, ',', '.') }}đ
+                                </span>
+
+                                <small class="product__price--percent">
                                     @php
                                     $percent_discount = (($product->old_price - $product->sale_price) /
                                     $product->old_price)
                                     *
                                     100;
-                                    echo ceil($percent_discount) . '%'
+                                    echo - ceil($percent_discount) . '%'
                                     @endphp
-                                </p>
+                                </small>
                             </div>
                             @endif
-                            <span class="productinfo__price-current">
-                                {{ number_format($product->sale_price, 0, ',', '.') }}đ
-                            </span>
-
                         </div>
                         <div class=" productinfo__origin">
                             <span class="productinfo__origin-brand">{{$product->brand->brand_name}}</span>
