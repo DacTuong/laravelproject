@@ -257,7 +257,16 @@ $name = Session::get('name_customer')
             // Reload lại URL với tham số
             const currentUrl = window.location.origin + window.location.pathname;
             window.location.href = `${currentUrl}?${params.toString()}`;
-        }
+        };
+
+
+        $(document).on("click", ".price-submit", function(evn) {
+            evn.preventDefault();
+            var minPrice = $("#min_price").val();
+            var maxPrice = $("#max_price").val();
+            alert(maxPrice);
+
+        });
     </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
@@ -302,6 +311,23 @@ $name = Session::get('name_customer')
                     $(".reason_cancellation").hide();
                 }
             });
+
+
+
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [75, 300],
+                step: 100,
+                slide: function(event, ui) {
+                    $("#amount").val(ui.values[0] + "đ -" + ui.values[1] + "đ");
+                    $("#min_price").val(ui.values[0]);
+                    $("#max_price").val(ui.values[1]);
+                }
+            });
+            $("#amount").val($("#slider-range").slider("values", 0) + "đ - " +
+                $("#slider-range").slider("values", 1) + "đ");
         });
 
         $(document).on('click', '.send-cancel-resson', function(e) {
@@ -378,6 +404,8 @@ $name = Session::get('name_customer')
     <!-- xữ lý tắt mở search & nav-menu -->
     <script>
         $(document).ready(function() {
+
+
             $(document).on('click', '.menu-toggle', function() {
                 // $("#navbarNav").toggleClass("show");
                 $(".nav-menu").toggleClass("show");
@@ -483,22 +511,7 @@ $name = Session::get('name_customer')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <script>
-        $(function() {
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [75, 300],
-                step: 100,
-                slide: function(event, ui) {
-                    $("#amount").val(ui.values[0] + "đ -" + ui.values[1] + "đ");
-                    $("#min_price").val(ui.values[0]);
-                    $("#max_price").val(ui.values[1]);
-                }
-            });
-            $("#amount").val($("#slider-range").slider("values", 0) + "đ - " +
-                $("#slider-range").slider("values", 1) + "đ");
-        });
+
     </script>
 </body>
 

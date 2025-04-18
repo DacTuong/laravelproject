@@ -126,12 +126,16 @@
                 <b>Giá bán</b>
                 <br>
                 <p>
+                <form>
                     <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     <input type="hidden" name="min_price" id="min_price">
                     <input type="hidden" name="max_price" id="max_price">
+                    <div id="slider-range"></div>
+                    <button class="price-submit">
+                        Áp dụng
+                    </button>
+                </form>
                 </p>
-
-                <div id="slider-range"></div>
             </div>
 
         </div>
@@ -180,7 +184,7 @@
                                     {{ number_format($product->old_price, 0, ',', '.') }}đ
                                 </span>
 
-                                <small class="product__price--percent">
+                                <small class="product__discount--percent">
                                     @php
                                     $percent_discount = (($product->old_price - $product->sale_price) /
                                     $product->old_price)

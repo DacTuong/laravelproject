@@ -543,17 +543,16 @@
 }
 .product-content {
     padding-block: 10px;
-    padding: 10px;
-    height: 523px;
+    padding: 14px;
+    max-height: 290px;
     background-color: #ffffff;
-
+    position: relative;
     border-radius: 5px;
     text-decoration: none;
     overflow: hidden;
+    transition: 0.4s linear;
 }
-.product-content:hover .action-buttons {
-    right: 6px;
-}
+
 .link-product {
     text-decoration: none;
     font-size: 15px;
@@ -608,7 +607,7 @@
 .productinfo__price-discount {
     display: block;
 }
-.product__price--percent {
+.product__discount--percent {
     color: red;
     display: inline-block;
 }
@@ -634,13 +633,30 @@
 .action-buttons {
     width: 29px;
     top: 30px;
-    right: -29px;
+    right: 0;
+    transform: translateX(calc(100% + 30px));
     position: absolute;
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; Căn trái, bạn có thể chỉnh thành center hoặc flex-end nếu cần */
     gap: 10px; /* Khoảng cách giữa các phần tử */
-    transition: opacity 0.3s, right 0.3s;
+    /* transition: opacity 0.3s, right 0.3s; */
+    transition: transform 0.4s linear;
+    /* float: right; */
+}
+
+.product-content:hover {
+    box-shadow: 0 8px 16px 4px rgba(0, 0, 0, 0.3);
+}
+.product-content:hover .action-buttons {
+    /* right: 6px; */
+    transform: translateX(calc(0% - 4px));
+    transition: 0.4s linear;
+}
+
+.product-content:hover .thumbnail-product-img {
+    transform: translateY(-8px);
+    transition: 0.4s linear;
 }
 .btn-cart {
     width: 14px;
@@ -743,7 +759,34 @@
 .gallery-product img.selected {
     border: 2px solid #007bff; /* Hiển thị viền khi ảnh được chọn */
 }
+/* .+++++++++++++++++++++++++++Slide range++++++++++++++++++++++++++++++++. */
 
+#slider-range {
+    height: 6px; /* Chiều cao nhỏ hơn */
+    background: #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#slider-range .ui-slider-range {
+    height: 100%;
+    background: #4caf50;
+    border-radius: 5px;
+}
+
+#slider-range .ui-slider-handle {
+    /* top: -0.5em;  */
+    /* Đặt lại vị trí để nút không bị lệch */
+
+    width: 16px;
+    height: 16px;
+    border: 2px solid #4caf50;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* .+++++++++++++++++++++++++++Slide range++++++++++++++++++++++++++++++++. */
 /* ======================DETAIL PRODUCT====================== */
 .add-to-cart {
     padding: 5px 5px;
