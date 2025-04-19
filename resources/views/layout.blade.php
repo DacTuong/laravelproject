@@ -262,10 +262,15 @@ $name = Session::get('name_customer')
 
         $(document).on("click", ".price-submit", function(evn) {
             evn.preventDefault();
-            var minPrice = $("#min_price").val();
-            var maxPrice = $("#max_price").val();
-            alert(maxPrice);
-
+            const minPrice = $("#min_price").val();
+            const maxPrice = $("#max_price").val();
+            // alert(maxPrice);
+            const params = new URLSearchParams({
+                min_Price: minPrice,
+                max_Price: maxPrice
+            })
+            const currentUrl = window.location.origin + window.location.pathname;
+            window.location.href = `${currentUrl}?${params.toString()}`;
         });
     </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
@@ -314,21 +319,10 @@ $name = Session::get('name_customer')
 
 
 
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [75, 300],
-                step: 100,
-                slide: function(event, ui) {
-                    $("#amount").val(ui.values[0] + "đ -" + ui.values[1] + "đ");
-                    $("#min_price").val(ui.values[0]);
-                    $("#max_price").val(ui.values[1]);
-                }
-            });
-            $("#amount").val($("#slider-range").slider("values", 0) + "đ - " +
-                $("#slider-range").slider("values", 1) + "đ");
         });
+
+
+
 
         $(document).on('click', '.send-cancel-resson', function(e) {
             e.preventDefault();
@@ -381,7 +375,6 @@ $name = Session::get('name_customer')
             item.addEventListener('click', function() {
                 let storageValue = this.getAttribute('data-value');
                 // alert(storageValue);
-
                 let url = new URL(window.location);
                 url.searchParams.delete('sku')
                 url.searchParams.set('storage', storageValue);
@@ -397,6 +390,47 @@ $name = Session::get('name_customer')
                 url.searchParams.set('sku', colorValue);
                 window.location.href = url;
             })
+        });
+
+
+
+
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const minPrice = urlParams.get('min_Price');
+            const maxPrice = urlParams.get('max_Price');
+
+            // Mặc định
+            let min = 75;
+            let max = 300;
+
+            // Nếu có giá trị từ URL, gán lại
+            if (minPrice !== null && maxPrice !== null) {
+                min = parseInt(minPrice);
+                max = parseInt(maxPrice);
+
+                $("#min_price").val(min);
+                $("#max_price").val(max);
+                $("#amount").val(min + "đ - " + max + "đ");
+            }
+
+            // Khởi tạo slider
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 20000000,
+                values: [min, max],
+                step: 100,
+                slide: function(event, ui) {
+                    $("#amount").val(ui.values[0] + "đ - " + ui.values[1] + "đ");
+                    $("#min_price").val(ui.values[0]);
+                    $("#max_price").val(ui.values[1]);
+                }
+            });
+
+            // Hiển thị giá trị ban đầu (trường hợp không có URL)
+            $("#amount").val($("#slider-range").slider("values", 0) + "đ - " +
+                $("#slider-range").slider("values", 1) + "đ");
         });
     </script>
 

@@ -121,7 +121,11 @@ class HomeController extends Controller
                 $list_product->whereIn('refresh_rate', $filterValues);
             }
         }
-
+        $minPrice = $request->query('min_Price');
+        $maxPrice = $request->query('max_Price');
+        if ($minPrice !== null && $maxPrice !== null) {
+            $list_product->whereBetween('price', [(int)$minPrice, (int)$maxPrice]);
+        }
 
         // Lấy danh sách sản phẩm sau khi lọc
         $products = $list_product->get();
