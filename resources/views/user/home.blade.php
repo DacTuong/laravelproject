@@ -19,7 +19,7 @@
         <div class="left-contaner">
             <div class="filter-item">
                 <b>Dung lượng ram</b><br>
-                <label>
+                <!-- <label>
                     <input type="checkbox" name="filter_mobile_ram" value="<4"
                         {{ in_array('<4', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
                         onchange="updateCheckboxFilter('filter_mobile_ram', this)">
@@ -43,7 +43,9 @@
                         {{ in_array('>12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
                         onchange="updateCheckboxFilter('filter_mobile_ram', this)">
                     -- lớn hơn 12GB--
-                </label>
+                </label> -->
+
+
             </div>
 
             <div class="filter-item">
@@ -125,12 +127,9 @@
             <div class="filter-item">
                 <b>Giá bán</b>
                 <br>
-                <p>
                 <form>
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                        class="amount">
-                    <input type="hidden" name="min_price" id="min_price" class="min_price">
-                    <input type="hidden" name="max_price" id="max_price" class="max_price">
+                    <input type="text" name="min_price" id="min_price" class="min_price">
+                    <input type="text" name="max_price" id="max_price" class="max_price">
                     <div id="slider-range" class="slider-range"></div>
                     <button class="price-submit">
                         Áp dụng
@@ -236,8 +235,13 @@
                 @endforeach
             </div>
 
-
         </div>
     </div>
+</div>
+
+
+<div class="pagination">
+    {{ $products->links('pagination::bootstrap-4') }}
+
 </div>
 @endsection

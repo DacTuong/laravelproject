@@ -124,11 +124,11 @@ class HomeController extends Controller
         $minPrice = $request->query('min_Price');
         $maxPrice = $request->query('max_Price');
         if ($minPrice !== null && $maxPrice !== null) {
-            $list_product->whereBetween('price', [(int)$minPrice, (int)$maxPrice]);
+            $list_product->whereBetween('sale_price', [(int)$minPrice, (int)$maxPrice]);
         }
 
         // Lấy danh sách sản phẩm sau khi lọc
-        $products = $list_product->get();
+        $products = $list_product->paginate(20);
 
         return view('user.home')
             ->with('products', $products)
@@ -195,6 +195,7 @@ class HomeController extends Controller
                 $detail_product = $sku_product;
             }
         }
+
         return view('user.product.detail_product')
             ->with('product_detail', $detail_product)
             ->with('brands', $brand)
