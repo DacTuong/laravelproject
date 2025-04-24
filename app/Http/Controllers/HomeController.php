@@ -132,14 +132,14 @@ class HomeController extends Controller
 
         $minAmount = $list_product->min('sale_price');
         $maxAmount = $list_product->max('sale_price');
-        return view('user.home')
-            ->with('products', $products)
-            ->with('banners', $banners)
-            ->with('brands', $brand)
-            ->with('categorys', $category)
-            ->with('minAmount', $minAmount)
-            ->with('maxAmount', $maxAmount)
-        ;
+        return view('user.home', compact(
+            'products',
+            'banners',
+            'brand',
+            'category',
+            'minAmount',
+            'maxAmount'
+        ));
     }
 
     public function detail_product($product_id)

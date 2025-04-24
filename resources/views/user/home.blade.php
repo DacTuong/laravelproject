@@ -16,8 +16,15 @@
     </div>
 
     <div class="home-product">
+
+
         <div class="left-contaner">
             <div class="filter-item">
+                <div>
+                    @foreach ($brand as $br )
+                    <a href="">{{ $br->brand_name}}</a>
+                    @endforeach
+                </div>
                 <b>Dung lượng ram</b><br>
                 <!-- <label>
                     <input type="checkbox" name="filter_mobile_ram" value="<4"
@@ -75,12 +82,12 @@
             <div class="filter-item">
                 <b>Loại điện thoại</b>
                 <br>
-                @foreach ($categorys as $category )
+                @foreach ($category as $cate )
                 <label>
-                    <input type="checkbox" name="filter_mobile" value="{{$category->category_id}}"
-                        {{ in_array($category->category_id, explode(',', request()->get('filter_mobile', ''))) ? 'checked' : '' }}
+                    <input type="checkbox" name="filter_mobile" value="{{$cate->category_id}}"
+                        {{ in_array($cate->category_id, explode(',', request()->get('filter_mobile', ''))) ? 'checked' : '' }}
                         onchange="updateCheckboxFilter('filter_mobile', this)">
-                    {{$category->category_name}}
+                    {{$cate->category_name}}
                 </label><br>
                 @endforeach
             </div>
