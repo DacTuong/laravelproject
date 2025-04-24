@@ -106,13 +106,11 @@ $(document).ready(function () {
                 stars.empty();
                 for (let i = 1; i <= 5; i++) {
                     if (avg_star >= i) {
-                        stars.append('<i class="fa-solid fa-star"></i>'); // Sao đầy
+                        stars.append('<i class="bi bi-star-fill"></i>'); // Sao đầy
                     } else if (avg_star >= i - 0.5) {
-                        stars.append(
-                            '<i class="fa-solid fa-star-half-stroke"></i>'
-                        ); // Sao nửa
+                        stars.append('<i class="bi bi-star-half"></i>'); // Sao nửa
                     } else {
-                        stars.append('<i class="fa-regular fa-star"></i>'); // Sao rỗng
+                        stars.append('<i class="bi bi-star"></i>'); // Sao rỗng
                     }
                 }
                 $(".boxReview-score__count").html(response.total_reviews);

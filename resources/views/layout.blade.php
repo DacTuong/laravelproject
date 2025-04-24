@@ -23,9 +23,9 @@ $name = Session::get('name_customer')
     <!-- Bootstrap Icons -->
 
     <!-- Link font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <!-- Link font-awesome -->
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
@@ -382,6 +382,9 @@ $name = Session::get('name_customer')
 
 
         $(document).ready(function() {
+
+
+
             const urlParams = new URLSearchParams(window.location.search);
             const minPrice = urlParams.get('min_Price');
             const maxPrice = urlParams.get('max_Price');
@@ -398,7 +401,6 @@ $name = Session::get('name_customer')
                 let formatMax = max.toLocaleString('vi-VN')
                 $("#min_price").val(formatMin);
                 $("#max_price").val(formatMax);
-                // $("#amount").val(formatMin + "đ - " + formatMax + "đ");
             }
 
             $(document).on("input", "#min_price, #max_price", function() {
@@ -457,8 +459,6 @@ $name = Session::get('name_customer')
                 const currentUrl = window.location.origin + window.location.pathname;
                 window.location.href = `${currentUrl}?${params.toString()}`;
             });
-
-
 
         });
     </script>
@@ -573,9 +573,10 @@ $name = Session::get('name_customer')
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-    <script>
 
-    </script>
+
+
+
 </body>
 
 </html>

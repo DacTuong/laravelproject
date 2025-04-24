@@ -125,8 +125,10 @@
 
 
             <div class="filter-item">
+                <!-- <span>Giá nhỏ nhất {{ $minAmount }}</span> -->
                 <b>Giá bán</b>
                 <br>
+
                 <form>
                     <input type="text" name="min_price" id="min_price" class="min_price">
                     <input type="text" name="max_price" id="max_price" class="max_price">
@@ -239,9 +241,12 @@
     </div>
 </div>
 
-
 <div class="pagination">
     {{ $products->links('pagination::bootstrap-4') }}
 
 </div>
+
+<script>
+
+</script>
 @endsection

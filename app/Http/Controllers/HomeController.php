@@ -128,14 +128,17 @@ class HomeController extends Controller
         }
 
         // Lấy danh sách sản phẩm sau khi lọc
-        $products = $list_product->paginate(20);
+        $products = $list_product->paginate(20)->appends($request->query());
 
+        $minAmount = $list_product->min('sale_price');
+        $maxAmount = $list_product->max('sale_price');
         return view('user.home')
             ->with('products', $products)
             ->with('banners', $banners)
             ->with('brands', $brand)
             ->with('categorys', $category)
-
+            ->with('minAmount', $minAmount)
+            ->with('maxAmount', $maxAmount)
         ;
     }
 

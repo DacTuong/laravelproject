@@ -172,7 +172,7 @@
                     <div class="boxReview-star">
                         <div class="rating-level" data-rating_level="5">
                             <div class="star-count">
-                                5 <i class="fa-solid fa-star"></i>
+                                5 <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="  background-color: #f59e0b;"
@@ -184,7 +184,7 @@
                         </div>
                         <div class="rating-level" data-rating_level="4">
                             <div class="star-count">
-                                4 <i class="fa-solid fa-star"></i>
+                                4 <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="  background-color: #f59e0b;"
@@ -196,7 +196,7 @@
                         </div>
                         <div class="rating-level" data-rating_level="3">
                             <div class="star-count">
-                                3 <i class="fa-solid fa-star"></i>
+                                3 <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="  background-color: #f59e0b;"
@@ -208,7 +208,7 @@
                         </div>
                         <div class="rating-level" data-rating_level="2">
                             <div class="star-count">
-                                2 <i class="fa-solid fa-star"></i>
+                                2 <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="  background-color: #f59e0b;"
@@ -220,7 +220,7 @@
                         </div>
                         <div class="rating-level" data-rating_level="1">
                             <div class="star-count">
-                                1 <i class="fa-solid fa-star"></i>
+                                1 <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" style="  background-color: #f59e0b;"
