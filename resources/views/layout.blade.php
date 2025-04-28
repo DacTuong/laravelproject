@@ -383,90 +383,84 @@ $name = Session::get('name_customer')
 
         $(document).ready(function() {
             // Mặc định
-            let min = {
-                {
-                    $minAmount
-                }
-            };
-            alert(min);
+            let min = 0;
+            // alert(min);
             let max = 200000000;
 
-            // const urlParams = new URLSearchParams(window.location.search);
-            // const minPrice = urlParams.get('min_Price');
-            // const maxPrice = urlParams.get('max_Price');
+            const urlParams = new URLSearchParams(window.location.search);
+            const minPrice = urlParams.get('min_Price');
+            const maxPrice = urlParams.get('max_Price');
 
 
 
-            // // Nếu có giá trị từ URL, gán lại
-            // if (minPrice !== null && maxPrice !== null) {
-            //     min = parseInt(minPrice);
-            //     max = parseInt(maxPrice);
-            //     let formatMin = min.toLocaleString('vi-VN')
-            //     let formatMax = max.toLocaleString('vi-VN')
-            //     $("#min_price").val(formatMin);
-            //     $("#max_price").val(formatMax);
-            // }
+            // Nếu có giá trị từ URL, gán lại
+            if (minPrice !== null && maxPrice !== null) {
+                min = parseInt(minPrice);
+                max = parseInt(maxPrice);
+                let formatMin = min.toLocaleString('vi-VN')
+                let formatMax = max.toLocaleString('vi-VN')
+                $("#min_price").val(formatMin);
+                $("#max_price").val(formatMax);
+            }
 
-            // $(document).on("input", "#min_price, #max_price", function() {
-            //     let min = $("#min_price").val();
-            //     let max = $("#max_price").val();
-            //     min = min.replace(/\D/g, '');
-            //     const formattedMin = Number(min).toLocaleString("vi-VN");
+            $(document).on("input", "#min_price, #max_price", function() {
+                let min = $("#min_price").val();
+                let max = $("#max_price").val();
+                min = min.replace(/\D/g, '');
+                const formattedMin = Number(min).toLocaleString("vi-VN");
 
-            //     max = max.replace(/\D/g, '');
-            //     const formattedMax = Number(max).toLocaleString("vi-VN");
-            //     // console.log("Giá vừa nhập:", min, max);
-            //     $("#min_price").val(formattedMin);
-            //     $("#max_price").val(formattedMax);
+                max = max.replace(/\D/g, '');
+                const formattedMax = Number(max).toLocaleString("vi-VN");
+                // console.log("Giá vừa nhập:", min, max);
+                $("#min_price").val(formattedMin);
+                $("#max_price").val(formattedMax);
 
-            //     $("#slider-range").slider("values", [Number(min), Number(max)]);
+                $("#slider-range").slider("values", [Number(min), Number(max)]);
 
-            // })
+            })
 
-            // // Khởi tạo slider
-            // $("#slider-range").slider({
-            //     range: true,
-            //     min: 0,
-            //     max: 200000000,
-            //     values: [min, max],
-            //     step: 100000,
-            //     slide: function(event, ui) {
-            //         let formattedMin = ui.values[0].toLocaleString('vi-VN');
-            //         let formattedMax = ui.values[1].toLocaleString('vi-VN');
-            //         $("#min_price").val(formattedMin);
-            //         $("#max_price").val(formattedMax);
-            //     }
-            // });
+            // Khởi tạo slider
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 200000000,
+                values: [min, max],
+                step: 100000,
+                slide: function(event, ui) {
+                    let formattedMin = ui.values[0].toLocaleString('vi-VN');
+                    let formattedMax = ui.values[1].toLocaleString('vi-VN');
+                    $("#min_price").val(formattedMin);
+                    $("#max_price").val(formattedMax);
+                }
+            });
 
-            // // Hiển thị giá trị ban đầu (trường hợp không có URL)
-            // const defaultMin = $("#slider-range").slider("values", 0);
-            // const defaultMax = $("#slider-range").slider("values", 1);
-            // const formatNumMin = defaultMin.toLocaleString('vi-VN');
-            // const formatNumMax = defaultMax.toLocaleString('vi-VN');
-            // $("#min_price").val(formatNumMin);
-            // $("#max_price").val(formatNumMax);
+            // Hiển thị giá trị ban đầu (trường hợp không có URL)
+            const defaultMin = $("#slider-range").slider("values", 0);
+            const defaultMax = $("#slider-range").slider("values", 1);
+            const formatNumMin = defaultMin.toLocaleString('vi-VN');
+            const formatNumMax = defaultMax.toLocaleString('vi-VN');
+            $("#min_price").val(formatNumMin);
+            $("#max_price").val(formatNumMax);
 
 
 
-            // $(document).on("click", ".price-submit", function(evn) {
-            //     evn.preventDefault();
-            //     const minPrice = $("#min_price").val();
-            //     const maxPrice = $("#max_price").val();
-            //     const noDotminPrice = minPrice.replaceAll(".", "");
-            //     const noDotmaxPrice = maxPrice.replaceAll(".", "");
-            //     // alert(noDotmaxPrice);
-            //     // alert(maxPrice);
-            //     const params = new URLSearchParams({
-            //         min_Price: noDotminPrice,
-            //         max_Price: noDotmaxPrice
-            //     })
-            //     const currentUrl = window.location.origin + window.location.pathname;
-            //     window.location.href = `${currentUrl}?${params.toString()}`;
-            // });
+            $(document).on("click", ".price-submit", function(evn) {
+                evn.preventDefault();
+                const minPrice = $("#min_price").val();
+                const maxPrice = $("#max_price").val();
+                const noDotminPrice = minPrice.replaceAll(".", "");
+                const noDotmaxPrice = maxPrice.replaceAll(".", "");
+
+                const params = new URLSearchParams({
+                    min_Price: noDotminPrice,
+                    max_Price: noDotmaxPrice
+                })
+                const currentUrl = window.location.origin + window.location.pathname;
+                window.location.href = `${currentUrl}?${params.toString()}`;
+            });
 
         });
     </script>
-
 
     <!-- xữ lý tắt mở search & nav-menu -->
     <script>

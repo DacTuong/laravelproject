@@ -45,7 +45,7 @@ Route::get('/edit-brand/{brand_id}', [BrandController::class, 'edit_brand']);
 Route::post('/save-brand', [BrandController::class, 'save_brand']);
 
 Route::post('/update-brand/{brand_id}', [BrandController::class, 'update_brand']);
-
+Route::get('/select-brand', [BrandController::class, 'select_brand']);
 Route::get('/delete-brand/{brand_id}', [BrandController::class, 'delete_brand']);
 // dành cho user
 Route::get('/show-brand-user/{brand_id}', [BrandController::class, 'show_brand_user']);

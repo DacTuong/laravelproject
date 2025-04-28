@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['brand_name', 'brand_status'];
+    protected $fillable = ['brand_name', 'category_pro_id ', 'brand_status'];
     protected $primaryKey = 'brand_id';
-    protected $table = 'tbl_phone_brands';
+    protected $table = 'tbl_brands';
     public function products()
     {
         return $this->hasMany(Product::class, 'brand_product_id', 'brand_id');
+    }
+    public function cate()
+    {
+        return $this->belongsTo(Category::class, 'category_pro_id ', 'category_id');
     }
 }

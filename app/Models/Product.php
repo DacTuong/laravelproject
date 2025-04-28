@@ -9,53 +9,25 @@ class Product extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'brand', // Thương hiệu sản phẩm
-        'product_code', // Mã sản phẩm
-        'product_name', // Tên sản phẩm
-        'product_image', // Hình ảnh sản phẩm
+        'product_code',
+        'product_name',
+        'product_image',
         'model_product',
-        'purchase_price', // Giá nhập hàng
-        'old_price', // Giá bán củ
-        'sale_price', // Giá bán
-        'product_quantity', // Số lượng sản phẩm trong kho
-        'categories_product_id', // ID của danh mục sản phẩm
-        'brand_product_id', // ID của thương hiệu sản phẩm
-        'release_date', // Ngày ra mắt sản phẩm
-        'operating_system', // Hệ điều hành của sản phẩm
-        'screen_type', // Loại màn hình
-        'screen_size', // Kích thước màn hình
-        'resolution', // Độ phân giải
-        'refresh_rate', // Tần số quét màn hình
-        'ram', // Dung lượng RAM
-        'storage', // Dung lượng lưu trữ
-        'expandable_storage', // Hỗ trợ bộ nhớ ngoài (true/false)
-        'battery_capacity', // Dung lượng pin
-        'fast_charging', // Hỗ trợ sạc nhanh (true/false)
-        'wireless_charging', // Hỗ trợ sạc không dây (true/false)
-        'camera_main', // Camera chính
-        'camera_main_features', // Các tính năng của camera chính
-        'camera_front', // Camera trước
-        'camera_front_features', // Các tính năng của camera trước
-        'cpu', // CPU (chip xử lý)
-        'gpu', // GPU (chip đồ họa)
-        'water_resistance', // Khả năng chống nước
-        'weight', // Trọng lượng
-        'dimensions', // Kích thước sản phẩm
-        'sim_type', // Loại SIM hỗ trợ
-        'connectivity', // Các kết nối khác (Wi-Fi, Bluetooth, etc.)
-        'biometrics', // Tính năng sinh trắc học (vân tay, nhận diện khuôn mặt)
-        'color', // Màu sắc sản phẩm
-        'charging_port', // Cổng sạc
-        'other_connections', // Các kết nối khác (nếu có)
-        'wifi_technology', // Công nghệ Wi-Fi
-        'warranty_period', // Thời gian bảo hành
+        'purchase_price',
+        'old_price',
+        'sale_price',
+        'product_quantity',
+        'categories_product_id',
+        'brand_product_id',
+        'release_date',
+        'warranty_period',
         'sold',
-        'product_status', // Trạng thái sản phẩm (Còn hàng/hết hàng)
+        'product_status',
         'varian_product',
     ];
 
     protected $primaryKey = 'product_id';
-    protected $table = 'tbl_phones';
+    protected $table = 'tbl_products';
 
     public function category()
     {

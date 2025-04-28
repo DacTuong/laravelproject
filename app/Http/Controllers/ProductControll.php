@@ -83,46 +83,17 @@ class ProductControll extends Controller
         $data = $request->all();
         $product = new Product;
         $product->product_code = $data['product_code'];
-        $product->product_name =  $data['product_name'];
-
+        $product->product_name = $data['product_name'];
         $product->model_product = $data['model_product'];
         $product->sale_price = $data['sale_price'];
         $product->purchase_price = $data['purchase_price'];
         $product->old_price = $data['old_price'];
-        $product->product_quantity =  $data['product_quantity'];
+        $product->product_quantity = $data['product_quantity'];
         $product->categories_product_id = $data['categories_product_id'];
         $product->brand_product_id = $data['brand_product'];
         $product->release_date = $data['release_date'];
-
-        $product->operating_system = $data['operating_system'];
-        $product->screen_type = $data['screen_type'];
-        $product->screen_size = $data['screen_size'];
-        $product->resolution = $data['resolution'];
-        $product->refresh_rate = $data['refresh_rate'];
-        $product->ram     = $data['ram'];
-        $product->storage = $data['storage'];
-        $product->expandable_storage = $data['expandable_storage'];
-        $product->battery_capacity = $data['battery_capacity'];
-        $product->fast_charging = $data['fast_charging'];
-        $product->wireless_charging = $data['wireless_charging'];
-        $product->camera_main = $data['camera_main'];
-        $product->camera_main_features = $data['camera_main_features'];
-        $product->camera_front = $data['camera_front'];
-        $product->camera_front_features = $data['camera_front_features'];
-        $product->cpu = $data['cpu'];
-        $product->gpu = $data['gpu'];
-        $product->water_resistance = $data['water_resistance'];
-        $product->weight = $data['weight'];
-        $product->dimensions = $data['dimensions'];
-        $product->sim_type = $data['sim_type'];
-        $product->connectivity = $data['connectivity'];
-        $product->biometrics = $data['biometrics'];
-        $product->color = $data['color'];
-        $product->charging_port = $data['charging_port'];
-        $product->other_connections = $data['other_connections'];
         $product->warranty_period = $data['warranty_period'];
         $product->product_status = $data['product_status'];
-        $product->wifi_technology = $data['wifi_technology'];
         $product->varian_product = $data['varian_product'];
 
 

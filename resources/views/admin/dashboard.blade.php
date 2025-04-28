@@ -20,7 +20,7 @@
                 <i class="fa fa-bars"></i>
             </span>
             <div class="text-box">
-                <p class="main-text">{{$count_product}}</p>
+                <p class="main-text"></p>
                 <p class="text-muted">Sản phẩm</p>
             </div>
         </div>

@@ -39,11 +39,11 @@ class AdminController extends Controller
         $order_success = OrderProduct::where('order_status', 2)->count();
         $count_comment = CommentModel::where('repped', 1)->count();
         $total_order = OrderProduct::count();
-        $product = Product::count();
+        // $product = Product::count();
         $santisticle = SantisticalModel::get();
         return view('admin.dashboard')
             ->with('order_pedding', $order_pedding)
-            ->with('count_product', $product)
+
             ->with('total_order', $total_order)
             ->with('order_success', $order_success)
             ->with('new_comment', $count_comment)
@@ -74,8 +74,9 @@ class AdminController extends Controller
         return Redirect::to('/admincp');
     }
 
-    public function list_user(){
+    public function list_user()
+    {
         $user = User::get();
-        return view("admin.user.user_list")->with("users",$user);
+        return view("admin.user.user_list")->with("users", $user);
     }
 }

@@ -27,6 +27,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+
         $brand = Brand::get();
         $category = Category::get();
         $list_product =  Product::with(['category', 'brand'])
@@ -34,7 +35,6 @@ class HomeController extends Controller
 
 
         $banners = BannerModel::where('status_banner', 1)->get();
-
 
         // Lọc theo giá
         if ($request->has('sort_by')) {
@@ -49,26 +49,14 @@ class HomeController extends Controller
         if ($request->has('filter_mobile_ram')) {
             // Chuyển giá trị thành mảng
             $ramFilters = explode(',', $request->get('filter_mobile_ram'));
-
             // Áp dụng các điều kiện lọc
-            $list_product->where(function ($query) use ($ramFilters) {
-                foreach ($ramFilters as $ramFilter) {
-                    switch ($ramFilter) {
-                        case '<4':
-                            $query->orWhere('ram', '<', 4);
-                            break;
-                        case '4gb_8gb':
-                            $query->orWhereBetween('ram', [4, 8]);
-                            break;
-                        case '8gb_12gb':
-                            $query->orWhereBetween('ram', [8, 12]);
-                            break;
-                        case '>12gb':
-                            $query->orWhere('ram', '>', 12);
-                            break;
-                    }
-                }
-            });
+            $list_product->whereIn('ram', $ramFilters);
+        }
+        if ($request->has('filter_mobile_stogare')) {
+            // Chuyển giá trị thành mảng
+            $stogareFilters = explode(',', $request->get('filter_mobile_stogare'));
+            // Áp dụng các điều kiện lọc
+            $list_product->whereIn('storage', $stogareFilters);
         }
 
         if ($request->has('filter_price')) {
@@ -132,13 +120,22 @@ class HomeController extends Controller
 
         $minAmount = $list_product->min('sale_price');
         $maxAmount = $list_product->max('sale_price');
+
+        // $productRam = Product::select('ram')
+        //     ->groupBy('ram')
+        //     ->get();
+        // $productStogare = Product::select('storage')
+        //     ->groupBy('storage')
+        //     ->get();
         return view('user.home', compact(
             'products',
             'banners',
             'brand',
             'category',
             'minAmount',
-            'maxAmount'
+            'maxAmount',
+            // 'productRam',
+            // 'productStogare',
         ));
     }
 
@@ -160,7 +157,6 @@ class HomeController extends Controller
         $colors = Product::where('varian_product', $varian)
             ->where('model_product', $model_product)
             ->get();
-
 
 
         $storage = request()->query('storage');

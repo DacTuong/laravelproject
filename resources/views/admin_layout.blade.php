@@ -199,61 +199,61 @@ $id = Session::get('admin_id')
     </script>
 
     <script>
-    var editor = new FroalaEditor('#example');
+        var editor = new FroalaEditor('#example');
     </script>
 
 
 
     <script>
-    function filterOrders() {
-        // Lấy giá trị từ các input
-        const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
-        const orderDate = document.getElementById('orderDate').value || ''; // Mặc định là rỗng
-        const orderStatus = document.getElementById('orderStatus').value || ''; // Mặc định là 1 (Chờ xử lý)
+        function filterOrders() {
+            // Lấy giá trị từ các input
+            const orderCode = document.getElementById('orderCode').value || ''; // Mặc định là rỗng
+            const orderDate = document.getElementById('orderDate').value || ''; // Mặc định là rỗng
+            const orderStatus = document.getElementById('orderStatus').value || ''; // Mặc định là 1 (Chờ xử lý)
 
-        // Tạo URL mới với tất cả các tham số
-        const params = new URLSearchParams({
-            order_code: orderCode,
-            order_date: orderDate,
-            order_status: orderStatus
-        });
+            // Tạo URL mới với tất cả các tham số
+            const params = new URLSearchParams({
+                order_code: orderCode,
+                order_date: orderDate,
+                order_status: orderStatus
+            });
 
-        // Reload lại URL với tham số
-        const currentUrl = window.location.origin + window.location.pathname;
-        window.location.href = `${currentUrl}?${params.toString()}`;
-    }
+            // Reload lại URL với tham số
+            const currentUrl = window.location.origin + window.location.pathname;
+            window.location.href = `${currentUrl}?${params.toString()}`;
+        }
     </script>
     <script>
-    $(document).ready(function() {
-        $('.update-order').click(function() {
-            var orderStatus = $('#order-status').val();
-            var orderNote = $('#order-note').val();
-            var orderCode = $('#order-code').val();
-            var orderItem = document.getElementById('order-item').textContent;
-            var _token = $('input[name="_token"]').val();
-            var statusText = $("#order-status option:selected").text();
+        $(document).ready(function() {
+            $('.update-order').click(function() {
+                var orderStatus = $('#order-status').val();
+                var orderNote = $('#order-note').val();
+                var orderCode = $('#order-code').val();
+                var orderItem = document.getElementById('order-item').textContent;
+                var _token = $('input[name="_token"]').val();
+                var statusText = $("#order-status option:selected").text();
 
-            $.ajax({
-                url: "/update-status-order",
-                method: 'POST',
-                data: {
-                    orderstatus: orderStatus,
-                    orderreason: orderNote,
-                    ordercode: orderCode,
-                    orderitem: orderItem,
-                    _token: _token
-                },
-                success: function(response) {
-                    alert(response.message);
-                    $('#current-order-status').text(statusText);
+                $.ajax({
+                    url: "/update-status-order",
+                    method: 'POST',
+                    data: {
+                        orderstatus: orderStatus,
+                        orderreason: orderNote,
+                        ordercode: orderCode,
+                        orderitem: orderItem,
+                        _token: _token
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        $('#current-order-status').text(statusText);
 
-                },
-                error: function(xhr, status, error) {
-                    alert('Có lỗi xảy ra, vui lòng thử lại.');
-                }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Có lỗi xảy ra, vui lòng thử lại.');
+                    }
+                });
             });
         });
-    });
     </script>
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
@@ -294,7 +294,24 @@ $id = Session::get('admin_id')
         });
     </script> -->
 
-
+    <script>
+        $(document).ready(function() {
+            $('.categories_product_id').change(function() {
+                var id = $(this).val();
+                alert(id);
+                // $.ajax({
+                //     url: "{{url('/select-brand')}}",
+                //     method: "GET",
+                //     data: {
+                //         id: id
+                //     },
+                //     success: function(data) {
+                //         $('#brand_product').html(data);
+                //     }
+                // });
+            });
+        });
+    </script>
 </body>
 
 

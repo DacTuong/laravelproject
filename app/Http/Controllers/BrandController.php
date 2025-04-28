@@ -29,7 +29,8 @@ class BrandController extends Controller
     public function add_brand()
     {
         $this->AuthLogin();
-        return view('admin.brand.add_brand');
+        $category = Category::all();
+        return view('admin.brand.add_brand')->with('category', $category);
     }
     public function save_brand(Request $request)
     {
@@ -38,6 +39,7 @@ class BrandController extends Controller
         $brand = new Brand();
         $brand->brand_name = $data['brand_name'];
         $brand->brand_status = $data['brand_status'];
+        $brand->category_pro_id = $data['category_pro_id'];
         $brand->save();
 
         Session::put('message_success', 'Thêm thành công!');
@@ -72,9 +74,10 @@ class BrandController extends Controller
     public function edit_brand($brand_id)
     {
         $this->AuthLogin();
-        $edit_brand = Brand::find($brand_id);
 
-        $manager_brand = view('admin.brand.edit_brand')->with('edit_brand', $edit_brand);
+        $edit_brand = Brand::find($brand_id);
+        $category = Category::all();
+        $manager_brand = view('admin.brand.edit_brand')->with('edit_brand', $edit_brand)->with('category', $category);
         return view('admin_layout')->with('admin.brand.edit_brand', $manager_brand);
     }
 
@@ -84,6 +87,7 @@ class BrandController extends Controller
         $this->AuthLogin();
         $brand = Brand::find($brand_id);
         $brand->brand_name = $request->brand_name;
+        $brand->category_pro_id = $request->category_pro_id;
         $brand->save();
         Session::put('message_success', 'Cập nhật thành công!');
         return Redirect::to('list-brand');
@@ -97,6 +101,16 @@ class BrandController extends Controller
         return Redirect::to('list-brand');
     }
 
+    public function select_brand(Request $request)
+    {
+        $this->AuthLogin();
+        $output = '';
+        $brand = DB::table('tbl_brands')->where('category_pro_id', $request->category_id)->orderby('brand_id', 'desc')->get();
+        foreach ($brand as $key => $val) {
+            $output .= '<option value="' . $val->brand_id . '">' . $val->brand_name . '</option>';
+        }
+        return response()->json($output);
+    }
     // USER
 
 
