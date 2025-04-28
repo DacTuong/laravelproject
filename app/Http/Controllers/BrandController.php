@@ -101,12 +101,17 @@ class BrandController extends Controller
         return Redirect::to('list-brand');
     }
 
+
+
     public function select_brand(Request $request)
     {
         $this->AuthLogin();
+
+        $id_cate = $request->id;
+        $select_brand = Brand::where('category_pro_id', $id_cate)->get();
         $output = '';
-        $brand = DB::table('tbl_brands')->where('category_pro_id', $request->category_id)->orderby('brand_id', 'desc')->get();
-        foreach ($brand as $key => $val) {
+
+        foreach ($select_brand as $key => $val) {
             $output .= '<option value="' . $val->brand_id . '">' . $val->brand_name . '</option>';
         }
         return response()->json($output);

@@ -61,10 +61,7 @@ Session::put('message_success', null);
 
         <div class="form-group">
             <label>Thương hiệu</label>
-            <select name="brand_product" class="form-control">
-                <option value="">
-                    -- Chọn thương hiệu --
-                </option>
+            <select name="brand_product" class="form-control" id="brand_product">
 
             </select>
         </div>
