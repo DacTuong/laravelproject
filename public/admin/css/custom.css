@@ -497,3 +497,7 @@ p {
     height: 150px;
     resize: none;
 }
+
+.btn-save {
+    float: right;
+}
