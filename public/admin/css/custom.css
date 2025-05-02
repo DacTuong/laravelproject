@@ -501,3 +501,10 @@ p {
 .btn-save {
     float: right;
 }
+
+.details-product {
+    display: none;
+}
+.details-product__item {
+    display: none;
+}

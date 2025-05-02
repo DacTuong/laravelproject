@@ -298,7 +298,22 @@ $id = Session::get('admin_id')
     $(document).ready(function() {
         $('.categories_product_id').change(function() {
             var id = $(this).val();
+            $('.details-product').show();
+
             // alert(id);
+
+            $('.details-product__item').each(function() {
+                if ($(this).data('details') == id) {
+                    // const dataValue = $(this).data('details');
+                    // alert('Giá trị data-details là: ' + dataValue);
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+
+
             $.ajax({
                 url: "{{url('/select-brand')}}",
                 method: "GET",
