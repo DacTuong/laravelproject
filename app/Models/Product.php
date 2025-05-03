@@ -29,9 +29,14 @@ class Product extends Model
     protected $primaryKey = 'product_id';
     protected $table = 'tbl_products';
 
-    public function product()
+    public function detail_phone()
     {
         return $this->hasOne(PhoneDetailsModel::class, 'product_id', 'product_id');
+    }
+
+    public function detail_laptop()
+    {
+        return $this->hasOne(LaptopDetailsModel::class, 'product_id', 'product_id');
     }
     public function category()
     {

@@ -10,8 +10,7 @@ use App\Models\Brand;
 
 use App\Models\Product;
 use App\Models\Gallery;
-
-use Illuminate\Support\Facades\DB;
+use App\Models\LaptopDetailsModel;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Redirect;
@@ -110,17 +109,20 @@ class ProductControll extends Controller
         }
         $product->save();
         // lấy id của sản phẩm
-        $phone_id = $product->product_id;
+        $id_product = $product->product_id;
 
 
 
         if ($data['categories_product_id'] == 1) {
             // Mã xử lý khi điều kiện đúng
             $productDetail = new PhoneDetailsModel();
-            $productDetail->product_id = $phone_id; // liên kết bằng khóa ngoại
+            $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
             $productDetail->operating_system =  $data['operating_system'];
-
-
+            $productDetail->save();
+        } elseif ($data['categories_product_id'] == 2) {
+            $productDetail = new LaptopDetailsModel();
+            $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
+            $productDetail->laptop_cpu = $data['laptop_cpu'];
             $productDetail->save();
         }
 
