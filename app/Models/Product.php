@@ -29,6 +29,10 @@ class Product extends Model
     protected $primaryKey = 'product_id';
     protected $table = 'tbl_products';
 
+    public function product()
+    {
+        return $this->hasOne(PhoneDetailsModel::class, 'product_id', 'product_id');
+    }
     public function category()
     {
         return $this->belongsTo(Category::class, 'categories_product_id', 'category_id');

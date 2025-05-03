@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\PhoneDetailsModel;
 use Illuminate\Http\Request;
 
 use App\Models\Brand;
@@ -109,6 +110,19 @@ class ProductControll extends Controller
         }
         $product->save();
         // lấy id của sản phẩm
+        $phone_id = $product->product_id;
+
+
+
+        if ($data['categories_product_id'] == 1) {
+            // Mã xử lý khi điều kiện đúng
+            $productDetail = new PhoneDetailsModel();
+            $productDetail->product_id = $phone_id; // liên kết bằng khóa ngoại
+            $productDetail->operating_system =  $data['operating_system'];
+
+
+            $productDetail->save();
+        }
 
         Session::put('message_success', 'Thêm thành công!');
         return Redirect::to('list-product');
