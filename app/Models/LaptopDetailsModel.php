@@ -33,8 +33,6 @@ class LaptopDetailsModel extends Model
         'weight',
         'connectivity',
         'port_type',
-        'warranty_period',
-        'color',
         'biometrics',
     ];
 

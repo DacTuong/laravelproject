@@ -17,6 +17,11 @@ Session::put('message_success', null);
         <input type="text" class="form-control" name="categories_name" data-slug-source="category"
             placeholder="Nhập tên loại">
     </div>
+    <div class="form-group">
+        <label>Tên loại sản phẩm slug</label>
+        <input type="text" class="form-control" name="cate_slug" data-slug-target="category"
+            placeholder="Tên loại sản phẩm slug">
+    </div>
 
     <div class="form-group">
         <label>Tình Trạng</label>

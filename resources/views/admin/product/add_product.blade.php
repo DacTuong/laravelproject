@@ -15,7 +15,9 @@ Session::put('message_success', null);
     <span>Thêm sản phẩm</span>
 </div>
 <form action="{{URL::to('/save-product')}}" method="POST" enctype="multipart/form-data">
-
+    <div class="col-sm-12">
+        <button type="submit" name="add" class="btn btn-primary btn-save">Lưu lại</button>
+    </div>
 
     <div class="col-sm-9">
         {{csrf_field()}}
@@ -108,15 +110,206 @@ Session::put('message_success', null);
                 <label for="operating_system">Hệ Điều Hành:</label>
                 <input type="text" class="form-control" id="operating_system" name="operating_system">
             </div>
+            <div class="form-group">
+                <label for="screen_type">Loại Màn Hình:</label>
+                <input type="text" class="form-control" id="screen_type" name="screen_type">
+            </div>
+            <div class="form-group">
+                <label for="screen_size">Kích Thước Màn Hình:</label>
+                <input type="text" class="form-control" id="screen_size" name="screen_size">
+            </div>
+            <div class="form-group">
+                <label for="resolution">Độ Phân Giải:</label>
+                <input type="text" class="form-control" id="resolution" name="resolution">
+            </div>
 
+            <div class="form-group">
+                <label for="refresh_rate">Tần Số Quét:</label>
+                <input type="number" class="form-control" id="refresh_rate" name="refresh_rate">
+            </div>
+
+            <div class="form-group">
+                <label for="ram">RAM:</label>
+                <input type="number" class="form-control" id="ram" name="ram">
+            </div>
+
+            <div class="form-group">
+                <label for="storage">Bộ Nhớ Trong:</label>
+                <input type="number" class="form-control" id="storage" name="storage">
+            </div>
+
+            <div class="form-group">
+                <label for="expandable_storage">Hỗ Trợ Thẻ Nhớ Ngoài:</label>
+                <select class="form-control" id="expandable_storage" name="expandable_storage">
+                    <option value="0">Không</option>
+                    <option value="1">Có</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="battery_capacity">Dung Lượng Pin:</label>
+                <input type="number" class="form-control" id="battery_capacity" name="battery_capacity">
+            </div>
+
+            <div class="form-group">
+                <label for="fast_charging">Hỗ Trợ Sạc Nhanh:</label>
+                <input type="text" class="form-control" id="fast_charging" name="fast_charging">
+            </div>
+
+            <div class="form-group">
+                <label for="wireless_charging">Hỗ Trợ Sạc Không Dây:</label>
+                <select class="form-control" id="wireless_charging" name="wireless_charging">
+                    <option value="0">Không</option>
+                    <option value="1">Có</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="camera_main">Camera Chính:</label>
+                <input type="text" class="form-control" id="camera_main" name="camera_main">
+            </div>
+
+            <div class="form-group">
+                <label for="camera_main_features">Tính Năng Camera Chính:</label>
+                <input type="text" class="form-control" id="camera_main_features" name="camera_main_features">
+            </div>
+
+            <div class="form-group">
+                <label for="camera_front">Camera Trước:</label>
+                <input type="text" class="form-control" id="camera_front" name="camera_front">
+            </div>
+
+            <div class="form-group">
+                <label for="camera_front_features">Tính Năng Camera Trước:</label>
+                <input type="text" class="form-control" id="camera_front_features" name="camera_front_features">
+            </div>
+
+            <div class="form-group">
+                <label for="cpu">Bộ Xử Lý:</label>
+                <input type="text" class="form-control" id="cpu" name="cpu">
+            </div>
+
+            <div class="form-group">
+                <label for="gpu">Đồ Họa:</label>
+                <input type="text" class="form-control" id="gpu" name="gpu">
+            </div>
+
+            <div class="form-group">
+                <label for="water_resistance">Chống Nước:</label>
+                <input type="text" class="form-control" id="water_resistance" name="water_resistance">
+            </div>
+            <div class="form-group">
+                <label for="weight">Trọng Lượng:</label>
+                <input type="number" step="0.01" class="form-control" id="weight" name="weight">
+            </div>
+
+            <div class="form-group">
+                <label for="dimensions">Kích Thước:</label>
+                <input type="text" class="form-control" id="dimensions" name="dimensions">
+            </div>
+
+            <div class="form-group">
+                <label for="sim_type">Loại SIM:</label>
+                <input type="text" class="form-control" id="sim_type" name="sim_type">
+            </div>
+
+            <div class="form-group">
+                <label for="connectivity">Kết Nối:</label>
+                <input type="text" class="form-control" id="connectivity" name="connectivity">
+            </div>
+
+            <div class="form-group">
+                <label for="biometrics">Công Nghệ Bảo Mật:</label>
+                <input type="text" class="form-control" id="biometrics" name="biometrics">
+            </div>
+            <div class="form-group">
+                <label for="color">Các Tùy Chọn Màu Sắc:</label>
+                <input type="text" class="form-control" id="color" name="color">
+            </div>
+
+            <div class="form-group">
+                <label for="charging_port">Cổng Sạc:</label>
+                <input type="text" class="form-control" id="charging_port" name="charging_port">
+            </div>
+
+            <div class="form-group">
+                <label for="other_connections">Các Kết Nối Khác:</label>
+                <input type="text" class="form-control" id="other_connections" name="other_connections">
+            </div>
+
+            <div class="form-group">
+                <label for="wifi_technology">Công Nghệ WiFi:</label>
+                <input type="text" class="form-control" id="wifi_technology" name="wifi_technology">
+            </div>
         </div>
 
         <div class="details-product__item" data-details="2">
             <h4>Laptop</h4>
             <div class="form-group">
+                <label>Hệ điều hành :</label>
+                <input type="text" class="form-control" name="laptop_operating_system">
+            </div>
+            <div class="form-group">
+                <label>Kích thước màn hình:</label>
+                <input type="text" class="form-control" name="laptop_screen_size">
+            </div>
+            <div class="form-group">
+                <label>Loại màn hình:</label>
+                <input type="text" class="form-control" name="laptop_screen_type">
+            </div>
+            <div class="form-group">
+                <label>Độ phân giải:</label>
+                <input type="text" class="form-control" name="laptop_resolution">
+            </div>
+            <div class="form-group">
+                <label>Tần số quét:</label>
+                <input type="text" class="form-control" name="laptop_refresh_rate">
+            </div>
+            <div class="form-group">
                 <label>CPU:</label>
                 <input type="text" class="form-control" name="laptop_cpu">
             </div>
+            <div class="form-group">
+                <label>Ram:</label>
+                <input type="text" class="form-control" name="laptop_ram">
+            </div>
+            <div class="form-group">
+                <label>Ổ cứng:</label>
+                <input type="text" class="form-control" name="laptop_storage">
+            </div>
+            <div class="form-group">
+                <label>Loại ổ cứng:</label>
+                <input type="text" class="form-control" name="storage_type">
+            </div>
+            <div class="form-group">
+                <label>Hỗ trợ mở rộng:</label>
+                <input type="text" class="form-control" name="laptop_expandable_storage">
+            </div>
+            <div class="form-group">
+                <label>GPU:</label>
+                <input type="text" class="form-control" name="laptop_gpu">
+            </div>
+            <div class="form-group">
+                <label>Pin:</label>
+                <input type="text" class="form-control" name="battery_capacity">
+            </div>
+            <div class="form-group">
+                <label>Trọng lượng (kg):</label>
+                <input type="text" class="form-control" name="laptop_weight">
+            </div>
+            <div class="form-group">
+                <label>Kết nối:</label>
+                <input type="text" class="form-control" name="connectivity">
+            </div>
+            <div class="form-group">
+                <label>Cổng kết nối:</label>
+                <input type="text" class="form-control" name="port_type">
+            </div>
+            <div class="form-group">
+                <label>Sinh trắc học:</label>
+                <input type="text" class="form-control" name="biometrics">
+            </div>
+
 
         </div>
 
@@ -130,9 +323,7 @@ Session::put('message_success', null);
     </div>
 
 
-    <div class="col-sm-12">
-        <button type="submit" name="add" class="btn btn-primary btn-save">Lưu lại</button>
-    </div>
+
 </form>
 
 

@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $categories = new Category;
         $categories->category_name = $data['categories_name'];
-        $categories->category_name_slug = $data['categories_name_slug'];
+        $categories->cate_slug = $data['categories_name_slug'];
         $categories->category_status = $data['categories_product_status'];
         $categories->save();
         Session::put('message_success', 'Thêm thành công!');
