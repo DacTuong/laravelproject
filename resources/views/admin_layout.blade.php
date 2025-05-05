@@ -300,19 +300,18 @@ $id = Session::get('admin_id')
                 var id = $(this).val();
                 $('.details-product').show();
 
-                // alert(id);
+                $('.details-product__item input, .details-product__item selected').removeAttr('required');
+
 
                 $('.details-product__item').each(function() {
                     if ($(this).data('details') == id) {
-                        // const dataValue = $(this).data('details');
-                        // alert('Giá trị data-details là: ' + dataValue);
                         $(this).show();
+                        $(`.details-product__item[data-details="${id}"] input, .details-product__item[data-details="${id}"] selected`)
+                            .attr('required', true)
                     } else {
                         $(this).hide();
                     }
                 });
-
-
 
                 $.ajax({
                     url: "{{url('/select-brand')}}",

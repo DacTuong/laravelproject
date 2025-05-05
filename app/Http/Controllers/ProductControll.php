@@ -122,7 +122,21 @@ class ProductControll extends Controller
         } elseif ($data['categories_product_id'] == 2) {
             $productDetail = new LaptopDetailsModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
-            $productDetail->laptop_cpu = $data['laptop_cpu'];
+            $productDetail->operating_system = $data['laptop_cpu'];
+            $productDetail->screen_size = $data['screen_size'];
+            $productDetail->screen_type = $data['laptop_cpu'];
+            $productDetail->resolution = $data['laptop_cpu'];
+            $productDetail->refresh_rate = $data['laptop_cpu'];
+            $productDetail->laptop_ram = $data['laptop_cpu'];
+            $productDetail->laptop_storage = $data['laptop_cpu'];
+            $productDetail->storage_type = $data['laptop_cpu'];
+            $productDetail->expandable_storage = $data['laptop_cpu'];
+            $productDetail->laptop_gpu = $data['laptop_cpu'];
+            $productDetail->battery_capacity = $data['laptop_cpu'];
+            $productDetail->weight = $data['laptop_cpu'];
+            $productDetail->port_type = $data['laptop_cpu'];
+            $productDetail->biometrics = $data['laptop_cpu'];
+
             $productDetail->save();
         }
 
