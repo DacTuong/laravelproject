@@ -38,6 +38,10 @@ class Product extends Model
     {
         return $this->hasOne(LaptopDetailsModel::class, 'product_id', 'product_id');
     }
+    public function smartwatch()
+    {
+        return $this->hasOne(SmartwatchModel::class, 'product_id', 'product_id');
+    }
     public function category()
     {
         return $this->belongsTo(Category::class, 'categories_product_id', 'category_id');

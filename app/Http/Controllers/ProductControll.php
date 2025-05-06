@@ -11,6 +11,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Gallery;
 use App\Models\LaptopDetailsModel;
+use App\Models\SmartwatchModel;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Redirect;
@@ -118,27 +119,76 @@ class ProductControll extends Controller
             $productDetail = new PhoneDetailsModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
             $productDetail->operating_system =  $data['operating_system'];
+            $productDetail->operating_system = $data['operating_system'];
+            $productDetail->screen_type = $data['screen_type'];
+            $productDetail->screen_size = $data['screen_size'];
+            $productDetail->resolution = $data['resolution'];
+            $productDetail->refresh_rate = $data['refresh_rate'];
+            $productDetail->ram = $data['ram'];
+            $productDetail->storage = $data['storage'];
+            $productDetail->expandable_storage = $data['expandable_storage'];
+            $productDetail->battery_capacity = $data['battery_capacity'];
+            $productDetail->fast_charging = $data['fast_charging'];
+            $productDetail->wireless_charging = $data['wireless_charging'];
+            $productDetail->camera_main = $data['camera_main'];
+            $productDetail->camera_main_features = $data['camera_main_features'];
+            $productDetail->camera_front = $data['camera_front'];
+            $productDetail->camera_front_features = $data['camera_front_features'];
+            $productDetail->cpu = $data['cpu'];
+            $productDetail->gpu = $data['gpu'];
+            $productDetail->water_resistance = $data['water_resistance'];
+            $productDetail->weight = $data['weight'];
+            $productDetail->dimensions = $data['dimensions'];
+            $productDetail->sim_type = $data['sim_type'];
+            $productDetail->connectivity = $data['connectivity'];
+            $productDetail->biometrics = $data['biometrics'];
+            $productDetail->color = $data['color'];
+            $productDetail->charging_port = $data['charging_port'];
+            $productDetail->other_connections = $data['other_connections'];
+            $productDetail->wifi_technology = $data['wifi_technology'];
             $productDetail->save();
         } elseif ($data['categories_product_id'] == 2) {
             $productDetail = new LaptopDetailsModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
-            $productDetail->operating_system = $data['laptop_cpu'];
-            $productDetail->screen_size = $data['screen_size'];
-            $productDetail->screen_type = $data['laptop_cpu'];
-            $productDetail->resolution = $data['laptop_cpu'];
-            $productDetail->refresh_rate = $data['laptop_cpu'];
-            $productDetail->laptop_ram = $data['laptop_cpu'];
-            $productDetail->laptop_storage = $data['laptop_cpu'];
-            $productDetail->storage_type = $data['laptop_cpu'];
-            $productDetail->expandable_storage = $data['laptop_cpu'];
-            $productDetail->laptop_gpu = $data['laptop_cpu'];
-            $productDetail->battery_capacity = $data['laptop_cpu'];
-            $productDetail->weight = $data['laptop_cpu'];
-            $productDetail->port_type = $data['laptop_cpu'];
-            $productDetail->biometrics = $data['laptop_cpu'];
+            $productDetail->operating_system = $data['laptop_operating_system'];
+            $productDetail->screen_size = $data['laptop_screen_size'];
+            $productDetail->screen_type = $data['laptop_screen_type'];
+            $productDetail->resolution = $data['laptop_resolution'];
+            $productDetail->refresh_rate = $data['laptop_refresh_rate'];
+            $productDetail->laptop_cpu = $data['laptop_cpu'];
+            $productDetail->laptop_ram = $data['laptop_ram'];
+            $productDetail->laptop_storage = $data['laptop_storage'];
+            $productDetail->storage_type = $data['laptop_storage_type'];
+            $productDetail->expandable_storage = $data['laptop_expandable_storage'];
+            $productDetail->laptop_gpu = $data['laptop_gpu'];
+            $productDetail->battery_capacity = $data['laptop_battery_capacity'];
+            $productDetail->weight = $data['laptop_weight'];
+            $productDetail->connectivity = $data['laptop_connectivity'];
+            $productDetail->port_type = $data['port_type'];
+            $productDetail->biometrics = $data['biometrics'];
 
             $productDetail->save();
+        } elseif ($data['categories_product_id'] == 3) {
+            $productDetail = new SmartwatchModel();
+            $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
+            $productDetail->operating_system = $data['watch_operating_system'];
+            $productDetail->screen_size = $data['watch_screen_size'];
+            $productDetail->screen_type = $data['watch_screen_type'];
+            $productDetail->resolution = $data['watch_resolution'];
+            $productDetail->battery_life = $data['battery_life'];
+            $productDetail->charging_time = $data['charging_time'];
+            $productDetail->health_sensors = $data['health_sensors'];
+            $productDetail->gps = $data['gps'];
+            $productDetail->waterproof_rating = $data['waterproof_rating'];
+            $productDetail->connectivity = $data['watch_connectivity'];
+            $productDetail->compatibility = $data['watch_compatibility'];
+            $productDetail->weight = $data['watch_weight'];
+            $productDetail->strap_material = $data['strap_material'];
+            $productDetail->biometric_unlock = $data['biometric_unlock'];
+            $productDetail->save();
         }
+
+
 
         Session::put('message_success', 'Thêm thành công!');
         return Redirect::to('list-product');

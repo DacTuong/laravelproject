@@ -279,7 +279,7 @@ Session::put('message_success', null);
             </div>
             <div class="form-group">
                 <label>Loại ổ cứng:</label>
-                <input type="text" class="form-control" name="storage_type">
+                <input type="text" class="form-control" name="laptop_storage_type">
             </div>
             <div class="form-group">
                 <label>Hỗ trợ mở rộng:</label>
@@ -291,7 +291,7 @@ Session::put('message_success', null);
             </div>
             <div class="form-group">
                 <label>Pin:</label>
-                <input type="text" class="form-control" name="battery_capacity">
+                <input type="text" class="form-control" name="laptop_battery_capacity">
             </div>
             <div class="form-group">
                 <label>Trọng lượng (kg):</label>
@@ -299,7 +299,7 @@ Session::put('message_success', null);
             </div>
             <div class="form-group">
                 <label>Kết nối:</label>
-                <input type="text" class="form-control" name="connectivity">
+                <input type="text" class="form-control" name="laptop_connectivity">
             </div>
             <div class="form-group">
                 <label>Cổng kết nối:</label>
@@ -309,8 +309,70 @@ Session::put('message_success', null);
                 <label>Sinh trắc học:</label>
                 <input type="text" class="form-control" name="biometrics">
             </div>
+        </div>
 
 
+        <div class="details-product__item" data-details="3">
+
+            <h4>Đồng hồ thông minh</h4>
+            <div class="form-group">
+                <label>Hệ điều hành:</label>
+                <input type="text" class="form-control" name="watch_operating_system">
+            </div>
+
+            <div class="form-group">
+                <label>Kích thước màn hình:</label>
+                <input type="text" class="form-control" name="watch_screen_size">
+            </div>
+            <div class="form-group">
+                <label>Loại màn hình:</label>
+                <input type="text" class="form-control" name="watch_screen_type">
+            </div>
+            <div class="form-group">
+                <label>Độ phân giải:</label>
+                <input type="text" class="form-control" name="watch_resolution">
+            </div>
+            <div class="form-group">
+                <label>Thời lượng pin:</label>
+                <input type="text" class="form-control" name="battery_life">
+            </div>
+            <div class="form-group">
+                <label>Thời gian sạc:</label>
+                <input type="text" class="form-control" name="charging_time">
+            </div>
+            <div class="form-group">
+                <label>Cảm biến sức khỏe:</label>
+                <input type="text" class="form-control" name="health_sensors">
+            </div>
+            <div class="form-group">
+                <label>Hỗ trợ GPS:</label>
+                <input type="text" class="form-control" name="gps">
+            </div>
+            <div class="form-group">
+                <label> Chuẩn chống nước:</label>
+                <input type="text" class="form-control" name="waterproof_rating">
+            </div>
+            <div class="form-group">
+                <label>Kết nối:</label>
+                <input type="text" class="form-control" name="watch_connectivity">
+            </div>
+            <div class="form-group">
+                <label>Tương thích hệ điều hành:</label>
+                <input type="text" class="form-control" name="watch_compatibility">
+            </div>
+            <div class="form-group">
+                <label>Trọng lượng (kg):</label>
+                <input type="text" class="form-control" name="watch_weight">
+            </div>
+            <div class="form-group">
+                <label>Chất liệu dây đeo:</label>
+                <input type="text" class="form-control" name="strap_material">
+            </div>
+
+            <div class="form-group">
+                <label>Mở khóa sinh trắc học:</label>
+                <input type="text" class="form-control" name="biometric_unlock">
+            </div>
         </div>
 
     </div>
