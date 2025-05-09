@@ -138,6 +138,10 @@ $id = Session::get('admin_id')
                         <a href="{{URL::to('/comments-index')}}"> <i class="fa-solid fa-comment"></i> Bình luận</a>
                     </li>
                     <li>
+                        <a href="{{URL::to('/list-relation')}}"> <i class="fa-solid fa-comment"></i>Danh mục sản phẩm
+                            của từng hãng</a>
+                    </li>
+                    <li>
                         <a href="{{URL::to('/order-view')}}">
                             <i class="fa fa-qrcode fa-3x"></i> Danh sách đơn hàng
                         </a>
@@ -202,7 +206,14 @@ $id = Session::get('admin_id')
         var editor = new FroalaEditor('#example');
     </script>
 
-
+    <script>
+        $('.add-select').on('click', function(e) {
+            e.preventDefault();
+            let $select = $('<select name="brand_id[]" class="form-select mb-2"></select>');
+            $select.append('<option value="">-- Chọn hãng --</option>');
+            $('#select-container').append($select);
+        })
+    </script>
 
     <script>
         function filterOrders() {

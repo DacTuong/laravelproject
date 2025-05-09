@@ -51,6 +51,11 @@ Route::get('/delete-brand/{brand_id}', [BrandController::class, 'delete_brand'])
 Route::get('/show-brand-user/{brand_id}', [BrandController::class, 'show_brand_user']);
 
 
+// 
+use App\Http\Controllers\RelationController;
+
+Route::get('/list-relation',  [RelationController::class, 'list_relation']);
+Route::get('/add-relation',  [RelationController::class, 'add_relation']);
 // Products
 use App\Http\Controllers\ProductControll;
 
