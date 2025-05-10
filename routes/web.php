@@ -56,6 +56,9 @@ use App\Http\Controllers\RelationController;
 
 Route::get('/list-relation',  [RelationController::class, 'list_relation']);
 Route::get('/add-relation',  [RelationController::class, 'add_relation']);
+
+Route::get('/get-brands',  [RelationController::class, 'get_brands']);
+Route::post('/save-relation',  [RelationController::class, 'save_relation']);
 // Products
 use App\Http\Controllers\ProductControll;
 
