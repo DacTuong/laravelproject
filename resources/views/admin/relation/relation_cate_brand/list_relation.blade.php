@@ -15,7 +15,7 @@ Session::put('message_success', null);
 <div>
     <a href="{{ URL::to('/add-relation') }}">Thêm liên kết</a>
 </div>
-<table border="1" cellpadding="10">
+<table>
     <tr>
         <th>ID</th>
         <th>Tên thương hiệu</th>
@@ -29,4 +29,6 @@ Session::put('message_success', null);
     </tr>
     @endforeach
 </table>
+
+
 @endsection

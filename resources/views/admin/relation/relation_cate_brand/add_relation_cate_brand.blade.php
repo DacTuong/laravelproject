@@ -11,6 +11,7 @@
             <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
             @endforeach
         </select>
+
     </div>
     <br>
     <button class="add-select">Thêm lựa chọn</button>

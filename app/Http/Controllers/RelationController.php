@@ -26,7 +26,6 @@ class RelationController extends Controller
     {
         // $brands = RelationModel::all();
         $brands = RelationModel::with('brand', 'cate')->get();
-
         return view('admin.relation.relation_cate_brand.list_relation',  compact('brands'));
     }
 
