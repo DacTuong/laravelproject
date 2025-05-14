@@ -56,7 +56,7 @@ class ProductControll extends Controller
         $product = Product::where('product_id', $product_id)->first();
 
         if ($product->categories_product_id == 1) {
-            $detail_product = PhoneDetailsModel::where('product_id', $product_id);
+            $detail_product = PhoneDetailsModel::where('product_id', $product_id)->first();
         }
         return view('admin.product.edit_product')->with('products', $product)->with('cate_products', $cate_product)
             ->with('brand_products', $brand_product)->with('detais', $detail_product);
