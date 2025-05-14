@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Gallery;
 use App\Models\LaptopDetailsModel;
 use App\Models\SmartwatchModel;
+use App\Models\TabletModel;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Redirect;
@@ -53,8 +54,12 @@ class ProductControll extends Controller
 
 
         $product = Product::where('product_id', $product_id)->first();
+
+        if ($product->categories_product_id == 1) {
+            $detail_product = PhoneDetailsModel::where('product_id', $product_id);
+        }
         return view('admin.product.edit_product')->with('products', $product)->with('cate_products', $cate_product)
-            ->with('brand_products', $brand_product);
+            ->with('brand_products', $brand_product)->with('detais', $detail_product);
     }
 
     public function inactive_product($product_id)
@@ -112,8 +117,6 @@ class ProductControll extends Controller
         // lấy id của sản phẩm
         $id_product = $product->product_id;
 
-
-
         if ($data['categories_product_id'] == 1) {
             // Mã xử lý khi điều kiện đúng
             $productDetail = new PhoneDetailsModel();
@@ -147,7 +150,8 @@ class ProductControll extends Controller
             $productDetail->other_connections = $data['other_connections'];
             $productDetail->wifi_technology = $data['wifi_technology'];
             $productDetail->save();
-        } elseif ($data['categories_product_id'] == 2) {
+        }
+        if ($data['categories_product_id'] == 2) {
             $productDetail = new LaptopDetailsModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
             $productDetail->operating_system = $data['laptop_operating_system'];
@@ -168,7 +172,8 @@ class ProductControll extends Controller
             $productDetail->biometrics = $data['biometrics'];
 
             $productDetail->save();
-        } elseif ($data['categories_product_id'] == 3) {
+        }
+        if ($data['categories_product_id'] == 3) {
             $productDetail = new SmartwatchModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
             $productDetail->operating_system = $data['watch_operating_system'];
@@ -187,7 +192,33 @@ class ProductControll extends Controller
             $productDetail->biometric_unlock = $data['biometric_unlock'];
             $productDetail->save();
         }
-
+        if ($data['categories_product_id'] == 4) {
+            // Mã xử lý khi điều kiện đúng
+            $productDetail = new TabletModel();
+            $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
+            $productDetail->tablet_operating_system = $data['tablet_operating_system'];
+            $productDetail->tablet_screen_size = $data['tablet_screen_size'];
+            $productDetail->tablet_screen_type = $data['tablet_screen_type'];
+            $productDetail->tablet_resolution = $data['tablet_resolution'];
+            $productDetail->tablet_refresh_rate = $data['tablet_refresh_rate'];
+            $productDetail->tablet_cpu = $data['tablet_cpu'];
+            $productDetail->tablet_ram = $data['tablet_ram'];
+            $productDetail->tablet_storage = $data['tablet_storage'];
+            $productDetail->tablet_expandable_storage = $data['tablet_expandable_storage'];
+            $productDetail->tablet_battery_capacity = $data['tablet_battery_capacity'];
+            $productDetail->tablet_fast_charging = $data['tablet_fast_charging'];
+            $productDetail->tablet_camera_rear = $data['tablet_camera_rear'];
+            $productDetail->tablet_camera_front = $data['tablet_camera_front'];
+            $productDetail->tablet_speakers = $data['tablet_speakers'];
+            $productDetail->tablet_charging_port = $data['tablet_charging_port'];
+            $productDetail->tablet_connectivity = $data['tablet_connectivity'];
+            $productDetail->tablet_dimensions = $data['tablet_dimensions'];
+            $productDetail->tablet_weight = $data['tablet_weight'];
+            $productDetail->tablet_water_resistance = $data['tablet_water_resistance'];
+            $productDetail->tablet_stylus_support = $data['tablet_stylus_support'];
+            $productDetail->tablet_accessories = $data['tablet_accessories'];
+            $productDetail->save();
+        }
 
 
         Session::put('message_success', 'Thêm thành công!');

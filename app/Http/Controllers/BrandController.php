@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\BannerModel;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\CateActicleModel;
+use App\Models\RelationModel;
 
 session_start();
 class BrandController extends Controller
@@ -108,11 +109,11 @@ class BrandController extends Controller
         $this->AuthLogin();
 
         $id_cate = $request->id;
-        $select_brand = Brand::where('category_pro_id', $id_cate)->get();
+        $select_brand = RelationModel::with('brand', 'cate')->where('id_cate', $id_cate)->get();
         $output = '';
 
         foreach ($select_brand as $key => $val) {
-            $output .= '<option value="' . $val->brand_id . '">' . $val->brand_name . '</option>';
+            $output .= '<option value="' . $val->id_brand . '">' . $val->brand->brand_name . '</option>';
         }
         return response()->json($output);
     }

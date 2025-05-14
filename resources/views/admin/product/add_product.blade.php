@@ -375,6 +375,95 @@ Session::put('message_success', null);
             </div>
         </div>
 
+
+        <div class="details-product__item" data-details="4">
+            <h4>Tablet</h4>
+            <div class="form-group">
+                <label>Hệ điều hành :</label>
+                <input type="text" class="form-control" name="tablet_operating_system">
+            </div>
+            <div class="form-group">
+                <label>Kích thước màn hình:</label>
+                <input type="text" class="form-control" name="tablet_screen_size">
+            </div>
+            <div class="form-group">
+                <label>Loại màn hình:</label>
+                <input type="text" class="form-control" name="tablet_screen_type">
+            </div>
+            <div class="form-group">
+                <label>Độ phân giải:</label>
+                <input type="text" class="form-control" name="tablet_resolution">
+            </div>
+            <div class="form-group">
+                <label>Tần số quét:</label>
+                <input type="text" class="form-control" name="tablet_refresh_rate">
+            </div>
+            <div class="form-group">
+                <label>CPU:</label>
+                <input type="text" class="form-control" name="tablet_cpu">
+            </div>
+            <div class="form-group">
+                <label>Ram:</label>
+                <input type="text" class="form-control" name="tablet_ram">
+            </div>
+            <div class="form-group">
+                <label>Bộ nhớ trong:</label>
+                <input type="text" class="form-control" name="tablet_storage">
+            </div>
+            <div class="form-group">
+                <label>Hỗ trợ thẻ nhớ:</label>
+                <input type="text" class="form-control" name="tablet_expandable_storage">
+            </div>
+            <div class="form-group">
+                <label>Dung lượng pin:</label>
+                <input type="text" class="form-control" name="tablet_battery_capacity">
+            </div>
+            <div class="form-group">
+                <label>Sạc nhanh:</label>
+                <input type="text" class="form-control" name="tablet_fast_charging">
+            </div>
+            <div class="form-group">
+                <label>Camera sau:</label>
+                <input type="text" class="form-control" name="tablet_camera_rear">
+            </div>
+            <div class="form-group">
+                <label>Camera trước:</label>
+                <input type="text" class="form-control" name="tablet_camera_front">
+            </div>
+            <div class="form-group">
+                <label>Loa:</label>
+                <input type="text" class="form-control" name="tablet_speakers">
+            </div>
+            <div class="form-group">
+                <label>Cổng sạc:</label>
+                <input type="text" class="form-control" name="tablet_charging_port">
+            </div>
+            <div class="form-group">
+                <label>Kết nối:</label>
+                <input type="text" class="form-control" name="tablet_connectivity">
+            </div>
+            <div class="form-group">
+                <label>Kích thước:</label>
+                <input type="text" class="form-control" name="tablet_dimensions">
+            </div>
+            <div class="form-group">
+                <label>Trọng lượng (kg):</label>
+                <input type="text" class="form-control" name="tablet_weight">
+            </div>
+            <div class="form-group">
+                <label>Kháng nước:</label>
+                <input type="text" class="form-control" name="tablet_water_resistance">
+            </div>
+            <div class="form-group">
+                <label>Hỗ trợ bút cảm ứng:</label>
+                <input type="text" class="form-control" name="tablet_stylus_support">
+            </div>
+            <div class="form-group">
+                <label>Phụ kiện đi kèm:</label>
+                <input type="text" class="form-control" name="tablet_accessories">
+            </div>
+        </div>
+
     </div>
 
     <div class="col-sm-3">
