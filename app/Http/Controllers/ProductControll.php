@@ -58,8 +58,19 @@ class ProductControll extends Controller
         if ($product->categories_product_id == 1) {
             $detail_product = PhoneDetailsModel::where('product_id', $product_id)->first();
         }
+        if ($product->categories_product_id == 2) {
+            $detail_product = LaptopDetailsModel::where('product_id', $product_id)->first();
+        }
+        if ($product->categories_product_id == 3) {
+            $detail_product = SmartwatchModel::where('product_id', $product_id)->first();
+        }
+        if ($product->categories_product_id == 4) {
+            $detail_product = TabletModel::where('product_id', $product_id)->first();
+        }
+
+
         return view('admin.product.edit_product')->with('products', $product)->with('cate_products', $cate_product)
-            ->with('brand_products', $brand_product)->with('detais', $detail_product);
+            ->with('brand_products', $brand_product)->with('details', $detail_product);
     }
 
     public function inactive_product($product_id)
@@ -122,7 +133,6 @@ class ProductControll extends Controller
             $productDetail = new PhoneDetailsModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
             $productDetail->operating_system =  $data['operating_system'];
-            $productDetail->operating_system = $data['operating_system'];
             $productDetail->screen_type = $data['screen_type'];
             $productDetail->screen_size = $data['screen_size'];
             $productDetail->resolution = $data['resolution'];
@@ -154,42 +164,42 @@ class ProductControll extends Controller
         if ($data['categories_product_id'] == 2) {
             $productDetail = new LaptopDetailsModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
-            $productDetail->operating_system = $data['laptop_operating_system'];
-            $productDetail->screen_size = $data['laptop_screen_size'];
-            $productDetail->screen_type = $data['laptop_screen_type'];
-            $productDetail->resolution = $data['laptop_resolution'];
-            $productDetail->refresh_rate = $data['laptop_refresh_rate'];
+            $productDetail->laptop_operating_system = $data['laptop_operating_system'];
+            $productDetail->laptop_screen_size = $data['laptop_screen_size'];
+            $productDetail->laptop_screen_type = $data['laptop_screen_type'];
+            $productDetail->laptop_resolution = $data['laptop_resolution'];
+            $productDetail->laptop_refresh_rate = $data['laptop_refresh_rate'];
             $productDetail->laptop_cpu = $data['laptop_cpu'];
             $productDetail->laptop_ram = $data['laptop_ram'];
             $productDetail->laptop_storage = $data['laptop_storage'];
-            $productDetail->storage_type = $data['laptop_storage_type'];
-            $productDetail->expandable_storage = $data['laptop_expandable_storage'];
+            $productDetail->laptop_storage_type = $data['laptop_storage_type'];
+            $productDetail->laptop_expandable_storage = $data['laptop_expandable_storage'];
             $productDetail->laptop_gpu = $data['laptop_gpu'];
-            $productDetail->battery_capacity = $data['laptop_battery_capacity'];
-            $productDetail->weight = $data['laptop_weight'];
-            $productDetail->connectivity = $data['laptop_connectivity'];
-            $productDetail->port_type = $data['port_type'];
-            $productDetail->biometrics = $data['biometrics'];
+            $productDetail->laptop_battery_capacity = $data['laptop_battery_capacity'];
+            $productDetail->laptop_weight = $data['laptop_weight'];
+            $productDetail->laptop_connectivity = $data['laptop_connectivity'];
+            $productDetail->laptop_port_type = $data['port_type'];
+            $productDetail->laptop_biometrics = $data['biometrics'];
 
             $productDetail->save();
         }
         if ($data['categories_product_id'] == 3) {
             $productDetail = new SmartwatchModel();
             $productDetail->product_id = $id_product; // liên kết bằng khóa ngoại
-            $productDetail->operating_system = $data['watch_operating_system'];
-            $productDetail->screen_size = $data['watch_screen_size'];
-            $productDetail->screen_type = $data['watch_screen_type'];
-            $productDetail->resolution = $data['watch_resolution'];
-            $productDetail->battery_life = $data['battery_life'];
-            $productDetail->charging_time = $data['charging_time'];
-            $productDetail->health_sensors = $data['health_sensors'];
-            $productDetail->gps = $data['gps'];
-            $productDetail->waterproof_rating = $data['waterproof_rating'];
-            $productDetail->connectivity = $data['watch_connectivity'];
-            $productDetail->compatibility = $data['watch_compatibility'];
-            $productDetail->weight = $data['watch_weight'];
-            $productDetail->strap_material = $data['strap_material'];
-            $productDetail->biometric_unlock = $data['biometric_unlock'];
+            $productDetail->watch_operating_system = $data['watch_operating_system'];
+            $productDetail->watch_screen_size = $data['watch_screen_size'];
+            $productDetail->watch_screen_type = $data['watch_screen_type'];
+            $productDetail->watch_resolution = $data['watch_resolution'];
+            $productDetail->watch_battery_life = $data['battery_life'];
+            $productDetail->watch_charging_time = $data['charging_time'];
+            $productDetail->watch_health_sensors = $data['health_sensors'];
+            $productDetail->watch_gps = $data['gps'];
+            $productDetail->watch_waterproof_rating = $data['waterproof_rating'];
+            $productDetail->watch_connectivity = $data['watch_connectivity'];
+            $productDetail->watch_compatibility = $data['watch_compatibility'];
+            $productDetail->watch_weight = $data['watch_weight'];
+            $productDetail->watch_strap_material = $data['strap_material'];
+            $productDetail->watch_biometric_unlock = $data['biometric_unlock'];
             $productDetail->save();
         }
         if ($data['categories_product_id'] == 4) {
@@ -304,14 +314,18 @@ class ProductControll extends Controller
         $this->AuthLogin();
         $product = Product::find($product_id);
 
-        if ($product) {
-            // Đường dẫn tới tập tin ảnh
-            $product_image_path = 'uploads/product/' . $product->product_image;
 
-            // Kiểm tra xem tập tin ảnh có tồn tại không và xóa nó
-            if (file_exists($product_image_path)) {
-                unlink($product_image_path);
+        if ($product) {
+            $old_image = $product->product_image;
+            // Đường dẫn tới tập tin ảnh
+            if (!empty($old_image)) {
+                $product_image_path = 'uploads/product/' . $old_image;
+                // Kiểm tra xem tập tin ảnh có tồn tại không và xóa nó
+                if (file_exists($product_image_path)) {
+                    unlink($product_image_path);
+                }
             }
+
             // Xóa dữ liệu sản phẩm từ cơ sở dữ liệu
             Product::where('product_id', $product_id)->delete();
             Session::put('message_success', 'Xóa thành công!');

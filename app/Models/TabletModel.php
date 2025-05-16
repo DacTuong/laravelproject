@@ -9,9 +9,9 @@ class TabletModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_smartwatch_detail';
+    protected $table = 'tbl_tablets';
 
-    protected $primaryKey = 'id_smartwatch_detail ';
+    protected $primaryKey = 'tablet_id';
 
     public $timestamps = false;
 
