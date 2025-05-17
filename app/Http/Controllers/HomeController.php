@@ -121,12 +121,7 @@ class HomeController extends Controller
         $minAmount = $list_product->min('sale_price');
         $maxAmount = $list_product->max('sale_price');
 
-        // $productRam = Product::select('ram')
-        //     ->groupBy('ram')
-        //     ->get();
-        // $productStogare = Product::select('storage')
-        //     ->groupBy('storage')
-        //     ->get();
+
         return view('user.home', compact(
             'products',
             'banners',
@@ -137,6 +132,35 @@ class HomeController extends Controller
             // 'productRam',
             // 'productStogare',
         ));
+    }
+
+
+
+    public function show_category(Request $request, $name_slug)
+    {
+
+        $category = Category::get();
+        $banners = BannerModel::all();
+        $brands = Brand::all();
+        $category_slug = Category::where('cate_slug', $name_slug)->first();
+        $id = $category_slug->category_id;
+
+        $products = Product::where('categories_product_id', $id)->get();
+
+        // Lấy danh sách thương hiệu để hiển thị trong bộ lọc
+
+
+        return view('user.category.show_category')
+            ->with('products_by_brand', $products)
+            ->with('brands', $brands)
+            ->with('banners', $banners)
+            ->with('cate_id', $id)
+            ->with('category', $category)
+
+
+
+
+        ;
     }
 
     public function detail_product($product_id)

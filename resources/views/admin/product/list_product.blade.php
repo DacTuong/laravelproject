@@ -12,59 +12,63 @@
     }
     @endphp
     <!-- Advanced Tables -->
-    <div class="panel panel-default">
 
 
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Hình ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Loại</th>
-                    <th>Hãng</th>
-                    <th>Trạng thái</th>
-                    <th>Quản lý</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($products as $key => $product )
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{$product->product_code}}</td>
-                    <td><img src="{{ URL::to('uploads/product/' . $product->product_image) }}" alt=""
-                            style="height: 90px;"></td>
-                    <td>{{$product->product_name}}</td>
-                    <td>{{$product->sale_price}}</td>
-                    <td>{{$product->product_quantity}}</td>
-                    <td>{{$product->category->category_name}}</td>
-                    <td>{{$product->brand->brand_name}}</td>
-                    <td> <?php
-                            if ($product->product_status == 0) {
-                            ?>
-                            <a href="{{URL::to('/inactive-product'.'/'.$product->product_id)}}">Ẩn</a>
-                        <?php
-                            } else { ?>
-                            <a href="{{URL::to('/active-product'.'/'.$product->product_id)}}">Hiện</a>
-                        <?php  } ?>
-                    </td>
-                    <td>
-                        <a class="edit-btn" href="{{URL::to('/edit-product'.'/'.$product->product_id)}}">Sửa </a>
 
-                        <a class="delete-btn" href="{{URL::to('/delete-product'.'/'.$product->product_id)}}">Xóa </a>
-                    </td>
-                </tr>
+    <table id="example2" class="display responsive nowrap">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Mã sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Loại</th>
+                <th>Hãng</th>
+                <th>Trạng thái</th>
+                <th>Quản lý</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($products as $key => $product )
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{$product->product_code}}</td>
+                <td><img src="{{ URL::to('uploads/product/' . $product->product_image) }}" alt="" style="height: 90px;">
+                </td>
+                <td>{{$product->product_name}}</td>
+                <td>{{$product->sale_price}}</td>
+                <td>{{$product->product_quantity}}</td>
+                <td>{{$product->category->category_name}}</td>
+                <td>{{$product->brand->brand_name}}</td>
+                <td> <?php
+                        if ($product->product_status == 0) {
+                        ?>
+                        <a href="{{URL::to('/inactive-product'.'/'.$product->product_id)}}">Ẩn</a>
+                    <?php
+                        } else { ?>
+                        <a href="{{URL::to('/active-product'.'/'.$product->product_id)}}">Hiện</a>
+                    <?php  } ?>
+                </td>
+                <td>
+                    <a class="edit-btn" href="{{URL::to('/edit-product'.'/'.$product->product_id)}}">Sửa </a>
 
-                @endforeach
+                    <a class="delete-btn" href="{{URL::to('/delete-product'.'/'.$product->product_id)}}">Xóa </a>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+            @endforeach
+
+        </tbody>
+    </table>
+
+
+    <!--End Advanced Tables -->
+    <div class="pagination">
+        {{ $products->links('pagination::bootstrap-4') }}
 
     </div>
-    <!--End Advanced Tables -->
 </div>
 
 @endsection

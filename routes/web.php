@@ -47,8 +47,7 @@ Route::post('/save-brand', [BrandController::class, 'save_brand']);
 Route::post('/update-brand/{brand_id}', [BrandController::class, 'update_brand']);
 Route::get('/select-brand', [BrandController::class, 'select_brand']);
 Route::get('/delete-brand/{brand_id}', [BrandController::class, 'delete_brand']);
-// dành cho user
-Route::get('/show-brand-user/{brand_id}', [BrandController::class, 'show_brand_user']);
+
 
 
 // 
@@ -103,6 +102,8 @@ Route::get('/average-start/{product_id}', [HomeController::class, 'average_start
 Route::get('/count-with-star/{product_id}', [HomeController::class, 'count_with_star']);
 Route::get('/filter-reviews-min', [HomeController::class, 'filter_reviews_min']);
 Route::get('/filter-reviews', [HomeController::class, 'filter_reviews']);
+
+Route::get('/show-category/{name_slug}', [HomeController::class, 'show_category']);
 
 // Users sidebar
 Route::get('/thong-tin-ca-nhan', [HomeController::class, 'thong_tin_ca_nhan']);

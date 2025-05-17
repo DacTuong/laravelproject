@@ -29,10 +29,10 @@
                 <?php
                 if ($banner->status_banner == 2) {
                 ?>
-                <a href="{{URL::to('/inactive-banner'.'/'.$banner->id_banner )}}">Ẩn</a>
+                    <a href="{{URL::to('/inactive-banner'.'/'.$banner->id_banner )}}">Ẩn</a>
                 <?php
                 } else { ?>
-                <a href="{{URL::to('/active-banner'.'/'.$banner->id_banner )}}">Hiện</a>
+                    <a href="{{URL::to('/active-banner'.'/'.$banner->id_banner )}}">Hiện</a>
                 <?php  } ?>
             </th>
         </tr>

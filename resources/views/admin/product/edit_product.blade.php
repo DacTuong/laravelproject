@@ -101,38 +101,39 @@
             <div class="form-group">
                 <label for="operating_system">Hệ Điều Hành:</label>
                 <input type="text" class="form-control" id="operating_system" name="operating_system"
-                    value="{{ $details->operating_system }}">
+                    value="{{ $details->operating_system  ?? ''}}">
             </div>
             <div class="form-group">
                 <label for="screen_type">Loại Màn Hình:</label>
                 <input type="text" class="form-control" id="screen_type" name="screen_type"
-                    value="{{ $details->screen_type }}">
+                    value="{{ $details->screen_type  ?? ''}}">
             </div>
             <div class="form-group">
                 <label for="screen_size">Kích Thước Màn Hình:</label>
                 <input type="text" class="form-control" id="screen_size" name="screen_size"
-                    value="{{ $details->screen_size }}">
+                    value="{{ $details->screen_size  ?? ''}}">
             </div>
             <div class="form-group">
                 <label for="resolution">Độ Phân Giải:</label>
                 <input type="text" class="form-control" id="resolution" name="resolution"
-                    value="{{ $details->resolution }}">
+                    value="{{ $details->resolution  ?? ''}}">
             </div>
 
             <div class="form-group">
                 <label for="refresh_rate">Tần Số Quét:</label>
                 <input type="number" class="form-control" id="refresh_rate" name="refresh_rate"
-                    value="{{ $details->refresh_rate }}">
+                    value="{{ $details->refresh_rate  ?? ''}}">
             </div>
 
             <div class="form-group">
                 <label for="ram">RAM:</label>
-                <input type="number" class="form-control" id="ram" name="ram" value="{{ $details->ram }}">
+                <input type="number" class="form-control" id="ram" name="ram" value="{{ $details->ram  ?? ''}}">
             </div>
 
             <div class="form-group">
                 <label for="storage">Bộ Nhớ Trong:</label>
-                <input type="number" class="form-control" id="storage" name="storage" value="{{ $details->storage }}">
+                <input type="number" class="form-control" id="storage" name="storage"
+                    value="{{ $details->storage  ?? ''}}">
             </div>
 
             <div class="form-group">
@@ -146,13 +147,13 @@
             <div class="form-group">
                 <label for="battery_capacity">Dung Lượng Pin:</label>
                 <input type="number" class="form-control" id="battery_capacity" name="battery_capacity"
-                    value="{{ $details->battery_capacity }}">
+                    value="{{ $details->battery_capacity  ?? ''}}">
             </div>
 
             <div class="form-group">
                 <label for="fast_charging">Hỗ Trợ Sạc Nhanh:</label>
                 <input type="text" class="form-control" id="fast_charging" name="fast_charging"
-                    value="{{ $details->fast_charging }}">
+                    value="{{ $details->fast_charging  ?? ''}}">
             </div>
 
             <div class="form-group">
@@ -504,10 +505,10 @@
                 <input type="text" class="form-control" name="tablet_dimensions"
                     value="{{ $details->tablet_dimensions }}">
             </div>
+
             <div class="form-group">
                 <label>Trọng lượng (kg):</label>
-                <input type="text" class="form-control" name="tablet_dimensions"
-                    value="{{ $details->tablet_dimensions }}">
+                <input type="text" class="form-control" name="tablet_weight" value="{{ $details->tablet_weight }}">
             </div>
             <div class="form-group">
                 <label>Kháng nước:</label>
