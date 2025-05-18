@@ -139,28 +139,104 @@ class HomeController extends Controller
     public function show_category(Request $request, $name_slug)
     {
 
+        $cate = Category::where('cate_slug', $name_slug)->first();
+        $cate_id = $cate->category_id;
+
+        switch ($name_slug) {
+            case 'dien-thoai':
+                return $this->showPhones($request, $cate_id);
+            case 'laptop':
+
+                return $this->showLaptops($request, $cate_id);
+
+            case 'dong-ho-thong-minh':
+
+                return $this->showWatches($request, $cate_id);
+
+            case 'tablet':
+
+                return $this->showTablets($request, $cate_id);
+
+            default:
+                abort(404);
+                break;
+        }
+    }
+
+    public function showPhones(Request $request, $cate_id)
+    {
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
-        $category_slug = Category::where('cate_slug', $name_slug)->first();
-        $id = $category_slug->category_id;
 
-        $products = Product::where('categories_product_id', $id)->get();
-
-        // Lấy danh sách thương hiệu để hiển thị trong bộ lọc
+        $list_phone =  Product::with(['category', 'brand'])
+            ->where('categories_product_id', $cate_id)
+            ->where('product_status', 1)->get();
 
 
-        return view('user.category.show_category')
-            ->with('products_by_brand', $products)
+        return view('user.category.show_phones')
+            ->with('brands', $brands)
+            ->with('phones', $list_phone)
+            ->with('banners', $banners)
+            ->with('category', $category)
+        ;
+    }
+
+
+    public function showLaptops(Request $request, $cate_id)
+    {
+        $category = Category::get();
+        $banners = BannerModel::all();
+        $brands = Brand::all();
+        $list_laptop =  Product::with(['category', 'brand'])
+            ->where('categories_product_id', $cate_id)
+            ->where('product_status', 1)->get();
+
+
+        return view('user.category.show_laptops')
+
             ->with('brands', $brands)
             ->with('banners', $banners)
-            ->with('cate_id', $id)
+
             ->with('category', $category)
-
-
-
-
+            ->with('laptops', $list_laptop)
         ;
+    }
+
+    public function showWatches(Request $request, $cate_id)
+    {
+        $category = Category::get();
+        $banners = BannerModel::all();
+        $brands = Brand::all();
+
+        $list_watch =  Product::with(['category', 'brand'])
+            ->where('categories_product_id', $cate_id)
+            ->where('product_status', 1)->get();
+
+        return view('user.category.show_watches')
+            ->with('watches', $list_watch)
+            ->with('brands', $brands)
+            ->with('banners', $banners)
+
+            ->with('category', $category);
+    }
+
+    public function showTablets(Request $request, $cate_id)
+    {
+        $category = Category::get();
+        $banners = BannerModel::all();
+        $brands = Brand::all();
+        $list_tablet =  Product::with(['category', 'brand'])
+            ->where('categories_product_id', $cate_id)
+            ->where('product_status', 1)->get();
+
+
+        return view('user.category.show_tablets')
+            ->with('tablets', $list_tablet)
+            ->with('brands', $brands)
+            ->with('banners', $banners)
+
+            ->with('category', $category);
     }
 
     public function detail_product($product_id)
