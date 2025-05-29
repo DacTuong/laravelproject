@@ -7,6 +7,12 @@
 
 <div class="home-product">
     <div class="left-contaner">
+        <div class="brand-relation">
+            <b>Thương hiệu</b>
+            @foreach ($relations as $brand_relate)
+            <a href="">{{ $brand_relate->brand->brand_name }}</a>
+            @endforeach
+        </div>
         <div class="filter-item">
             <b>Dung lượng ram</b><br>
             <label>

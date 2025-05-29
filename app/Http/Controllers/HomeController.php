@@ -16,8 +16,7 @@ use App\Models\FavoriteModel;
 use App\Models\OrderProduct;
 use App\Models\User;
 use App\Models\Product;
-
-
+use App\Models\RelationModel;
 
 session_start();
 
@@ -168,7 +167,7 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
-
+        $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
         $list_phone =  Product::with(['category', 'brand'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1)->get();
@@ -179,6 +178,7 @@ class HomeController extends Controller
             ->with('phones', $list_phone)
             ->with('banners', $banners)
             ->with('category', $category)
+            ->with('relations', $relation)
         ;
     }
 
@@ -188,6 +188,7 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
+        $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
         $list_laptop =  Product::with(['category', 'brand'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1)->get();
@@ -200,6 +201,7 @@ class HomeController extends Controller
 
             ->with('category', $category)
             ->with('laptops', $list_laptop)
+            ->with('relations', $relation)
         ;
     }
 
@@ -208,7 +210,7 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
-
+        $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
         $list_watch =  Product::with(['category', 'brand'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1)->get();
@@ -218,7 +220,9 @@ class HomeController extends Controller
             ->with('brands', $brands)
             ->with('banners', $banners)
 
-            ->with('category', $category);
+            ->with('category', $category)
+            ->with('relations', $relation)
+        ;
     }
 
     public function showTablets(Request $request, $cate_id)
@@ -226,6 +230,7 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
+        $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
         $list_tablet =  Product::with(['category', 'brand'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1)->get();
@@ -236,7 +241,9 @@ class HomeController extends Controller
             ->with('brands', $brands)
             ->with('banners', $banners)
 
-            ->with('category', $category);
+            ->with('category', $category)
+            ->with('relations', $relation)
+        ;
     }
 
     public function detail_product($product_id)
