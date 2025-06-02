@@ -92,7 +92,6 @@
                 <!-- <span>Giá nhỏ nhất {{ $minAmount }}</span> -->
                 <b>Giá bán</b>
                 <br>
-
                 <form>
                     <input type="text" name="min_price" id="min_price" class="min_price">
                     <input type="text" name="max_price" id="max_price" class="max_price">

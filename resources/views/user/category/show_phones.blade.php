@@ -12,6 +12,13 @@
             <b>Thương hiệu</b>
             @foreach ($relations as $brand_relate)
             <a href="">{{ $brand_relate->brand->brand_name }}</a>
+
+            <label>
+                <input type="checkbox" name="brand" value="{{$brand_relate->id_brand}}"
+                    {{ in_array($brand_relate->id_brand, explode(',', request()->get('brand', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('brand', this)">
+                {{ $brand_relate->brand->brand_name }}
+            </label><br>
             @endforeach
         </div>
         <div class="filter-item">

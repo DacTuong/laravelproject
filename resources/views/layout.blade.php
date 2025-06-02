@@ -143,7 +143,6 @@ $name = Session::get('name_customer')
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-
             // Xử lý dropdown trên mobile (toggle khi nhấn)
             const productDropdown = document.getElementById("productDropdown");
             const productDropdownMenu = document.getElementById("productDropdownMenu");
