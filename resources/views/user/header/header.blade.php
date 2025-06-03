@@ -169,12 +169,10 @@
 
                                     @foreach ($category as $cate_product )
                                     <li><a class="dropdown-item"
-                                            href="{{ URL::to('/show-category'.'/'. $cate_product->cate_slug) }}">{{ $cate_product->category_name }}</a>
+                                            href="{{ URL::to('/'. $cate_product->cate_slug) }}">{{ $cate_product->category_name }}</a>
                                     </li>
                                     @endforeach
-                                    <!-- <li><a class="dropdown-item" href="#">Điện thoại</a></li>
-                                    <li><a class="dropdown-item" href="#">Laptop</a></li>
-                                    <li><a class="dropdown-item" href="#">Phụ kiện</a></li> -->
+
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>

@@ -76,43 +76,7 @@ Route::post('/update-product/{product_id}', [ProductControll::class, 'update_pro
 
 ///////////////////////////// Users///////////////////
 
-// Home controller
-use App\Http\Controllers\HomeController;
 
-Route::get('/', [HomeController::class, 'index']);
-
-Route::get('/detail-product/{product_id}', [HomeController::class, 'detail_product']);
-
-Route::get('/review-product/{product_id}', [HomeController::class, 'review_product']);
-
-Route::get('/get-review-cmt', [HomeController::class, 'get_review_cmt']);
-
-Route::post('/search', [HomeController::class, 'search']);
-
-
-Route::post('/favorite-toggle', [HomeController::class, 'favorite_toggle']);
-Route::get('/check-favorite/{product_id}', [HomeController::class, 'check_favorite']);
-Route::post('/delete-favorite', [HomeController::class, 'delete_favorite']);
-
-Route::post('/send-review', [HomeController::class, 'send_review']);
-Route::get('/get-review-cmt-min/{product_id}', [HomeController::class, 'get_review_cmt_min']);
-Route::get('/get-review-cmt-all/{product_id}', [HomeController::class, 'get_review_cmt_all']);
-
-Route::get('/average-start/{product_id}', [HomeController::class, 'average_start']);
-Route::get('/count-with-star/{product_id}', [HomeController::class, 'count_with_star']);
-Route::get('/filter-reviews-min', [HomeController::class, 'filter_reviews_min']);
-Route::get('/filter-reviews', [HomeController::class, 'filter_reviews']);
-
-Route::get('/show-category/{name_slug}', [HomeController::class, 'show_category']);
-
-// Users sidebar
-Route::get('/thong-tin-ca-nhan', [HomeController::class, 'thong_tin_ca_nhan']);
-
-Route::get('/wishlist', [HomeController::class, 'wishlist']);
-Route::get('/data-wishlist', [HomeController::class, 'data_wishlist']);
-Route::get('/thong-tin-ca-nhan/setting', [HomeController::class, 'setting']);
-Route::post('/change-password', [HomeController::class, 'change_password']);
-Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
 // // Users s
 use App\Http\Controllers\CheckoutController;
 
@@ -203,3 +167,48 @@ Route::get('/active-post/{id_post}', [ActicleControll::class, 'active_post']);
 Route::get('/inactive-post/{id_post}', [ActicleControll::class, 'inactive_post']);
 // user
 Route::get('/list-post', [ActicleControll::class, 'list_post']);
+
+
+
+// Home controller
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/detail-product/{product_id}', [HomeController::class, 'detail_product']);
+
+Route::get('/review-product/{product_id}', [HomeController::class, 'review_product']);
+
+Route::get('/get-review-cmt', [HomeController::class, 'get_review_cmt']);
+
+Route::post('/search', [HomeController::class, 'search']);
+
+
+Route::post('/favorite-toggle', [HomeController::class, 'favorite_toggle']);
+Route::get('/check-favorite/{product_id}', [HomeController::class, 'check_favorite']);
+Route::post('/delete-favorite', [HomeController::class, 'delete_favorite']);
+
+Route::post('/send-review', [HomeController::class, 'send_review']);
+Route::get('/get-review-cmt-min/{product_id}', [HomeController::class, 'get_review_cmt_min']);
+Route::get('/get-review-cmt-all/{product_id}', [HomeController::class, 'get_review_cmt_all']);
+
+Route::get('/average-start/{product_id}', [HomeController::class, 'average_start']);
+Route::get('/count-with-star/{product_id}', [HomeController::class, 'count_with_star']);
+Route::get('/filter-reviews-min', [HomeController::class, 'filter_reviews_min']);
+Route::get('/filter-reviews', [HomeController::class, 'filter_reviews']);
+
+// Route::get('/show-category/{name_slug}', [HomeController::class, 'show_category']);
+
+
+
+// Users sidebar
+Route::get('/thong-tin-ca-nhan', [HomeController::class, 'thong_tin_ca_nhan']);
+
+Route::get('/wishlist', [HomeController::class, 'wishlist']);
+Route::get('/data-wishlist', [HomeController::class, 'data_wishlist']);
+Route::get('/thong-tin-ca-nhan/setting', [HomeController::class, 'setting']);
+Route::post('/change-password', [HomeController::class, 'change_password']);
+Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
+// Get page with name_slug
+
+Route::get('/{name_slug}', [HomeController::class, 'show_category'])->where('name_slug', '[a-z0-9-]+');

@@ -368,6 +368,16 @@ $name = Session::get('name_customer')
             });
         });
 
+        document.querySelectorAll('.brand').forEach(item => {
+            item.addEventListener('click', function() {
+                let brandValue = this.getAttribute('data-brand');
+                let url = new URL(window.location);
+                url.searchParams.set('brand', brandValue);
+                window.location.href = url;
+
+            });
+        });
+
         document.querySelectorAll('.color-item').forEach(color => {
             color.addEventListener('click', function() {
                 let colorValue = this.getAttribute('data-id');
