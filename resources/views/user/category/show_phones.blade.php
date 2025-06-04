@@ -6,8 +6,8 @@
 </div>
 
 <div class="home-product">
-    <div class="left-contaner">
 
+    <div class="left-contaner">
         <div class="brand-relation">
             <b>Thương hiệu</b>
 

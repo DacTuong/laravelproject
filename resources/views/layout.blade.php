@@ -374,7 +374,6 @@ $name = Session::get('name_customer')
                 let url = new URL(window.location);
                 url.searchParams.set('brand', brandValue);
                 window.location.href = url;
-
             });
         });
 

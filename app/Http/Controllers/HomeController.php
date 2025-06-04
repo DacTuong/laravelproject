@@ -170,15 +170,26 @@ class HomeController extends Controller
         $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
         $list_phone =  Product::with(['category', 'brand'])
             ->where('categories_product_id', $cate_id)
-            ->where('product_status', 1)->get();
+            ->where('product_status', 1);
 
+
+        $brandNameFilter = null;
+
+        if ($request->has('brand')) {
+            $brandNameFilter = $request->get('brand');
+            $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
+            $list_phone->where('brand_product_id', $getIDBrand);
+        }
+
+        $products = $list_phone->paginate(1)->appends($request->query());
 
         return view('user.category.show_phones')
             ->with('brands', $brands)
-            ->with('phones', $list_phone)
+            ->with('phones', $products)
             ->with('banners', $banners)
             ->with('category', $category)
             ->with('relations', $relation)
+
         ;
     }
 
