@@ -14,6 +14,7 @@ use App\Models\CateActicleModel;
 use App\Models\Category;
 use App\Models\FavoriteModel;
 use App\Models\OrderProduct;
+use App\Models\PhoneDetailsModel;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\RelationModel;
@@ -168,20 +169,29 @@ class HomeController extends Controller
         $banners = BannerModel::all();
         $brands = Brand::all();
         $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
-        $list_phone =  Product::with(['category', 'brand'])
+        $list_phone =  Product::with(['category', 'brand', 'detail_phone'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1);
 
 
-        $brandNameFilter = null;
 
+
+        //  Filter Phone by brand request 
         if ($request->has('brand')) {
             $brandNameFilter = $request->get('brand');
             $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
             $list_phone->where('brand_product_id', $getIDBrand);
         }
 
-        $products = $list_phone->paginate(1)->appends($request->query());
+        //  Filter Phone by storage request 
+        if ($request->has('filter_mobile_storage')) {
+
+            $storageFilters = explode(',', $request->get('filter_mobile_storage'));
+
+            $list_phone->whereHas('detail_phone', fn($q) => $q->whereIn('storage', $storageFilters));
+        }
+
+        $products = $list_phone->paginate(20)->appends($request->query());
 
         return view('user.category.show_phones')
             ->with('brands', $brands)
@@ -189,6 +199,7 @@ class HomeController extends Controller
             ->with('banners', $banners)
             ->with('category', $category)
             ->with('relations', $relation)
+
 
         ;
     }

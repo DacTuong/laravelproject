@@ -9,67 +9,47 @@
 
     <div class="left-contaner">
         <div class="brand-relation">
-            <b>Thương hiệu</b>
-
-
-            @foreach ($relations as $brand_relate)
             <div>
-                <button class="brand" data-brand="{{ $brand_relate->brand->brand_name }}">
-                    {{ $brand_relate->brand->brand_name }}
-                </button>
+                <b>Thương hiệu</b>
+            </div>
+            <div class="slick-padding">
+
+                <div class="v5-brand-list">
+                    @foreach ($relations as $brand_relate)
+                    <div>
+                        <button class="brand" data-brand="{{ $brand_relate->brand->brand_name }}">
+                            {{ $brand_relate->brand->brand_name }}
+                        </button>
+                    </div>
+
+                    @endforeach
+                </div>
+
             </div>
 
-            @endforeach
         </div>
-        <div class="filter-item">
-            <b>Dung lượng ram</b><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="<4"
-                    {{ in_array('<4', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --Nhỏ hơn 4GB--
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="4gb_8gb"
-                    {{ in_array('4gb_8gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --4GB-8GB--
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="8gb_12gb"
-                    {{ in_array('8gb_12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --8GB-12GB--
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value=">12gb"
-                    {{ in_array('>12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                -- lớn hơn 12GB--
-            </label>
-        </div>
+
 
         <div class="filter-item">
             <b>Bộ nhớ trong</b>
             <br>
             <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="128"
-                    {{ in_array('128', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
+                <input type="checkbox" name="filter_mobile_storage" value="128"
+                    {{ in_array('128', explode(',', request()->get('filter_mobile_storage', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_mobile_storage', this)">
                 128GB
             </label><br>
             <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="256"
-                    {{ in_array('256', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
+                <input type="checkbox" name="filter_mobile_storage" value="256"
+                    {{ in_array('256', explode(',', request()->get('filter_mobile_storage', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_mobile_storage', this)">
                 256GB
             </label>
             <br>
             <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="512"
-                    {{ in_array('512', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
+                <input type="checkbox" name="filter_mobile_storage" value="512"
+                    {{ in_array('512', explode(',', request()->get('filter_mobile_storage', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_mobile_storage', this)">
                 512GB
             </label>
         </div>
@@ -181,12 +161,11 @@
             </select>
         </div>
         <div class="row">
-
             @foreach ($phones as $phone )
             <div class="col-lg-3 col-md-3 col-sm-12 col-12" style="padding-bottom: 12px;">
                 <div class="product-content">
 
-
+                    <p>{{ $phone->detail_phone->storage }}</p>
                     <!-- Link đến trang chi tiết sản phẩm -->
                     <a class="link-product" href="{{ URL::to('/detail-product'.'/' . $phone->product_id) }}">
                         <div class="thumbnail-product-img">
@@ -244,13 +223,17 @@
                             </button>
                         </div>
                     </form>
+
+
                 </div>
+
             </div>
             @endforeach
 
 
 
         </div>
+
     </div>
 </div>
 

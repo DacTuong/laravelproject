@@ -760,6 +760,35 @@
 .gallery-product img.selected {
     border: 2px solid #007bff; /* Hiển thị viền khi ảnh được chọn */
 }
+
+.slick-padding {
+    padding: 4px;
+}
+
+.v5-brand-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.v5-brand-list > div {
+    width: calc(50% - 5px); /* chia 2 cột đều nhau */
+    text-align: center;
+    padding: 4px 0px;
+    border: 2px solid rgb(118, 116, 116);
+    border-radius: 5px;
+}
+
+.v5-brand-list > div:hover {
+    border: 2px solid blue;
+}
+
+.v5-brand-list > div > .brand {
+    background-color: white;
+    width: 88px;
+    padding: 4px 2px;
+    border: none;
+}
 /* .+++++++++++++++++++++++++++Slide range++++++++++++++++++++++++++++++++. */
 
 #slider-range {

@@ -127,6 +127,7 @@
             </div>
             <div class="row">
                 @foreach ($products as $key => $product)
+
                 <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="padding-bottom: 12px;">
                     <div class="product-content">
                         <!-- Link đến trang chi tiết sản phẩm -->
