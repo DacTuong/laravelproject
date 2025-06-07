@@ -202,7 +202,7 @@ class HomeController extends Controller
             $storageFilters = explode(',', $request->input('filter_mobile_storage'));
             $list_phone->whereHas('detail_phone', fn($q) => $q->whereIn('storage', $storageFilters));
         }
-
+        //  Filter Phone by refresh rates request 
         if ($request->filled('filter_refresh_rates')) {
             $filterRefresh = $request->input('filter_refresh_rates');
             $list_phone = $this->applyRefreshRateFilter($list_phone, $filterRefresh);
@@ -215,9 +215,13 @@ class HomeController extends Controller
         //     ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
         //     ->get();
 
+
+        // Get nfc by PhoneDetailsModel 
         $listNFC =  PhoneDetailsModel::select('NFC', DB::raw('COUNT(*) as total_nfc'))
             ->groupBy('NFC')
             ->get();
+
+        // List Product if request and current
         $products = $list_phone->paginate(20)->appends($request->query());
 
         return view('user.category.show_phones')
