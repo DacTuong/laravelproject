@@ -34,6 +34,12 @@
             <b>Bộ nhớ trong</b>
             <br>
             <label>
+                <input type="checkbox" name="filter_mobile_storage" value="<1"
+                    {{ in_array('<1', explode(',', request()->get('filter_mobile_storage', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_mobile_storage', this)">
+                nhỏ hơn 1GB
+            </label><br>
+            <label>
                 <input type="checkbox" name="filter_mobile_storage" value="128"
                     {{ in_array('128', explode(',', request()->get('filter_mobile_storage', ''))) ? 'checked' : '' }}
                     onchange="updateCheckboxFilter('filter_mobile_storage', this)">
@@ -55,15 +61,14 @@
         </div>
 
         <div class="filter-item">
-            <b>Loại điện thoại</b>
-            <br>
-
-        </div>
-
-        <div class="filter-item">
             <b>Tần số quét</b>
             <br>
-
+            <label>
+                <input type="checkbox" name="filter_refresh_rates" value="Không có"
+                    {{ in_array('Không có', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
+                Không có
+            </label><br>
             <label>
                 <input type="checkbox" name="filter_refresh_rates" value="60-120hz"
                     {{ in_array('60-120hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
@@ -97,7 +102,18 @@
 
         </div>
 
-
+        <div class="filter-item">
+            <b>Kết nối NFC</b>
+            <br>
+            @foreach ($connectNFCs as $nfc )
+            <label>
+                <input type="checkbox" name="ket-noi-nfc" value="{{ $nfc->NFC }}"
+                    {{ in_array($nfc->NFC, explode(',', request()->get('ket-noi-nfc', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('ket-noi-nfc', this)">
+                {{ $nfc->NFC }} <span>[{{ $nfc->total_nfc }}]</span>
+            </label><br>
+            @endforeach
+        </div>
         <div class="filter-item">
             <b>Giá bán</b>
             <br>
@@ -166,6 +182,8 @@
                 <div class="product-content">
 
                     <p>{{ $phone->detail_phone->storage }}</p>
+                    <span>{{ $phone->category->category_name }}</span>
+                    <span>{{ $phone->brand->brand_name }}</span>
                     <!-- Link đến trang chi tiết sản phẩm -->
                     <a class="link-product" href="{{ URL::to('/detail-product'.'/' . $phone->product_id) }}">
                         <div class="thumbnail-product-img">

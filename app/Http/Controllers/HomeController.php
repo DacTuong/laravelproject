@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\ActicleModel;
 use App\Models\BannerModel;
 use App\Models\ReviewModel;
@@ -163,7 +165,22 @@ class HomeController extends Controller
         }
     }
 
-    public function showPhones(Request $request, $cate_id)
+
+    private function applyRefreshRateFilter($query, $filterRefresh)
+    {
+        if ($filterRefresh === '<1') {
+            $query->whereHas('detail_phone', fn($q) => $q->where('refresh_rate', $filterRefresh));
+        } else {
+            $values = array_map('intval', explode(',', $filterRefresh));
+            $query->whereHas('detail_phone', fn($q) => $q->whereIn('refresh_rate', $values));
+        }
+
+        return $query;
+    }
+
+
+
+    private function showPhones(Request $request, $cate_id)
     {
         $category = Category::get();
         $banners = BannerModel::all();
@@ -173,27 +190,38 @@ class HomeController extends Controller
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1);
 
-
-
-
         //  Filter Phone by brand request 
-        if ($request->has('brand')) {
-            $brandNameFilter = $request->get('brand');
+        if ($request->filled('brand')) {
+            $brandNameFilter = $request->input('brand');
             $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
             $list_phone->where('brand_product_id', $getIDBrand);
         }
 
         //  Filter Phone by storage request 
-        if ($request->has('filter_mobile_storage')) {
-
-            $storageFilters = explode(',', $request->get('filter_mobile_storage'));
-
+        if ($request->filled('filter_mobile_storage')) {
+            $storageFilters = explode(',', $request->input('filter_mobile_storage'));
             $list_phone->whereHas('detail_phone', fn($q) => $q->whereIn('storage', $storageFilters));
         }
 
+        if ($request->filled('filter_refresh_rates')) {
+            $filterRefresh = $request->input('filter_refresh_rates');
+            $list_phone = $this->applyRefreshRateFilter($list_phone, $filterRefresh);
+        }
+
+
+        // $listRefresh_rates = PhoneDetailsModel::where('refresh_rate', $model_product)
+        //     ->select('varian_product')
+        //     ->groupBy('varian_product')
+        //     ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+        //     ->get();
+
+        $listNFC =  PhoneDetailsModel::select('NFC', DB::raw('COUNT(*) as total_nfc'))
+            ->groupBy('NFC')
+            ->get();
         $products = $list_phone->paginate(20)->appends($request->query());
 
         return view('user.category.show_phones')
+            ->with('connectNFCs', $listNFC)
             ->with('brands', $brands)
             ->with('phones', $products)
             ->with('banners', $banners)
@@ -205,7 +233,7 @@ class HomeController extends Controller
     }
 
 
-    public function showLaptops(Request $request, $cate_id)
+    private function showLaptops(Request $request, $cate_id)
     {
         $category = Category::get();
         $banners = BannerModel::all();
@@ -227,7 +255,7 @@ class HomeController extends Controller
         ;
     }
 
-    public function showWatches(Request $request, $cate_id)
+    private function showWatches(Request $request, $cate_id)
     {
         $category = Category::get();
         $banners = BannerModel::all();
@@ -247,7 +275,7 @@ class HomeController extends Controller
         ;
     }
 
-    public function showTablets(Request $request, $cate_id)
+    private function showTablets(Request $request, $cate_id)
     {
         $category = Category::get();
         $banners = BannerModel::all();

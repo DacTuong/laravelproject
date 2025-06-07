@@ -354,7 +354,7 @@
     max-width: 210px;
     background-color: white;
     border-radius: 5px;
-    max-height: 900px;
+    /* max-height: 900px; */
 }
 .brand-container {
     display: flex;
