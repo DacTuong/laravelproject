@@ -238,7 +238,7 @@ $id = Session::get('admin_id')
                 dataType: 'json',
                 success: function(brands) {
                     // kiểm tra có dữ liệu
-                    console.log(brands);
+                    // console.log(brands);
 
                     let $select = $('<select name="brand_id[]" class="form-control"></select>');
                     $select.append('<option value="">-- Chọn hãng --</option>');
@@ -256,6 +256,46 @@ $id = Session::get('admin_id')
                 }
             });
         });
+
+        // $(document).on('click', '.add-select', function(e) {
+        //     e.preventDefault();
+
+        //     // Tạo thẻ <div class="form-group">
+        //     let $formGroup = $('<div class="form-group"></div>');
+
+        //     // Nút xóa
+        //     let $btn_close = $('<button class="remove-group" title="Xóa mục này"> X </button>');
+
+        //     // Label
+        //     let $label = $('<label for="brand_input">Chọn Thương Hiệu:</label>');
+
+        //     // Tạo input và datalist rỗng ban đầu
+        //     let $input = $('<input type="text" name="brand_name[]" class="form-control" list="brand_datalist">');
+        //     let $datalist = $('<datalist id="brand_datalist"></datalist>');
+
+        //     // Ajax lấy dữ liệu
+        //     $.ajax({
+        //         url: "/get-brands",
+        //         method: "GET",
+        //         dataType: 'json',
+        //         success: function(brands) {
+        //             // brands nên là mảng [{id:..., name:...}, ...] hoặc chỉ tên
+        //             console.log(brands);
+        //             $datalist.append(brands);
+        //             $formGroup.append($label);
+        //             $formGroup.append($btn_close);
+        //             $formGroup.append($input);
+        //             $formGroup.append($datalist);
+
+        //             // Thêm form-group vào vùng chứa
+        //             $('#select-container').append($formGroup);
+        //         },
+        //         error: function() {
+        //             alert("Không thể tải danh sách hãng từ server.");
+        //         }
+        //     });
+        // });
+
 
         // Bắt sự kiện xóa form-group
         $(document).on('click', '.remove-group', function(e) {

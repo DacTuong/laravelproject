@@ -148,7 +148,6 @@ class HomeController extends Controller
             case 'dien-thoai':
                 return $this->showPhones($request, $cate_id);
             case 'laptop':
-
                 return $this->showLaptops($request, $cate_id);
 
             case 'dong-ho-thong-minh':
