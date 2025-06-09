@@ -176,9 +176,22 @@ class HomeController extends Controller
 
         return $query;
     }
+    // Get nfc List 
+    private function getNFCList(Request $request)
+    {
+        $query = PhoneDetailsModel::query();
 
+        if ($request->filled('brand')) {
+            $brandName = $request->input('brand');
+            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
 
+            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
+        }
 
+        return $query->select('NFC', DB::raw('COUNT(*) as total_nfc'))
+            ->groupBy('NFC')
+            ->get();
+    }
     private function showPhones(Request $request, $cate_id)
     {
         $category = Category::get();
@@ -206,20 +219,7 @@ class HomeController extends Controller
             $filterRefresh = $request->input('filter_refresh_rates');
             $list_phone = $this->applyRefreshRateFilter($list_phone, $filterRefresh);
         }
-
-
-        // $listRefresh_rates = PhoneDetailsModel::where('refresh_rate', $model_product)
-        //     ->select('varian_product')
-        //     ->groupBy('varian_product')
-        //     ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
-        //     ->get();
-
-
-        // Get nfc by PhoneDetailsModel 
-        $listNFC =  PhoneDetailsModel::select('NFC', DB::raw('COUNT(*) as total_nfc'))
-            ->groupBy('NFC')
-            ->get();
-
+        $listNFC = $this->getNFCList($request);
         // List Product if request and current
         $products = $list_phone->paginate(20)->appends($request->query());
 
@@ -230,8 +230,6 @@ class HomeController extends Controller
             ->with('banners', $banners)
             ->with('category', $category)
             ->with('relations', $relation)
-
-
         ;
     }
 

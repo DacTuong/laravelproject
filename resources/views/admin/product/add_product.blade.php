@@ -122,6 +122,10 @@ Session::put('message_success', null);
                 <label for="resolution">Độ Phân Giải:</label>
                 <input type="text" class="form-control" id="resolution" name="resolution">
             </div>
+            <div class="form-group">
+                <label for="resolution">Kết nối NFC:</label>
+                <input type="text" class="form-control" id="connect_nfc" name="connect_nfc">
+            </div>
 
             <div class="form-group">
                 <label for="refresh_rate">Tần Số Quét:</label>

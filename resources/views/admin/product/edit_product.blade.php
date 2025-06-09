@@ -283,6 +283,11 @@
                 <input type="text" class="form-control" name="laptop_resolution"
                     value="{{ $details->laptop_resolution }}">
             </div>
+
+            <div class="form-group">
+                <label for="resolution">Kết nối NFC:</label>
+                <input type="text" class="form-control" id="connect_nfc" name="connect_nfc" value="{{ $details->NFC }}">
+            </div>
             <div class="form-group">
                 <label>Tần số quét:</label>
                 <input type="text" class="form-control" name="laptop_refresh_rate"

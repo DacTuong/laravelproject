@@ -148,6 +148,7 @@ class ProductControll extends Controller
             $productDetail->camera_main_features = $data['camera_main_features'];
             $productDetail->camera_front = $data['camera_front'];
             $productDetail->camera_front_features = $data['camera_front_features'];
+            $productDetail->NFC = $data['connect_nfc'];
             $productDetail->cpu = $data['cpu'];
             $productDetail->gpu = $data['gpu'];
             $productDetail->water_resistance = $data['water_resistance'];
@@ -283,6 +284,7 @@ class ProductControll extends Controller
             $productDetail->refresh_rate = $data['refresh_rate'];
             $productDetail->ram = $data['ram'];
             $productDetail->storage = $data['storage'];
+            $productDetail->NFC = $data['connect_nfc'];
             $productDetail->expandable_storage = $data['expandable_storage'];
             $productDetail->battery_capacity = $data['battery_capacity'];
             $productDetail->fast_charging = $data['fast_charging'];
