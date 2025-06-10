@@ -184,12 +184,79 @@ class HomeController extends Controller
         if ($request->filled('brand')) {
             $brandName = $request->input('brand');
             $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
+            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
+        }
+        //  Filter NFC by storage request 
+        if ($request->filled('filter_mobile_storage')) {
+            $storageFilters = explode(',', $request->input('filter_mobile_storage'));
+            $query->whereHas('product', fn($q) => $q->where('storage', $storageFilters));
+        }
+
+        //  Filter NFC by refresh rates request 
+        if ($request->filled('filter_refresh_rates')) {
+            $filterRefresh = $request->input('filter_refresh_rates');
+            $query->whereHas('product', fn($q) => $q->where('refresh_rate', $filterRefresh));
+        }
+
+        //  Filter NFC by ram request 
+        if ($request->filled('filter_ram')) {
+            $filterByRam = explode(',', $request->input('filter_ram'));
+            $query->whereHas('product', fn($q) => $q->where('ram', $filterByRam));
+        }
+        return $query->select('NFC', DB::raw('COUNT(*) as total_nfc'))
+            ->groupBy('NFC')
+            ->get();
+    }
+
+    private function getStorage(Request $request)
+    {
+        $query = PhoneDetailsModel::query();
+        if ($request->filled('brand')) {
+            $brandName = $request->input('brand');
+            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
 
             $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
         }
 
-        return $query->select('NFC', DB::raw('COUNT(*) as total_nfc'))
-            ->groupBy('NFC')
+
+
+
+        return $query->select('storage', DB::raw('COUNT(*) as total'))
+            ->groupBy('storage')
+            ->orderByRaw('CAST(storage AS UNSIGNED) ASC')
+            ->get();
+    }
+
+    private function getRefresh_rates(Request $request)
+    {
+        $query = PhoneDetailsModel::query();
+        if ($request->filled('brand')) {
+            $brandName = $request->input('brand');
+            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
+
+            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
+        }
+
+        return $query->select('refresh_rate', DB::raw('COUNT(*) as total_refresh_rate'))
+            ->groupBy('refresh_rate')
+            ->orderByRaw('CAST(storage AS UNSIGNED) ASC')
+            ->get();
+    }
+
+
+    private function getRam(Request $request)
+    {
+        $query = PhoneDetailsModel::query();
+        if ($request->filled('brand')) {
+            $brandName = $request->input('brand');
+            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
+
+            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
+        }
+
+        return $query->select('ram', DB::raw('COUNT(*) as total_ram'))
+            ->groupBy('ram')
+            ->orderByRaw('CAST(storage AS UNSIGNED) ASC')
             ->get();
     }
     private function showPhones(Request $request, $cate_id)
@@ -219,12 +286,35 @@ class HomeController extends Controller
             $filterRefresh = $request->input('filter_refresh_rates');
             $list_phone = $this->applyRefreshRateFilter($list_phone, $filterRefresh);
         }
+
+        //  Filter Phone by ram request 
+        if ($request->filled('filter_ram')) {
+            $filterByRam = explode(',', $request->input('filter_ram'));
+            $list_phone->whereHas('detail_phone', fn($q) => $q->whereIn('ram', $filterByRam));
+        }
+
+        //  Filter Phone by storage request 
+        if ($request->filled('ket-noi-nfc')) {
+            $filterByNFC = explode(',', $request->input('ket-noi-nfc'));
+            $list_phone->whereHas('detail_phone', fn($q) => $q->whereIn('NFC', $filterByNFC));
+        }
+
+        // list nfc groupby nfc
         $listNFC = $this->getNFCList($request);
+        // list storage groupby storage
+        $storage = $this->getStorage($request);
+        // list refresh rate groupby refresh rate
+        $refreshRates = $this->getRefresh_rates($request);
+        // list ram groupby ram
+        $list_ram = $this->getRam($request);
         // List Product if request and current
         $products = $list_phone->paginate(20)->appends($request->query());
 
         return view('user.category.show_phones')
             ->with('connectNFCs', $listNFC)
+            ->with('storages', $storage)
+            ->with('refresh_rates', $refreshRates)
+            ->with('rams', $list_ram)
             ->with('brands', $brands)
             ->with('phones', $products)
             ->with('banners', $banners)

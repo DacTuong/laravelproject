@@ -371,9 +371,15 @@ $name = Session::get('name_customer')
         document.querySelectorAll('.brand').forEach(item => {
             item.addEventListener('click', function() {
                 let brandValue = this.getAttribute('data-brand');
-                let url = new URL(window.location);
-                url.searchParams.set('brand', brandValue);
-                window.location.href = url;
+
+                let baseURL = window.location.origin + window.location.pathname;
+                let newURL = new URL(baseURL);
+                // alert(newURL);
+                newURL.searchParams.set('brand', brandValue)
+                window.location.href = newURL.toString();
+                // let url = new URL(window.location);
+                // url.searchParams.set('brand', brandValue);
+                // window.location.href = url;
             });
         });
 
