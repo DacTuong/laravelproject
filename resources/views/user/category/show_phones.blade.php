@@ -156,6 +156,7 @@
                 <div class="product-content">
 
                     <p>{{ $phone->detail_phone->storage }}</p>
+                    <p>ram {{ $phone->detail_phone->ram }}</p>
                     <span>{{ $phone->category->category_name }}</span>
                     <span>{{ $phone->brand->brand_name }}</span>
                     <!-- Link đến trang chi tiết sản phẩm -->

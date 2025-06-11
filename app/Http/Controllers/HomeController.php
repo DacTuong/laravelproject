@@ -188,20 +188,20 @@ class HomeController extends Controller
         }
         //  Filter NFC by storage request 
         if ($request->filled('filter_mobile_storage')) {
-            $storageFilters = explode(',', $request->input('filter_mobile_storage'));
-            $query->whereHas('product', fn($q) => $q->where('storage', $storageFilters));
+            $filterStorages = explode(',', $request->input('filter_mobile_storage'));
+            $query->whereIn('storage', $filterStorages);
         }
 
         //  Filter NFC by refresh rates request 
         if ($request->filled('filter_refresh_rates')) {
-            $filterRefresh = $request->input('filter_refresh_rates');
-            $query->whereHas('product', fn($q) => $q->where('refresh_rate', $filterRefresh));
+            $filterRefreshRates =  explode(',', $request->input('filter_refresh_rates'));
+            $query->whereIn('refresh_rate', $filterRefreshRates);
         }
 
         //  Filter NFC by ram request 
         if ($request->filled('filter_ram')) {
-            $filterByRam = explode(',', $request->input('filter_ram'));
-            $query->whereHas('product', fn($q) => $q->where('ram', $filterByRam));
+            $filterRams = explode(',', $request->input('filter_ram'));
+            $query->whereIn('ram', $filterRams);
         }
         return $query->select('NFC', DB::raw('COUNT(*) as total_nfc'))
             ->groupBy('NFC')
@@ -214,12 +214,26 @@ class HomeController extends Controller
         if ($request->filled('brand')) {
             $brandName = $request->input('brand');
             $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
-
             $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
         }
 
+        //  Filter Storage by NFC request 
+        if ($request->filled('ket-noi-nfc')) {
+            $filterNFCs = explode(',', $request->input('ket-noi-nfc'));
+            $query->whereIn('NFC', $filterNFCs);
+        }
 
+        //  Filter Storage by Ram request 
+        if ($request->filled('filter_ram')) {
+            $filterRams = explode(',', $request->input('filter_ram'));
+            $query->whereIn('ram', $filterRams);
+        }
 
+        //  Filter Storage by refresh rate request 
+        if ($request->filled('filter_refresh_rates')) {
+            $filterRefreshRates = explode(',', $request->input('filter_refresh_rates'));
+            $query->whereIn('refresh_rate', $filterRefreshRates);
+        }
 
         return $query->select('storage', DB::raw('COUNT(*) as total'))
             ->groupBy('storage')
@@ -233,8 +247,23 @@ class HomeController extends Controller
         if ($request->filled('brand')) {
             $brandName = $request->input('brand');
             $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
-
             $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
+        }
+        // filter NFC get List Refresh rate
+        if ($request->filled('ket-noi-nfc')) {
+            $filterNFCs = explode(',', $request->input('ket-noi-nfc'));
+            $query->whereIn('NFC', $filterNFCs);
+        }
+        // filter ram get List Refresh rate
+        if ($request->filled('filter_ram')) {
+            $filterRams = explode(',', $request->input('filter_ram'));
+            $query->whereIn('ram', $filterRams);
+        }
+
+        // filter storage get List Refresh rate
+        if ($request->filled('filter_mobile_storage')) {
+            $filterStorages = explode(',', $request->input('filter_mobile_storage'));
+            $query->whereIn('storage', $filterStorages);
         }
 
         return $query->select('refresh_rate', DB::raw('COUNT(*) as total_refresh_rate'))
@@ -252,6 +281,23 @@ class HomeController extends Controller
             $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
 
             $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
+        }
+
+        //  Filter Ram by refresh NFC request 
+        if ($request->filled('ket-noi-nfc')) {
+            $filterNFCs = explode(',', $request->input('ket-noi-nfc'));
+            $query->whereIn('NFC', $filterNFCs);
+        }
+
+        //  Filter Ram by refresh rate request 
+        if ($request->filled('filter_mobile_storage')) {
+            $filterStorages = explode(',', $request->input('filter_mobile_storage'));
+            $query->whereIn('storage', $filterStorages);
+        }
+        //  Filter Ram by storage request 
+        if ($request->filled('filter_refresh_rates')) {
+            $filterRefreshRates = explode(',', $request->input('filter_refresh_rates'));
+            $query->whereIn('refresh_rate', $filterRefreshRates);
         }
 
         return $query->select('ram', DB::raw('COUNT(*) as total_ram'))
