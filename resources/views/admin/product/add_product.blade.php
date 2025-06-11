@@ -307,11 +307,12 @@ Session::put('message_success', null);
             </div>
             <div class="form-group">
                 <label>Cổng kết nối:</label>
-                <input type="text" class="form-control" name="port_type">
+                <!-- <input type="text" class="form-control" name="laptop_port_type"> -->
+                <textarea name="laptop_port_type" class="form-control" id=""></textarea>
             </div>
             <div class="form-group">
                 <label>Sinh trắc học:</label>
-                <input type="text" class="form-control" name="biometrics">
+                <input type="text" class="form-control" name="laptop_biometrics">
             </div>
         </div>
 

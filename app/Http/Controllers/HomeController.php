@@ -376,18 +376,27 @@ class HomeController extends Controller
         $banners = BannerModel::all();
         $brands = Brand::all();
         $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
-        $list_laptop =  Product::with(['category', 'brand'])
+
+        $list_laptop =  Product::with(['category', 'brand', 'detail_phone'])
             ->where('categories_product_id', $cate_id)
-            ->where('product_status', 1)->get();
+            ->where('product_status', 1);
+
+        //  Filter Laptop by brand request 
+        if ($request->filled('brand')) {
+            $brandNameFilter = $request->input('brand');
+            $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
+            $list_laptop->where('brand_product_id', $getIDBrand);
+        }
+        $products = $list_laptop->paginate(20)->appends($request->query());
+
 
 
         return view('user.category.show_laptops')
 
             ->with('brands', $brands)
             ->with('banners', $banners)
-
             ->with('category', $category)
-            ->with('laptops', $list_laptop)
+            ->with('laptops', $products)
             ->with('relations', $relation)
         ;
     }

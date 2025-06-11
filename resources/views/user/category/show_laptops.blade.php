@@ -7,13 +7,27 @@
 
 <div class="home-product">
     <div class="left-contaner">
-
         <div class="brand-relation">
-            <b>Thương hiệu</b>
-            @foreach ($relations as $brand_relate)
-            <a href="">{{ $brand_relate->brand->brand_name }}</a>
-            @endforeach
+            <div>
+                <b>Thương hiệu</b>
+            </div>
+            <div class="slick-padding">
+
+                <div class="v5-brand-list">
+                    @foreach ($relations as $brand_relate)
+                    <div>
+                        <button class="brand" data-brand="{{ $brand_relate->brand->brand_name }}">
+                            {{ $brand_relate->brand->brand_name }}
+                        </button>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
         </div>
+
         <div class="filter-item">
             <b>Dung lượng ram</b><br>
             <label>
