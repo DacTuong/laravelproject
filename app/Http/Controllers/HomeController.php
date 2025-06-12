@@ -319,15 +319,23 @@ class HomeController extends Controller
         $banners = BannerModel::all();
         $brands = Brand::all();
         $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
-        $list_watch =  Product::with(['category', 'brand'])
+        $list_watch =  Product::with(['category', 'brand', 'smartwatch'])
             ->where('categories_product_id', $cate_id)
-            ->where('product_status', 1)->get();
+            ->where('product_status', 1);
+
+        //  Filter Laptop by brand request 
+        if ($request->filled('brand')) {
+            $brandNameFilter = $request->input('brand');
+            $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
+            $list_watch->where('brand_product_id', $getIDBrand);
+        }
+
+        $product = $list_watch->paginate(20)->appends($request->query());
 
         return view('user.category.show_watches')
-            ->with('watches', $list_watch)
+            ->with('watches', $product)
             ->with('brands', $brands)
             ->with('banners', $banners)
-
             ->with('category', $category)
             ->with('relations', $relation)
         ;

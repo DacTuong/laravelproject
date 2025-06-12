@@ -339,23 +339,23 @@ Session::put('message_success', null);
             </div>
             <div class="form-group">
                 <label>Thời lượng pin:</label>
-                <input type="text" class="form-control" name="battery_life">
+                <input type="text" class="form-control" name="watch_battery_life">
             </div>
             <div class="form-group">
                 <label>Thời gian sạc:</label>
-                <input type="text" class="form-control" name="charging_time">
+                <input type="text" class="form-control" name="watch_charging_time">
             </div>
             <div class="form-group">
                 <label>Cảm biến sức khỏe:</label>
-                <input type="text" class="form-control" name="health_sensors">
+                <input type="text" class="form-control" name="watch_health_sensors">
             </div>
             <div class="form-group">
                 <label>Hỗ trợ GPS:</label>
-                <input type="text" class="form-control" name="gps">
+                <input type="text" class="form-control" name="watch_gps">
             </div>
             <div class="form-group">
                 <label> Chuẩn chống nước:</label>
-                <input type="text" class="form-control" name="waterproof_rating">
+                <input type="text" class="form-control" name="watch_waterproof_rating">
             </div>
             <div class="form-group">
                 <label>Kết nối:</label>
@@ -371,12 +371,12 @@ Session::put('message_success', null);
             </div>
             <div class="form-group">
                 <label>Chất liệu dây đeo:</label>
-                <input type="text" class="form-control" name="strap_material">
+                <input type="text" class="form-control" name="watch_strap_material">
             </div>
 
             <div class="form-group">
                 <label>Mở khóa sinh trắc học:</label>
-                <input type="text" class="form-control" name="biometric_unlock">
+                <input type="text" class="form-control" name="watch_biometric_unlock">
             </div>
         </div>
 
