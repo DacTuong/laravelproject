@@ -15,6 +15,7 @@ use App\Models\Brand;
 use App\Models\CateActicleModel;
 use App\Models\Category;
 use App\Models\FavoriteModel;
+
 use App\Models\OrderProduct;
 use App\Models\PhoneDetailsModel;
 use App\Models\User;
@@ -27,6 +28,17 @@ use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
+
+    protected $handlePhoneFilter;
+    protected $handleLaptopFilter;
+
+    public function __construct(
+        handleFilterPhoneController $handlePhoneFilter,
+        handleFilterLaptopController $handleLaptopFilter
+    ) {
+        $this->handlePhoneFilter = $handlePhoneFilter;
+        $this->handleLaptopFilter = $handleLaptopFilter;
+    }
     public function index(Request $request)
     {
 
@@ -165,146 +177,7 @@ class HomeController extends Controller
     }
 
 
-    private function applyRefreshRateFilter($query, $filterRefresh)
-    {
-        if ($filterRefresh === '<1') {
-            $query->whereHas('detail_phone', fn($q) => $q->where('refresh_rate', $filterRefresh));
-        } else {
-            $values = array_map('intval', explode(',', $filterRefresh));
-            $query->whereHas('detail_phone', fn($q) => $q->whereIn('refresh_rate', $values));
-        }
 
-        return $query;
-    }
-    // Get nfc List 
-    private function getNFCList(Request $request)
-    {
-        $query = PhoneDetailsModel::query();
-
-        if ($request->filled('brand')) {
-            $brandName = $request->input('brand');
-            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
-            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
-        }
-        //  Filter NFC by storage request 
-        if ($request->filled('filter_mobile_storage')) {
-            $filterStorages = explode(',', $request->input('filter_mobile_storage'));
-            $query->whereIn('storage', $filterStorages);
-        }
-
-        //  Filter NFC by refresh rates request 
-        if ($request->filled('filter_refresh_rates')) {
-            $filterRefreshRates =  explode(',', $request->input('filter_refresh_rates'));
-            $query->whereIn('refresh_rate', $filterRefreshRates);
-        }
-
-        //  Filter NFC by ram request 
-        if ($request->filled('filter_ram')) {
-            $filterRams = explode(',', $request->input('filter_ram'));
-            $query->whereIn('ram', $filterRams);
-        }
-        return $query->select('NFC', DB::raw('COUNT(*) as total_nfc'))
-            ->groupBy('NFC')
-            ->get();
-    }
-
-    private function getStorage(Request $request)
-    {
-        $query = PhoneDetailsModel::query();
-        if ($request->filled('brand')) {
-            $brandName = $request->input('brand');
-            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
-            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
-        }
-
-        //  Filter Storage by NFC request 
-        if ($request->filled('ket-noi-nfc')) {
-            $filterNFCs = explode(',', $request->input('ket-noi-nfc'));
-            $query->whereIn('NFC', $filterNFCs);
-        }
-
-        //  Filter Storage by Ram request 
-        if ($request->filled('filter_ram')) {
-            $filterRams = explode(',', $request->input('filter_ram'));
-            $query->whereIn('ram', $filterRams);
-        }
-
-        //  Filter Storage by refresh rate request 
-        if ($request->filled('filter_refresh_rates')) {
-            $filterRefreshRates = explode(',', $request->input('filter_refresh_rates'));
-            $query->whereIn('refresh_rate', $filterRefreshRates);
-        }
-
-        return $query->select('storage', DB::raw('COUNT(*) as total'))
-            ->groupBy('storage')
-            ->orderByRaw('CAST(storage AS UNSIGNED) ASC')
-            ->get();
-    }
-
-    private function getRefresh_rates(Request $request)
-    {
-        $query = PhoneDetailsModel::query();
-        if ($request->filled('brand')) {
-            $brandName = $request->input('brand');
-            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
-            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
-        }
-        // filter NFC get List Refresh rate
-        if ($request->filled('ket-noi-nfc')) {
-            $filterNFCs = explode(',', $request->input('ket-noi-nfc'));
-            $query->whereIn('NFC', $filterNFCs);
-        }
-        // filter ram get List Refresh rate
-        if ($request->filled('filter_ram')) {
-            $filterRams = explode(',', $request->input('filter_ram'));
-            $query->whereIn('ram', $filterRams);
-        }
-
-        // filter storage get List Refresh rate
-        if ($request->filled('filter_mobile_storage')) {
-            $filterStorages = explode(',', $request->input('filter_mobile_storage'));
-            $query->whereIn('storage', $filterStorages);
-        }
-
-        return $query->select('refresh_rate', DB::raw('COUNT(*) as total_refresh_rate'))
-            ->groupBy('refresh_rate')
-            ->orderByRaw('CAST(storage AS UNSIGNED) ASC')
-            ->get();
-    }
-
-
-    private function getRam(Request $request)
-    {
-        $query = PhoneDetailsModel::query();
-        if ($request->filled('brand')) {
-            $brandName = $request->input('brand');
-            $brandID = Brand::where('brand_name', $brandName)->value('brand_id');
-
-            $query->whereHas('product', fn($q) => $q->where('brand_product_id', $brandID));
-        }
-
-        //  Filter Ram by refresh NFC request 
-        if ($request->filled('ket-noi-nfc')) {
-            $filterNFCs = explode(',', $request->input('ket-noi-nfc'));
-            $query->whereIn('NFC', $filterNFCs);
-        }
-
-        //  Filter Ram by refresh rate request 
-        if ($request->filled('filter_mobile_storage')) {
-            $filterStorages = explode(',', $request->input('filter_mobile_storage'));
-            $query->whereIn('storage', $filterStorages);
-        }
-        //  Filter Ram by storage request 
-        if ($request->filled('filter_refresh_rates')) {
-            $filterRefreshRates = explode(',', $request->input('filter_refresh_rates'));
-            $query->whereIn('refresh_rate', $filterRefreshRates);
-        }
-
-        return $query->select('ram', DB::raw('COUNT(*) as total_ram'))
-            ->groupBy('ram')
-            ->orderByRaw('CAST(storage AS UNSIGNED) ASC')
-            ->get();
-    }
     private function showPhones(Request $request, $cate_id)
     {
         $category = Category::get();
@@ -330,7 +203,7 @@ class HomeController extends Controller
         //  Filter Phone by refresh rates request 
         if ($request->filled('filter_refresh_rates')) {
             $filterRefresh = $request->input('filter_refresh_rates');
-            $list_phone = $this->applyRefreshRateFilter($list_phone, $filterRefresh);
+            $list_phone = $this->handlePhoneFilter->applyRefreshRateFilter($list_phone, $filterRefresh);
         }
 
         //  Filter Phone by ram request 
@@ -346,13 +219,13 @@ class HomeController extends Controller
         }
 
         // list nfc groupby nfc
-        $listNFC = $this->getNFCList($request);
+        $listNFC = $this->handlePhoneFilter->getNFCList($request);
         // list storage groupby storage
-        $storage = $this->getStorage($request);
+        $storage = $this->handlePhoneFilter->getStorage($request);
         // list refresh rate groupby refresh rate
-        $refreshRates = $this->getRefresh_rates($request);
+        $refreshRates = $this->handlePhoneFilter->getRefresh_rates($request);
         // list ram groupby ram
-        $list_ram = $this->getRam($request);
+        $list_ram = $this->handlePhoneFilter->getRam($request);
         // List Product if request and current
         $products = $list_phone->paginate(20)->appends($request->query());
 
@@ -370,6 +243,7 @@ class HomeController extends Controller
     }
 
 
+
     private function showLaptops(Request $request, $cate_id)
     {
         $category = Category::get();
@@ -377,7 +251,7 @@ class HomeController extends Controller
         $brands = Brand::all();
         $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
 
-        $list_laptop =  Product::with(['category', 'brand', 'detail_phone'])
+        $list_laptop =  Product::with(['category', 'brand', 'detail_laptop'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1);
 
@@ -387,13 +261,51 @@ class HomeController extends Controller
             $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
             $list_laptop->where('brand_product_id', $getIDBrand);
         }
+
+
+        if ($request->filled('filter_laptop_gpu')) {
+            $filterLaptopbyGPU = explode(',', $request->input('filter_laptop_gpu'));
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_gpu', $filterLaptopbyGPU));
+        }
+        if ($request->filled('filter_laptop_cpu')) {
+            $filterLaptopbyCPU = explode(',', $request->input('filter_laptop_cpu'));
+            // $list_laptop->where('laptop_cpu', $filterLaptopbyCPU);
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_cpu', $filterLaptopbyCPU));
+        }
+
+        if ($request->filled('filter_laptop_ram')) {
+            $filterLaptopbyRam = explode(',', $request->input('filter_laptop_ram'));
+            // $list_laptop->where('laptop_ram', $filterLaptopbyRam);
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_ram', $filterLaptopbyRam));
+        }
+        if ($request->filled('filter_laptop_storage')) {
+            $filterLaptopbyStorsge = explode(',', $request->input('filter_laptop_storage'));
+            // $list_laptop->where('filter_laptop_storage', $filterLaptopbyStorsge);
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_storage', $filterLaptopbyStorsge));
+        }
+        if ($request->filled('filter_laptop_refresh_rates')) {
+            $filterLaptopbyRefresh = explode(',', $request->input('filter_laptop_refresh_rates'));
+            // $list_laptop->where('filter_laptop_refresh_rates', $filterLaptopbyRefresh);
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_refresh_rate', $filterLaptopbyRefresh));
+        }
+
+
+        $listGPULaptop = $this->handleLaptopFilter->handleFilterLaptopGPU($request);
+        $listCPULaptop = $this->handleLaptopFilter->handleFilterLaptopCPU($request);
+        $listRamLaptop = $this->handleLaptopFilter->handleFilterLaptopRam($request);
+        $listStorageLaptop = $this->handleLaptopFilter->handleFilterLaptopStorage($request);
+        $listRefreshLaptop = $this->handleLaptopFilter->handleFilterLaptopRefresh($request);
+
+
         $products = $list_laptop->paginate(20)->appends($request->query());
-
-
-
         return view('user.category.show_laptops')
-
             ->with('brands', $brands)
+            ->with('GPUs', $listGPULaptop)
+            ->with('CPUs', $listCPULaptop)
+            ->with('laptop_rams', $listRamLaptop)
+
+            ->with('laptop_storages', $listStorageLaptop)
+            ->with('laptop_refreshs', $listRefreshLaptop)
             ->with('banners', $banners)
             ->with('category', $category)
             ->with('laptops', $products)
