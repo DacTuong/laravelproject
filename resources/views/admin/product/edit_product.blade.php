@@ -347,7 +347,6 @@
                     value="{{ $details->laptop_biometrics }}">
             </div>
         </div>
-
         @endif
         @if ($products->categories_product_id == 3)
         <div class="">

@@ -323,7 +323,7 @@ class HomeController extends Controller
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1);
 
-        //  Filter Laptop by brand request 
+        //  Filter Watch by brand request 
         if ($request->filled('brand')) {
             $brandNameFilter = $request->input('brand');
             $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');

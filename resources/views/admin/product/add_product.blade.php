@@ -478,8 +478,6 @@ Session::put('message_success', null);
         </div>
     </div>
 
-
-
 </form>
 
 
