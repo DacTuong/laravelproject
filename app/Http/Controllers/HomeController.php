@@ -31,13 +31,17 @@ class HomeController extends Controller
 
     protected $handlePhoneFilter;
     protected $handleLaptopFilter;
+    protected $handleWatchFilter;
+
 
     public function __construct(
         handleFilterPhoneController $handlePhoneFilter,
-        handleFilterLaptopController $handleLaptopFilter
+        handleFilterLaptopController $handleLaptopFilter,
+        handleFilterWatchController $handleWatchFilter
     ) {
         $this->handlePhoneFilter = $handlePhoneFilter;
         $this->handleLaptopFilter = $handleLaptopFilter;
+        $this->handleWatchFilter = $handleWatchFilter;
     }
     public function index(Request $request)
     {
@@ -330,10 +334,17 @@ class HomeController extends Controller
             $list_watch->where('brand_product_id', $getIDBrand);
         }
 
+
+
+        // filter and get watch screen type
+        $screenType = $this->handleWatchFilter->handleFilterWatchScreenType($request);
+
+
         $product = $list_watch->paginate(20)->appends($request->query());
 
         return view('user.category.show_watches')
             ->with('watches', $product)
+            ->with('screen_types', $screenType)
             ->with('brands', $brands)
             ->with('banners', $banners)
             ->with('category', $category)

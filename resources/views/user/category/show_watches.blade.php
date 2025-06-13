@@ -25,56 +25,31 @@
         </div>
         <div class="filter-item">
             <b>Dung lượng ram</b><br>
+
+
             <label>
                 <input type="checkbox" name="filter_mobile_ram" value="<4"
                     {{ in_array('<4', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
                     onchange="updateCheckboxFilter('filter_mobile_ram', this)">
                 --Nhỏ hơn 4GB--
             </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="4gb_8gb"
-                    {{ in_array('4gb_8gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --4GB-8GB--
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="8gb_12gb"
-                    {{ in_array('8gb_12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --8GB-12GB--
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value=">12gb"
-                    {{ in_array('>12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                -- lớn hơn 12GB--
-            </label>
+
         </div>
 
         <div class="filter-item">
-            <b>Bộ nhớ trong</b>
+            <b>Công nghệ màn hình</b>
             <br>
+            @foreach($screen_types as $screen_type)
             <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="128"
-                    {{ in_array('128', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
-                128GB
+                <input type="checkbox" name="filter_warch_screen_type" value="{{  $screen_type->watch_screen_type}}"
+                    {{ in_array($screen_type->watch_screen_type, explode(',', request()->get('filter_warch_screen_type', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_warch_screen_type', this)">
+                {{ $screen_type->watch_screen_type }}
             </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="256"
-                    {{ in_array('256', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
-                256GB
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="512"
-                    {{ in_array('512', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
-                512GB
-            </label>
+            @endforeach
+
         </div>
+
 
         <div class="filter-item">
             <b>Loại điện thoại</b>
