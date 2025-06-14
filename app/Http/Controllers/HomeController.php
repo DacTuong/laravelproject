@@ -327,24 +327,21 @@ class HomeController extends Controller
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1);
 
-        //  Filter Watch by brand request 
-        if ($request->filled('brand')) {
-            $brandNameFilter = $request->input('brand');
-            $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
-            $list_watch->where('brand_product_id', $getIDBrand);
-        }
-
-
+        $list_watch = $this->handleWatchFilter->filterWatchByRequest($request, $list_watch);
 
         // filter and get watch screen type
         $screenType = $this->handleWatchFilter->handleFilterWatchScreenType($request);
-
-
+        $faceDesign = $this->handleWatchFilter->handleFilterWatchFaceDesign($request);
+        $wristSize = $this->handleWatchFilter->handleFilterWristSize($request);
+        $stapMaterials = $this->handleWatchFilter->handleFilterStrapMaterial($request);
         $product = $list_watch->paginate(20)->appends($request->query());
 
         return view('user.category.show_watches')
             ->with('watches', $product)
             ->with('screen_types', $screenType)
+            ->with('face_designs', $faceDesign)
+            ->with('wrist_sizes', $wristSize)
+            ->with('strap_materials', $stapMaterials)
             ->with('brands', $brands)
             ->with('banners', $banners)
             ->with('category', $category)
@@ -361,6 +358,8 @@ class HomeController extends Controller
         $list_tablet =  Product::with(['category', 'brand'])
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1)->get();
+
+
 
 
         return view('user.category.show_tablets')

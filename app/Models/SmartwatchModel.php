@@ -20,6 +20,8 @@ class SmartwatchModel extends Model
         'watch_screen_size',
         'watch_screen_type',
         'watch_resolution',
+        'watch_face_design',
+        'wrist_size_range',
         'watch_battery_life',
         'watch_charging_time',
         'watch_health_sensors',

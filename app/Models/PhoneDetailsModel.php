@@ -17,6 +17,7 @@ class PhoneDetailsModel extends Model
         'refresh_rate',
         'ram',
         'storage',
+        'NFC',
         'expandable_storage',
         'battery_capacity',
         'fast_charging',

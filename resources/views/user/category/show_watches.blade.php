@@ -23,126 +23,113 @@
                 </div>
             </div>
         </div>
-        <div class="filter-item">
-            <b>Dung lượng ram</b><br>
-
-
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="<4"
-                    {{ in_array('<4', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --Nhỏ hơn 4GB--
-            </label><br>
-
-        </div>
 
         <div class="filter-item">
             <b>Công nghệ màn hình</b>
             <br>
             @foreach($screen_types as $screen_type)
             <label>
-                <input type="checkbox" name="filter_warch_screen_type" value="{{  $screen_type->watch_screen_type}}"
-                    {{ in_array($screen_type->watch_screen_type, explode(',', request()->get('filter_warch_screen_type', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_warch_screen_type', this)">
+                <input type="checkbox" name="filter_watch_screen_type" value="{{  $screen_type->watch_screen_type}}"
+                    {{ in_array($screen_type->watch_screen_type, explode(',', request()->get('filter_watch_screen_type', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_watch_screen_type', this)">
                 {{ $screen_type->watch_screen_type }}
             </label><br>
             @endforeach
 
         </div>
 
-
         <div class="filter-item">
-            <b>Loại điện thoại</b>
+            <b>Thiết kế mặt đồng hồ</b>
             <br>
+            @foreach($face_designs as $face_design)
+            <label>
+                <input type="checkbox" name="filter_watch_face_design" value="{{  $face_design->watch_face_design}}"
+                    {{ in_array($face_design->watch_face_design, explode(',', request()->get('filter_watch_face_design', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_watch_face_design', this)">
+                {{ $face_design->watch_face_design }}
+            </label><br>
+            @endforeach
+            <div class="filter-item">
+                <b>Kích thước cổ tay</b>
+                <br>
+                @foreach ($wrist_sizes as $wrist_size)
+                <label>
+                    <input type="checkbox" name="filter_wrist_size_range" value="{{  $wrist_size->wrist_size_range}}"
+                        {{ in_array($wrist_size->wrist_size_range, explode(',', request()->get('filter_wrist_size_range', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_wrist_size_range', this)">
+                    {{ $wrist_size->wrist_size_range }}
+                </label><br>
+                @endforeach
+            </div>
 
-        </div>
+            <div class="filter-item">
+                <b>Chất liệu dây đeo</b>
+                <br>
 
-        <div class="filter-item">
-            <b>Tần số quét</b>
-            <br>
-
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="60-120hz"
-                    {{ in_array('60-120hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                60-120hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="60hz"
-                    {{ in_array('60hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                60hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="90hz"
-                    {{ in_array('90hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                90hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="120hz"
-                    {{ in_array('120hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                120hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="165hz"
-                    {{ in_array('165hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                165hz
-            </label><br>
-
-        </div>
+                @foreach($strap_materials as $strap_material)
+                <label>
+                    <input type="checkbox" name="filter_watch_strap_material"
+                        value="{{$strap_material->watch_strap_material }}"
+                        {{ in_array($strap_material->watch_strap_material , explode(',', request()->get('filter_watch_strap_material', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_watch_strap_material', this)">
+                    {{$strap_material->watch_strap_material }}
+                </label><br>
+                @endforeach
+            </div>
 
 
-        <div class="filter-item">
-            <b>Giá bán</b>
-            <br>
-            <label>
-                <input type="checkbox" name="filter_price" value="1000000-5000000"
-                    {{ in_array('1000000-5000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                1 đến 5 triệu
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_price" value="5000000-10000000"
-                    {{ in_array('5000000-10000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                5 đến 10 triệu
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_price" value="10000000-15000000"
-                    {{ in_array('10000000-19000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                10 đến 15 triệu
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_price" value="15000000-20000000"
-                    {{ in_array('15000000-20000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                15 đến 20 triệu
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="20000000-25000000"
-                    {{ in_array('20000000-25000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                29 đến 25 triệu
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_price" value="25000000-30000000"
-                    {{ in_array('25000000-30000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                25 đến 30 triệu
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_price" value=">30000000"
-                    {{ in_array('>30000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_price', this)">
-                Trên 30000000 triệu
-            </label><br>
+            <div class="filter-item">
+                <b>Giá bán</b>
+                <br>
+                <label>
+                    <input type="checkbox" name="filter_price" value="1000000-5000000"
+                        {{ in_array('1000000-5000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    1 đến 5 triệu
+                </label><br>
+                <label>
+                    <input type="checkbox" name="filter_price" value="5000000-10000000"
+                        {{ in_array('5000000-10000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    5 đến 10 triệu
+                </label><br>
+                <label>
+                    <input type="checkbox" name="filter_price" value="10000000-15000000"
+                        {{ in_array('10000000-19000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    10 đến 15 triệu
+                </label><br>
+                <label>
+                    <input type="checkbox" name="filter_price" value="15000000-20000000"
+                        {{ in_array('15000000-20000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    15 đến 20 triệu
+                </label><br>
+                <label>
+                    <input type="checkbox" name="filter_refresh_rates" value="20000000-25000000"
+                        {{ in_array('20000000-25000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    29 đến 25 triệu
+                </label><br>
+                <label>
+                    <input type="checkbox" name="filter_price" value="25000000-30000000"
+                        {{ in_array('25000000-30000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    25 đến 30 triệu
+                </label><br>
+                <label>
+                    <input type="checkbox" name="filter_price" value=">30000000"
+                        {{ in_array('>30000000', explode(',', request()->get('filter_price', ''))) ? 'checked' : '' }}
+                        onchange="updateCheckboxFilter('filter_price', this)">
+                    Trên 30000000 triệu
+                </label><br>
 
+            </div>
         </div>
     </div>
+    <!-- end left content -->
+
+    <!-- start body content -->
     <div class="body-content">
         <div class="sort">
             <label for="">sắp xếp</label>
