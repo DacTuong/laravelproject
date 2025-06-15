@@ -9,104 +9,65 @@
     <div class="left-contaner">
         <div class="brand-relation">
             <b>Thương hiệu</b>
-            @foreach ($relations as $brand_relate)
-            <a href="">{{ $brand_relate->brand->brand_name }}</a>
-            @endforeach
+            <div class="slick-padding">
+                <div class="v5-brand-list">
+                    @foreach ($relations as $brand_relate)
+                    <div>
+                        <button class="brand" data-brand="{{ $brand_relate->brand->brand_name }}">
+                            {{ $brand_relate->brand->brand_name }}
+                        </button>
+                    </div>
+                    @endforeach
+                </div>
+
+            </div>
         </div>
 
-        <div class="filter-item">
-            <b>Dung lượng ram</b><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="<4"
-                    {{ in_array('<4', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --Nhỏ hơn 4GB--
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="4gb_8gb"
-                    {{ in_array('4gb_8gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --4GB-8GB--
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value="8gb_12gb"
-                    {{ in_array('8gb_12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                --8GB-12GB--
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_ram" value=">12gb"
-                    {{ in_array('>12gb', explode(',', request()->get('filter_mobile_ram', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_ram', this)">
-                -- lớn hơn 12GB--
-            </label>
-        </div>
+
 
         <div class="filter-item">
             <b>Bộ nhớ trong</b>
             <br>
+
+            @foreach($tablet_storages as $tablet_storage)
             <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="128"
-                    {{ in_array('128', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
-                128GB
+                <input type="checkbox" name="filter_tablet_storage" value="{{$tablet_storage->tablet_storage}}"
+                    {{ in_array($tablet_storage->tablet_storage, explode(',', request()->get('filter_tablet_storage', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_tablet_storage', this)">
+                {{$tablet_storage->tablet_storage}}
             </label><br>
-            <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="256"
-                    {{ in_array('256', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
-                256GB
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" name="filter_mobile_stogare" value="512"
-                    {{ in_array('512', explode(',', request()->get('filter_mobile_stogare', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_mobile_stogare', this)">
-                512GB
-            </label>
+            @endforeach
+
         </div>
 
         <div class="filter-item">
-            <b>Loại điện thoại</b>
+            <b>Kích thước màn hình</b>
             <br>
 
+            @foreach($tablet_screensizes as $tablet_screensize)
+            <label>
+                <input type="checkbox" name="filter_tablet_screen_size"
+                    value="{{$tablet_screensize->tablet_screen_size}}"
+                    {{ in_array($tablet_screensize->tablet_screen_size, explode(',', request()->get('filter_tablet_screen_size', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_tablet_screen_size', this)">
+                {{$tablet_screensize->tablet_screen_size}}
+            </label><br>
+            @endforeach
         </div>
-
         <div class="filter-item">
             <b>Tần số quét</b>
             <br>
+            @foreach($tablet_refreshs as $tablet_refresh)
+            <label>
+                <input type="checkbox" name="filter_tablet_refresh_rates"
+                    value="{{$tablet_refresh->tablet_refresh_rate }}"
+                    {{ in_array($tablet_refresh->tablet_refresh_rate, explode(',', request()->get('filter_tablet_refresh_rates', ''))) ? 'checked' : '' }}
+                    onchange="updateCheckboxFilter('filter_tablet_refresh_rates', this)">
+                {{$tablet_refresh->tablet_refresh_rate}}
+            </label><br>
+            @endforeach
 
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="60-120hz"
-                    {{ in_array('60-120hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                60-120hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="60hz"
-                    {{ in_array('60hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                60hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="90hz"
-                    {{ in_array('90hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                90hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="120hz"
-                    {{ in_array('120hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                120hz
-            </label><br>
-            <label>
-                <input type="checkbox" name="filter_refresh_rates" value="165hz"
-                    {{ in_array('165hz', explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
-                    onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                165hz
-            </label><br>
+
 
         </div>
 

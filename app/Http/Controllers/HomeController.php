@@ -32,16 +32,19 @@ class HomeController extends Controller
     protected $handlePhoneFilter;
     protected $handleLaptopFilter;
     protected $handleWatchFilter;
-
+    protected $handleTabletFilter;
 
     public function __construct(
         handleFilterPhoneController $handlePhoneFilter,
         handleFilterLaptopController $handleLaptopFilter,
-        handleFilterWatchController $handleWatchFilter
+        handleFilterWatchController $handleWatchFilter,
+        handleFilterTabletController  $handleTabletFilter
+
     ) {
         $this->handlePhoneFilter = $handlePhoneFilter;
         $this->handleLaptopFilter = $handleLaptopFilter;
         $this->handleWatchFilter = $handleWatchFilter;
+        $this->handleTabletFilter = $handleTabletFilter;
     }
     public function index(Request $request)
     {
@@ -355,18 +358,22 @@ class HomeController extends Controller
         $banners = BannerModel::all();
         $brands = Brand::all();
         $relation = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
-        $list_tablet =  Product::with(['category', 'brand'])
+        $list_tablet =  Product::with(['category', 'brand', 'tablet'])
             ->where('categories_product_id', $cate_id)
-            ->where('product_status', 1)->get();
+            ->where('product_status', 1);
 
-
-
-
+        $list_tablet = $this->handleTabletFilter->handleFilterTabletByRequest($request, $list_tablet);
+        $tabletStorage = $this->handleTabletFilter->filterStorageTablet($request);
+        $tabletScreenSize = $this->handleTabletFilter->filterScreenSizeTablet($request);
+        $tabletRefreshRate = $this->handleTabletFilter->filterRefreshRateTablet($request);
+        $product = $list_tablet->paginate(20)->appends($request->query());
         return view('user.category.show_tablets')
-            ->with('tablets', $list_tablet)
+            ->with('tablets', $product)
             ->with('brands', $brands)
             ->with('banners', $banners)
-
+            ->with('tablet_storages', $tabletStorage)
+            ->with('tablet_screensizes', $tabletScreenSize)
+            ->with('tablet_refreshs',  $tabletRefreshRate)
             ->with('category', $category)
             ->with('relations', $relation)
         ;
