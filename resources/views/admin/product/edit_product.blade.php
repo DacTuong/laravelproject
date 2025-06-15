@@ -20,10 +20,16 @@
                 <input type="text" class="form-control" data-slug-source="product_name" id="product_name"
                     value="{{ $products->product_name }}" name="product_name">
             </div>
+
+            <div class="form-group">
+                <label for="product_name_slug">Tên Sản Phẩm Slug:</label>
+                <input type="text" class="form-control" data-slug-target="product_name" id="product_name_slug"
+                    value="{{ $products->product_name_slug ?? ''}}" name="product_name_slug">
+            </div>
             <div class="form-group">
                 <label for="model_product">Model Sản Phẩm:</label>
                 <input type="text" class="form-control" id="model_product" name="model_product"
-                    value="{{ $products->model_product }}">
+                    value="{{ $products->model_product ?? ''}}">
             </div>
 
             <div class="form-group">
@@ -107,6 +113,11 @@
                 <label for="screen_type">Loại Màn Hình:</label>
                 <input type="text" class="form-control" id="screen_type" name="screen_type"
                     value="{{ $details->screen_type  ?? ''}}">
+            </div>
+            <div class="form-group">
+                <label>Kết nối NFC:</label>
+                <input type="text" class="form-control" id="connect_nfc" name="connect_nfc"
+                    value="{{ $details->NFC ?? ''}}">
             </div>
             <div class="form-group">
                 <label for="screen_size">Kích Thước Màn Hình:</label>
@@ -284,10 +295,7 @@
                     value="{{ $details->laptop_resolution }}">
             </div>
 
-            <div class="form-group">
-                <label for="resolution">Kết nối NFC:</label>
-                <input type="text" class="form-control" id="connect_nfc" name="connect_nfc" value="{{ $details->NFC }}">
-            </div>
+
             <div class="form-group">
                 <label>Tần số quét:</label>
                 <input type="text" class="form-control" name="laptop_refresh_rate"

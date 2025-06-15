@@ -430,23 +430,20 @@ $id = Session::get('admin_id')
 
     <script>
         $(document).ready(function() {
-            $('[data-slug-source]').on('input', function() {
-                const valueSlugSource = $(this).val();
-                // console.log(valueSlugSource);
-                const slug = sourceVal.toLowerCase()
-                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                    .replace(/đ/g, 'd')
-                    .replace(/Đ/g, 'D')
-                    .replace(/[^a-z0-9\s-]/g, '')
-                    .trim()
-                    .replace(/\s+/g, '-');
+    $('[data-slug-source]').on('input', function() {
+        const valueSlugSource = $(this).val();
+        const slug = valueSlugSource.toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd')
+            .replace(/Đ/g, 'D')
+            .replace(/[^a-z0-9\s-]/g, '')
+            .trim()
+            .replace(/\s+/g, '-');
 
-                console.log(slug);
-                // const targetKey = $(this).data('slug-source');
-                // console.log(targetKey);
-                $('[data-slug-target="' + targetKey + '"]').val(slug);
-            });
-        });
+        const targetKey = $(this).data('slug-source');
+        $('[data-slug-target="' + targetKey + '"]').val(slug);
+    });
+});
     </script>
     {{-- Jquery data DataTable
 

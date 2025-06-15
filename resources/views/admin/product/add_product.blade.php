@@ -27,11 +27,18 @@ Session::put('message_success', null);
                 <input type="text" class="form-control" id="product_code" name="product_code">
             </div>
 
+
             <div class="form-group">
-                <label for="product_name">Tên Sản Phẩm:</label>
-                <input type="text" class="form-control" data-slug-source="product_name" id="product_name"
-                    name="product_name">
+                <label>Tên sản phẩm</label>
+                <input type="text" class="form-control" name="product_name" data-slug-source="product_name"
+                    placeholder="Nhập tên loại">
             </div>
+            <div class="form-group">
+                <label>Tên sản phẩm slug</label>
+                <input type="text" class="form-control" name="product_name_slug" data-slug-target="product_name"
+                    placeholder="Tên loại sản phẩm slug">
+            </div>
+
             <div class="form-group">
                 <label for="model_product">Model Sản Phẩm:</label>
                 <input type="text" class="form-control" id="model_product" name="model_product">
