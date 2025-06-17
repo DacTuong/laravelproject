@@ -175,7 +175,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/detail-product/{product_id}', [HomeController::class, 'detail_product']);
+// Route::get('/detail-product/{product_id}', [HomeController::class, 'detail_product']);
 
 Route::get('/review-product/{product_id}', [HomeController::class, 'review_product']);
 
@@ -212,3 +212,4 @@ Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
 // Get page with name_slug
 
 Route::get('/{name_slug}', [HomeController::class, 'show_category'])->where('name_slug', '[a-z0-9-]+');
+Route::get('/{cate_slug}/{product_slug}', [HomeController::class, 'showProduct']);

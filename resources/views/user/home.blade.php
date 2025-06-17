@@ -49,7 +49,8 @@
                         </div>
                         <h5 class="productinfo__name">
                             <a class="link-product"
-                                href="{{ URL::to('/detail-product'.'/' . $product->product_id) }}">{{ $product->product_name }}
+                                href="{{ URL::to( '/'.$product->category->cate_slug.'/' . $product->product_name_slug) }}">{{
+                                $product->product_name }}
                             </a>
                         </h5>
                         <div class="productinfo__price">

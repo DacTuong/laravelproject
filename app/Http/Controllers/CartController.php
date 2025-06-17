@@ -26,7 +26,7 @@ class CartController extends Controller
 
 
         return view('user.shopping.cart')->with('brands', $brand)
-            ->with('categorys', $category)
+            ->with('category', $category)
             ->with('banners', $banners)
 
 

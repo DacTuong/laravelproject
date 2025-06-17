@@ -379,73 +379,152 @@ class HomeController extends Controller
         ;
     }
 
+
+    public function showProduct(Request $request, $cate_slug, $product_slug)
+    {
+
+        switch ($cate_slug) {
+            case 'dien-thoai':
+                return $this->detail_phone();
+            case 'laptop':
+                return $this->detail_laptop();
+            case 'dong-ho-thong-minh':
+
+                return $this->detail_dong_ho();
+
+            case 'tablet':
+
+                return $this->detail_tablet();
+
+            default:
+                abort(404);
+                break;
+        }
+    }
+
+    public function detail_phone()
+    {
+        $brand = Brand::get();
+        $category = Category::get();
+        $banners = BannerModel::all();
+        return view('user.product.detail_products.detail_phone')
+            ->with('brands', $brand)
+            ->with('category', $category)
+
+            ->with('banners', $banners)
+
+        ;
+    }
+    public function detail_laptop()
+    {
+        $brand = Brand::get();
+        $category = Category::get();
+        $banners = BannerModel::all();
+        return view('user.product.detail_products.detail_laptop')
+            ->with('brands', $brand)
+            ->with('category', $category)
+
+            ->with('banners', $banners)
+
+        ;
+    }
+    public function detail_dong_ho()
+    {
+        $brand = Brand::get();
+        $category = Category::get();
+        $banners = BannerModel::all();
+        return view('user.product.detail_products.detail_watch')
+            ->with('brands', $brand)
+            ->with('category', $category)
+
+            ->with('banners', $banners)
+
+        ;
+    }
+    public function detail_tablet()
+    {
+        $brand = Brand::get();
+        $category = Category::get();
+        $banners = BannerModel::all();
+        return view('user.product.detail_products.detail_tablet')
+            ->with('brands', $brand)
+            ->with('category', $category)
+
+            ->with('banners', $banners)
+
+        ;
+    }
+
     public function detail_product($product_id)
     {
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
-        $detail_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $product_id)
-            ->first();
+        // $detail_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $product_id)
+        //     ->first();
 
 
 
-        $product_price = $detail_product->sale_price;
+        // $product_price = $detail_product->sale_price;
 
-        $model_product = $detail_product->model_product;
-        $varian = $detail_product->varian_product;
+        // $model_product = $detail_product->model_product;
+        // $varian = $detail_product->varian_product;
 
-        $colors = Product::where('varian_product', $varian)
-            ->where('model_product', $model_product)
-            ->get();
-
-
-        $storage = request()->query('storage');
-        if ($storage) {
-            $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
-                ->where('varian_product', $storage)->first();
-
-            $colors_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
-                ->where('varian_product', $storage)->get();
-            if ($storage_product) {
-                $detail_product = $storage_product;
-            };
-
-            if ($colors_product) {
-                $colors = $colors_product;
-            };
-        }
+        // $colors = Product::where('varian_product', $varian)
+        //     ->where('model_product', $model_product)
+        //     ->get();
 
 
+        // $storage = request()->query('storage');
+        // if ($storage) {
+        //     $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+        //         ->where('varian_product', $storage)->first();
 
-        $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
-            ->where('product_id', '!=', $product_id)
-            ->get();
+        //     $colors_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+        //         ->where('varian_product', $storage)->get();
+        //     if ($storage_product) {
+        //         $detail_product = $storage_product;
+        //     };
 
-        $list_varian = Product::where('model_product', $model_product)
-            ->select('varian_product')
-            ->groupBy('varian_product')
-            ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
-            ->get();
+        //     if ($colors_product) {
+        //         $colors = $colors_product;
+        //     };
+        // }
 
-        $sku = request()->query('sku');
-        if ($sku) {
-            $sku_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $sku)->first();
-            if ($sku_product) {
-                $detail_product = $sku_product;
-            }
-        }
 
-        return view('user.product.detail_product')
-            ->with('product_detail', $detail_product)
-            ->with('brands', $brand)
-            ->with('categorys', $category)
-            ->with('similars', $similar_product)
-            ->with('varians', $list_varian)
-            ->with('colors', $colors)
-            ->with('banners', $banners)
-            ->with('sku', $sku)
-        ;
+
+        // $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
+        //     ->where('product_id', '!=', $product_id)
+        //     ->get();
+
+        // $list_varian = Product::where('model_product', $model_product)
+        //     ->select('varian_product')
+        //     ->groupBy('varian_product')
+        //     ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+        //     ->get();
+
+        // $sku = request()->query('sku');
+        // if ($sku) {
+        //     $sku_product = Product::with(['category', 'brand',])->where('tbl_phones.product_id', $sku)->first();
+        //     if ($sku_product) {
+        //         $detail_product = $sku_product;
+        //     }
+        // }
+
+        // return view('user.product.detail_product')
+        //     ->with('product_detail', $detail_product)
+        //     ->with('brands', $brand)
+        //     ->with('category', $category)
+        //     ->with('similars', $similar_product)
+        //     ->with('varians', $list_varian)
+        //     ->with('colors', $colors)
+        //     ->with('banners', $banners)
+        //     ->with('sku', $sku)
+        // ;
     }
+
+
+
 
     public function search(Request $request)
     {
@@ -459,10 +538,10 @@ class HomeController extends Controller
             ->where('product_status', 1)
             ->get();
 
-        return view('user.product.search')
+        return view('user.search.search')
             ->with('search_product', $search_product)
             ->with('brands', $brand)
-            ->with('categorys', $category)
+            ->with('category', $category)
             ->with('banners', $banners)
 
         ;
@@ -479,7 +558,7 @@ class HomeController extends Controller
         return view('user.product.review_product')
             ->with('product_infor', $get_product)
             ->with('brands', $brand)
-            ->with('categorys', $category)
+            ->with('category', $category)
             ->with('banners', $banners)
         ;
     }
