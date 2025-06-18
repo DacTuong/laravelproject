@@ -132,11 +132,11 @@ $name = Session::get('name_customer')
         </footer>
     </div>
 
-    <script src="{{asset(" user/js/jquery-3.6.0.min.js")}}"></script>
-    <script src="{{asset(" user/js/sweetalert2.js")}}"></script>
-    <script src="{{asset(" user/js/toastr.js")}}"></script>
+    <script src="{{asset("user/js/jquery-3.6.0.min.js")}}"></script>
+    <script src="{{asset("user/js/sweetalert2.js")}}"></script>
+    <script src="{{asset("user/js/toastr.js")}}"></script>
 
-    <script src="{{asset(" user/js/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{asset("user/js/bootstrap.bundle.min.js")}}"></script>
 
 
 
@@ -262,7 +262,7 @@ $name = Session::get('name_customer')
 
 
 
-    <script src="{{asset(" user/js/select_shipping.js")}}"></script>
+    <script src="{{asset("user/js/select_shipping.js")}}"></script>
 
 
     <script src="{{asset('user/js/ajax.js')}}"></script>

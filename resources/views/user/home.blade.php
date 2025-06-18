@@ -91,7 +91,7 @@
                                     class="product_image_{{ $product->product_id }}">
                                 <input type="hidden" value="{{ $product->sale_price }}"
                                     class="product_price_{{ $product->product_id }}">
-                                <input type="hidden" value="{{ $product->color }}"
+                                <input type="hidden" value="{{ $product->detail_phone->color ?? ''}}"
                                     class="product_color_{{ $product->product_id }}">
                                 <input type="hidden" value="1" class="cart_product_qty_{{ $product->product_id }}">
                                 <button type="button" class="add-to-cart" data-id_product="{{ $product->product_id }}"

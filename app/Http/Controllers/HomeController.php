@@ -385,11 +385,11 @@ class HomeController extends Controller
 
         switch ($cate_slug) {
             case 'dien-thoai':
-                return $this->detail_phone();
+                return $this->detail_phone($product_slug);
             case 'laptop':
-                return $this->detail_laptop();
-            case 'dong-ho-thong-minh':
+                return $this->detail_laptop($product_slug);
 
+            case 'dong-ho-thong-minh':
                 return $this->detail_dong_ho();
 
             case 'tablet':
@@ -402,29 +402,103 @@ class HomeController extends Controller
         }
     }
 
-    public function detail_phone()
+    public function detail_phone($product_slug)
     {
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
+        $detail_product = Product::with(['detail_phone'])
+            ->where('product_name_slug', $product_slug)->first();
+
+        $model_product = $detail_product->model_product;
+        $list_varian = Product::where('model_product', $model_product)
+            ->select('varian_product')
+            ->groupBy('varian_product')
+            ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+            ->get();
+        $product_price = $detail_product->sale_price;
+        $varian = $detail_product->varian_product;
+        $colors = Product::where('varian_product', $varian)
+            ->where('model_product', $model_product)
+            ->get();
+        $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
+            ->where('product_id', '!=', $product_slug)
+            ->get();
+        $storage = request()->query('storage');
+        if ($storage) {
+            $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+                ->where('varian_product', $storage)->first();
+
+            $colors_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+                ->where('varian_product', $storage)->get();
+            if ($storage_product) {
+                $detail_product = $storage_product;
+            };
+
+            if ($colors_product) {
+                $colors = $colors_product;
+            };
+        }
+
+
         return view('user.product.detail_products.detail_phone')
             ->with('brands', $brand)
             ->with('category', $category)
-
             ->with('banners', $banners)
+            ->with('product', $detail_product)
+            ->with('varians',  $list_varian)
+            ->with('colors', $colors)
+            ->with('similars', $similar_product)
+            ->with('checkstorage', $storage)
 
         ;
     }
-    public function detail_laptop()
+    public function detail_laptop($product_slug)
     {
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
+        $detail_product = Product::with(['detail_laptop'])
+            ->where('product_name_slug', $product_slug)->first();
+
+        $model_product = $detail_product->model_product;
+        $list_varian = Product::where('model_product', $model_product)
+            ->select('varian_product')
+            ->groupBy('varian_product')
+            ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+            ->get();
+        $product_price = $detail_product->sale_price;
+        $varian = $detail_product->varian_product;
+        $colors = Product::where('varian_product', $varian)
+            ->where('model_product', $model_product)
+            ->get();
+        $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
+            ->where('product_id', '!=', $product_slug)
+            ->get();
+        $storage = request()->query('storage');
+        if ($storage) {
+            $storage_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+                ->where('varian_product', $storage)->first();
+
+            $colors_product = Product::with(['category', 'brand',])->where('model_product', $model_product)
+                ->where('varian_product', $storage)->get();
+            if ($storage_product) {
+                $detail_product = $storage_product;
+            };
+
+            if ($colors_product) {
+                $colors = $colors_product;
+            };
+        }
         return view('user.product.detail_products.detail_laptop')
             ->with('brands', $brand)
             ->with('category', $category)
-
             ->with('banners', $banners)
+            ->with('varians',  $list_varian)
+            ->with('colors', $colors)
+            ->with('similars', $similar_product)
+            ->with('checkstorage', $storage)
+            ->with('product', $detail_product)
 
         ;
     }
