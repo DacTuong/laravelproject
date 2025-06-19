@@ -1,16 +1,15 @@
 @extends('layout')
 @section('content')
-
 <div class="breadcrumbs">
     <a href="{{ URL::to('/') }}">Trang chủ /</a>
-    <a href="">{{$product->brand->brand_name}} /</a>
-    <a href="">{{ $product->product_name}}</a>
+    <a href="">{{ $product->brand->brand_name }} /</a>
+    <a href="">{{ $product->product_name }}</a>
 </div>
 
 <div class="product-detail row" style="margin: 0px; padding: 0px;">
     <!-- Product Item -->
     <div class="border-white">
-        <h1>{{ $product->product_name}}</h1>
+        <h1>{{ $product->product_name }}</h1>
     </div>
     <input type="hidden" value="{{ $product->product_id }}" class="product_id">
     <div class="col-lg-7 col-md-6 col-sm-12">
@@ -31,7 +30,7 @@
                     <div class="icon1">
                         <i class="icondetail-doimoi"></i>
                     </div>
-                    <p>Sản phẩm sẽ được bảo hành và đổi mới trong vòng {{$product->warranty_period}} tháng <a
+                    <p>Sản phẩm sẽ được bảo hành và đổi mới trong vòng {{ $product->warranty_period }} tháng <a
                             href="">Xem chi tiết</a></p>
                 </li>
             </ul>
@@ -42,22 +41,40 @@
 
 
             <div class="box-product-variants">
-                <p class="product-code">Mã sản phẩm: {{$product->product_code}}</p>
+                <p class="product-code">Mã sản phẩm: {{ $product->product_code }}</p>
                 <div class="storage">
-                    @foreach ($varians as $varian )
-                    @php
-                    $isActVarian = ($varian->varian_product == $product->varian_product)? 'act' : '';
-                    @endphp
-                    <span class="option-version {{  $isActVarian }}"
-                        data-value="{{ $varian->varian_product }}">{{ $varian->varian_product }}</span>
-                    @endforeach
+
+                    <div class="product-options">
+                        @if ($option_type === 'model')
+                        <label>Chọn model:</label>
+                        <br>
+                        @foreach ($varians as $varian)
+                        @php
+                        $isActVarian = $varian->varian_product == $product->varian_product ? 'act' : '';
+                        @endphp
+                        <span class="option-version {{ $isActVarian }}"
+                            data-value="{{ $varian->varian_product }}">{{ $varian->varian_product }}</span>
+                        @endforeach
+                        @elseif ($option_type === 'varian')
+                        <label>Chọn phiên bản:</label>
+                        <br>
+                        @foreach ($varians as $varian)
+                        @php
+                        $isActVarian = $varian->varian_product == $product->varian_product ? 'act' : '';
+                        @endphp
+                        <span class="option-version {{ $isActVarian }}"
+                            data-value="{{ $varian->varian_product }}">{{ $varian->varian_product }}</span>
+                        @endforeach
+                        @endif
+                    </div>
+
                 </div>
                 <div class="color">
-                    @foreach ($colors as $color )
+                    @foreach ($colors as $color)
                     @php
-                    $isActColor = ($color->detail_phone->color == $product->detail_phone->color)? 'act' : '';
+                    $isActColor = $color->detail_phone->color == $product->detail_phone->color ? 'act' : '';
                     @endphp
-                    <div class="color-item {{  $isActColor }}" data-id="{{ $color->product_id }}">
+                    <div class="color-item {{ $isActColor }}" data-id="{{ $color->product_id }}">
                         <span class="code-color"></span>
                         {{ $color->detail_phone->color }}
                     </div>
@@ -65,8 +82,8 @@
                 </div>
                 <strong>Giá bán:</strong>
                 <span class="product-price">{{ number_format($product->sale_price, 0, ',', '.') }}đ</span>
-                <p>Loại điện thoại: {{$product->category->category_name}}</p>
-                <p>Thương hiệu: {{$product->brand->brand_name}}</p>
+                <p>Loại điện thoại: {{ $product->category->category_name }}</p>
+                <p>Thương hiệu: {{ $product->brand->brand_name }}</p>
             </div>
 
 
@@ -107,7 +124,7 @@
         </div>
     </div>
     <div class="similar-products row" style="margin-top: 10px; margin-bottom: 10px;">
-        @foreach ($similars as $similar )
+        @foreach ($similars as $similar)
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="product-content">
                 <div class="thumbnail-product-img">
@@ -115,7 +132,7 @@
                         alt="" />
                 </div>
                 <h5> <a class="link-product"
-                        href="{{ URL::to('/detail-product'.'/' . $similar->product_id) }}">{{$similar->product_name}}
+                        href="{{ URL::to('/detail-product' . '/' . $similar->product_id) }}">{{ $similar->product_name }}
                     </a></h5>
                 @if ($similar->old_price > 0)
                 <span class="productinfo__price-old">
@@ -137,7 +154,7 @@
                             class="product_image_{{ $similar->product_id }}">
                         <input type="hidden" value="{{ $similar->sale_price }}"
                             class="product_price_{{ $similar->product_id }}">
-                        <input type="hidden" value="{{ $similar->detail_phone->color }}"
+                        <input type="hidden" value="{{ $similar->color }}"
                             class="product_color_{{ $similar->product_id }}">
                         <input type="hidden" value="1" class="cart_product_qty_{{ $similar->product_id }}">
                         <button type="button" class="add-to-cart" data-id_product="{{ $similar->product_id }}"
@@ -162,7 +179,7 @@
                         <div class="list-star">
                         </div>
                         <br>
-                        <a href="{{URL::to('/review-product'.'/'.$product->product_id)}}"
+                        <a href="{{ URL::to('/review-product' . '/' . $product->product_id) }}"
                             class="boxReview-score__count">
 
                         </a>
@@ -239,7 +256,7 @@
                                 <img src="{{ URL::to('uploads/product/' . $product->product_image) }}"
                                     class="thumbnail-img-review">
                             </div>
-                            <h6 class="infor-name">{{ $product->product_name}}</h6>
+                            <h6 class="infor-name">{{ $product->product_name }}</h6>
                         </div>
                         <span for="" class="check-star-point" style="display: none; color: red;">
                             Vui lòng đánh giá!
@@ -314,7 +331,7 @@
                 <div class="boxReview-comment">
                 </div>
                 <a class="button__view-more-review"
-                    href="{{URL::to('/review-product'.'/'.$product->product_id)}}">
+                    href="{{ URL::to('/review-product' . '/' . $product->product_id) }}">
                     Xem thêm
                 </a>
             </div>
@@ -352,51 +369,51 @@
                             <li>
                                 <aside><strong>Công nghệ màn hình</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->screen_type}}</span>
+                                    <span>{{ $product->detail_phone->screen_type }}</span>
                                 </aside>
                             </li>
                             <li>
                                 <aside><strong>Độ phân giải</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->resolution}}</span>
+                                    <span>{{ $product->detail_phone->resolution }}</span>
                                 </aside>
                             </li>
                             <li>
                                 <aside><strong>Màn hình rộng</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->screen_size}}</span>
+                                    <span>{{ $product->detail_phone->screen_size }}</span>
                                 </aside>
                             </li>
                             <li>
                                 <aside><strong>Tần số quét</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->refresh_rate}} hz</span>
+                                    <span>{{ $product->detail_phone->refresh_rate }} hz</span>
                                 </aside>
                             </li>
 
                             <li>
                                 <aside><strong>Độ phân giải camera sau</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->camera_main}}</span>
+                                    <span>{{ $product->detail_phone->camera_main }}</span>
                                 </aside>
                             </li>
                             <li>
                                 <aside><strong>Tính năng camera sau</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->camera_main_features}}</span>
+                                    <span>{{ $product->detail_phone->camera_main_features }}</span>
                                 </aside>
                             </li>
 
                             <li>
                                 <aside><strong>Độ phân giải camera trước</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->camera_front}}</span>
+                                    <span>{{ $product->detail_phone->camera_front }}</span>
                                 </aside>
                             </li>
                             <li>
                                 <aside><strong>Tính năng camera trước</strong></aside>
                                 <aside>
-                                    <span>{{$product->detail_phone->camera_front_features}}</span>
+                                    <span>{{ $product->detail_phone->camera_front_features }}</span>
                                 </aside>
                             </li>
                         </ul>
@@ -423,51 +440,51 @@
                 <li>
                     <aside><strong>Công nghệ màn hình</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->screen_type}}</span>
+                        <span>{{ $product->detail_phone->screen_type }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Độ phân giải</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->resolution}}</span>
+                        <span>{{ $product->detail_phone->resolution }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Màn hình rộng</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->screen_size}}</span>
+                        <span>{{ $product->detail_phone->screen_size }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Tần số quét</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->refresh_rate}} hz</span>
+                        <span>{{ $product->detail_phone->refresh_rate }} hz</span>
                     </aside>
                 </li>
 
                 <li>
                     <aside><strong>Độ phân giải camera sau</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->camera_main}}</span>
+                        <span>{{ $product->detail_phone->camera_main }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Tính năng camera sau</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->camera_main_features}}</span>
+                        <span>{{ $product->detail_phone->camera_main_features }}</span>
                     </aside>
                 </li>
 
                 <li>
                     <aside><strong>Độ phân giải camera trước</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->camera_front}}</span>
+                        <span>{{ $product->detail_phone->camera_front }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Tính năng camera trước</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->camera_front_features}}</span>
+                        <span>{{ $product->detail_phone->camera_front_features }}</span>
                     </aside>
                 </li>
             </ul>
@@ -479,31 +496,31 @@
                 <li>
                     <aside><strong>Hệ điều hành</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->operating_system}}</span>
+                        <span>{{ $product->detail_phone->operating_system }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Chip xữ lý (CPU)</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->cpu}}</span>
+                        <span>{{ $product->detail_phone->cpu }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Chip đồ họa (GPU)</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->gpu}}</span>
+                        <span>{{ $product->detail_phone->gpu }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>ram</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->ram}} GB</span>
+                        <span>{{ $product->detail_phone->ram }} GB</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Bộ nhớ trong</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->storage}} GB</span>
+                        <span>{{ $product->detail_phone->storage }} GB</span>
                     </aside>
                 </li>
                 <li>
@@ -527,7 +544,7 @@
                 <li>
                     <aside><strong>Dung lượng pin</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->battery_capacity}} mAh</span>
+                        <span>{{ $product->detail_phone->battery_capacity }} mAh</span>
                     </aside>
                 </li>
                 <li>
@@ -563,13 +580,13 @@
                 <li>
                     <aside><strong>Chống nước</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->water_resistance}}</span>
+                        <span>{{ $product->detail_phone->water_resistance }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Bảo mật</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->biometrics}}</span>
+                        <span>{{ $product->detail_phone->biometrics }}</span>
                     </aside>
                 </li>
             </ul>
@@ -581,24 +598,23 @@
                 <li>
                     <aside><strong>Loại sim</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->sim_type}}</span>
+                        <span>{{ $product->detail_phone->sim_type }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Kết nối</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->connectivity}}</span>
+                        <span>{{ $product->detail_phone->connectivity }}</span>
                     </aside>
                 </li>
                 <li>
                     <aside><strong>Wifi</strong></aside>
                     <aside>
-                        <span>{{$product->detail_phone->wifi_technology}}</span>
+                        <span>{{ $product->detail_phone->wifi_technology }}</span>
                     </aside>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-
 @endsection

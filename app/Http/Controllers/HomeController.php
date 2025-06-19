@@ -409,15 +409,28 @@ class HomeController extends Controller
         $banners = BannerModel::all();
         $detail_product = Product::with(['detail_phone'])
             ->where('product_name_slug', $product_slug)->first();
-
+        $series_product = $detail_product->series_product;
         $model_product = $detail_product->model_product;
-        $list_varian = Product::where('model_product', $model_product)
-            ->select('varian_product')
-            ->groupBy('varian_product')
-            ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
-            ->get();
+
+        if ($series_product) {
+            $list_varian = Product::where('series_product', $series_product)
+                ->select('model_product')
+                ->groupBy('model_product')
+                ->orderByRaw('CAST(model_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+                ->get();
+            $option_type = 'model'; // Đánh dấu để hiển thị bên blade
+        } else {
+            $list_varian = Product::where('model_product', $model_product)
+                ->select('varian_product')
+                ->groupBy('varian_product')
+                ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+                ->get();
+            $option_type = 'varian'; // Đánh dấu để hiển thị bên blade
+        }
         $product_price = $detail_product->sale_price;
+
         $varian = $detail_product->varian_product;
+
         $colors = Product::where('varian_product', $varian)
             ->where('model_product', $model_product)
             ->get();
@@ -447,6 +460,7 @@ class HomeController extends Controller
             ->with('banners', $banners)
             ->with('product', $detail_product)
             ->with('varians',  $list_varian)
+            ->with('option_type', $option_type)
             ->with('colors', $colors)
             ->with('similars', $similar_product)
             ->with('checkstorage', $storage)
@@ -462,6 +476,7 @@ class HomeController extends Controller
             ->where('product_name_slug', $product_slug)->first();
 
         $model_product = $detail_product->model_product;
+
         $list_varian = Product::where('model_product', $model_product)
             ->select('varian_product')
             ->groupBy('varian_product')
