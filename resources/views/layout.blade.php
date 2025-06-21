@@ -1,8 +1,8 @@
 @php
-    use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session;
 
-    $id = Session::get('id_customer');
-    $name = Session::get('name_customer');
+$id = Session::get('id_customer');
+$name = Session::get('name_customer');
 @endphp
 
 <!DOCTYPE html>

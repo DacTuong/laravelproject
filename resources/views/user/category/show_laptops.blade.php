@@ -153,10 +153,6 @@
                 </select>
             </div>
             <div class="row">
-
-
-
-
                 @foreach ($laptops as $laptop)
                     <div class="col-lg-3 col-md-3 col-sm-12 col-12" style="padding-bottom: 12px;">
                         <div class="product-content">

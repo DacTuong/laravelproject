@@ -563,17 +563,71 @@
     background-color: #ffffff;
     padding: 10px;
 }
+.list-option {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Mỗi hàng 3 ô */
+    gap: 10px; /* Khoảng cách giữa các ô */
+    margin-top: 10px;
+}
 
-.option-version {
-    border: 2px solid #898a8c;
-    padding: 3px 6px;
-    border-radius: 3px;
-    cursor: pointer;
+.item-option {
+    border: 1px solid #ccc;
+    /* padding: 8px 0px 8px 0px; */
+    border-radius: 8px;
+    height: 100px;
+    min-height: 44px;
+    width: 150px;
+    text-align: center;
+    position: relative;
+    background-color: #fff;
+    transition: border 0.3s, box-shadow 0.3s;
 }
-.option-version.act {
-    background-color: rgba(59, 30, 227, 0.17);
-    color: #007bff;
+.item-option a {
+    text-decoration: none;
 }
+.item-option a span {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0px 5px 0px 5px;
+    color: #191919;
+}
+.item-option a p {
+    color: red;
+    margin: 0px;
+}
+/* Khi được chọn */
+.item-option.selected {
+    border: 2px solid #00a886;
+    position: relative;
+}
+.item-option.selected::before {
+    content: "\2714";
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 25px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* thêm để căn giữa chiều dọc */
+    font-size: 14px;
+    color: white !important; /* ✔ sẽ màu trắng */
+    background-color: #28a745; /* nền xanh hoặc chỉnh lại */
+    border-top-left-radius: 6px; /* tạo bo góc nếu cần */
+}
+
+/* Responsive (2 cột trên tablet, 1 cột trên mobile) */
+@media (max-width: 768px) {
+    .list-option {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .list-option {
+        grid-template-columns: 1fr;
+    }
+}
+
 .color {
     margin-top: 8px;
 }
