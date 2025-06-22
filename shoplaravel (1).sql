@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 12, 2025 lúc 12:07 PM
+-- Thời gian đã tạo: Th6 22, 2025 lúc 12:04 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -12241,16 +12241,6 @@ INSERT INTO `tbl_brand_category` (`id`, `id_brand`, `id_cate`) VALUES
 (33, 15, 4),
 (34, 14, 4),
 (35, 4, 4),
-(36, 1, 4),
-(37, 2, 4),
-(38, 3, 4),
-(39, 9, 4),
-(40, 10, 4),
-(41, 11, 4),
-(42, 18, 4),
-(43, 15, 4),
-(44, 14, 4),
-(45, 4, 4),
 (46, 1, 3),
 (47, 2, 3),
 (48, 3, 3),
@@ -12259,7 +12249,7 @@ INSERT INTO `tbl_brand_category` (`id`, `id_brand`, `id_cate`) VALUES
 (51, 7, 3),
 (52, 30, 3),
 (53, 29, 3),
-(54, 16, 3),
+(54, 15, 3),
 (55, 6, 3),
 (56, 31, 3);
 
@@ -12403,17 +12393,30 @@ CREATE TABLE `tbl_laptop_detail` (
   `laptop_weight` varchar(50) DEFAULT NULL,
   `laptop_connectivity` varchar(255) DEFAULT NULL,
   `laptop_port_type` tinytext DEFAULT NULL,
-  `laptop_biometrics` varchar(100) DEFAULT NULL
+  `laptop_biometrics` varchar(100) DEFAULT NULL,
+  `laptop_color` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_laptop_detail`
 --
 
-INSERT INTO `tbl_laptop_detail` (`id_laptop_detail`, `product_id`, `laptop_operating_system`, `laptop_screen_size`, `laptop_screen_type`, `laptop_resolution`, `laptop_refresh_rate`, `laptop_cpu`, `laptop_ram`, `laptop_storage`, `laptop_storage_type`, `laptop_expandable_storage`, `laptop_gpu`, `laptop_battery_capacity`, `laptop_weight`, `laptop_connectivity`, `laptop_port_type`, `laptop_biometrics`) VALUES
-(1, 7, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 7', 8, 512, 'SSD', '(Có thể tháo ra, lắp thanh khác tối đa 1 TB)', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có'),
-(2, 8, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 5', 16, 512, 'SSD', 'Không', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có'),
-(3, 9, 'Windows 10 Home', '11.6 inch', 'TN', '1366x768', '90Hz', 'Intel Celeron', 4, 128, 'SSD', 'Không', 'GPU tích hợp', '2 Cell, 38 Wh', '1.13 Kg', 'Wi-Fi 5 Bluetooth 4.2', '1 x Type-A USB2.0\r\n1 x Type-A USB 3.2 (Gen 1)\r\n1 x Type-C USB 3.2 (Gen 1)', 'Không');
+INSERT INTO `tbl_laptop_detail` (`id_laptop_detail`, `product_id`, `laptop_operating_system`, `laptop_screen_size`, `laptop_screen_type`, `laptop_resolution`, `laptop_refresh_rate`, `laptop_cpu`, `laptop_ram`, `laptop_storage`, `laptop_storage_type`, `laptop_expandable_storage`, `laptop_gpu`, `laptop_battery_capacity`, `laptop_weight`, `laptop_connectivity`, `laptop_port_type`, `laptop_biometrics`, `laptop_color`) VALUES
+(1, 7, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 7', 8, 512, 'SSD', '(Có thể tháo ra, lắp thanh khác tối đa 1 TB)', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(2, 8, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 5', 16, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(3, 9, 'Windows 10 Home', '11.6 inch', 'TN', '1366x768', '90Hz', 'Intel Celeron', 4, 128, 'SSD', 'Không thể nâng cấp', 'GPU tích hợp', '2 Cell, 38 Wh', '1.13 Kg', 'Wi-Fi 5 Bluetooth 4.2', '1 x Type-A USB2.0\r\n1 x Type-A USB 3.2 (Gen 1)\r\n1 x Type-C USB 3.2 (Gen 1)', 'Không', ''),
+(4, 7, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 7', 8, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging1x Type-A USB3.2 Gen21x (4K @ 30Hz) HDMI1x Micro SD Card Reader2x Type-A USB2.01x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(5, 8, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 5', 16, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging1x Type-A USB3.2 Gen21x (4K @ 30Hz) HDMI1x Micro SD Card Reader2x Type-A USB2.01x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(6, 9, 'Windows 10 Home', '11.6 inch', 'TN', '1366x768', '90Hz', 'Intel Celeron', 4, 128, 'SSD', 'Không thể nâng cấp', 'GPU tích hợp', '2 Cell, 38 Wh', '1.13 Kg', 'Wi-Fi 5 Bluetooth 4.2', '1 x Type-A USB2.01 x Type-A USB 3.2 (Gen 1)1 x Type-C USB 3.2 (Gen 1)', 'Không', ''),
+(7, 7, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 7', 8, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging1x Type-A USB3.2 Gen21x (4K @ 30Hz) HDMI1x Micro SD Card Reader2x Type-A USB2.01x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(8, 8, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 5', 16, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging1x Type-A USB3.2 Gen21x (4K @ 30Hz) HDMI1x Micro SD Card Reader2x Type-A USB2.01x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(9, 8, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 5', 16, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging1x Type-A USB3.2 Gen21x (4K @ 30Hz) HDMI1x Micro SD Card Reader2x Type-A USB2.01x Mic-in/ Headphone-out combo jack', 'Không có', ''),
+(22, 63, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 5 7535HS', 8, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '48Wh', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen'),
+(23, 64, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Intel Core i5-12500H', 16, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '48Wh', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Xám'),
+(24, 65, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Intel Core i7-13620H', 8, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '48Wh', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Xám'),
+(25, 66, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 7 7435HS', 16, 512, 'PCIe SSD', 'Có', 'RTX 2050 4GB', '48Wh', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen'),
+(26, 67, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 7 7435HS', 16, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '48Wh', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen'),
+(27, 68, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 7 7435HS', 16, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '48Wh', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen');
 
 -- --------------------------------------------------------
 
@@ -12560,7 +12563,7 @@ CREATE TABLE `tbl_phone_detail` (
   `refresh_rate` varchar(50) DEFAULT NULL,
   `ram` int(11) DEFAULT NULL,
   `storage` varchar(50) DEFAULT NULL,
-  `NFC` varchar(10) NOT NULL,
+  `NFC` varchar(10) DEFAULT NULL,
   `expandable_storage` varchar(100) DEFAULT NULL,
   `battery_capacity` int(11) DEFAULT NULL,
   `fast_charging` varchar(100) DEFAULT NULL,
@@ -12589,9 +12592,11 @@ CREATE TABLE `tbl_phone_detail` (
 
 INSERT INTO `tbl_phone_detail` (`id_phone_detail`, `product_id`, `operating_system`, `screen_type`, `screen_size`, `resolution`, `refresh_rate`, `ram`, `storage`, `NFC`, `expandable_storage`, `battery_capacity`, `fast_charging`, `wireless_charging`, `camera_main`, `camera_main_features`, `camera_front`, `camera_front_features`, `cpu`, `gpu`, `water_resistance`, `weight`, `dimensions`, `sim_type`, `connectivity`, `biometrics`, `color`, `charging_port`, `other_connections`, `wifi_technology`) VALUES
 (1, 1, 'Android', 'Dynamic AMOLED 2X', '111', '3200 x 1440', '120', 8, '128', 'Có', '0', 5000, '25W', '0', '50 MP (f/2.0) x 50 MP (f/2.4) x 12 MP (f/2.2)', 'Chống rung quang học (OIS) Chụp chân dung Chụp góc siêu rộng (Ultrawide) Ban đêm (Night Mode) Chuyên nghiệp (Pro) Toàn cảnh (Panorama) HDR Bộ lọc màu Siêu cận (Macro) Trôi nhanh thời gian (Time Lapse)', '10 MP', '1080p 30fps 720p 30fps', 'Exynos 2100', 'Adreno 720', 'ip69', '152', '162.24 x 75.55 x 7.97', 'Nano-SIM', '5G', NULL, 'Phantom Silver', 'Type-C', 'Wi-Fi 6, Bluetooth 5.0', 'wifi 6'),
-(2, 2, 'Android', 'Dynamic AMOLED 2X', '111', '2400 x 1080', '120', 12, '128', 'Không', '0', 5500, '65W', '0', '50 MP (f/2.0) x 50 MP (f/2.4) x 12 MP (f/2.2)', 'Wide, Ultra Wide, Telephoto', '16MP f/2.4', '1080p 30fps 720p 30fps', 'Exynos 2100', 'Mali-G78 MP14', 'IP68', '150', '162.24 x 75.55 x 7.97', 'Nano-SIM', '5G', NULL, 'Phantom Silver', 'USB-C', 'Wi-Fi 6, Bluetooth 5.0', 'Wi-Fi 6E'),
+(2, 2, 'Android', 'Dynamic AMOLED 2X', '111', '2400 x 1080', '120', 12, '128', 'Không', '0', 5500, '65W', '0', '50 MP (f/2.0) x 50 MP (f/2.4) x 12 MP (f/2.2)', 'Wide, Ultra Wide, Telephoto', '16MP f/2.4', '1080p 30fps 720p 30fps', 'Exynos 2100', 'Mali-G78 MP14', 'IP68', '150', '162.24 x 75.55 x 7.97', 'Nano-SIM', '5G', NULL, 'Xám', 'USB-C', 'Wi-Fi 6, Bluetooth 5.0', 'Wi-Fi 6E'),
 (3, 3, 'Android', 'Dynamic AMOLED 2X', '111', '2400 x 1080', '120', 8, '256', 'Có', '1', 5500, '120W', '0', '108 MP', 'Wide, Ultra Wide, Telephoto', '16MP f/2.4', '1080p 30fps 720p 30fps', 'Snapdragon 850', 'Adreno 610', 'IP68', '350', '146.7 x 71.5 x 7.7', '2 nano sim', '5G', NULL, 'Phantom Black', 'type c', 'Wi-Fi 6, Bluetooth 5.0', 'Wi-Fi 6E'),
-(4, 4, 'IOS', 'AMOLED', '111', 'full hd', 'Không có', 4, '64', 'Không', '0', 3500, '25W', '0', '108 MP', 'Wide, Ultra Wide, Telephoto', '50MP', '1080p 30fps 720p 30fps', 'Apple a14', 'Adreno 610', 'IP68', '350', '146.7 x 71.5 x 7.7', '2 nano sim', '4G, 5G, LTE', NULL, 'Vàng', 'Type-C', 'Wi-Fi 6, Bluetooth 5.0', 'Wi-Fi 6');
+(4, 4, 'IOS', 'AMOLED', '111', 'full hd', 'Không có', 4, '64', 'Không', '0', 3500, '25W', '0', '108 MP', 'Wide, Ultra Wide, Telephoto', '50MP', '1080p 30fps 720p 30fps', 'Apple a14', 'Adreno 610', 'IP68', '350', '146.7 x 71.5 x 7.7', '2 nano sim', '4G, 5G, LTE', NULL, 'Vàng', 'Type-C', 'Wi-Fi 6, Bluetooth 5.0', 'Wi-Fi 6'),
+(14, 49, 'Android 14', 'AMOLED', '6.67', 'FHD+', '120Hz', 6, '128', 'Có', 'Yes', 5000, '33W', 'No', '108MP', 'OIS, AI', '16MP', 'Beauty mode', 'Snapdragon 685', 'Adreno 610', 'IP53', '190g', '165.9 x 76.2 x 7.9 mm', 'Dual SIM', '4G, Bluetooth 5.0, GPS', 'Fingerprint (side-mounted)', 'Xanh', 'USB-C', 'OTG, IR Blaster', 'Wi-Fi 5'),
+(15, 50, 'Android 14', 'AMOLED', '6.67', 'FHD+', '120Hz', 8, '128', 'Có', 'Yes', 5000, '33W', 'No', '108MP', 'OIS, AI', '16MP', 'Beauty mode', 'Snapdragon 6 Gen 1', 'Adreno 710', 'IP54', '192g', '165.9 x 76.2 x 8.0 mm', 'Dual SIM', '5G, Bluetooth 5.2, GPS', 'Fingerprint (side-mounted)', 'Đen', 'USB-C', 'OTG, IR Blaster', 'Wi-Fi 6');
 
 -- --------------------------------------------------------
 
@@ -12603,13 +12608,16 @@ CREATE TABLE `tbl_products` (
   `product_id` int(11) UNSIGNED NOT NULL,
   `product_code` varchar(50) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `series_product` varchar(255) DEFAULT NULL,
+  `variant_group_code` varchar(50) DEFAULT NULL,
+  `product_name_slug` varchar(255) DEFAULT NULL,
   `categories_product_id` int(10) UNSIGNED NOT NULL,
   `brand_product_id` int(10) UNSIGNED NOT NULL,
   `product_image` varchar(255) DEFAULT NULL,
   `model_product` varchar(255) DEFAULT NULL,
-  `purchase_price` decimal(10,2) NOT NULL,
-  `old_price` decimal(10,2) DEFAULT NULL,
-  `sale_price` decimal(10,2) NOT NULL,
+  `purchase_price` int(11) NOT NULL,
+  `old_price` int(11) DEFAULT NULL,
+  `sale_price` int(11) NOT NULL,
   `product_quantity` int(11) NOT NULL,
   `release_date` date DEFAULT NULL,
   `warranty_period` int(11) DEFAULT NULL,
@@ -12622,26 +12630,59 @@ CREATE TABLE `tbl_products` (
 -- Đang đổ dữ liệu cho bảng `tbl_products`
 --
 
-INSERT INTO `tbl_products` (`product_id`, `product_code`, `product_name`, `categories_product_id`, `brand_product_id`, `product_image`, `model_product`, `purchase_price`, `old_price`, `sale_price`, `product_quantity`, `release_date`, `warranty_period`, `sold`, `product_status`, `varian_product`) VALUES
-(1, 'P001', 'Samsung Galaxy S21 Ultra', 1, 2, '', 'Samsung Galaxy S21 Ultra', 100.00, 150.00, 130.00, 10, '2025-06-08', 12, 0, 1, '8-128'),
-(2, 'P002', 'Samsung Galaxy S21 Ultra', 1, 2, '', 'Samsung Galaxy S21 Ultra', 5000.00, 6000.00, 5500.00, 10, '2025-06-10', 12, 0, 1, '12-256'),
-(3, 'P003', 'Redmi Note 13', 1, 3, '', 'Redmi_Note_13', 2000000.00, 2500000.00, 2400000.00, 100, '2024-09-09', 12, 0, 1, '8-128'),
-(4, 'P004', 'iPhone 14', 1, 1, '', 'iPhone 14', 2500000.00, 2500000.00, 54000.00, 10, '2025-06-10', 12, 0, 1, '8-128'),
-(7, 'LT001', 'Laptop MSI Modern 14 C7M- 221VN (R7-7730U/8GB/512GB/14\" FHD/Windows 11) - Chính hãng', 2, 25, '', 'MSI Modern 14 C7M- 221VN', 1000000.00, 14990000.00, 9990000.00, 10, '2024-02-11', 24, 0, 1, '8-512'),
-(8, 'LT002', 'Laptop MSI Modern 14 C7M-220VN (R5-7530U/8GB/512GB/14\" FHD/Windows 11) - Chính hãng', 2, 25, '', 'MSI Modern 14 C7M-220VN', 10000000.00, 14990000.00, 13000000.00, 10, NULL, 24, 0, 1, '16-512'),
-(9, 'LT003', 'Máy tính xách tay Asus E210MA-GJ353T (N4020/4GB/128GB/UHD 600/11.6\" HD/Win10/Peacock Blue) - Chính hãng', 2, 12, '', 'Asus E210MA-GJ353T', 6000000.00, 8990000.00, 7990000.00, 10, '2023-05-09', 24, 0, 1, '4-128'),
-(10, 'SW010', 'SmartWatch J10', 3, 30, 'sw_j10.jpg', 'Model J10', 2100000.00, NULL, 2050000.00, 55, '2023-09-10', 12, 7, 1, '42mm'),
-(11, 'SW011', 'SmartWatch L11', 3, 31, 'sw_l11.jpg', 'Model L11', 1900000.00, 2100000.00, 1850000.00, 65, '2023-08-15', 12, 6, 1, '45mm'),
-(12, 'SW012', 'SmartWatch M12', 3, 1, 'sw_m12.jpg', 'Model M12', 1700000.00, NULL, 1650000.00, 75, '2023-07-10', 12, 8, 1, '40mm'),
-(13, 'SW013', 'SmartWatch N13', 3, 2, 'sw_n13.jpg', 'Model N13', 2300000.00, 2500000.00, 2200000.00, 60, '2023-06-05', 18, 9, 1, '44mm'),
-(14, 'SW014', 'SmartWatch O14', 3, 3, 'sw_o14.jpg', 'Model O14', 1500000.00, NULL, 1450000.00, 80, '2023-05-01', 12, 11, 1, '41mm'),
-(15, 'SW015', 'FitTime Smart X1', 3, 4, 'fittime_smartx1.jpg', 'X1', 1200000.00, 1350000.00, 1250000.00, 80, '2024-10-10', 12, 20, 1, 'Black'),
-(16, 'SW016', 'Astra Chrono Pro', 3, 11, 'astra_chrono_pro.jpg', 'Chrono Pro', 2600000.00, 2800000.00, 2650000.00, 70, '2024-11-05', 18, 25, 1, 'Silver'),
-(17, 'SW017', 'GearNeo S7', 3, 2, 'gearneo_s7.jpg', 'S7', 1900000.00, 2000000.00, 1950000.00, 60, '2025-01-20', 24, 12, 1, 'Blue'),
-(18, 'SW018', 'Titan Vibe Fit', 3, 6, 'titan_vibe_fit.jpg', 'Vibe Fit', 1100000.00, 1200000.00, 1150000.00, 90, '2025-02-15', 12, 10, 1, 'Gray'),
-(19, 'SW019', 'Techpulse Active 4', 3, 31, 'techpulse_active4.jpg', 'Active 4', 2450000.00, 2600000.00, 2500000.00, 75, '2025-03-08', 24, 15, 1, 'Black'),
-(22, 'SW020', 'Đồng hồ thông minh Huawei Watch Fit 3', 3, 7, '', 'Huawei Watch Fit 3', 2500000.00, NULL, 2900000.00, 10, '2021-01-12', 12, 0, 1, 'Huawei Watch Fit 4'),
-(23, 'SW021', 'Đồng hồ thông minh realme Band 2 - Chính hãng', 3, 6, '', 'realme Band 2', 400000.00, NULL, 500000.00, 10, '2021-12-27', 12, 0, 1, 'realme Band 2');
+INSERT INTO `tbl_products` (`product_id`, `product_code`, `product_name`, `series_product`, `variant_group_code`, `product_name_slug`, `categories_product_id`, `brand_product_id`, `product_image`, `model_product`, `purchase_price`, `old_price`, `sale_price`, `product_quantity`, `release_date`, `warranty_period`, `sold`, `product_status`, `varian_product`) VALUES
+(1, 'P001', 'Samsung Galaxy S21', NULL, NULL, 'samsung-galaxy-s21', 1, 2, '', 'Samsung Galaxy S21 Ultra', 100, 150, 130, 10, '2025-06-08', 12, 0, 1, '8-128'),
+(2, 'P002', 'Samsung Galaxy S21 Ultra', '', NULL, 'samsung-galaxy-s21-ultra', 1, 2, '', 'Samsung Galaxy S21 Ultra', 5000, 6000, 5500, 10, '2025-06-10', 12, 0, 1, '12-256'),
+(3, 'P003', 'Redmi Note 13', '', NULL, 'redmi-note-13', 1, 3, '', 'Redmi_Note_13', 2000000, 2500000, 2400000, 100, '2024-09-09', 12, 0, 1, '8-128'),
+(4, 'P004', 'iPhone 14', NULL, NULL, 'iphone-14', 1, 1, '', 'iPhone 14', 2500000, 2500000, 54000, 10, '2025-06-10', 12, 0, 1, '8-128'),
+(7, 'LT001', 'Laptop MSI Modern 14 C7M- 221VN', 'Modern 14', NULL, 'laptop-msi-modern-14-c7m-221vn', 2, 25, '', 'C7M-221VN', 1000000, 14990000, 9990000, 10, '2024-02-11', 24, 0, 1, '8-512'),
+(8, 'LT002', 'Laptop MSI Modern 14 C7M-220VN', 'Modern 14', NULL, 'laptop-msi-modern-14-c7m-220vn', 2, 25, '', 'C7M‑220VN', 10000000, 14990000, 13000000, 10, NULL, 24, 0, 1, '16-512'),
+(9, 'LT003', 'Máy tính xách tay Asus E210MA-GJ353T', NULL, NULL, 'may-tinh-xach-tay-asus-e210ma-gj353t', 2, 12, '', 'E210MA-GJ353T', 6000000, 8990000, 7990000, 10, '2023-05-09', 24, 0, 1, '4-128'),
+(10, 'SW010', 'SmartWatch J10', NULL, NULL, 'smartwatch-j10', 3, 30, '', 'Model J10', 2100000, NULL, 2050000, 55, '2023-09-10', 12, 7, 1, '42mm'),
+(11, 'SW011', 'SmartWatch L11', NULL, NULL, 'smartwatch-l11', 3, 31, '', 'Model L11', 1900000, 2100000, 1850000, 65, '2023-08-15', 12, 6, 1, '45mm'),
+(12, 'SW012', 'SmartWatch M12', NULL, NULL, 'smartwatch-m12', 3, 1, '', 'Model M12', 1700000, NULL, 1650000, 75, '2023-07-10', 12, 8, 1, '40mm'),
+(13, 'SW013', 'SmartWatch N13', NULL, NULL, 'smartwatch-n13', 3, 2, '', 'Model N13', 2300000, 2500000, 2200000, 60, '2023-06-05', 18, 9, 1, '44mm'),
+(14, 'SW014', 'SmartWatch O14', NULL, NULL, 'smartwatch-o14', 3, 3, '', 'Model O14', 1500000, NULL, 1450000, 80, '2023-05-01', 12, 11, 1, '41mm'),
+(15, 'SW015', 'FitTime Smart X1', NULL, NULL, 'fittime-smart-x1', 3, 4, '', 'Smart X1', 1200000, 1350000, 1250000, 80, '2024-10-10', 12, 20, 1, 'Black'),
+(16, 'SW016', 'Astra Chrono Pro', NULL, NULL, 'astra-chrono-pro', 3, 11, '', 'Astra Chrono Pro', 2600000, 2800000, 2650000, 70, '2024-11-05', 18, 25, 1, 'Silver'),
+(17, 'SW017', 'GearNeo S7', NULL, NULL, 'gearneo-s7', 3, 2, '', 'S7 / GearNeo S7', 1900000, 2000000, 1950000, 60, '2025-01-20', 24, 12, 1, 'Blue'),
+(18, 'SW018', 'Titan Vibe Fit', NULL, NULL, 'titan-vibe-fit', 3, 6, '', 'Vibe Fit', 1100000, 1200000, 1150000, 90, '2025-02-15', 12, 10, 1, 'Gray'),
+(19, 'SW019', 'Techpulse Active 4', NULL, NULL, 'techpulse-active-4', 3, 31, '', 'Active 4', 2450000, 2600000, 2500000, 75, '2025-03-08', 24, 15, 1, 'Black'),
+(22, 'SW020', 'Đồng hồ thông minh Huawei Watch Fit 3', NULL, NULL, 'dong-ho-thong-minh-huawei-watch-fit-3', 3, 7, '', 'Huawei Watch Fit 3', 2500000, NULL, 2900000, 10, '2021-01-12', 12, 0, 1, 'Huawei Watch Fit 4'),
+(23, 'SW021', 'Đồng hồ thông minh realme Band 2 - Chính hãng', NULL, NULL, 'dong-ho-thong-minh-realme-band-2---chinh-hang', 3, 6, '', 'realme Band 2', 400000, NULL, 500000, 10, '2021-12-27', 12, 0, 1, 'realme Band 2'),
+(24, 'SW022', 'Garmin Approach S50 – 43MM', NULL, NULL, 'garmin-approach-s50-43mm', 3, 29, '', 'Approach S50', 7000000, NULL, 6990000, 30, '2025-06-01', 24, 0, 1, '43MM Black/Slate'),
+(25, 'SW023', 'Garmin Approach S70 – 42MM', NULL, NULL, 'garmin-approach-s70-42mm', 3, 29, '', 'Approach S70', 18990000, NULL, 18900000, 20, '2025-05-15', 24, 0, 1, '42MM Ceramic/Slate'),
+(26, 'SW024', 'Garmin vívoactive 6', NULL, NULL, 'garmin-vivoactive-6', 3, 29, '', 'vívoactive 6', 7990000, NULL, 7490000, 25, '2025-04-04', 24, 0, 1, '42MM Slate'),
+(27, 'SW025', 'Garmin Lily 2 Silicone – Chính Hãng', NULL, NULL, 'garmin-lily-2-silicone-chinh-hang', 3, 29, '', 'Lily 2', 4990000, NULL, 4890000, 30, '2025-02-20', 12, 0, 1, '34MM Coconut Silicone'),
+(28, 'SW026', 'HONOR CHOICE InFoWear Watch 2i Black', NULL, NULL, 'honor-choice-infowear-watch-2i-black', 3, 15, '', 'InFoWear Watch 2i', 1090000, NULL, 990000, 50, '2025-05-01', 12, 0, 1, 'Black 46MM'),
+(29, 'SW027', 'HONOR Band 9', NULL, NULL, 'honor-band-9', 3, 15, '', 'Band 9', 890000, NULL, 790000, 60, '2025-04-20', 12, 0, 1, 'Phantom Black'),
+(30, 'T001', 'iPad 10th Gen 2022', NULL, NULL, 'ipad-10th-gen-2022', 4, 1, '', 'iPad 10th Generation', 9000000, 10500000, 9500000, 100, '2022-10-01', 12, 50, 1, '4GB/64GB'),
+(31, 'T002', 'Samsung Galaxy Tab S9', NULL, NULL, 'samsung-galaxy-tab-s9', 4, 2, '', 'Galaxy Tab S9', 14000000, 16000000, 14500000, 80, '2023-08-01', 12, 30, 1, '8GB/128GB'),
+(32, 'T003', 'Xiaomi Pad 6', NULL, NULL, 'xiaomi-pad-6', 4, 3, '', 'Pad 6', 7500000, 8500000, 7900000, 60, '2023-07-01', 12, 10, 1, '6GB/128GB'),
+(33, 'T004', 'Lenovo Tab P11 Gen 2', NULL, NULL, 'lenovo-tab-p11-gen-2', 4, 9, '', 'Tab P11 Gen 2', 5800000, 6700000, 6200000, 70, '2022-12-01', 12, 20, 1, '6GB/128GB'),
+(34, 'T005', 'Huawei MatePad 11', NULL, NULL, 'huawei-matepad-11', 4, 10, '', 'MatePad 11', 8500000, 9500000, 8900000, 50, '2023-01-01', 12, 15, 1, '6GB/128GB'),
+(35, 'T006', 'Masstel Tab 10 Ultra', NULL, NULL, 'masstel-tab-10-ultra', 4, 11, '', 'Tab 10 Ultra', 3200000, 3700000, 3400000, 40, '2023-03-15', 12, 10, 1, '4GB/64GB'),
+(36, 'T007', 'Nokia T20', NULL, NULL, 'nokia-t20', 4, 18, '', 'T20', 4900000, 5400000, 5100000, 30, '2022-06-10', 12, 12, 1, '4GB/64GB'),
+(37, 'T008', 'Coolpad Tab 8', NULL, NULL, 'coolpad-tab-8', 4, 15, '', 'Coolpad Tab 8', 2500000, 2990000, 2700000, 45, '2023-02-01', 12, 9, 1, '3GB/32GB'),
+(38, 'T009', 'Realme Pad 2', NULL, NULL, 'realme-pad-2', 4, 14, 'realme_pad2.jpg', 'Realme Pad 2', 7000000, 8000000, 7300000, 35, '2023-08-01', 12, 7, 1, '6GB/128GB'),
+(39, 'T010', 'iPad 10.2 Gen 9', NULL, NULL, 'ipad-102-gen-9', 4, 1, '', 'iPad 9th Generation', 7500000, 8000000, 7200000, 50, '2021-09-24', 12, 10, 1, '3GB/64GB'),
+(40, 'T011', 'Samsung Galaxy Tab A9+', '', NULL, 'samsung-galaxy-tab-a9', 4, 2, '', 'Galaxy Tab A9+', 6500000, 6900000, 6200000, 60, '2023-10-15', 12, 5, 1, '4GB/64GB'),
+(41, 'T012', 'Xiaomi Pad 6', 'Xiaomi Pad series', NULL, 'xiaomi-pad-6', 4, 3, '', 'Pad 6', 8000000, 8500000, 7800000, 45, '2023-05-10', 12, 7, 1, '8GB/128GB'),
+(42, 'T013', 'Lenovo Tab P11 Pro Gen 2', NULL, NULL, 'lenovo-tab-p11-pro-gen-2', 4, 4, '', 'Tab P11 Pro Gen 2', 9000000, 9500000, 8700000, 40, '2022-12-05', 12, 3, 1, '6GB/128GB'),
+(43, 'T014', 'Huawei MatePad 11', NULL, NULL, 'huawei-matepad-11', 4, 5, '', 'MatePad 11', 8500000, 8900000, 8300000, 30, '2023-03-20', 12, 2, 1, '6GB/128GB'),
+(44, 'T015', 'realme Pad 2', 'Realme Pad series', NULL, 'realme-pad-2', 4, 6, '', 'Pad 2', 6000000, 6400000, 5800000, 50, '2023-07-15', 12, 4, 1, '6GB/128GB'),
+(45, 'T016', 'Nokia T21', 'T-series', NULL, 'nokia-t21', 4, 7, '', 'T21', 5200000, 5600000, 5000000, 40, '2023-01-10', 12, 3, 1, '4GB/64GB'),
+(46, 'T017', 'Masstel Tab 10', 'Tab 10 series', NULL, 'masstel-tab-10', 4, 8, '', 'Tab 10', 2800000, 3000000, 2600000, 35, '2022-11-25', 12, 6, 1, '3GB/32GB'),
+(47, 'T018', 'Alcatel 3T 10', '3T series', NULL, 'alcatel-3t-10', 4, 9, '', '3T 10', 4000000, 4300000, 3900000, 25, '2021-08-18', 12, 2, 1, '2GB/32GB'),
+(48, 'T019', 'Kindle Fire HD 10', 'Fire HD series', NULL, 'kindle-fire-hd-10', 4, 10, '', 'Fire HD 10', 3200000, 3500000, 3000000, 20, '2021-06-10', 12, 1, 1, '3GB/32GB'),
+(49, 'P005', 'Redmi Note 14', 'Note 14', 'NOTE_14', 'redmi-note-14', 1, 1, 'redmi14_6_128.jpg', 'Note 14', 3500000, 3900000, 3400000, 100, '2024-05-01', 12, 50, 1, '6GB - 128GB'),
+(50, 'P006', 'Redmi Note 14 Pro+ 5G', 'Note 14', 'NOTE_14', 'redmi-note-14-pro-plus-5g', 1, 1, 'redmi14_5g_8_128.jpg', 'Note 14 5G', 4200000, 4500000, 4000000, 80, '2024-05-15', 12, 20, 1, '8GB - 128GB'),
+(63, 'P101', 'Laptop ASUS TUF Gaming A15 FA506NC-HN011W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa506nc-hn011w', 2, 12, 'asus-fa506nc-hn011w.jpg', 'FA506NC-HN011W', 18000000, 19900000, 18490000, 50, '2024-04-01', 24, 10, 1, 'R5-7535HS - 8GB/512GB - 144Hz RTX 3050'),
+(64, 'P102', 'Laptop ASUS Gaming TUF FX507ZC4-HN095W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-gaming-tuf-fx507zc4-hn095w', 2, 12, 'asus-fx507zc4-hn095w.jpg', 'FX507ZC4-HN095W', 19000000, 21900000, 19500000, 30, '2024-06-01', 24, 5, 1, 'i5-12500H - 16GB/512GB - 144Hz RTX 3050'),
+(65, 'P103', 'Laptop ASUS Gaming TUF FX507VU-LP198W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-gaming-tuf-fx507vu-lp198w', 2, 12, 'asus-fx507vu-lp198w.jpg', 'FX507VU-LP198W', 24000000, 26900000, 24500000, 25, '2024-06-01', 24, 2, 1, 'i7-13620H - 8GB/512GB - 144Hz RTX 4050'),
+(66, 'P104', 'Laptop ASUS TUF Gaming A15 FA506NFR-HN075W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa506nfr-hn075w', 2, 12, 'asus-fa506nfr-hn075w.jpg', 'FA506NFR-HN075W', 20500000, 22900000, 21200000, 40, '2024-06-01', 24, 3, 1, 'R7-7435HS - 16GB/512GB - 144Hz RTX 2050'),
+(67, 'P105', 'Laptop ASUS TUF Gaming A15 FA507NUR-LP101W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa507nur-lp101w', 2, 12, 'asus-fa507nur-lp101w.jpg', 'FA507NUR-LP101W', 24500000, 26900000, 24900000, 20, '2024-06-01', 24, 2, 1, 'R7-7435HS - 16GB/512GB - 144Hz RTX 4050'),
+(68, 'P106', 'Laptop ASUS TUF Gaming A15 FA506NCR-HN047W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa506ncr-hn047w', 2, 12, 'asus-fa506ncr-hn047w.jpg', 'FA506NCR-HN047W', 22000000, 23900000, 22500000, 35, '2024-05-01', 24, 4, 1, 'R7-7435HS - 16GB/512GB - 144Hz RTX 3050');
 
 -- --------------------------------------------------------
 
@@ -12746,6 +12787,8 @@ CREATE TABLE `tbl_smartwatch_detail` (
   `watch_operating_system` varchar(100) DEFAULT NULL,
   `watch_screen_size` varchar(50) DEFAULT NULL,
   `watch_screen_type` varchar(100) DEFAULT NULL,
+  `watch_face_design` varchar(100) DEFAULT NULL,
+  `wrist_size_range` varchar(255) DEFAULT NULL,
   `watch_resolution` varchar(50) DEFAULT NULL,
   `watch_battery_life` varchar(100) DEFAULT NULL,
   `watch_charging_time` varchar(100) DEFAULT NULL,
@@ -12763,19 +12806,25 @@ CREATE TABLE `tbl_smartwatch_detail` (
 -- Đang đổ dữ liệu cho bảng `tbl_smartwatch_detail`
 --
 
-INSERT INTO `tbl_smartwatch_detail` (`id_smartwatch_detail`, `product_id`, `watch_operating_system`, `watch_screen_size`, `watch_screen_type`, `watch_resolution`, `watch_battery_life`, `watch_charging_time`, `watch_health_sensors`, `watch_gps`, `watch_waterproof_rating`, `watch_connectivity`, `watch_compatibility`, `watch_weight`, `watch_strap_material`, `watch_biometric_unlock`) VALUES
-(1, 10, 'Proprietary OS', '1.5 inch', 'TFT', '300x300', '3 days', '2 hours', 'Heart Rate, Steps', 0, 'IP67', 'Bluetooth', 'Android', '44g', 'Plastic', 0),
-(2, 11, 'Wear OS', '1.65 inch', 'AMOLED', '390x390', '2.5 days', '2 hours', 'Heart Rate, SpO2, ECG', 1, '5ATM', 'Bluetooth, Wi-Fi, GPS', 'Android, iOS', '49g', 'Stainless Steel', 1),
-(3, 12, 'LiteOS', '1.3 inch', 'LCD', '240x240', '4 days', '3 hours', 'Heart Rate', 0, 'IP68', 'Bluetooth', 'Android', '38g', 'Rubber', 0),
-(4, 13, 'Wear OS', '1.8 inch', 'AMOLED', '416x416', '1.5 days', '1.5 hours', 'Heart Rate, SpO2', 1, 'IP68', 'Bluetooth, Wi-Fi', 'Android, iOS', '47g', 'Leather', 1),
-(5, 14, 'RTOS', '1.4 inch', 'TFT', '360x360', '7 days', '2 hours', 'Heart Rate, Sleep Monitor', 0, 'IP67', 'Bluetooth', 'Android, iOS', '42g', 'Silicone', 0),
-(6, 15, 'Custom OS', '1.3 inch', 'IPS LCD', '240x240', '5 days', '2.5 hours', 'Heart Rate, Sleep', 0, 'IP67', 'Bluetooth', 'Android', '42g', 'TPU', 0),
-(7, 16, 'Wear OS', '1.6 inch', 'AMOLED', '400x400', '3 days', '2 hours', 'Heart Rate, ECG, SpO2', 1, '5ATM', 'Bluetooth, Wi-Fi, GPS', 'Android, iOS', '50g', 'Metal', 1),
-(8, 17, 'RTOS', '1.5 inch', 'TFT', '360x360', '4 days', '1.5 hours', 'Heart Rate, Sleep, Stress', 1, 'IP68', 'Bluetooth', 'Android', '45g', 'Silicone', 1),
-(9, 18, 'LiteOS', '1.2 inch', 'LCD', '240x240', '6 days', '3 hours', 'Heart Rate', 0, 'IP68', 'Bluetooth', 'Android', '39g', 'Plastic', 0),
-(10, 19, 'Proprietary OS', '1.7 inch', 'AMOLED', '416x416', '2 days', '2 hours', 'Heart Rate, SpO2, Temperature', 1, '5ATM', 'Bluetooth, Wi-Fi', 'Android, iOS', '48g', 'Leather', 1),
-(11, 22, 'HarmonyOS', '1.82\"', 'AMOLED', '480×408px', 'Chế độ thông minh: 10 ngày Sử dụng thường xuyên: 7 ngày Bật AOD: 4 ngày', '15 h', 'Chế độ luyện tập, Theo dõi giấc ngủ, Đo nhịp tim, Đo lượng oxy trong máu, Tính calo tiêu thụ, Đo mức độ stress, Cảnh báo nhịp tim bất thường', 1, '5 ATM (đi mưa, bơi ở vùng nước nông)', 'Bluetooth 5.2 BLE, WIfi', 'Android 8.0，iOS 13 trở lên', '27 g', 'silicon', 0),
-(12, 23, 'ios 11 & Android 5.1 trở lên', '1.4\"', 'TFT', '167x320px', '204mAh Lên đến 12 ngày', 'Khoảng 2 giờ', 'Đo nồng độ: SpO2 cảm biến đo nhịp tim liên tục cảm biến theo dõi giấc ngủ', 1, '5 ATM (đi mưa, bơi ở vùng nước nông)', 'Bluetooth 5.2 BLE, WIfi', 'Android 8.0，iOS 13 trở lên', '27.3g', 'silicon', 0);
+INSERT INTO `tbl_smartwatch_detail` (`id_smartwatch_detail`, `product_id`, `watch_operating_system`, `watch_screen_size`, `watch_screen_type`, `watch_face_design`, `wrist_size_range`, `watch_resolution`, `watch_battery_life`, `watch_charging_time`, `watch_health_sensors`, `watch_gps`, `watch_waterproof_rating`, `watch_connectivity`, `watch_compatibility`, `watch_weight`, `watch_strap_material`, `watch_biometric_unlock`) VALUES
+(1, 10, 'Proprietary OS', '1.5 inch', 'TFT', 'Mặt vuông', 'Cổ tay vừa & nhỏ', '300x300', '3 days', '2 hours', 'Heart Rate, Steps', 0, 'IP67', 'Bluetooth', 'Android', '44g', 'Plastic', 0),
+(2, 11, 'Wear OS', '1.65 inch', 'AMOLED', 'Mặt tròn', 'Cổ tay vừa & nhỏ', '390x390', '2.5 days', '2 hours', 'Heart Rate, SpO2, ECG', 1, '5ATM', 'Bluetooth, Wi-Fi, GPS', 'Android, iOS', '49g', 'Stainless Steel', 1),
+(3, 12, 'LiteOS', '1.3 inch', 'LCD', 'Mặt vuông', 'Cổ tay vừa & nhỏ', '240x240', '4 days', '3 hours', 'Heart Rate', 0, 'IP68', 'Bluetooth', 'Android', '38g', 'Rubber', 0),
+(4, 13, 'Wear OS', '1.8 inch', 'AMOLED', 'Mặt chữ nhật', 'Cổ tay vừa & nhỏ', '416x416', '1.5 days', '1.5 hours', 'Heart Rate, SpO2', 1, 'IP68', 'Bluetooth, Wi-Fi', 'Android, iOS', '47g', 'Leather', 1),
+(5, 14, 'RTOS', '1.4 inch', 'TFT', 'Mặt tròn', 'Cổ tay lớn', '360x360', '7 days', '2 hours', 'Heart Rate, Sleep Monitor', 0, 'IP67', 'Bluetooth', 'Android, iOS', '42g', 'Silicone', 0),
+(6, 15, 'Custom OS', '1.3 inch', 'IPS LCD', 'Mặt vuông', 'Cổ tay vừa & nhỏ', '240x240', '5 days', '2.5 hours', 'Heart Rate, Sleep', 0, 'IP67', 'Bluetooth', 'Android', '42g', 'TPU', 0),
+(7, 16, 'Wear OS', '1.6 inch', 'AMOLED', 'Mặt tròn', 'Cổ tay lớn', '400x400', '3 days', '2 hours', 'Heart Rate, ECG, SpO2', 1, '5ATM', 'Bluetooth, Wi-Fi, GPS', 'Android, iOS', '50g', 'Metal', 1),
+(8, 17, 'RTOS', '1.5 inch', 'TFT', 'Mặt chữ nhật', 'Cổ tay vừa & nhỏ', '360x360', '4 days', '1.5 hours', 'Heart Rate, Sleep, Stress', 1, 'IP68', 'Bluetooth', 'Android', '45g', 'Silicone', 1),
+(9, 18, 'LiteOS', '1.2 inch', 'LCD', 'Mặt vuông', 'Cổ tay vừa & nhỏ', '240x240', '6 days', '3 hours', 'Heart Rate', 0, 'IP68', 'Bluetooth', 'Android', '39g', 'Plastic', 0),
+(10, 19, 'Proprietary OS', '1.7 inch', 'AMOLED', 'Mặt chữ nhật', 'Cổ tay vừa & nhỏ', '416x416', '2 days', '2 hours', 'Heart Rate, SpO2, Temperature', 1, '5ATM', 'Bluetooth, Wi-Fi', 'Android, iOS', '48g', 'Leather', 1),
+(11, 22, 'HarmonyOS', '1.82\"', 'AMOLED', 'Mặt chữ nhật', 'Cổ tay vừa & nhỏ', '480×408px', 'Chế độ thông minh: 10 ngày Sử dụng thường xuyên: 7 ngày Bật AOD: 4 ngày', '15 h', 'Chế độ luyện tập, Theo dõi giấc ngủ, Đo nhịp tim, Đo lượng oxy trong máu, Tính calo tiêu thụ, Đo mức độ stress, Cảnh báo nhịp tim bất thường', 1, '5 ATM (đi mưa, bơi ở vùng nước nông)', 'Bluetooth 5.2 BLE, WIfi', 'Android 8.0，iOS 13 trở lên', '27 g', 'silicon', 0),
+(12, 23, 'ios 11 & Android 5.1 trở lên', '1.4\"', 'TFT', 'Mặt chữ nhật', 'Cổ tay vừa & nhỏ', '167x320px', '204mAh Lên đến 12 ngày', 'Khoảng 2 giờ', 'Đo nồng độ: SpO2 cảm biến đo nhịp tim liên tục cảm biến theo dõi giấc ngủ', 1, '5 ATM (đi mưa, bơi ở vùng nước nông)', 'Bluetooth 5.2 BLE, WIfi', 'Android 8.0，iOS 13 trở lên', '27.3g', 'silicon', 0),
+(16, 24, 'Proprietary Garmin OS', '1.2\"', 'AMOLED touch', 'Mặt tròn', 'Cổ tay vừa & nhỏ', '390x390', '10 days (smartwatch), 15h (GPS)', '≈2h (charger)', 'Heart Rate, Pulse Ox, Stress, Sleep, Body Battery', 1, '5 ATM', 'Bluetooth, Wi‑Fi, USB', 'Android, iOS', '29g', 'ComfortFit nylon', 0),
+(17, 25, 'Proprietary Garmin OS', '1.2\"', 'AMOLED touch', 'Mặt tròn', 'Cổ tay vừa & nhỏ', '390x390', '10 days smartwatch / 15h GPS', '≈2h', 'Heart Rate, Pulse Ox, Stress, Sleep, Body Battery', 1, '5 ATM', 'Bluetooth, Wi‑Fi, USB', 'Android, iOS', '44g', 'Silicone', 0),
+(18, 26, 'Proprietary Garmin OS', '1.2\"', 'AMOLED touch', 'Mặt tròn', 'Cổ tay vừa & nhỏ', '390x390', '11 days smartwatch / 17h GPS', '≈2h', 'Heart Rate, SpO2, Stress, Sleep, Body Battery', 1, '5 ATM', 'Bluetooth, Wi‑Fi, 8 GB music', 'Android, iOS', '36g', 'Silicone', 0),
+(19, 27, 'Proprietary Garmin OS', '1.0\"', 'OLED touch', 'Mặt tròn', 'Cổ tay vừa & nhỏ', '240x201', 'Up to 9 days', '≈1.5h', 'Heart Rate, Pulse Ox, Stress, Sleep', 1, '5 ATM', 'Bluetooth, USB', 'Android, iOS', '25g', 'Silicone', 0),
+(20, 28, 'Proprietary OS', '1.83\"', 'TFT LCD', 'Mặt vuông', 'Cổ tay vừa & nhỏ', '240x284', 'Up to 12 days', '≈2h', 'Heart Rate, SpO2, Sleep, Stress', 1, '5 ATM', 'Bluetooth 5.3', 'Android, iOS', '39g', 'Silicone', 0),
+(21, 29, 'Proprietary OS', '1.57\"', 'AMOLED', 'Mặt chữ nhật', 'Cổ tay vừa & nhỏ', '402x256', 'Up to 14 days', '≈1.5h', 'Heart Rate, SpO2, Sleep', 0, '5 ATM', 'Bluetooth 5.3', 'Android, iOS', '16.3g', 'TPU', 0);
 
 -- --------------------------------------------------------
 
@@ -12808,6 +12857,32 @@ CREATE TABLE `tbl_tablets` (
   `tablet_stylus_support` tinyint(1) DEFAULT NULL,
   `tablet_accessories` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_tablets`
+--
+
+INSERT INTO `tbl_tablets` (`tablet_id`, `product_id`, `tablet_operating_system`, `tablet_screen_size`, `tablet_screen_type`, `tablet_resolution`, `tablet_refresh_rate`, `tablet_cpu`, `tablet_ram`, `tablet_storage`, `tablet_expandable_storage`, `tablet_battery_capacity`, `tablet_fast_charging`, `tablet_camera_rear`, `tablet_camera_front`, `tablet_speakers`, `tablet_charging_port`, `tablet_connectivity`, `tablet_dimensions`, `tablet_weight`, `tablet_water_resistance`, `tablet_stylus_support`, `tablet_accessories`) VALUES
+(1, 30, 'iPadOS 16', '10.9\"', 'Liquid Retina IPS LCD', '2360x1640', '60Hz', 'Apple A14 Bionic', 4, 64, 'Không', 7606, '20W', '12MP', '12MP', 'Stereo speakers', 'USB-C', 'Wi-Fi, Bluetooth 5.2', '248.6 x 179.5 x 7 mm', '477g', 'Không', 1, 'Apple Pencil Gen 1'),
+(2, 31, 'Android 13', '11\"', 'Dynamic AMOLED 2X', '2560x1600', '120Hz', 'Snapdragon 8 Gen 2', 8, 128, 'Có (microSD)', 8400, '45W', '13MP + 8MP', '12MP', 'Quad speakers', 'USB-C', 'Wi-Fi 6E, Bluetooth 5.3', '254.3 x 165.8 x 5.9 mm', '498g', 'IP68', 1, 'S Pen'),
+(3, 32, 'MIUI Pad (Android 13)', '11\"', 'IPS LCD', '2880x1800', '144Hz', 'Snapdragon 870', 6, 128, 'Không', 8840, '33W', '13MP', '8MP', 'Quad speakers', 'USB-C', 'Wi-Fi 6, Bluetooth 5.2', '254 x 165 x 6.5 mm', '490g', 'Không', 0, 'Không'),
+(4, 33, 'Android 12L', '11.5\"', 'IPS LCD', '2000x1200', '120Hz', 'MediaTek Helio G99', 6, 128, 'Có (microSD)', 7700, '20W', '13MP', '8MP', 'Quad speakers', 'USB-C', 'Wi-Fi, Bluetooth 5.1', '269.4 x 169.4 x 7.5 mm', '520g', 'Không', 0, 'Keyboard cover'),
+(5, 34, 'HarmonyOS 2', '10.95\"', 'IPS LCD', '2560x1600', '120Hz', 'Snapdragon 865', 6, 128, 'Không', 7250, '22.5W', '13MP', '8MP', 'Quad speakers', 'USB-C', 'Wi-Fi 6, Bluetooth 5.1', '253.8 x 165.3 x 7.3 mm', '485g', 'Không', 1, 'Huawei M-Pencil'),
+(6, 35, 'Android 12', '10.1\"', 'IPS LCD', '1920x1200', '60Hz', 'Unisoc T610', 4, 64, 'Có', 6000, '10W', '8MP', '5MP', 'Dual speakers', 'USB-C', 'Wi-Fi, Bluetooth 5.0', '243 x 162 x 8.5 mm', '500g', 'Không', 0, 'Cover'),
+(7, 36, 'Android 11', '10.4\"', 'IPS LCD', '2000x1200', '60Hz', 'Unisoc T610', 4, 64, 'Có', 8200, '15W', '8MP', '5MP', 'Stereo speakers', 'USB-C', 'Wi-Fi, Bluetooth 5.0', '247.6 x 157.5 x 7.8 mm', '465g', 'Không', 0, 'Không'),
+(8, 37, 'Android 11', '8\"', 'IPS LCD', '1280x800', '60Hz', 'Unisoc T310', 3, 32, 'Có', 4000, '10W', '5MP', '2MP', 'Mono speaker', 'USB-C', 'Wi-Fi, Bluetooth 4.2', '207 x 123 x 9 mm', '330g', 'Không', 0, 'Không'),
+(9, 38, 'Android 13', '11.5\"', 'IPS LCD', '2000x1200', '120Hz', 'Helio G99', 6, 128, 'Không', 8360, '33W', '8MP', '5MP', 'Quad speakers', 'USB-C', 'Wi-Fi, Bluetooth 5.2', '257 x 167 x 7.2 mm', '518g', 'Không', 1, 'Stylus'),
+(10, 39, 'iPadOS 15', '10.2\"', 'IPS LCD', '1620x2160', '60Hz', 'A13 Bionic', 3, 64, 'No', 8557, '20W', '8MP', '12MP', 'Stereo', 'Lightning', 'Wi-Fi, BT 4.2', '250.6x174.1x7.5mm', '487g', 'No', 1, 'Apple Pencil 1st, Keyboard'),
+(11, 40, 'Android 13', '11\"', 'TFT LCD', '1920x1200', '90Hz', 'Snapdragon 695', 4, 64, 'Yes', 7040, '15W', '8MP', '5MP', 'Dual', 'USB-C', 'Wi-Fi 5, BT 5.1', '257.1x168.7x6.9mm', '480g', 'No', 0, 'Book Cover'),
+(12, 41, 'MIUI Pad', '11\"', 'IPS LCD', '2880x1800', '144Hz', 'Snapdragon 870', 8, 128, 'No', 8840, '33W', '13MP', '8MP', 'Quad', 'USB-C', 'Wi-Fi 6, BT 5.2', '254.7x165.2x6.5mm', '490g', 'No', 0, 'Stylus, Keyboard'),
+(13, 42, 'Android 12', '11.2\"', 'OLED', '2560x1536', '120Hz', 'MediaTek Kompanio 1300T', 6, 128, 'Yes', 8200, '30W', '13MP', '8MP', 'Quad', 'USB-C', 'Wi-Fi 6, BT 5.2', '263x166.7x6.8mm', '480g', 'No', 1, 'Precision Pen 3'),
+(14, 43, 'HarmonyOS 2', '10.95\"', 'IPS LCD', '2560x1600', '120Hz', 'Snapdragon 865', 6, 128, 'No', 7250, '22.5W', '13MP', '8MP', 'Quad', 'USB-C', 'Wi-Fi 6, BT 5.1', '253.8x165.3x7.3mm', '485g', 'No', 1, 'M-Pencil'),
+(15, 44, 'Android 13', '11.5\"', 'IPS LCD', '2000x1200', '120Hz', 'MediaTek Helio G99', 6, 128, 'Yes', 8360, '33W', '8MP', '8MP', 'Stereo', 'USB-C', 'Wi-Fi, BT 5.2', '256.8x167.4x7.2mm', '518g', 'No', 0, 'Cover'),
+(16, 45, 'Android 12', '10.4\"', 'IPS LCD', '2000x1200', '60Hz', 'Unisoc T612', 4, 64, 'Yes', 8200, '18W', '8MP', '8MP', 'Stereo', 'USB-C', 'Wi-Fi, BT 5.0', '247.5x157.3x7.5mm', '471g', 'No', 0, ''),
+(17, 46, 'Android 11', '10.1\"', 'IPS LCD', '1280x800', '60Hz', 'SC9863A', 3, 32, 'Yes', 6000, '10W', '5MP', '2MP', 'Mono', 'USB-C', 'Wi-Fi, BT 4.2', '243x163x9.6mm', '500g', 'No', 0, ''),
+(18, 47, 'Android 10', '10.1\"', 'IPS LCD', '1280x800', '60Hz', 'MT8765B', 2, 32, 'Yes', 4080, '10W', '5MP', '2MP', 'Stereo', 'USB-C', 'Wi-Fi, BT 4.2', '260x155x9mm', '450g', 'No', 0, ''),
+(19, 48, 'Fire OS 7', '10.1\"', 'IPS LCD', '1920x1200', '60Hz', 'MediaTek MT8183', 3, 32, 'No', 6300, '15W', '5MP', '2MP', 'Stereo', 'USB-C', 'Wi-Fi, BT 5.0', '247x166x9.2mm', '465g', 'No', 0, 'Amazon Cover'),
+(26, 36, 'Android 11', '10.4\"', 'IPS LCD', '2000x1200', '60Hz', 'Unisoc T610', 4, 64, 'Có', 8200, '15W', '8MP', '5MP', 'Stereo speakers', 'USB-C', 'Wi-Fi, Bluetooth 5.0', '247.6 x 157.5 x 7.8 mm', '465g', 'Không', 0, 'Không');
 
 -- --------------------------------------------------------
 
@@ -13030,7 +13105,12 @@ ALTER TABLE `tbl_phone_detail`
 ALTER TABLE `tbl_products`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `fk_products_category_id` (`categories_product_id`),
-  ADD KEY `fk_products_brand_id` (`brand_product_id`);
+  ADD KEY `fk_products_brand_id` (`brand_product_id`),
+  ADD KEY `idx_model_product` (`model_product`),
+  ADD KEY `idx_series_product` (`series_product`),
+  ADD KEY `idx_varian_product` (`varian_product`),
+  ADD KEY `idx_product_name_slug` (`product_name_slug`),
+  ADD KEY `idx_variant_group_code` (`variant_group_code`);
 
 --
 -- Chỉ mục cho bảng `tbl_reviews`
@@ -13057,14 +13137,21 @@ ALTER TABLE `tbl_shipping_address`
 --
 ALTER TABLE `tbl_smartwatch_detail`
   ADD PRIMARY KEY (`id_smartwatch_detail`),
-  ADD KEY `fk_smartwatch_detail_product_id` (`product_id`);
+  ADD KEY `fk_smartwatch_detail_product_id` (`product_id`),
+  ADD KEY `idx_smartwatch_screen_type` (`watch_screen_type`),
+  ADD KEY `idx_wrist_size_range` (`wrist_size_range`),
+  ADD KEY `idx_watch_face_design` (`watch_face_design`),
+  ADD KEY `idx_watch_strap_material` (`watch_strap_material`);
 
 --
 -- Chỉ mục cho bảng `tbl_tablets`
 --
 ALTER TABLE `tbl_tablets`
   ADD PRIMARY KEY (`tablet_id`),
-  ADD KEY `fk_tablets_product_id` (`product_id`);
+  ADD KEY `fk_tablets_product_id` (`product_id`),
+  ADD KEY `idx_tablet_storage` (`tablet_storage`),
+  ADD KEY `idx_tablet_screen_size` (`tablet_screen_size`),
+  ADD KEY `idx_tablet_refresh_rate` (`tablet_refresh_rate`);
 
 --
 -- Chỉ mục cho bảng `tbl_user`
@@ -13117,7 +13204,7 @@ ALTER TABLE `tbl_banner`
 -- AUTO_INCREMENT cho bảng `tbl_brands`
 --
 ALTER TABLE `tbl_brands`
-  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_brand_category`
@@ -13159,7 +13246,7 @@ ALTER TABLE `tbl_gallery`
 -- AUTO_INCREMENT cho bảng `tbl_laptop_detail`
 --
 ALTER TABLE `tbl_laptop_detail`
-  MODIFY `id_laptop_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_laptop_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
@@ -13183,13 +13270,13 @@ ALTER TABLE `tbl_phones`
 -- AUTO_INCREMENT cho bảng `tbl_phone_detail`
 --
 ALTER TABLE `tbl_phone_detail`
-  MODIFY `id_phone_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_phone_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_products`
 --
 ALTER TABLE `tbl_products`
-  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_reviews`
@@ -13213,13 +13300,13 @@ ALTER TABLE `tbl_shipping_address`
 -- AUTO_INCREMENT cho bảng `tbl_smartwatch_detail`
 --
 ALTER TABLE `tbl_smartwatch_detail`
-  MODIFY `id_smartwatch_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_smartwatch_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_tablets`
 --
 ALTER TABLE `tbl_tablets`
-  MODIFY `tablet_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tablet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_user`
