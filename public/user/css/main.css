@@ -572,12 +572,13 @@
 
 .item-option {
     border: 1px solid #ccc;
-    /* padding: 8px 0px 8px 0px; */
     border-radius: 8px;
-    height: 100px;
     min-height: 44px;
+    display: flex;
+    align-items: center;
     width: 150px;
     text-align: center;
+    justify-content: center;
     position: relative;
     background-color: #fff;
     transition: border 0.3s, box-shadow 0.3s;
@@ -597,23 +598,25 @@
 }
 /* Khi được chọn */
 .item-option.selected {
-    border: 2px solid #00a886;
+    border: 1px solid #00a886;
     position: relative;
 }
 .item-option.selected::before {
     content: "\2714";
+    color: black !important; /* ✔ sẽ màu trắng */
     position: absolute;
     right: 0px;
     bottom: 0px;
     width: 25px;
     height: 23px;
     display: flex;
+    opacity: 0.6;
     justify-content: center;
     align-items: center; /* thêm để căn giữa chiều dọc */
     font-size: 14px;
-    color: white !important; /* ✔ sẽ màu trắng */
     background-color: #28a745; /* nền xanh hoặc chỉnh lại */
     border-top-left-radius: 6px; /* tạo bo góc nếu cần */
+    border-bottom-right-radius: 8px;
 }
 
 /* Responsive (2 cột trên tablet, 1 cột trên mobile) */

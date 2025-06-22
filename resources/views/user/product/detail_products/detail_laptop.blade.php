@@ -38,37 +38,41 @@
     </div>
     <div class="col-lg-5 col-md-6 col-sm-12">
         <div class="box-right">
-
-
             <div class="box-product-variants">
                 <p class="product-code">Mã sản phẩm: {{ $product->product_code }}</p>
 
-                <div class="list-option">
-                    @foreach ($varians as $varian)
-                    @php
-                    $isActVarian = $varian->varian_product == $product->varian_product ? 'selected' : '';
-                    @endphp
-                    <div class="item-option {{ $isActVarian }}">
-                        <a href="{{ URL::to('/'.$varian->category->cate_slug.'/'.$varian->product_name_slug ) }}">
-                            <span>{{ $varian->varian_product }}</span>
-                            <p>{{ number_format($varian->sale_price, 0, ',', '.') }} ₫</p>
-                        </a>
+                <div class="box-product-option version">
+                    <strong class="label">Lựa chọn phiên bản</strong>
+                    <div class="list-option" id="option-version">
+                        @foreach ($varians as $varian)
+                        @php
+                        $isActVarian = $varian->varian_product == $product->varian_product ? 'selected' : '';
+                        @endphp
+                        <div class="item-option {{ $isActVarian }}">
+                            <a href="{{ URL::to('/'.$varian->category->cate_slug.'/'.$varian->product_name_slug ) }}">
+                                <span>{{ $varian->varian_product }}</span>
+                                <p>{{ number_format($varian->sale_price, 0, ',', '.') }} ₫</p>
+                            </a>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-                <div class="color">
-                    @foreach ($colors as $color)
-                    @php
-                    $isActColor =
-                    $color->detail_laptop->laptop_color == $product->detail_laptop->laptop_color
-                    ? 'act'
-                    : '';
-                    @endphp
-                    <div class="color-item {{ $isActColor }}" data-id="{{ $color->product_id }}">
-                        <span class="code-color"></span>
-                        {{ $color->detail_laptop->laptop_color }}
+                <div class="box-product-option color">
+                    <strong>Lựa chọn màu sắc</strong>
+                    <div class="list-option" id="option-color">
+                        @foreach ($colors as $color)
+                        @php
+                        $isActColor =
+                        $color->detail_laptop->laptop_color == $product->detail_laptop->laptop_color
+                        ? 'selected'
+                        : '';
+                        @endphp
+                        <div class="item-option btn-active {{ $isActColor }}" data-id="{{ $color->product_id }}">
+                            <span class="code-color"></span>
+                            {{ $color->detail_laptop->laptop_color }}
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
                 <strong>Giá bán:</strong>
                 <span class="product-price">{{ number_format($product->sale_price, 0, ',', '.') }}đ</span>
