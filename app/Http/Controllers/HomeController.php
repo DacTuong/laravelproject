@@ -412,20 +412,15 @@ class HomeController extends Controller
         $series_product = $detail_product->series_product;
         $model_product = $detail_product->model_product;
 
-        if ($series_product) {
-            $list_varian = Product::where('series_product', $series_product)
-                ->select('model_product')
-                ->groupBy('model_product')
-                ->orderByRaw('CAST(model_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
+        $variant_group_code = $detail_product->variant_group_code;
+        $list_varian = collect(); // Khởi tạo rỗng để phòng trường hợp null
+
+        if ($variant_group_code !== null) {
+            $list_varian = Product::with(['category'])
+                ->where('series_product', $series_product)
+                ->where('variant_group_code', $variant_group_code)
+                ->select('categories_product_id', 'product_name_slug', 'varian_product', 'sale_price')
                 ->get();
-            $option_type = 'model'; // Đánh dấu để hiển thị bên blade
-        } else {
-            $list_varian = Product::where('model_product', $model_product)
-                ->select('varian_product')
-                ->groupBy('varian_product')
-                ->orderByRaw('CAST(varian_product AS UNSIGNED) ASC') // Sắp xếp từ thấp đến cao
-                ->get();
-            $option_type = 'varian'; // Đánh dấu để hiển thị bên blade
         }
         $product_price = $detail_product->sale_price;
 
@@ -460,7 +455,6 @@ class HomeController extends Controller
             ->with('banners', $banners)
             ->with('product', $detail_product)
             ->with('varians',  $list_varian)
-            ->with('option_type', $option_type)
             ->with('colors', $colors)
             ->with('similars', $similar_product)
             ->with('checkstorage', $storage)
@@ -476,10 +470,16 @@ class HomeController extends Controller
             ->where('product_name_slug', $product_slug)->first();
 
         $series_product = $detail_product->series_product;
+        $variant_group_code = $detail_product->variant_group_code;
+        $list_varian = collect(); // Khởi tạo rỗng để phòng trường hợp null
 
-        $list_varian = Product::with(['category'])
-            ->where('series_product', $series_product)
-            ->get();
+        if ($variant_group_code !== null) {
+            $list_varian = Product::with(['category'])
+                ->where('series_product', $series_product)
+                ->where('variant_group_code', $variant_group_code)
+                ->select('categories_product_id', 'product_name_slug', 'varian_product', 'sale_price')
+                ->get();
+        }
 
 
         $product_price = $detail_product->sale_price;

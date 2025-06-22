@@ -12,6 +12,7 @@ class Product extends Model
         'product_code',
         'product_name',
         'series_product',
+        'variant_group_code',
         'product_name_slug',
         'product_image',
         'model_product',
