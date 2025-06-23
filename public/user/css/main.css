@@ -585,12 +585,14 @@
 }
 .item-option a {
     text-decoration: none;
+    width: 90%;
 }
 .item-option a span {
     font-size: 14px;
     font-weight: 500;
     padding: 0px 5px 0px 5px;
     color: #191919;
+    width: 100%;
 }
 .item-option a p {
     color: red;
