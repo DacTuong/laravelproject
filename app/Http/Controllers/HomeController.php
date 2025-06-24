@@ -578,11 +578,54 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
 
+        $detail_product = Product::with(['smartwatch'])
+            ->where('product_name_slug', $product_slug)->first();
 
+        $series_product = $detail_product->series_product;
+        $variant_group_code = $detail_product->variant_group_code;
+        $list_varian = collect(); // Khởi tạo rỗng để phòng trường hợp null
+
+        if ($variant_group_code !== null) {
+            $list_varian = Product::with(['category'])
+                ->where('series_product', $series_product)
+                ->where('variant_group_code', $variant_group_code)
+                ->select('categories_product_id', 'product_name_slug', 'varian_product', 'sale_price')
+                ->get();
+        }
+
+
+        $product_price = $detail_product->sale_price;
+        $varian = $detail_product->varian_product;
+        $colors = Product::where('varian_product', $varian)
+            ->where('series_product', $series_product)
+            ->get();
+        $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
+            ->where('product_name_slug', '!=', $product_slug)
+            ->get();
+        $storage = request()->query('storage');
+        if ($storage) {
+            $storage_product = Product::with(['category', 'brand',])->where('model_product', $series_product)
+                ->where('varian_product', $storage)->first();
+
+            $colors_product = Product::with(['category', 'brand',])->where('model_product', $series_product)
+                ->where('varian_product', $storage)->get();
+            if ($storage_product) {
+                $detail_product = $storage_product;
+            };
+
+            if ($colors_product) {
+                $colors = $colors_product;
+            };
+        }
         return view('user.product.detail_products.detail_watch')
             ->with('brands', $brand)
             ->with('category', $category)
             ->with('banners', $banners)
+            ->with('product', $detail_product)
+            ->with('varians',  $list_varian)
+            ->with('colors', $colors)
+            ->with('similars', $similar_product)
+            ->with('checkstorage', $storage)
 
         ;
     }

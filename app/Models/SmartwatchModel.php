@@ -30,7 +30,6 @@ class SmartwatchModel extends Model
         'watch_connectivity',
         'watch_compatibility',
         'watch_weight',
-        'watch_connectivity',
         'watch_strap_material',
         'watch_biometric_unlock',
     ];
