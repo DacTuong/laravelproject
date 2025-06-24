@@ -29,15 +29,16 @@ class TabletModel extends Model
         'tablet_battery_capacity',
         'tablet_fast_charging',
         'tablet_camera_rear',
+        'tablet_camera_rear_recording',
+        'tablet_camera_rear_feature',
         'tablet_camera_front',
-        'tablet_speakers',
+        'tablet_camera_front_feature',
         'tablet_charging_port',
         'tablet_connectivity',
         'tablet_dimensions',
         'tablet_weight',
         'tablet_water_resistance',
-        'tablet_stylus_support',
-        'tablet_accessories'
+        'tablet_color'
     ];
 
     /**

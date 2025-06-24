@@ -390,11 +390,11 @@ class HomeController extends Controller
                 return $this->detail_laptop($product_slug);
 
             case 'dong-ho-thong-minh':
-                return $this->detail_dong_ho();
+                return $this->detail_dong_ho($product_slug);
 
             case 'tablet':
 
-                return $this->detail_tablet();
+                return $this->detail_tablet($product_slug);
 
             default:
                 abort(404);
@@ -430,7 +430,7 @@ class HomeController extends Controller
             ->where('model_product', $model_product)
             ->get();
         $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
-            ->where('product_id', '!=', $product_slug)
+            ->where('product_name_slug', '!=', $product_slug)
             ->get();
         $storage = request()->query('storage');
         if ($storage) {
@@ -488,7 +488,7 @@ class HomeController extends Controller
             ->where('series_product', $series_product)
             ->get();
         $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
-            ->where('product_id', '!=', $product_slug)
+            ->where('product_name_slug', '!=', $product_slug)
             ->get();
         $storage = request()->query('storage');
         if ($storage) {
@@ -509,40 +509,84 @@ class HomeController extends Controller
             ->with('brands', $brand)
             ->with('category', $category)
             ->with('banners', $banners)
+            ->with('product', $detail_product)
             ->with('varians',  $list_varian)
             ->with('colors', $colors)
             ->with('similars', $similar_product)
             ->with('checkstorage', $storage)
-            ->with('product', $detail_product)
 
         ;
     }
-    public function detail_dong_ho()
+    public function detail_tablet($product_slug)
     {
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
-        return view('user.product.detail_products.detail_watch')
-            ->with('brands', $brand)
-            ->with('category', $category)
+        $detail_product = Product::with(['tablet'])
+            ->where('product_name_slug', $product_slug)->first();
 
-            ->with('banners', $banners)
+        $series_product = $detail_product->series_product;
+        $variant_group_code = $detail_product->variant_group_code;
+        $list_varian = collect(); // Khởi tạo rỗng để phòng trường hợp null
 
-        ;
-    }
-    public function detail_tablet()
-    {
-        $brand = Brand::get();
-        $category = Category::get();
-        $banners = BannerModel::all();
+        if ($variant_group_code !== null) {
+            $list_varian = Product::with(['category'])
+                ->where('series_product', $series_product)
+                ->where('variant_group_code', $variant_group_code)
+                ->select('categories_product_id', 'product_name_slug', 'varian_product', 'sale_price')
+                ->get();
+        }
+
+
+        $product_price = $detail_product->sale_price;
+        $varian = $detail_product->varian_product;
+        $colors = Product::where('varian_product', $varian)
+            ->where('series_product', $series_product)
+            ->get();
+        $similar_product = Product::whereBetween('sale_price', [$product_price - 100, $product_price + 100, $product_price])
+            ->where('product_name_slug', '!=', $product_slug)
+            ->get();
+        $storage = request()->query('storage');
+        if ($storage) {
+            $storage_product = Product::with(['category', 'brand',])->where('model_product', $series_product)
+                ->where('varian_product', $storage)->first();
+
+            $colors_product = Product::with(['category', 'brand',])->where('model_product', $series_product)
+                ->where('varian_product', $storage)->get();
+            if ($storage_product) {
+                $detail_product = $storage_product;
+            };
+
+            if ($colors_product) {
+                $colors = $colors_product;
+            };
+        }
         return view('user.product.detail_products.detail_tablet')
             ->with('brands', $brand)
             ->with('category', $category)
+            ->with('banners', $banners)
+            ->with('product', $detail_product)
+            ->with('varians',  $list_varian)
+            ->with('colors', $colors)
+            ->with('similars', $similar_product)
+            ->with('checkstorage', $storage)
+        ;
+    }
+    public function detail_dong_ho($product_slug)
+    {
+        $brand = Brand::get();
+        $category = Category::get();
+        $banners = BannerModel::all();
 
+
+        return view('user.product.detail_products.detail_watch')
+            ->with('brands', $brand)
+            ->with('category', $category)
             ->with('banners', $banners)
 
         ;
     }
+
 
     public function detail_product($product_id)
     {
