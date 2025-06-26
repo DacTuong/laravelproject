@@ -29,10 +29,10 @@
                 <b>Cart đồ họa</b>
                 @foreach ($GPUs as $gpu)
                     <label>
-                        <input type="checkbox" name="filter_laptop_gpu" value="{{ $gpu->laptop_gpu }}"
-                            {{ in_array($gpu->laptop_gpu, explode(',', request()->get('filter_laptop_gpu', ''))) ? 'checked' : '' }}
+                        <input type="checkbox" name="filter_laptop_gpu" value="{{ $gpu->laptop_gpu_integrated }}"
+                            {{ in_array($gpu->laptop_gpu_integrated, explode(',', request()->get('filter_laptop_gpu', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_laptop_gpu', this)">
-                        {{ $gpu->laptop_gpu }}
+                        {{ $gpu->laptop_gpu_integrated }}
                     </label><br>
                 @endforeach
             </div>
@@ -82,10 +82,10 @@
                 @foreach ($laptop_refreshs as $laptop_refresh)
                     <label>
                         <input type="checkbox" name="filter_laptop_refresh_rates"
-                            value="{{ $laptop_refresh->laptop_refresh_rate }}"
-                            {{ in_array($laptop_refresh->laptop_refresh_rate, explode(',', request()->get('filter_laptop_refresh_rates', ''))) ? 'checked' : '' }}
+                            value="{{ $laptop_refresh->laptop_display_refresh_rate }}"
+                            {{ in_array($laptop_refresh->laptop_display_refresh_rate, explode(',', request()->get('filter_laptop_refresh_rates', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_laptop_refresh_rates', this)">
-                        {{ $laptop_refresh->laptop_refresh_rate }}
+                        {{ $laptop_refresh->laptop_display_refresh_rate }}
                     </label><br>
                 @endforeach
             </div>

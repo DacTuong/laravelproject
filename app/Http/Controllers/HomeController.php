@@ -272,7 +272,7 @@ class HomeController extends Controller
 
         if ($request->filled('filter_laptop_gpu')) {
             $filterLaptopbyGPU = explode(',', $request->input('filter_laptop_gpu'));
-            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_gpu', $filterLaptopbyGPU));
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_gpu_integrated', $filterLaptopbyGPU));
         }
         if ($request->filled('filter_laptop_cpu')) {
             $filterLaptopbyCPU = explode(',', $request->input('filter_laptop_cpu'));
@@ -293,7 +293,7 @@ class HomeController extends Controller
         if ($request->filled('filter_laptop_refresh_rates')) {
             $filterLaptopbyRefresh = explode(',', $request->input('filter_laptop_refresh_rates'));
             // $list_laptop->where('filter_laptop_refresh_rates', $filterLaptopbyRefresh);
-            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_refresh_rate', $filterLaptopbyRefresh));
+            $list_laptop->whereHas('detail_laptop', fn($q) => $q->whereIN('laptop_display_refresh_rate', $filterLaptopbyRefresh));
         }
 
 

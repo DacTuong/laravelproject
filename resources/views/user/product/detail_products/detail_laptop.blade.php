@@ -194,7 +194,7 @@
                                         aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
-                                <!-- <progress class="progress" role="progressbar" max="100" value="20"></progress> -->
+
                                 <span class="rating-count"> </span>
                             </div>
                             <div class="rating-level" data-rating_level="4">
@@ -206,7 +206,7 @@
                                         aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
-                                <!-- <progress class="progress" role="progressbar" max="100" value="20"></progress> -->
+
                                 <span class="rating-count"> </span>
                             </div>
                             <div class="rating-level" data-rating_level="3">
@@ -218,7 +218,7 @@
                                         aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
-                                <!-- <progress class="progress" role="progressbar" max="100" value="20"></progress> -->
+
                                 <span class="rating-count"> </span>
                             </div>
                             <div class="rating-level" data-rating_level="2">
@@ -230,7 +230,7 @@
                                         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
-                                <!-- <progress class="progress" role="progressbar" max="100" value="20"></progress> -->
+
                                 <span class="rating-count"></span>
                             </div>
                             <div class="rating-level" data-rating_level="1">
@@ -242,7 +242,7 @@
                                         aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
-                                <!-- <progress class="progress" role="progressbar" max="100" value="20"></progress> -->
+
                                 <span class="rating-count"> </span>
                             </div>
                         </div> <!-- kết thúc thẻ div đánh giá sao và hiện sao sản phẩm -->
@@ -367,32 +367,25 @@
                                 <li>
                                     <aside><strong>Công nghệ màn hình</strong></aside>
                                     <aside>
-                                        <span>{{ $product->detail_laptop->laptop_screen_type }}</span>
+                                        <span>{{ $product->detail_laptop->laptop_display_technology }}</span>
                                     </aside>
                                 </li>
                                 <li>
                                     <aside><strong>Độ phân giải</strong></aside>
                                     <aside>
-                                        <span>{{ $product->detail_laptop->laptop_resolution }}</span>
+                                        <span>{{ $product->detail_laptop->laptop_display_resolution }}</span>
                                     </aside>
                                 </li>
                                 <li>
                                     <aside><strong>Kích thước màn hình</strong></aside>
                                     <aside>
-                                        <span>{{ $product->detail_laptop->laptop_screen_size }}</span>
+                                        <span>{{ $product->detail_laptop->laptop_display_size }}</span>
                                     </aside>
                                 </li>
                                 <li>
                                     <aside><strong>Tần số quét</strong></aside>
                                     <aside>
-                                        <span>{{ $product->detail_laptop->laptop_refresh_rate }}</span>
-                                    </aside>
-                                </li>
-
-                                <li>
-                                    <aside><strong>Kết nối không dây</strong></aside>
-                                    <aside>
-                                        <span>{{ $product->detail_laptop->laptop_connectivity }}</span>
+                                        <span>{{ $product->detail_laptop->laptop_display_refresh_rate }}</span>
                                     </aside>
                                 </li>
 
@@ -415,9 +408,15 @@
                                     </aside>
                                 </li>
                                 <li>
-                                    <aside><strong>Cart đồ họa</strong></aside>
+                                    <aside><strong>Cart on-board</strong></aside>
                                     <aside>
-                                        <span>{{ $product->detail_laptop->laptop_gpu }}</span>
+                                        <span>{{ $product->detail_laptop->laptop_gpu_integrated }}</span>
+                                    </aside>
+                                </li>
+                                <li>
+                                    <aside><strong>Cart đồ họa rời</strong></aside>
+                                    <aside>
+                                        <span>{{ $product->detail_laptop->laptop_gpu_dedicated }}</span>
                                     </aside>
                                 </li>
 
@@ -439,64 +438,152 @@
             <button class="close-specifications" onclick="closeSpecifications()">X</button>
         </div>
         <div class="specifications-popup-content">
+
             <div class="box-specifi">
-                <h6>Màn hình & Camera</h6>
-                <ul class="text-specifi active">
+                <a href="#" class="toggle-btn">Bộ vi xữ lý</a>
+                <ul class="text-specifi">
                     <li>
-                        <aside><strong>Công nghệ màn hình</strong></aside>
+                        <aside><strong>Công nghệ cpu</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->screen_type }}</span>
+                            <span>{{ $product->detail_laptop->laptop_cpu }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Độ phân giải</strong></aside>
+                        <aside><strong>Số hiệu cpu</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->resolution }}</span>
+                            <span>{{ $product->detail_laptop->laptop_cpu_model }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Màn hình rộng</strong></aside>
+                        <aside><strong>Số nhân</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->screen_size }}</span>
+                            <span>{{ $product->detail_laptop->laptop_cpu_core }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Tần số quét</strong></aside>
+                        <aside><strong>Số luồng</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->refresh_rate }} hz</span>
-                        </aside>
-                    </li>
-
-                    <li>
-                        <aside><strong>Độ phân giải camera sau</strong></aside>
-                        <aside>
-                            <span>{{ $product->detail_laptop->camera_main }}</span>
+                            <span>
+                                {{ $product->detail_laptop->laptop_cpu_threads }}
+                            </span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Tính năng camera sau</strong></aside>
+                        <aside><strong>Bộ nhớ đệm</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->camera_main_features }}</span>
-                        </aside>
-                    </li>
-
-                    <li>
-                        <aside><strong>Độ phân giải camera trước</strong></aside>
-                        <aside>
-                            <span>{{ $product->detail_laptop->camera_front }}</span>
+                            <span>
+                                {{ $product->detail_laptop->laptop_cpu_cache }}
+                            </span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Tính năng camera trước</strong></aside>
+                        <aside><strong>Xung nhịp cơ bản</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->camera_front_features }}</span>
+                            <span>
+                                {{ $product->detail_laptop->laptop_cpu_base_clock }}
+                            </span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Xung nhịp tối đa</strong></aside>
+                        <aside>
+                            <span>
+                                {{ $product->detail_laptop->laptop_cpu_max_clock }}
+                            </span>
                         </aside>
                     </li>
                 </ul>
             </div>
 
+
             <div class="box-specifi">
-                <a href="#" class="toggle-btn">Cấu hình & bộ nhớ</a>
+                <a href="#" class="toggle-btn">Đồ họa & âm thanh</a>
+                <ul class="text-specifi">
+                    <li>
+                        <aside><strong>Card On-board</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_gpu_integrated }} mAh</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>card đồ họa rời</strong></aside>
+                        <aside>
+                            <span>
+                                {{ $product->detail_laptop->laptop_gpu_dedicated }}
+                            </span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Công nghệ âm thanh</strong></aside>
+                        <aside>
+                            <span>
+                                {{ $product->detail_laptop->laptop_audio_technology }}
+                            </span>
+                        </aside>
+                    </li>
+                </ul>
+            </div>
+            <div class="box-specifi">
+                <h6>Màn hình</h6>
+                <ul class="text-specifi active">
+                    <li>
+                        <aside><strong>Số lượng màn hình</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_quantity }}</span>
+                        </aside>
+                    </li>
+
+                    <li>
+                        <aside><strong>Chuẩn màn hình</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_panel_type }}</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Độ phân giải</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_resolution }}</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Kích thước màn hình</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_size }}</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Tần số quét</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_refresh_rate }}</span>
+                        </aside>
+                    </li>
+
+                    <li>
+                        <aside><strong>Kiểu hiển thị màn hình</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_type }}</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Loại tấm nền</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_panel_type }}</span>
+                        </aside>
+                    </li>
+
+                    <li>
+                        <aside><strong>Công nghệ màn hình</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_display_technology }}</span>
+                        </aside>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="box-specifi">
+                <a href="#" class="toggle-btn">Phần mềm</a>
                 <ul class="text-specifi">
                     <li>
                         <aside><strong>Hệ điều hành</strong></aside>

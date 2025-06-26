@@ -39,11 +39,11 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_refresh_rates')) {
             $filterLaptopRefresh = explode(',', $request->input('filter_laptop_refresh_rates'));
-            $query->whereIn('laptop_refresh_rate', $filterLaptopRefresh);
+            $query->whereIn('laptop_display_refresh_rate', $filterLaptopRefresh);
         }
 
-        return $query->select('laptop_gpu', DB::raw('COUNT(*) as total_nfc'))
-            ->groupBy('laptop_gpu')
+        return $query->select('laptop_gpu_integrated', DB::raw('COUNT(*) as total_nfc'))
+            ->groupBy('laptop_gpu_integrated')
             ->get();
     }
 
@@ -59,7 +59,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_gpu')) {
             $filterLaptopGPU = explode(',', $request->input('filter_laptop_gpu'));
-            $query->whereIn('laptop_gpu', $filterLaptopGPU);
+            $query->whereIn('laptop_gpu_integrated', $filterLaptopGPU);
         }
         if ($request->filled('filter_laptop_storage')) {
             $filterLaptopStorage = explode(',', $request->input('filter_laptop_storage'));
@@ -74,7 +74,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_refresh_rates')) {
             $filterLaptopRefresh = explode(',', $request->input('filter_laptop_refresh_rates'));
-            $query->whereIn('laptop_refresh_rate', $filterLaptopRefresh);
+            $query->whereIn('laptop_display_refresh_rate', $filterLaptopRefresh);
         }
 
         return $query->select('laptop_ram', DB::raw('COUNT(*) as total_nfc'))
@@ -93,7 +93,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_gpu')) {
             $filterLaptopGPU = explode(',', $request->input('filter_laptop_gpu'));
-            $query->whereIn('laptop_gpu', $filterLaptopGPU);
+            $query->whereIn('laptop_gpu_integrated', $filterLaptopGPU);
         }
         if ($request->filled('filter_laptop_storage')) {
             $filterLaptopStorage = explode(',', $request->input('filter_laptop_storage'));
@@ -109,7 +109,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_refresh_rates')) {
             $filterLaptopRefresh = explode(',', $request->input('filter_laptop_refresh_rates'));
-            $query->whereIn('laptop_refresh_rate', $filterLaptopRefresh);
+            $query->whereIn('laptop_display_refresh_rate', $filterLaptopRefresh);
         }
         return $query->select('laptop_cpu', DB::raw('COUNT(*) as total_nfc'))
             ->groupBy('laptop_cpu')
@@ -128,7 +128,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_gpu')) {
             $filterLaptopGPU = explode(',', $request->input('filter_laptop_gpu'));
-            $query->whereIn('laptop_gpu', $filterLaptopGPU);
+            $query->whereIn('laptop_gpu_integrated', $filterLaptopGPU);
         }
 
         if ($request->filled('filter_laptop_cpu')) {
@@ -144,7 +144,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_refresh_rates')) {
             $filterLaptopRefresh = explode(',', $request->input('filter_laptop_refresh_rates'));
-            $query->whereIn('laptop_refresh_rate', $filterLaptopRefresh);
+            $query->whereIn('laptop_display_refresh_rate', $filterLaptopRefresh);
         }
         return $query->select('laptop_storage', DB::raw('COUNT(*) as total_nfc'))
             ->groupBy('laptop_storage')
@@ -162,7 +162,7 @@ class handleFilterLaptopController extends Controller
 
         if ($request->filled('filter_laptop_gpu')) {
             $filterLaptopGPU = explode(',', $request->input('filter_laptop_gpu'));
-            $query->whereIn('laptop_gpu', $filterLaptopGPU);
+            $query->whereIn('laptop_gpu_integrated', $filterLaptopGPU);
         }
 
         if ($request->filled('filter_laptop_cpu')) {
@@ -180,8 +180,8 @@ class handleFilterLaptopController extends Controller
             $query->whereIn('laptop_storage', $filterLaptopStorage);
         }
 
-        return $query->select('laptop_refresh_rate', DB::raw('COUNT(*) as total_nfc'))
-            ->groupBy('laptop_refresh_rate')
+        return $query->select('laptop_display_refresh_rate', DB::raw('COUNT(*) as total_nfc'))
+            ->groupBy('laptop_display_refresh_rate')
             ->get();
     }
 }

@@ -110,7 +110,7 @@ class CheckoutController extends Controller
         return view('user.shopping.checkout')
             ->with('provinces', $province)
             ->with('brands', $brand)
-            ->with('categorys', $category)
+            ->with('category', $category)
             ->with('banners', $banners)
 
         ;

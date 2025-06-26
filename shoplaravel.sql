@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 24, 2025 lúc 12:31 PM
+-- Thời gian đã tạo: Th6 26, 2025 lúc 12:41 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -12379,22 +12379,39 @@ CREATE TABLE `tbl_laptop_detail` (
   `id_laptop_detail` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED DEFAULT NULL,
   `laptop_operating_system` varchar(100) DEFAULT NULL,
-  `laptop_screen_size` varchar(50) DEFAULT NULL,
-  `laptop_screen_type` varchar(100) DEFAULT NULL,
-  `laptop_resolution` varchar(50) DEFAULT NULL,
-  `laptop_refresh_rate` varchar(50) DEFAULT NULL,
+  `laptop_display_size` varchar(50) DEFAULT NULL,
+  `laptop_display_quantity` tinyint(1) NOT NULL,
+  `laptop_display_panel_type` varchar(30) NOT NULL,
+  `laptop_display_touch_support` varchar(10) NOT NULL,
+  `laptop_display_type` varchar(100) DEFAULT NULL,
+  `laptop_display_resolution` varchar(50) DEFAULT NULL,
+  `laptop_display_refresh_rate` varchar(50) DEFAULT NULL,
+  `laptop_display_technology` varchar(100) NOT NULL,
   `laptop_cpu` varchar(100) DEFAULT NULL,
+  `laptop_cpu_model` varchar(50) NOT NULL,
+  `laptop_cpu_core` tinyint(4) NOT NULL,
+  `laptop_cpu_threads` tinyint(4) NOT NULL,
+  `laptop_cpu_base_clock` decimal(3,1) NOT NULL,
+  `laptop_cpu_max_clock` decimal(3,1) NOT NULL,
+  `laptop_cpu_cache` varchar(30) NOT NULL,
   `laptop_ram` int(11) DEFAULT NULL,
+  `laptop_ram_type` varchar(10) NOT NULL,
+  `laptop_ram_speed` varchar(20) NOT NULL,
+  `laptop_ram_upgrade_slots` tinyint(4) NOT NULL,
   `laptop_storage` int(11) DEFAULT NULL,
   `laptop_storage_type` varchar(100) DEFAULT NULL,
   `laptop_expandable_storage` varchar(100) DEFAULT NULL,
-  `laptop_gpu` varchar(100) DEFAULT NULL,
+  `laptop_gpu_integrated` varchar(100) DEFAULT NULL,
+  `laptop_gpu_dedicated` varchar(100) NOT NULL,
+  `laptop_audio_technology` varchar(100) NOT NULL,
   `laptop_battery_capacity` varchar(100) DEFAULT NULL,
-  `laptop_size` varchar(100) DEFAULT NULL,
+  `laptop_dimensions` varchar(100) DEFAULT NULL,
   `laptop_weight` varchar(50) DEFAULT NULL,
   `laptop_connectivity` varchar(255) DEFAULT NULL,
   `laptop_port_type` text DEFAULT NULL,
-  `laptop_biometrics` varchar(100) DEFAULT NULL,
+  `laptop_keyboard_type` varchar(100) DEFAULT NULL,
+  `laptop_keyboard_backlight` varchar(50) NOT NULL,
+  `laptop_touchpad_type` varchar(100) NOT NULL,
   `laptop_color` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -12402,16 +12419,16 @@ CREATE TABLE `tbl_laptop_detail` (
 -- Đang đổ dữ liệu cho bảng `tbl_laptop_detail`
 --
 
-INSERT INTO `tbl_laptop_detail` (`id_laptop_detail`, `product_id`, `laptop_operating_system`, `laptop_screen_size`, `laptop_screen_type`, `laptop_resolution`, `laptop_refresh_rate`, `laptop_cpu`, `laptop_ram`, `laptop_storage`, `laptop_storage_type`, `laptop_expandable_storage`, `laptop_gpu`, `laptop_battery_capacity`, `laptop_size`, `laptop_weight`, `laptop_connectivity`, `laptop_port_type`, `laptop_biometrics`, `laptop_color`) VALUES
-(1, 7, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 7', 8, 512, 'SSD', '(Có thể tháo ra, lắp thanh khác tối đa 1 TB)', 'AMD Radeon Graphics', '3 cell, 39Whr', '', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có', 'Đen'),
-(2, 8, 'Windows 11 Home', '14 inch', 'IPS', '1920x1080', '60Hz', 'AMD Ryzen 5', 16, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '3 cell, 39Whr', '', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có', 'Xam'),
-(3, 9, 'Windows 10 Home', '11.6 inch', 'TN', '1366x768', '90Hz', 'Intel Celeron', 4, 128, 'SSD', 'Không thể nâng cấp', 'GPU tích hợp', '2 Cell, 38 Wh', '', '1.13 Kg', 'Wi-Fi 5 Bluetooth 4.2', '1 x Type-A USB2.0\r\n1 x Type-A USB 3.2 (Gen 1)\r\n1 x Type-C USB 3.2 (Gen 1)', 'Không', 'Bạc'),
-(22, 63, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 5 7535HS', 8, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen'),
-(23, 64, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Intel Core i5-12500H', 16, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '48Wh', '', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Xám'),
-(24, 65, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Intel Core i7-13620H', 8, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '48Wh', '', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Xám'),
-(25, 66, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 7 7435HS', 16, 512, 'PCIe SSD', 'Có', 'RTX 2050 4GB', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen'),
-(26, 67, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 7 7435HS', 16, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen'),
-(27, 68, 'Windows 11', '15.6\"', 'IPS', '1920x1080', '144Hz', 'Ryzen 7 7435HS', 16, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', 'Đen');
+INSERT INTO `tbl_laptop_detail` (`id_laptop_detail`, `product_id`, `laptop_operating_system`, `laptop_display_size`, `laptop_display_quantity`, `laptop_display_panel_type`, `laptop_display_touch_support`, `laptop_display_type`, `laptop_display_resolution`, `laptop_display_refresh_rate`, `laptop_display_technology`, `laptop_cpu`, `laptop_cpu_model`, `laptop_cpu_core`, `laptop_cpu_threads`, `laptop_cpu_base_clock`, `laptop_cpu_max_clock`, `laptop_cpu_cache`, `laptop_ram`, `laptop_ram_type`, `laptop_ram_speed`, `laptop_ram_upgrade_slots`, `laptop_storage`, `laptop_storage_type`, `laptop_expandable_storage`, `laptop_gpu_integrated`, `laptop_gpu_dedicated`, `laptop_audio_technology`, `laptop_battery_capacity`, `laptop_dimensions`, `laptop_weight`, `laptop_connectivity`, `laptop_port_type`, `laptop_keyboard_type`, `laptop_keyboard_backlight`, `laptop_touchpad_type`, `laptop_color`) VALUES
+(1, 7, 'Windows 11 Home', '14 inch', 1, 'IPS-Level', 'No', 'IPS-Level Matte', '1920x1080', '60Hz', '45% NTSC, Thin Bezel, 65% sRGB', 'AMD Ryzen 7 7730U', 'Ryzen 7 7730U', 8, 16, 2.0, 4.5, '16MB', 8, 'DDR4', '3200MHz', 0, 512, 'NVMe PCIe Gen3 SSD', '1× M.2 slot', 'AMD Radeon Graphics', 'None', 'Hi-Res Audio, 2×2W speakers', '39Wh', '319.9×223×19.35mm', '1.4kg', 'Wi-Fi 6E, Bluetooth 5.2', '1× USB-C Gen2 (PD), 1× USB-A Gen2, 2× USB-A 2.0, HDMI, Micro-SD, Combo audio', 'Chiclet', 'White backlit', 'Multi-touch precision', 'Classic Black'),
+(2, 8, 'Windows 11 Home', '14 inch', 0, '', '', 'IPS', '1920x1080', '60Hz', '', 'AMD Ryzen 5', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '', '', '3 cell, 39Whr', '', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có', '', '', 'Xam'),
+(3, 9, 'Windows 10 Home', '11.6 inch', 0, '', '', 'TN', '1366x768', '90Hz', '', 'Intel Celeron', '', 0, 0, 0.0, 0.0, '', 4, '', '', 0, 128, 'SSD', 'Không thể nâng cấp', 'GPU tích hợp', '', '', '2 Cell, 38 Wh', '', '1.13 Kg', 'Wi-Fi 5 Bluetooth 4.2', '1 x Type-A USB2.0\r\n1 x Type-A USB 3.2 (Gen 1)\r\n1 x Type-C USB 3.2 (Gen 1)', 'Không', '', '', 'Bạc'),
+(22, 63, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 5 7535HS', '', 0, 0, 0.0, 0.0, '', 8, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen'),
+(23, 64, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Intel Core i5-12500H', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '', '', '48Wh', '', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Xám'),
+(24, 65, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Intel Core i7-13620H', '', 0, 0, 0.0, 0.0, '', 8, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '', '', '48Wh', '', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Xám'),
+(25, 66, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 7 7435HS', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 2050 4GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen'),
+(26, 67, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 7 7435HS', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen'),
+(27, 68, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 7 7435HS', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen');
 
 -- --------------------------------------------------------
 
@@ -12470,7 +12487,8 @@ INSERT INTO `tbl_order` (`id_order`, `order_code`, `order_email`, `id_customer`,
 (59, '8wjGy', 'dactuong121@gmail.com', 18, 35, 80000, NULL, 113080000, 2, NULL, NULL, '2025-02-05 09:50:53', '2025-02-05 09:54:08'),
 (60, 'lUJSe', 'dactuong126@gmail.com', 18, 36, 120000, NULL, 20120000, 2, NULL, NULL, '2025-02-05 12:32:58', '2025-02-05 12:34:15'),
 (61, 'J7ctv', 'dactuong121@gmail.com', 18, 37, 80000, NULL, 48080000, 2, NULL, NULL, '2025-02-05 12:36:10', '2025-02-05 12:36:25'),
-(62, 'Vyxi7', 'dactuong126@gmail.com', 18, 38, 80000, NULL, 57080000, 1, NULL, NULL, '2025-02-23 09:17:50', '2025-02-23 09:17:50');
+(62, 'Vyxi7', 'dactuong126@gmail.com', 18, 38, 80000, NULL, 57080000, 1, NULL, NULL, '2025-02-23 09:17:50', '2025-02-23 09:17:50'),
+(63, 'USvT1', 'dactuong121@gmail.com', 18, 39, 90000, NULL, 95500, 1, NULL, NULL, '2025-06-24 10:42:39', '2025-06-24 10:42:39');
 
 -- --------------------------------------------------------
 
@@ -12485,6 +12503,13 @@ CREATE TABLE `tbl_order_detail` (
   `product_price` int(11) NOT NULL,
   `product_sale_quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_order_detail`
+--
+
+INSERT INTO `tbl_order_detail` (`id_order_detail`, `order_code`, `order_phone_id`, `product_price`, `product_sale_quantity`) VALUES
+(84, 'USvT1', 2, 5500, 1);
 
 -- --------------------------------------------------------
 
@@ -12574,7 +12599,7 @@ INSERT INTO `tbl_products` (`product_id`, `product_code`, `product_name`, `serie
 (2, 'P002', 'Samsung Galaxy S21 Ultra', '', NULL, 'samsung-galaxy-s21-ultra', 1, 2, '', 'Samsung Galaxy S21 Ultra', 5000, 6000, 5500, 10, '2025-06-10', 12, 0, 1, '12-256'),
 (3, 'P003', 'Redmi Note 13', '', NULL, 'redmi-note-13', 1, 3, '', 'Redmi_Note_13', 2000000, 2500000, 2400000, 100, '2024-09-09', 12, 0, 1, '8-128'),
 (4, 'P004', 'iPhone 14', NULL, NULL, 'iphone-14', 1, 1, '', 'iPhone 14', 2500000, 2500000, 54000, 10, '2025-06-10', 12, 0, 1, '8-128'),
-(7, 'LT001', 'Laptop MSI Modern 14 C7M- 221VN', 'Modern 14', NULL, 'laptop-msi-modern-14-c7m-221vn', 2, 25, '', 'C7M-221VN', 1000000, 14990000, 9990000, 10, '2024-02-11', 24, 0, 1, '8-512'),
+(7, 'LT001', 'Laptop MSI Modern 14 C7M- 221VN (R7-7730U/8GB/512GB/14\" FHD/Windows 11) - Chính hãng', 'Modern 14', NULL, 'laptop-msi-modern-14-c7m-221vn', 2, 25, '', 'C7M-221VN', 1000000, 14990000, 9990000, 10, '2024-02-11', 24, 0, 1, '8-512'),
 (8, 'LT002', 'Laptop MSI Modern 14 C7M-220VN', 'Modern 14', NULL, 'laptop-msi-modern-14-c7m-220vn', 2, 25, '', 'C7M‑220VN', 10000000, 14990000, 13000000, 10, NULL, 24, 0, 1, '16-512'),
 (9, 'LT003', 'Máy tính xách tay Asus E210MA-GJ353T', NULL, NULL, 'may-tinh-xach-tay-asus-e210ma-gj353t', 2, 12, '', 'E210MA-GJ353T', 6000000, 8990000, 7990000, 10, '2023-05-09', 24, 0, 1, '4-128'),
 (10, 'SW010', 'SmartWatch J10', NULL, NULL, 'smartwatch-j10', 3, 30, '', 'Model J10', 2100000, NULL, 2050000, 55, '2023-09-10', 12, 7, 1, '42mm'),
@@ -12712,7 +12737,8 @@ INSERT INTO `tbl_shipping_address` (`id_shipping`, `fullname`, `order_phone`, `m
 (35, 'Trần Tường', '0951231210', '14', '125', '4129', 'ohaihsihaid', NULL, NULL),
 (36, 'Trần Tường', '0951231210', '17', '150', '4858', 'ohaihsihaid', NULL, NULL),
 (37, 'Trần Tường', '0951231210', '15', '133', '4288', 'ohaihsihaid', NULL, NULL),
-(38, 'Trần Tường', '0951231214', '17', '151', '4897', '49 tân bình', NULL, NULL);
+(38, 'Trần Tường', '0951231214', '17', '151', '4897', '49 tân bình', NULL, NULL),
+(39, 'Trần Tường', '0951231214', '4', '42', '1294', '49 tân bình', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -12999,8 +13025,8 @@ ALTER TABLE `tbl_laptop_detail`
   ADD KEY `fk_laptop_detail_product_id` (`product_id`),
   ADD KEY `idx_laptop_ram` (`laptop_ram`),
   ADD KEY `idx_laptop_cpu` (`laptop_cpu`),
-  ADD KEY `idx_laptop_gpu` (`laptop_gpu`),
-  ADD KEY `idx_laptop_refresh_rate` (`laptop_refresh_rate`),
+  ADD KEY `idx_laptop_gpu` (`laptop_gpu_integrated`),
+  ADD KEY `idx_laptop_refresh_rate` (`laptop_display_refresh_rate`),
   ADD KEY `idx_laptop_storage` (`laptop_storage`);
 
 --
@@ -13185,13 +13211,13 @@ ALTER TABLE `tbl_laptop_detail`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_detail`
 --
 ALTER TABLE `tbl_order_detail`
-  MODIFY `id_order_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id_order_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_phone_detail`
@@ -13221,7 +13247,7 @@ ALTER TABLE `tbl_santisticals`
 -- AUTO_INCREMENT cho bảng `tbl_shipping_address`
 --
 ALTER TABLE `tbl_shipping_address`
-  MODIFY `id_shipping` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_shipping` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_smartwatch_detail`
