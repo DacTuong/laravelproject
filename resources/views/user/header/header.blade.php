@@ -2,15 +2,15 @@
     <div class="container-xl py-3">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <a href="{{URL::to('/')}}" class="header__logo-home">
+                <a href="{{ URL::to('/') }}" class="header__logo-home">
                     <img class="img-style" src="{{ URL::to('/user/image/logo.png') }}" alt="">
                 </a>
             </div>
             <!-- Phần tìm kiếm -->
             <div class="d-none d-lg-flex flex-grow-1 mx-4">
                 <div class="box__search">
-                    <form action="{{URL::to('/search')}}" method="POST">
-                        {{csrf_field()}}
+                    <form action="{{ URL::to('/search') }}" method="POST">
+                        {{ csrf_field() }}
                         <div class="box__search-input-warp">
                             <input type="text" class="box__search-input" name='keywords_search'
                                 placeholder="Nhập để tìm kiếm">
@@ -29,32 +29,32 @@
                 <div class="desktop-only customer">
                     <button class="user-customer"><i class="bi bi-person"></i>
                         @if (Session::get('id_customer'))
-                        {{Session::get('name_customer')}}
+                            {{ Session::get('name_customer') }}
                         @else
-                        Tài khoản
+                            Tài khoản
                         @endif
                     </button>
                     <ul class="customer__sub">
                         <li class="customer__sub-item">
                             @if (Session::get('id_customer'))
-                            <a href="{{ URL::to('/thong-tin-ca-nhan') }}" class="customer__sub-link">
-                                <i class="bi bi-person"></i>
-                                Thông tin khách hàng
-                            </a>
+                                <a href="{{ URL::to('/thong-tin-ca-nhan') }}" class="customer__sub-link">
+                                    <i class="bi bi-person"></i>
+                                    Thông tin khách hàng
+                                </a>
                             @else
-                            <a href="{{ URL::to('/login-index') }}" class="customer__sub-link"><i
-                                    class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+                                <a href="{{ URL::to('/login-index') }}" class="customer__sub-link"><i
+                                        class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
                             @endif
                         </li>
                         <li class="customer__sub-item">
                             @if (Session::get('id_customer'))
-                            <a href="{{ URL::to('/logout') }}" class="customer__sub-link">
-                                <i class="bi bi-box-arrow-in-left"></i>
-                                Đăng xuất
-                            </a>
+                                <a href="{{ URL::to('/logout') }}" class="customer__sub-link">
+                                    <i class="bi bi-box-arrow-in-left"></i>
+                                    Đăng xuất
+                                </a>
                             @else
-                            <a href="{{ URL::to('/register-index') }}" class="customer__sub-link"><i
-                                    class="bi bi-person-plus-fill"></i> Đăng ký</a>
+                                <a href="{{ URL::to('/register-index') }}" class="customer__sub-link"><i
+                                        class="bi bi-person-plus-fill"></i> Đăng ký</a>
                             @endif
                         </li>
                         <li class="customer__sub-item">
@@ -66,13 +66,14 @@
                                     class="bi bi-clock-history"></i> Lịch sử mua hàng</a>
                         </li>
                         <li class="customer__sub-item">
-                            <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu thích</a>
+                            <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu
+                                thích</a>
                         </li>
                     </ul>
                 </div>
                 <div class="cart-row desktop-only">
-                    <a class="cart-link" href="{{URL::to('/cart')}}">
-                        <!-- <img src="{{ URL::to('user/image/shopping-cart.png' ) }}" alt=""> -->
+                    <a class="cart-link" href="{{ URL::to('/cart') }}">
+                        <!-- <img src="{{ URL::to('user/image/shopping-cart.png') }}" alt=""> -->
                         <i class="bi bi-cart"></i>
                         <span class="quantity_cart" id="quantity-cart">
                         </span>
@@ -96,24 +97,24 @@
                     <ul class="customer__sub">
                         <li class="customer__sub-item">
                             @if (Session::get('id_customer'))
-                            <a href="{{ URL::to('/thong-tin-ca-nhan') }}" class="customer__sub-link">
-                                <i class="bi bi-person"></i>
-                                Thông tin khách hàng
-                            </a>
+                                <a href="{{ URL::to('/thong-tin-ca-nhan') }}" class="customer__sub-link">
+                                    <i class="bi bi-person"></i>
+                                    Thông tin khách hàng
+                                </a>
                             @else
-                            <a href="{{ URL::to('/login-index') }}" class="customer__sub-link"><i
-                                    class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+                                <a href="{{ URL::to('/login-index') }}" class="customer__sub-link"><i
+                                        class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
                             @endif
                         </li>
                         <li class="customer__sub-item">
                             @if (Session::get('id_customer'))
-                            <a href="{{ URL::to('/logout') }}" class="customer__sub-link">
-                                <i class="bi bi-box-arrow-in-left"></i>
-                                Đăng xuất
-                            </a>
+                                <a href="{{ URL::to('/logout') }}" class="customer__sub-link">
+                                    <i class="bi bi-box-arrow-in-left"></i>
+                                    Đăng xuất
+                                </a>
                             @else
-                            <a href="{{ URL::to('/register-index') }}" class="customer__sub-link"><i
-                                    class="bi bi-person-plus-fill"></i> Đăng ký</a>
+                                <a href="{{ URL::to('/register-index') }}" class="customer__sub-link"><i
+                                        class="bi bi-person-plus-fill"></i> Đăng ký</a>
                             @endif
                         </li>
                         <li class="customer__sub-item">
@@ -123,12 +124,13 @@
                             <a class="customer__sub-link" href="{{ URL::to('/history-order') }}">Lịch sử mua hàng</a>
                         </li>
                         <li class="customer__sub-item">
-                            <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu thích</a>
+                            <a href="" class="customer__sub-link"><i class="bi bi-heart"></i> Danh sách yêu
+                                thích</a>
                         </li>
                     </ul>
                 </div>
 
-                <a class="cart-toggle d-lg-none d-flex" href="{{URL::to('/cart')}}">
+                <a class="cart-toggle d-lg-none d-flex" href="{{ URL::to('/cart') }}">
                     <i class="bi bi-cart"></i>
                     <span class="quantity_cart">
                     </span>
@@ -141,10 +143,11 @@
 
     <div class="container-xl py-2 d-lg-none responsiveSearch" style="display:none;">
         <div class="box__search">
-            <form action="{{URL::to('/search')}}" method="POST">
-                {{csrf_field()}}
+            <form action="{{ URL::to('/search') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="box__search-input-warp">
-                    <input type="text" class="box__search-input" name='keywords_search' placeholder="Nhập để tìm kiếm">
+                    <input type="text" class="box__search-input" name='keywords_search'
+                        placeholder="Nhập để tìm kiếm">
                 </div>
                 <button class="box__search-btn" type="submit" name="search">
                     <i class="bi bi-search"></i>
@@ -160,17 +163,18 @@
                 <div class="container-fluid">
                     <div class="navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="{{URL::to('/')}}">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ URL::to('/') }}">Trang chủ</a></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="productDropdown" role="button">
+                                <a class="nav-link dropdown-toggle" href="#" id="productDropdown"
+                                    role="button" style="background-color: red;">
                                     Sản phẩm
                                 </a>
                                 <ul class="dropdown-menu" id="productDropdownMenu">
 
-                                    @foreach ($category as $cate_product )
-                                    <li><a class="dropdown-item"
-                                            href="{{ URL::to('/'. $cate_product->cate_slug) }}">{{ $cate_product->category_name }}</a>
-                                    </li>
+                                    @foreach ($category as $cate_product)
+                                        <li><a class="dropdown-item"
+                                                href="{{ URL::to('/' . $cate_product->cate_slug) }}">{{ $cate_product->category_name }}</a>
+                                        </li>
                                     @endforeach
 
                                 </ul>

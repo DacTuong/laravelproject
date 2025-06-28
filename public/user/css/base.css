@@ -18,7 +18,7 @@
 }
 
 html {
-    font-size: 100%;
+    font-size: 14px;
     /* line-height: 15px; */
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
@@ -49,9 +49,7 @@ html {
         transform: scale(var(--growth-to));
     }
 }
-body {
-    background: #e0e0e0;
-}
+
 /* button style */
 .btn-delete {
     padding: 4px 6px;
@@ -186,9 +184,3 @@ body {
 /* ====================Footer============= */
 
 /* MEDIA */
-
-/* @media (max-width: 768px) {
-    .box__search {
-        display: none;
-    }
-} */

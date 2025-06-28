@@ -966,14 +966,16 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 550px;
+    width: 570px;
     max-width: 90%;
-
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
+}
+.specifications-popup.show {
+    display: block;
 }
 .specifications-popup-header {
     display: flex;
@@ -1925,69 +1927,4 @@ tbody tr {
 /*==========================CHECK OUT=====================*/
 .footer {
     background-color: aqua;
-}
-
-/* MEDIA */
-
-@media (max-width: 991px) {
-    .header {
-        position: relative;
-    }
-    .nav-menu {
-        position: absolute;
-        right: 0;
-        z-index: 2;
-        width: 300px;
-        transition: transform 0.3s linear;
-        transform: translateX(calc(100% + 300px));
-    }
-    .nav-menu.show {
-        transform: translateX(0%);
-    }
-
-    .home-product {
-        position: relative;
-    }
-    .left-contaner {
-        position: absolute;
-        /* left: 0px; */
-        transform: translateX(calc(-100% - 12px));
-        z-index: 888;
-        transition: transform 0.3s linear;
-    }
-    .left-contaner.show {
-        /* display: block !important; */
-        transform: translateX(0%);
-    }
-
-    .customer {
-        padding: 0px 12px;
-    }
-
-    #navbarNav.show {
-        display: block !important;
-    }
-
-    .desktop-only {
-        display: none;
-    }
-
-    .responsiveSearch.show {
-        display: block !important;
-    }
-
-    .btns-slider {
-        display: none;
-    }
-
-    .slider:hover .btns-slider {
-        display: none;
-    }
-}
-
-@media (min-width: 991px) {
-    .dropdown:hover .dropdown-menu {
-        display: block;
-        margin-top: 0;
-    }
 }

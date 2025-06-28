@@ -170,7 +170,7 @@
         </div>
 
         <div class="block-content-product row">
-            <div class="col-sm-8">
+            <div class="col-sm-7">
                 <div class="block-review">
                     <h2>Đánh giá và nhận xét sản phẩm</h2>
                     <div class="boxReview-review">
@@ -358,7 +358,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 custom-class">
+            <div class="col-sm-5 custom-class">
                 <h2 class="tab-title">Thông số kỹ thuật</h2>
                 <div class="specifications">
                     <div class="specification-item">
@@ -424,7 +424,7 @@
                         </div>
                     </div>
                     <div class="specifications-container">
-                        <button class="specifications-btn" onclick="openSpecifications()"> Xem thêm</button>
+                        <button class="specifications-btn">Xem thêm</button>
                     </div>
                 </div>
 
@@ -435,7 +435,7 @@
     <div class="specifications-popup" id="specifications-popup">
         <div class="specifications-popup-header">
             <h6 class="tab-title">Thông số kỹ thuật</h6>
-            <button class="close-specifications" onclick="closeSpecifications()">X</button>
+            <button class="close-specifications">X</button>
         </div>
         <div class="specifications-popup-content">
 
@@ -480,7 +480,7 @@
                         <aside><strong>Xung nhịp cơ bản</strong></aside>
                         <aside>
                             <span>
-                                {{ $product->detail_laptop->laptop_cpu_base_clock }}
+                                {{ $product->detail_laptop->laptop_cpu_base_clock }}GHz
                             </span>
                         </aside>
                     </li>
@@ -488,7 +488,7 @@
                         <aside><strong>Xung nhịp tối đa</strong></aside>
                         <aside>
                             <span>
-                                {{ $product->detail_laptop->laptop_cpu_max_clock }}
+                                {{ $product->detail_laptop->laptop_cpu_max_clock }} GHz
                             </span>
                         </aside>
                     </li>
@@ -506,7 +506,7 @@
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>card đồ họa rời</strong></aside>
+                        <aside><strong>Card đồ họa rời</strong></aside>
                         <aside>
                             <span>
                                 {{ $product->detail_laptop->laptop_gpu_dedicated }}
@@ -583,52 +583,97 @@
             </div>
 
             <div class="box-specifi">
-                <a href="#" class="toggle-btn">Phần mềm</a>
+                <a href="#" class="toggle-btn">Bộ nhớ ram, Ổ cứng</a>
                 <ul class="text-specifi">
                     <li>
-                        <aside><strong>Hệ điều hành</strong></aside>
+                        <aside><strong>RAM</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->operating_system }}</span>
+                            <span>{{ $product->detail_laptop->laptop_ram }} GB</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Chip xữ lý (CPU)</strong></aside>
+                        <aside><strong>Loại RAM</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->cpu }}</span>
+                            <span>{{ $product->detail_laptop->laptop_ram_type }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Chip đồ họa (GPU)</strong></aside>
+                        <aside><strong>Tốc độ bus</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->gpu }}</span>
+                            <span>{{ $product->detail_laptop->laptop_ram_speed }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>ram</strong></aside>
+                        <aside><strong>Khả năng nâng cấp ram</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->ram }} GB</span>
+                            <span>{{ $product->detail_laptop->laptop_ram_upgrade_slots }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Bộ nhớ trong</strong></aside>
+                        <aside><strong>Ổ cứng mặc định</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->storage }} GB</span>
+                            <span>{{ $product->detail_laptop->laptop_storage }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Hỗ trợ thể nhớ</strong></aside>
+                        <aside><strong>Khả năng nâng cấp ổ cứng</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_expandable_storage }}</span>
+                        </aside>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="box-specifi">
+                <a href="#" class="toggle-btn">Bàn phím & Touchpad</a>
+                <ul class="text-specifi">
+                    <li>
+                        <aside><strong>bàn phím</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_keyboard_type }}</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Đèn nền bàn phím</strong></aside>
                         <aside>
                             <span>
-                                @if ($product->detail_laptop->expandable_storage == false)
-                                    Không hổ trợ thẻ nhớ
-                                @else
-                                    Có hổ trợ thẻ nhớ
-                                @endif
+                                {{ $product->detail_laptop->laptop_keyboard_backlight }}
+                            </span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Chuột/Touctpad</strong></aside>
+                        <aside>
+                            <span>
+                                {{ $product->detail_laptop->laptop_touchpad_type }}
                             </span>
                         </aside>
                     </li>
                 </ul>
             </div>
+
+            <div class="box-specifi">
+                <a href="#" class="toggle-btn">Cổng kết nối & tính năng mở rộng</a>
+                <ul class="text-specifi">
+                    <li>
+                        <aside><strong>Cổng kết nối</strong></aside>
+                        <aside>
+                            <span>{{ $product->detail_laptop->laptop_port_type }}</span>
+                        </aside>
+                    </li>
+                    <li>
+                        <aside><strong>Kết nối không dây</strong></aside>
+                        <aside>
+                            <span>
+                                {{ $product->detail_laptop->laptop_connectivity }}
+                            </span>
+                        </aside>
+                    </li>
+
+                </ul>
+            </div>
+
+
 
             <div class="box-specifi">
                 <a href="#" class="toggle-btn">Pin & sạc</a>
@@ -636,77 +681,34 @@
                     <li>
                         <aside><strong>Dung lượng pin</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->battery_capacity }} mAh</span>
+                            <span>{{ $product->detail_laptop->laptop_battery_capacity }} mAh</span>
                         </aside>
                     </li>
-                    <li>
-                        <aside><strong>Hỗ trợ sạc nhanh</strong></aside>
-                        <aside>
-                            <span>
-                                @if ($product->detail_laptop->fast_charging == true)
-                                    Có hỗ trợ sạc nhanh
-                                @else
-                                    Không hỗ trợ sạc nhanh
-                                @endif
-                            </span>
-                        </aside>
-                    </li>
-                    <li>
-                        <aside><strong>Sạc không dây</strong></aside>
-                        <aside>
-                            <span>
-                                @if ($product->detail_laptop->wireless_charging == true)
-                                    Có hỗ trợ sạc không dây
-                                @else
-                                    Không hỗ trợ sạc không dây
-                                @endif
-                            </span>
-                        </aside>
-                    </li>
+
                 </ul>
             </div>
 
             <div class="box-specifi">
-                <a href="#" class="toggle-btn">Tính năng</a>
+                <a href="#" class="toggle-btn">Kích thước & trọng lượng</a>
                 <ul class="text-specifi">
                     <li>
-                        <aside><strong>Chống nước</strong></aside>
+                        <aside><strong>Kích thước</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->water_resistance }}</span>
+                            <span>{{ $product->detail_laptop->laptop_dimensions }}</span>
                         </aside>
                     </li>
                     <li>
-                        <aside><strong>Bảo mật</strong></aside>
+                        <aside><strong>Trọng lượng</strong></aside>
                         <aside>
-                            <span>{{ $product->detail_laptop->biometrics }}</span>
+                            <span>{{ $product->detail_laptop->laptop_weight }}</span>
                         </aside>
                     </li>
+
                 </ul>
             </div>
 
-            <div class="box-specifi">
-                <a href="#" class="toggle-btn">Kết nối</a>
-                <ul class="text-specifi">
-                    <li>
-                        <aside><strong>Loại sim</strong></aside>
-                        <aside>
-                            <span>{{ $product->detail_laptop->sim_type }}</span>
-                        </aside>
-                    </li>
-                    <li>
-                        <aside><strong>Kết nối</strong></aside>
-                        <aside>
-                            <span>{{ $product->detail_laptop->connectivity }}</span>
-                        </aside>
-                    </li>
-                    <li>
-                        <aside><strong>Wifi</strong></aside>
-                        <aside>
-                            <span>{{ $product->detail_laptop->wifi_technology }}</span>
-                        </aside>
-                    </li>
-                </ul>
-            </div>
+
+
         </div>
     </div>
 @endsection

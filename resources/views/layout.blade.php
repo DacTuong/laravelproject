@@ -206,16 +206,7 @@ $name = Session::get('name_customer');
             window.location.href = url.toString();
         }
 
-        function openSpecifications() {
-            // Hiển thị overlay bằng cách thay đổi display thành block
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('specifications-popup').style.display = 'block';
-        }
 
-        function closeSpecifications() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('specifications-popup').style.display = 'none';
-        }
 
         // mở overlay và  review popup
         function openReviewPopup() {
@@ -342,7 +333,17 @@ $name = Session::get('name_customer');
             $(".overlay").addClass("show");
         })
 
+        $(document).on("click", ".specifications-btn", function(e) {
+            e.preventDefault();
+            $(".overlay").addClass("show");
+            $(".specifications-popup").addClass("show");
+        })
 
+        $(document).on("click", ".close-specifications", function(e) {
+            e.preventDefault();
+            $(".overlay").removeClass("show");
+            $(".specifications-popup").removeClass("show");
+        })
 
         $(document).on('click', '.close-model', function(e) {
             e.preventDefault();
@@ -353,20 +354,6 @@ $name = Session::get('name_customer');
             $(".reason_cancellation").hide();
         })
 
-
-
-
-        document.querySelectorAll('.option-version').forEach(item => {
-            item.addEventListener('click', function() {
-                let storageValue = this.getAttribute('data-value');
-                // alert(storageValue);
-                let url = new URL(window.location);
-                url.searchParams.delete('sku')
-                url.searchParams.set('storage', storageValue);
-                window.location.href = url.toString();
-                // Chuyển hướng trang với URL mới
-            });
-        });
 
         document.querySelectorAll('.brand').forEach(item => {
             item.addEventListener('click', function() {
@@ -493,7 +480,6 @@ $name = Session::get('name_customer');
             });
 
             $(document).on("click", ".filter-toggle", function() {
-                // alert('bạn đã click filter-toggle');
                 $(".left-contaner").toggleClass('show');
                 $(".overlay").toggleClass("show");
             });
@@ -501,9 +487,11 @@ $name = Session::get('name_customer');
             $(document).on("click", ".overlay", function() {
                 if ($(this).hasClass("show")) {
                     $(".left-contaner").removeClass('show');
+                    $(".specifications-popup").removeClass("show");
                     $(".nav-menu").removeClass('show');
                     $(this).removeClass("show");
                 }
+
 
             });
 
