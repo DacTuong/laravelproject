@@ -6,7 +6,7 @@
     </div>
 
     <div class="home-product">
-        <div class="left-contaner">
+        <div class="left-container">
             <div class="brand-relation">
                 <b>Thương hiệu</b>
                 <div class="slick-padding">
@@ -131,24 +131,31 @@
 
         <!-- start body content -->
         <div class="body-content">
-            <div class="sort">
-                <label for="">sắp xếp</label>
-                <select name="sort_by" id="sort_by" onchange="updateFilter('sort_by', this.value)">
-                    <option value="none" {{ request()->get('sort_by') == 'none' ? 'selected' : '' }}>--Sắp xếp--
-                    </option>
-                    <option value="tang_dan" {{ request()->get('sort_by') == 'tang_dan' ? 'selected' : '' }}>--
-                        Giá tăng
-                        dần--</option>
-                    <option value="giam_dan" {{ request()->get('sort_by') == 'giam_dan' ? 'selected' : '' }}>--
-                        Giá giảm
-                        dần--</option>
-                </select>
+            <div class="filter-tool">
+                <div class="btn-filter d-lg-none">
+                    <button class="filter-toggle">
+                        <i class="bi bi-filter-right"></i> Lọc
+                    </button>
+                </div>
+                <div>
+                    <label for="">sắp xếp</label>
+                    <select name="sort_by" id="sort_by" onchange="updateFilter('sort_by', this.value)">
+                        <option value="none" {{ request()->get('sort_by') == 'none' ? 'selected' : '' }}>--Sắp xếp--
+                        </option>
+                        <option value="tang_dan" {{ request()->get('sort_by') == 'tang_dan' ? 'selected' : '' }}>--
+                            Giá tăng
+                            dần--</option>
+                        <option value="giam_dan" {{ request()->get('sort_by') == 'giam_dan' ? 'selected' : '' }}>--
+                            Giá giảm
+                            dần--</option>
+                    </select>
+                </div>
             </div>
             <div class="row">
 
 
                 @foreach ($watches as $watch)
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-12" style="padding-bottom: 12px;">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="padding-bottom: 12px;">
                         <div class="product-content">
 
                             <!-- Link đến trang chi tiết sản phẩm -->

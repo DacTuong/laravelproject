@@ -56,6 +56,14 @@
     cursor: pointer;
 }
 
+.nav-menu {
+    /* Trạng thái mặc định: hiển thị và theo luồng bình thường trên màn hình lớn hơn */
+    position: static;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+    transition: transform 0.3s ease-out; /* Vẫn nên có để chuyển động mượt mà */
+}
 .box__search-btn-icon {
     font-size: 12px;
     color: var(--white-color);
@@ -1927,4 +1935,31 @@ tbody tr {
 /*==========================CHECK OUT=====================*/
 .footer {
     background-color: aqua;
+}
+@media (max-width: 576px) {
+    .header {
+        width: 100%;
+
+        background-color: red;
+    }
+    .nav-menu {
+        position: fixed;
+        right: 0;
+        top: 18px;
+        width: 280px; /* Điều chỉnh khi cần */
+        background-color: #f8f9fa; /* Hoặc màu nền menu mong muốn của bạn */
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1050; /* Đảm bảo nó nằm trên các nội dung khác */
+        overflow-y: auto; /* Cho phép cuộn nếu nội dung menu quá dài */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out; /* Thời gian trượt và kiểu hiệu ứng */
+    }
+
+    .nav-menu--visible {
+        transform: translateX(0); /* Đưa nó vào tầm nhìn */
+    }
+    .left-contaner {
+        position: fixed;
+        transform: translateX(-100%);
+    }
 }
