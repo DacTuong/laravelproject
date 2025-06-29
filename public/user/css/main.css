@@ -64,6 +64,12 @@
     box-shadow: none;
     transition: transform 0.3s ease-out; /* Vẫn nên có để chuyển động mượt mà */
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-menu li:hover {
+    background-color: #000;
+}
 .box__search-btn-icon {
     font-size: 12px;
     color: var(--white-color);
@@ -356,7 +362,7 @@
     background: #e0e0e0;
 }
 
-.left-contaner {
+.left-container {
     padding: 5px;
     min-width: 210px;
     max-width: 210px;
@@ -1958,8 +1964,25 @@ tbody tr {
     .nav-menu--visible {
         transform: translateX(0); /* Đưa nó vào tầm nhìn */
     }
-    .left-contaner {
+    .left-container {
         position: fixed;
-        transform: translateX(-100%);
+        transform: translateX(-300px);
+        top: 0;
+        z-index: 3;
+        transition: transform 0.3s ease-out; /* Thời gian trượt và kiểu hiệu ứng */
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .left-container.show {
+        transform: translateX(0);
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .responsiveSearch.show {
+        display: block !important;
     }
 }

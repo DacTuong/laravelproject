@@ -166,7 +166,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{ URL::to('/') }}">Trang chủ</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="productDropdown"
-                                    role="button" style="background-color: red;">
+                                    role="button">
                                     Sản phẩm
                                 </a>
                                 <ul class="dropdown-menu" id="productDropdownMenu">
