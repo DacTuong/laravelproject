@@ -2,6 +2,7 @@
 @section('content')
     <div class="breadcrumbs">
         <a class="breadcrumb-item" href="{{ URL::to('/') }}">Trang chủ </a>
+
         <a href="">Laptop</a>
     </div>
 
@@ -16,9 +17,9 @@
                     <div class="v5-brand-list">
                         @foreach ($relations as $brand_relate)
                             <div>
-                                <button class="brand" data-brand="{{ $brand_relate->brand->brand_name }}">
-                                    {{ $brand_relate->brand->brand_name }}
-                                </button>
+                                <a
+                                    href="{{ URL::to('/' . $brand_relate->cate->cate_slug . '/' . $brand_relate->brand->brand_slug) }}">
+                                    {{ $brand_relate->brand->brand_name }} </a>
                             </div>
                         @endforeach
                     </div>

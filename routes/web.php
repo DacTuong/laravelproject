@@ -197,7 +197,6 @@ Route::get('/count-with-star/{product_id}', [HomeController::class, 'count_with_
 Route::get('/filter-reviews-min', [HomeController::class, 'filter_reviews_min']);
 Route::get('/filter-reviews', [HomeController::class, 'filter_reviews']);
 
-// Route::get('/show-category/{name_slug}', [HomeController::class, 'show_category']);
 
 
 
@@ -211,5 +210,12 @@ Route::post('/change-password', [HomeController::class, 'change_password']);
 Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
 // Get page with name_slug
 
+
+
 Route::get('/{name_slug}', [HomeController::class, 'show_category'])->where('name_slug', '[a-z0-9-]+');
 Route::get('/{cate_slug}/{product_slug}', [HomeController::class, 'showProduct']);
+
+use App\Http\Controllers\CategoryBrandController;
+
+Route::get('/dien-thoai/{brand}', [CategoryBrandController::class, 'showCategoryBrandPhone']);
+Route::get('/laptop/{brand}', [CategoryBrandController::class, 'showCategoryBrandLaptop']);

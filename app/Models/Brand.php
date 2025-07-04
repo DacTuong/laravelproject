@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Brand extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['brand_name', 'category_pro_id ', 'brand_status'];
+    protected $fillable = ['brand_name', 'brand_slug',  'category_pro_id ', 'brand_status'];
     protected $primaryKey = 'brand_id';
     protected $table = 'tbl_brands';
 
