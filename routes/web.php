@@ -212,10 +212,9 @@ Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
 
 
 
-Route::get('/{name_slug}', [HomeController::class, 'show_category'])->where('name_slug', '[a-z0-9-]+');
-Route::get('/{cate_slug}/{product_slug}', [HomeController::class, 'showProduct']);
+Route::get('/dien-thoai', [HomeController::class, 'showPhones']);
+Route::get('/laptop', [HomeController::class, 'showLaptops']);
+Route::get('/dong-ho-thong-minh', [HomeController::class, 'showPhones']);
+Route::get('/tablet', [HomeController::class, 'showPhones']);
 
-use App\Http\Controllers\CategoryBrandController;
-
-Route::get('/dien-thoai/{brand}', [CategoryBrandController::class, 'showCategoryBrandPhone']);
-Route::get('/laptop/{brand}', [CategoryBrandController::class, 'showCategoryBrandLaptop']);
+Route::get('/{cate_slug}/{slug}', [HomeController::class, 'handleCategorySlug']);

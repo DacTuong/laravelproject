@@ -1,4 +1,4 @@
 @extends('layout')
 @section('content')
-    <h1>Dien thoai hang</h1>
+    <h1>Đồng hồ hãng</h1>
 @endsection

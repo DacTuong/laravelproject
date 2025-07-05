@@ -19,7 +19,8 @@
                             <div>
                                 <a
                                     href="{{ URL::to('/' . $brand_relate->cate->cate_slug . '/' . $brand_relate->brand->brand_slug) }}">
-                                    {{ $brand_relate->brand->brand_name }} </a>
+                                    {{ $brand_relate->brand->brand_name }}
+                                </a>
                             </div>
                         @endforeach
                     </div>
