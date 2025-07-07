@@ -34,17 +34,24 @@ class HomeController extends Controller
     protected $handleWatchFilter;
     protected $handleTabletFilter;
 
+    protected $handleLaptopFilterBrand;
+
     public function __construct(
         handleFilterPhoneController $handlePhoneFilter,
         handleFilterLaptopController $handleLaptopFilter,
         handleFilterWatchController $handleWatchFilter,
-        handleFilterTabletController  $handleTabletFilter
+        handleFilterTabletController  $handleTabletFilter,
+
+        handleFilterLaptopBrand $handleLaptopFilterBrand
+
 
     ) {
         $this->handlePhoneFilter = $handlePhoneFilter;
         $this->handleLaptopFilter = $handleLaptopFilter;
         $this->handleWatchFilter = $handleWatchFilter;
         $this->handleTabletFilter = $handleTabletFilter;
+
+        $this->handleLaptopFilterBrand = $handleLaptopFilterBrand;
     }
     public function index(Request $request)
     {
@@ -633,7 +640,7 @@ class HomeController extends Controller
                 case 'dien-thoai':
                     return $this->showPhoneBrand($request, $slug);
                 case 'laptop':
-                    return $this->showLaptopBrand($slug);
+                    return $this->showLaptopBrand($request, $cate_slug, $slug);
                 case 'tablet':
                     return $this->showTabletBrand($slug);
                 case 'dong-ho-thong-minh':
@@ -650,18 +657,44 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
+
         $list_product =  Product::with(['category', 'brand', 'detail_laptop'])
             ->where('cate_Slug', $slug)
             ->where('product_status', 1);
         $product = $list_product->paginate(20)->appends($request->query());
-        return view('user.category_brand.phone_brand', compact('category', 'banners', 'brands'));
+        return view(
+            'user.category_brand.phone_brand',
+            compact('category', 'banners', 'brands')
+        );
     }
-    public function showLaptopBrand($slug)
+    public function showLaptopBrand(Request $request, $cate_slug,  $slug)
     {
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
-        return view('user.category_brand.laptop_brand', compact('category', 'banners', 'brands'));
+        $cate = Category::where('cate_slug', $cate_slug)->first();
+        $cate_id = $cate->category_id;
+        $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
+
+        $GPUs = $this->handleLaptopFilterBrand->handleFilterLaptopGPUBrand($request,  $slug);
+        $CPUs = $this->handleLaptopFilterBrand->handleFilterLaptopCPUBrand($request, $slug);
+        $laptop_rams = $this->handleLaptopFilterBrand->handleFilterLaptopRamBrand($request,  $slug);
+        $laptop_storages = $this->handleLaptopFilterBrand->handleFilterLaptopStorageBrand($request,  $slug);
+        $laptop_refreshs = $this->handleLaptopFilterBrand->handleFilterLaptopRefreshBrand($request,  $slug);
+        return view(
+            'user.category_brand.laptop_brand',
+            compact(
+                'category',
+                'banners',
+                'brands',
+                'GPUs',
+                'CPUs',
+                'laptop_rams',
+                'laptop_storages',
+                'laptop_refreshs',
+                'relations'
+            )
+        );
     }
     public function showTabletBrand($slug)
     {
