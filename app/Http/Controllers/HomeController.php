@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 
-use App\Models\ActicleModel;
+
 use App\Models\BannerModel;
 use App\Models\ReviewModel;
 use Illuminate\Http\Request;
@@ -12,12 +12,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 use App\Models\Brand;
-use App\Models\CateActicleModel;
+
 use App\Models\Category;
 use App\Models\FavoriteModel;
 
 use App\Models\OrderProduct;
-use App\Models\PhoneDetailsModel;
+
 use App\Models\User;
 use App\Models\Product;
 use App\Models\RelationModel;
@@ -35,6 +35,7 @@ class HomeController extends Controller
     protected $handleTabletFilter;
 
     protected $handleLaptopFilterBrand;
+    protected $handlePhoneFilterBrand;
 
     public function __construct(
         handleFilterPhoneController $handlePhoneFilter,
@@ -42,7 +43,9 @@ class HomeController extends Controller
         handleFilterWatchController $handleWatchFilter,
         handleFilterTabletController  $handleTabletFilter,
 
-        handleFilterLaptopBrand $handleLaptopFilterBrand
+        handleFilterLaptopBrand $handleLaptopFilterBrand,
+        handleFilterPhoneBrand $handlePhoneFilterBrand,
+
 
 
     ) {
@@ -52,6 +55,7 @@ class HomeController extends Controller
         $this->handleTabletFilter = $handleTabletFilter;
 
         $this->handleLaptopFilterBrand = $handleLaptopFilterBrand;
+        $this->handlePhoneFilterBrand = $handlePhoneFilterBrand;
     }
     public function index(Request $request)
     {
@@ -638,11 +642,11 @@ class HomeController extends Controller
         if ($brand) {
             switch ($cate_slug) {
                 case 'dien-thoai':
-                    return $this->showPhoneBrand($request, $slug);
+                    return $this->showPhoneBrand($request, $cate_slug, $slug);
                 case 'laptop':
                     return $this->showLaptopBrand($request, $cate_slug, $slug);
                 case 'tablet':
-                    return $this->showTabletBrand($slug);
+                    return $this->showTabletBrand($request, $cate_slug, $slug);
                 case 'dong-ho-thong-minh':
                     return $this->showWatchBrand($slug);
                 default:
@@ -652,19 +656,34 @@ class HomeController extends Controller
         }
     }
 
-    public function showPhoneBrand(Request $request, $slug)
+    public function showPhoneBrand(Request $request, $cate_slug,  $slug)
     {
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
+        $cate = Category::where('cate_slug', $cate_slug)->first();
+        $cate_id = $cate->category_id;
+        $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
+        $storages = $this->handlePhoneFilterBrand->getStorageBrand($request, $slug);
+        $refresh_rates = $this->handlePhoneFilterBrand->getRefreshratesBrand($request, $slug);
+        $rams = $this->handlePhoneFilterBrand->getRamBrand($request, $slug);
+        $connectNFCs = $this->handlePhoneFilterBrand->getNFCListBrand($request, $slug);
 
-        $list_product =  Product::with(['category', 'brand', 'detail_laptop'])
-            ->where('cate_Slug', $slug)
-            ->where('product_status', 1);
-        $product = $list_product->paginate(20)->appends($request->query());
+        $phones = $this->handlePhoneFilterBrand->filterProductByBrand($request, $cate_slug, $slug);
         return view(
             'user.category_brand.phone_brand',
-            compact('category', 'banners', 'brands')
+            compact(
+                'category',
+                'banners',
+                'brands',
+                'relations',
+                'storages',
+                'refresh_rates',
+                'rams',
+                'connectNFCs',
+                'phones'
+
+            )
         );
     }
     public function showLaptopBrand(Request $request, $cate_slug,  $slug)
@@ -696,7 +715,7 @@ class HomeController extends Controller
             )
         );
     }
-    public function showTabletBrand($slug)
+    public function showTabletBrand(Request $request, $cate_slug,  $slug)
     {
         $category = Category::get();
         $banners = BannerModel::all();
