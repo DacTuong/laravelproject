@@ -214,7 +214,7 @@ Route::post('/change-avatar', [HomeController::class, 'change_avatar']);
 
 Route::get('/dien-thoai', [HomeController::class, 'showPhones']);
 Route::get('/laptop', [HomeController::class, 'showLaptops']);
-Route::get('/dong-ho-thong-minh', [HomeController::class, 'showPhones']);
-Route::get('/tablet', [HomeController::class, 'showPhones']);
+Route::get('/dong-ho-thong-minh', [HomeController::class, 'showWatches']);
+Route::get('/tablet', [HomeController::class, 'showTablets']);
 
 Route::get('/{cate_slug}/{slug}', [HomeController::class, 'handleCategorySlug']);

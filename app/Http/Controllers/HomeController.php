@@ -36,6 +36,7 @@ class HomeController extends Controller
 
     protected $handleLaptopFilterBrand;
     protected $handlePhoneFilterBrand;
+    protected $handleTalbetFilterBrand;
 
     public function __construct(
         handleFilterPhoneController $handlePhoneFilter,
@@ -45,7 +46,7 @@ class HomeController extends Controller
 
         handleFilterLaptopBrand $handleLaptopFilterBrand,
         handleFilterPhoneBrand $handlePhoneFilterBrand,
-
+        handleFilterTabletBrand $handleTalbetFilterBrand,
 
 
     ) {
@@ -56,6 +57,7 @@ class HomeController extends Controller
 
         $this->handleLaptopFilterBrand = $handleLaptopFilterBrand;
         $this->handlePhoneFilterBrand = $handlePhoneFilterBrand;
+        $this->handleTalbetFilterBrand = $handleTalbetFilterBrand;
     }
     public function index(Request $request)
     {
@@ -598,6 +600,8 @@ class HomeController extends Controller
         $tabletStorage = $this->handleTabletFilter->filterStorageTablet($request);
         $tabletScreenSize = $this->handleTabletFilter->filterScreenSizeTablet($request);
         $tabletRefreshRate = $this->handleTabletFilter->filterRefreshRateTablet($request);
+
+
         $product = $list_tablet->paginate(20)->appends($request->query());
         return view('user.category.show_tablets')
             ->with('tablets', $product)
@@ -610,11 +614,6 @@ class HomeController extends Controller
             ->with('relations', $relation)
         ;
     }
-
-
-
-
-
 
     public function handleCategorySlug(Request $request, $cate_slug, $slug)
     {
@@ -700,6 +699,8 @@ class HomeController extends Controller
         $laptop_rams = $this->handleLaptopFilterBrand->handleFilterLaptopRamBrand($request,  $slug);
         $laptop_storages = $this->handleLaptopFilterBrand->handleFilterLaptopStorageBrand($request,  $slug);
         $laptop_refreshs = $this->handleLaptopFilterBrand->handleFilterLaptopRefreshBrand($request,  $slug);
+
+
         return view(
             'user.category_brand.laptop_brand',
             compact(
@@ -720,7 +721,28 @@ class HomeController extends Controller
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
-        return view('user.category_brand.tablet_brand', compact('category', 'banners', 'brands'));
+        $cate = Category::where('cate_slug', $cate_slug)->first();
+        $cate_id = $cate->category_id;
+        $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
+        $tablet_storages = $this->handleTalbetFilterBrand->filterStorageTabletBrand($request, $slug);
+
+        $tablet_screensizes = $this->handleTalbetFilterBrand->filterScreenSizeTabletBrand($request, $slug);
+        $tablet_refreshs = $this->handleTalbetFilterBrand->filterRefreshRateTabletBrand($request, $slug);
+
+        $tablets = $this->handleTalbetFilterBrand->handleTabletByBrand($request, $cate_slug, $slug);
+        return view(
+            'user.category_brand.tablet_brand',
+            compact(
+                'category',
+                'banners',
+                'brands',
+                'relations',
+                'tablet_storages',
+                'tablet_screensizes',
+                'tablet_refreshs',
+                'tablets'
+            )
+        );
     }
     public function showWatchBrand($slug)
     {
