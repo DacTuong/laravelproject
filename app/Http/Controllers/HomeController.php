@@ -37,6 +37,7 @@ class HomeController extends Controller
     protected $handleLaptopFilterBrand;
     protected $handlePhoneFilterBrand;
     protected $handleTalbetFilterBrand;
+    protected $handleWatchFilterBrand;
 
     public function __construct(
         handleFilterPhoneController $handlePhoneFilter,
@@ -47,7 +48,7 @@ class HomeController extends Controller
         handleFilterLaptopBrand $handleLaptopFilterBrand,
         handleFilterPhoneBrand $handlePhoneFilterBrand,
         handleFilterTabletBrand $handleTalbetFilterBrand,
-
+        handleFilterWatchBrand $handleWatchFilterBrand
 
     ) {
         $this->handlePhoneFilter = $handlePhoneFilter;
@@ -58,6 +59,7 @@ class HomeController extends Controller
         $this->handleLaptopFilterBrand = $handleLaptopFilterBrand;
         $this->handlePhoneFilterBrand = $handlePhoneFilterBrand;
         $this->handleTalbetFilterBrand = $handleTalbetFilterBrand;
+        $this->handleWatchFilterBrand = $handleWatchFilterBrand;
     }
     public function index(Request $request)
     {
@@ -647,7 +649,7 @@ class HomeController extends Controller
                 case 'tablet':
                     return $this->showTabletBrand($request, $cate_slug, $slug);
                 case 'dong-ho-thong-minh':
-                    return $this->showWatchBrand($slug);
+                    return $this->showWatchBrand($request, $cate_slug, $slug);
                 default:
                     abort(404);
                     break;
@@ -744,12 +746,39 @@ class HomeController extends Controller
             )
         );
     }
-    public function showWatchBrand($slug)
+    public function showWatchBrand(Request $request, $cate_slug,  $slug)
     {
         $category = Category::get();
         $banners = BannerModel::all();
         $brands = Brand::all();
-        return view('user.category_brand.watch_brand');
+        $cate = Category::where('cate_slug', $cate_slug)->first();
+        $cate_id = $cate->category_id;
+        $currentBrand = Brand::where('brand_slug', $slug)->first();
+        $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
+
+        $screen_types = $this->handleWatchFilterBrand->handleFilterWatchScreenTypeBrand($request, $slug);
+        $face_designs = $this->handleWatchFilterBrand->handleFilterWatchFaceDesignBrand($request, $slug);
+        $wrist_sizes = $this->handleWatchFilterBrand->handleFilterWristSizeBrand($request, $slug);
+        $strap_materials = $this->handleWatchFilterBrand->handleFilterStrapMaterialBrand($request, $slug);
+
+        $watches = $this->handleWatchFilterBrand->filterWatchByRequestBrand($request, $cate_slug, $slug);
+        return view(
+            'user.category_brand.watch_brand',
+            compact(
+                'category',
+                'banners',
+                'brands',
+                'relations',
+                'screen_types',
+                'face_designs',
+                'wrist_sizes',
+                'strap_materials',
+                'watches',
+                'currentBrand',
+                'cate'
+
+            )
+        );
     }
 
     public function search(Request $request)
