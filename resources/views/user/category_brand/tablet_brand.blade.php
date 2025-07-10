@@ -1,8 +1,12 @@
 @extends('layout')
 @section('content')
     <div class="breadcrumbs">
-        <a class="breadcrumb-item" href="{{ URL::to('/') }}">Trang chủ </a>
-        <a href="">Tablets</a>
+        <a class="breadcrumb-item" href="{{ URL::to('/') }}">Trang chủ</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="{{ URL::to('/' . $cate->cate_slug) }}" class="breadcrumb-item"> {{ $cate->category_name }}</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="{{ URL::to('/' . $cate->cate_slug . '/' . $currentBrand->brand_slug) }}"
+            class="breadcrumb-item">{{ $currentBrand->brand_name }} </a>
     </div>
 
     <div class="home-product">

@@ -665,6 +665,7 @@ class HomeController extends Controller
         $cate = Category::where('cate_slug', $cate_slug)->first();
         $cate_id = $cate->category_id;
         $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
+        $currentBrand = Brand::where('brand_slug', $slug)->first();
         $storages = $this->handlePhoneFilterBrand->getStorageBrand($request, $slug);
         $refresh_rates = $this->handlePhoneFilterBrand->getRefreshratesBrand($request, $slug);
         $rams = $this->handlePhoneFilterBrand->getRamBrand($request, $slug);
@@ -682,7 +683,9 @@ class HomeController extends Controller
                 'refresh_rates',
                 'rams',
                 'connectNFCs',
-                'phones'
+                'phones',
+                'cate',
+                'currentBrand',
 
             )
         );
@@ -695,7 +698,7 @@ class HomeController extends Controller
         $cate = Category::where('cate_slug', $cate_slug)->first();
         $cate_id = $cate->category_id;
         $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
-
+        $currentBrand = Brand::where('brand_slug', $slug)->first();
         $GPUs = $this->handleLaptopFilterBrand->handleFilterLaptopGPUBrand($request,  $slug);
         $CPUs = $this->handleLaptopFilterBrand->handleFilterLaptopCPUBrand($request, $slug);
         $laptop_rams = $this->handleLaptopFilterBrand->handleFilterLaptopRamBrand($request,  $slug);
@@ -714,7 +717,9 @@ class HomeController extends Controller
                 'laptop_rams',
                 'laptop_storages',
                 'laptop_refreshs',
-                'relations'
+                'relations',
+                'cate',
+                'currentBrand',
             )
         );
     }
@@ -726,6 +731,7 @@ class HomeController extends Controller
         $cate = Category::where('cate_slug', $cate_slug)->first();
         $cate_id = $cate->category_id;
         $relations = RelationModel::with('brand', 'cate')->where('id_cate', $cate_id)->get();
+        $currentBrand = Brand::where('brand_slug', $slug)->first();
         $tablet_storages = $this->handleTalbetFilterBrand->filterStorageTabletBrand($request, $slug);
 
         $tablet_screensizes = $this->handleTalbetFilterBrand->filterScreenSizeTabletBrand($request, $slug);
@@ -742,7 +748,10 @@ class HomeController extends Controller
                 'tablet_storages',
                 'tablet_screensizes',
                 'tablet_refreshs',
-                'tablets'
+                'tablets',
+                'cate',
+                'currentBrand',
+
             )
         );
     }
