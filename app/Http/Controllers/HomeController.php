@@ -468,6 +468,7 @@ class HomeController extends Controller
             ->with('banners', $banners)
             ->with('category', $category)
             ->with('relations', $relation)
+            ->with('currentPath', $cate)
         ;
     }
 
@@ -539,6 +540,7 @@ class HomeController extends Controller
             ->with('category', $category)
             ->with('laptops', $products)
             ->with('relations', $relation)
+            ->with('currentPath', $cate)
         ;
     }
 
@@ -576,6 +578,7 @@ class HomeController extends Controller
             ->with('banners', $banners)
             ->with('category', $category)
             ->with('relations', $relation)
+            ->with('currentPath', $cate)
         ;
     }
 
@@ -609,6 +612,7 @@ class HomeController extends Controller
             ->with('tablet_refreshs',  $tabletRefreshRate)
             ->with('category', $category)
             ->with('relations', $relation)
+            ->with('currentPath', $cate)
         ;
     }
 

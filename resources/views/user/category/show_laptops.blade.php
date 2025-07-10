@@ -2,8 +2,8 @@
 @section('content')
     <div class="breadcrumbs">
         <a class="breadcrumb-item" href="{{ URL::to('/') }}">Trang chủ </a>
-
-        <a href="">Laptop</a>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="{{ URL::to('/' . $currentPath->cate_slug) }}" class="breadcrumb-item"> {{ $currentPath->category_name }}</a>
     </div>
 
     <div class="home-product">
