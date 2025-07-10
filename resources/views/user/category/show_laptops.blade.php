@@ -47,7 +47,7 @@
                         <input type="checkbox" name="filter_laptop_ram" value="{{ $laptop_ram->laptop_ram }}"
                             {{ in_array($laptop_ram->laptop_ram, explode(',', request()->get('filter_laptop_ram', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_laptop_ram', this)">
-                        {{ $laptop_ram->laptop_ram }}
+                        {{ $laptop_ram->laptop_ram }}GB
                     </label><br>
                 @endforeach
             </div>
