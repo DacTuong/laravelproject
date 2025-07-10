@@ -489,12 +489,7 @@ class HomeController extends Controller
             ->where('categories_product_id', $cate_id)
             ->where('product_status', 1);
 
-        //  Filter Laptop by brand request 
-        if ($request->filled('brand')) {
-            $brandNameFilter = $request->input('brand');
-            $getIDBrand = Brand::where('brand_name', $brandNameFilter)->value('brand_id');
-            $list_laptop->where('brand_product_id', $getIDBrand);
-        }
+
 
 
         if ($request->filled('filter_laptop_gpu')) {
@@ -704,7 +699,7 @@ class HomeController extends Controller
         $laptop_rams = $this->handleLaptopFilterBrand->handleFilterLaptopRamBrand($request,  $slug);
         $laptop_storages = $this->handleLaptopFilterBrand->handleFilterLaptopStorageBrand($request,  $slug);
         $laptop_refreshs = $this->handleLaptopFilterBrand->handleFilterLaptopRefreshBrand($request,  $slug);
-
+        $laptops = $this->handleLaptopFilterBrand->handleFilterLaptopByRequestBrand($request,  $cate_slug, $slug);
 
         return view(
             'user.category_brand.laptop_brand',
@@ -718,6 +713,7 @@ class HomeController extends Controller
                 'laptop_storages',
                 'laptop_refreshs',
                 'relations',
+                'laptops',
                 'cate',
                 'currentBrand',
             )

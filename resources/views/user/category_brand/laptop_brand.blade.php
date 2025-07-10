@@ -165,7 +165,72 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($laptops as $laptop)
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" style="padding-bottom: 12px;">
+                        <div class="product-content">
 
+                            <!-- Link đến trang chi tiết sản phẩm -->
+                            <a class="link-product"
+                                href="{{ URL::to('/' . $laptop->category->cate_slug . '/' . $laptop->product_name_slug) }}">
+                                <div class="thumbnail-product-img">
+                                    <img class="home-product-img"
+                                        src="{{ URL::to('uploads/product/' . $laptop->product_image) }}" alt="" />
+                                </div>
+                                <h5 class="productinfo__name">{{ $laptop->product_name }}</h5>
+                                <div class=" productinfo__price">
+                                    @if ($laptop->old_price > 0)
+                                        <span class="productinfo__price-old">
+                                            {{ number_format($laptop->old_price, 0, ',', '.') }}đ
+                                        </span>
+                                    @endif
+
+                                    <span class="productinfo__price-current">
+                                        {{ number_format($laptop->sale_price, 0, ',', '.') }}đ
+                                    </span>
+
+                                </div>
+                                <div class=" productinfo__origin">
+                                    <span class="productinfo__origin-brand">{{ $laptop->brand_name }}</span>
+                                </div>
+                            </a>
+
+                            @if ($laptop->old_price > 0)
+                                <div class="product__price--percent">
+                                    <p class="product__price--percent-detail">
+                                        @php
+                                            $percent_discount =
+                                                (($laptop->old_price - $laptop->sale_price) / $laptop->old_price) * 100;
+                                            echo ceil($percent_discount) . '%';
+                                        @endphp
+                                    </p>
+                                </div>
+                            @endif
+                            <!-- Nút thêm vào giỏ hàng -->
+                            <form>
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete>
+                                <!-- Input ẩn để lưu trữ thông tin sản phẩm -->
+                                <input type="hidden" value="{{ $laptop->product_id }}"
+                                    class="product_id_{{ $laptop->product_id }}">
+                                <input type="hidden" value="{{ $laptop->product_name }}"
+                                    class="product_name_{{ $laptop->product_id }}">
+                                <input type="hidden" value="{{ $laptop->product_image }}"
+                                    class="product_image_{{ $laptop->product_id }}">
+                                <input type="hidden" value="{{ $laptop->sale_price }}"
+                                    class="product_price_{{ $laptop->product_id }}">
+                                <input type="hidden" value="{{ $laptop->color }}"
+                                    class="product_color_{{ $laptop->product_id }}">
+                                <input type="hidden" value="1" class="cart_product_qty_{{ $laptop->product_id }}">
+                                <div class="action-buttons">
+                                    <button type="button" class="add-to-cart"
+                                        data-id_product="{{ $laptop->product_id }}" name="add-to-cart">
+                                        <img class="btn-cart" src="{{ URL::to('user/image/cart-btn.png') }}"
+                                            alt="">
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
