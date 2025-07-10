@@ -39,7 +39,7 @@
                         <input type="checkbox" name="filter_tablet_storage" value="{{ $tablet_storage->tablet_storage }}"
                             {{ in_array($tablet_storage->tablet_storage, explode(',', request()->get('filter_tablet_storage', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_tablet_storage', this)">
-                        {{ $tablet_storage->tablet_storage }}
+                        {{ $tablet_storage->tablet_storage }}GB
                     </label><br>
                 @endforeach
 

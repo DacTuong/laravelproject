@@ -49,7 +49,7 @@
                         <input type="checkbox" name="filter_laptop_ram" value="{{ $laptop_ram->laptop_ram }}"
                             {{ in_array($laptop_ram->laptop_ram, explode(',', request()->get('filter_laptop_ram', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_laptop_ram', this)">
-                        {{ $laptop_ram->laptop_ram }}
+                        {{ $laptop_ram->laptop_ram }}GB
                     </label><br>
                 @endforeach
             </div>
@@ -62,7 +62,7 @@
                         <input type="checkbox" name="filter_laptop_storage" value="{{ $laptop_storage->laptop_storage }}"
                             {{ in_array($laptop_storage->laptop_storage, explode(',', request()->get('filter_laptop_storage', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_laptop_storage', this)">
-                        {{ $laptop_storage->laptop_storage }}
+                        {{ $laptop_storage->laptop_storage }}GB
                     </label><br>
                 @endforeach
             </div>

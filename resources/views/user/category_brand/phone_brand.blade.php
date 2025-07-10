@@ -43,7 +43,7 @@
                         <input type="checkbox" name="filter_mobile_storage" value="{{ $sto->storage }}"
                             {{ in_array($sto->storage, explode(',', request()->get('filter_mobile_storage', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_mobile_storage', this)">
-                        {{ $sto->storage }} GB
+                        {{ $sto->storage }}GB
                     </label><br>
                 @endforeach
 
@@ -59,7 +59,7 @@
                         <input type="checkbox" name="filter_refresh_rates" value="{{ $refresh->refresh_rate }}"
                             {{ in_array($refresh->refresh_rate, explode(',', request()->get('filter_refresh_rates', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_refresh_rates', this)">
-                        {{ $refresh->refresh_rate }}
+                        {{ $refresh->refresh_rate }}Hz
                     </label><br>
                 @endforeach
 
@@ -73,7 +73,7 @@
                         <input type="checkbox" name="filter_ram" value="{{ $ram->ram }}"
                             {{ in_array($ram->ram, explode(',', request()->get('filter_ram', ''))) ? 'checked' : '' }}
                             onchange="updateCheckboxFilter('filter_ram', this)">
-                        {{ $ram->ram }}
+                        {{ $ram->ram }}GB
                     </label><br>
                 @endforeach
 
