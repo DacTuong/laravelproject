@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 26, 2025 lúc 12:41 PM
+-- Thời gian đã tạo: Th7 11, 2025 lúc 10:58 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -12148,6 +12148,7 @@ CREATE TABLE `tbl_banner` (
 CREATE TABLE `tbl_brands` (
   `brand_id` int(10) UNSIGNED NOT NULL,
   `brand_name` varchar(255) NOT NULL,
+  `brand_slug` varchar(50) DEFAULT NULL,
   `brand_status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -12157,37 +12158,37 @@ CREATE TABLE `tbl_brands` (
 -- Đang đổ dữ liệu cho bảng `tbl_brands`
 --
 
-INSERT INTO `tbl_brands` (`brand_id`, `brand_name`, `brand_status`, `created_at`, `updated_at`) VALUES
-(1, 'Apple', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(2, 'Samsung', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(3, 'Xiaomi', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(4, 'Oppo', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(5, 'Vivo', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(6, 'Realme', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(7, 'Huawei', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(8, 'OnePlus', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(9, 'Nokia', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(10, 'Sony', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(11, 'Google', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(12, 'Asus', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(13, 'Motorola', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(14, 'Lenovo', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(15, 'Honor', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(16, 'ZTE', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(17, 'Meizu', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(18, 'TCL', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(19, 'Alcatel', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(20, 'Fairphone', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
-(22, 'Dell', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(23, 'HP', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(24, 'Acer', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(25, 'MSI', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(26, 'Gigabyte', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(27, 'Razer', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(28, 'Microsoft', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(29, 'Garmin', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(30, 'Fitbit', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
-(31, 'Amazfit', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51');
+INSERT INTO `tbl_brands` (`brand_id`, `brand_name`, `brand_slug`, `brand_status`, `created_at`, `updated_at`) VALUES
+(1, 'Apple', 'apple', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(2, 'Samsung', 'samsung', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(3, 'Xiaomi', 'xiaomi', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(4, 'Oppo', 'oppo', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(5, 'Vivo', 'vivo', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(6, 'Realme', 'realme', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(7, 'Huawei', 'huawei', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(8, 'OnePlus', 'oneplus', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(9, 'Nokia', 'nokia', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(10, 'Sony', 'sony', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(11, 'Google', 'google', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(12, 'Asus', 'asus', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(13, 'Motorola', 'motorola', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(14, 'Lenovo', 'lenovo', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(15, 'Honor', 'honor', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(16, 'ZTE', 'zte', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(17, 'Meizu', 'meizu', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(18, 'TCL', 'tcl', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(19, 'Alcatel', 'alcatel', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(20, 'Fairphone', 'fairphone', 1, '2024-10-28 14:45:37', '2024-10-28 14:45:37'),
+(22, 'Dell', 'dell', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(23, 'HP', 'hp', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(24, 'Acer', 'acer', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(25, 'MSI', 'msi', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(26, 'Gigabyte', 'gigabyte', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(27, 'Razer', 'razer', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(28, 'Microsoft', 'microsoft', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(29, 'Garmin', 'garmin', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(30, 'Fitbit', 'fitbit', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51'),
+(31, 'Amazfit', 'amazfit', 1, '2025-06-08 08:34:51', '2025-06-08 08:34:51');
 
 -- --------------------------------------------------------
 
@@ -12421,14 +12422,14 @@ CREATE TABLE `tbl_laptop_detail` (
 
 INSERT INTO `tbl_laptop_detail` (`id_laptop_detail`, `product_id`, `laptop_operating_system`, `laptop_display_size`, `laptop_display_quantity`, `laptop_display_panel_type`, `laptop_display_touch_support`, `laptop_display_type`, `laptop_display_resolution`, `laptop_display_refresh_rate`, `laptop_display_technology`, `laptop_cpu`, `laptop_cpu_model`, `laptop_cpu_core`, `laptop_cpu_threads`, `laptop_cpu_base_clock`, `laptop_cpu_max_clock`, `laptop_cpu_cache`, `laptop_ram`, `laptop_ram_type`, `laptop_ram_speed`, `laptop_ram_upgrade_slots`, `laptop_storage`, `laptop_storage_type`, `laptop_expandable_storage`, `laptop_gpu_integrated`, `laptop_gpu_dedicated`, `laptop_audio_technology`, `laptop_battery_capacity`, `laptop_dimensions`, `laptop_weight`, `laptop_connectivity`, `laptop_port_type`, `laptop_keyboard_type`, `laptop_keyboard_backlight`, `laptop_touchpad_type`, `laptop_color`) VALUES
 (1, 7, 'Windows 11 Home', '14 inch', 1, 'IPS-Level', 'No', 'IPS-Level Matte', '1920x1080', '60Hz', '45% NTSC, Thin Bezel, 65% sRGB', 'AMD Ryzen 7 7730U', 'Ryzen 7 7730U', 8, 16, 2.0, 4.5, '16MB', 8, 'DDR4', '3200MHz', 0, 512, 'NVMe PCIe Gen3 SSD', '1× M.2 slot', 'AMD Radeon Graphics', 'None', 'Hi-Res Audio, 2×2W speakers', '39Wh', '319.9×223×19.35mm', '1.4kg', 'Wi-Fi 6E, Bluetooth 5.2', '1× USB-C Gen2 (PD), 1× USB-A Gen2, 2× USB-A 2.0, HDMI, Micro-SD, Combo audio', 'Chiclet', 'White backlit', 'Multi-touch precision', 'Classic Black'),
-(2, 8, 'Windows 11 Home', '14 inch', 0, '', '', 'IPS', '1920x1080', '60Hz', '', 'AMD Ryzen 5', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'SSD', 'Không thể nâng cấp', 'AMD Radeon Graphics', '', '', '3 cell, 39Whr', '', '1.4kg', 'Wi-Fi 6 Bluetooth v5.2', '1x Type-C USB3.2 Gen2 with PD charging\r\n1x Type-A USB3.2 Gen2\r\n1x (4K @ 30Hz) HDMI\r\n1x Micro SD Card Reader\r\n2x Type-A USB2.0\r\n1x Mic-in/ Headphone-out combo jack', 'Không có', '', '', 'Xam'),
-(3, 9, 'Windows 10 Home', '11.6 inch', 0, '', '', 'TN', '1366x768', '90Hz', '', 'Intel Celeron', '', 0, 0, 0.0, 0.0, '', 4, '', '', 0, 128, 'SSD', 'Không thể nâng cấp', 'GPU tích hợp', '', '', '2 Cell, 38 Wh', '', '1.13 Kg', 'Wi-Fi 5 Bluetooth 4.2', '1 x Type-A USB2.0\r\n1 x Type-A USB 3.2 (Gen 1)\r\n1 x Type-C USB 3.2 (Gen 1)', 'Không', '', '', 'Bạc'),
-(22, 63, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 5 7535HS', '', 0, 0, 0.0, 0.0, '', 8, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen'),
-(23, 64, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Intel Core i5-12500H', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '', '', '48Wh', '', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Xám'),
-(24, 65, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Intel Core i7-13620H', '', 0, 0, 0.0, 0.0, '', 8, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '', '', '48Wh', '', '2.2kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Xám'),
-(25, 66, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 7 7435HS', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 2050 4GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen'),
-(26, 67, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 7 7435HS', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 4050 6GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen'),
-(27, 68, 'Windows 11', '15.6\"', 0, '', '', 'IPS', '1920x1080', '144Hz', '', 'Ryzen 7 7435HS', '', 0, 0, 0.0, 0.0, '', 16, '', '', 0, 512, 'PCIe SSD', 'Có', 'RTX 3050 4GB', '', '', '48Wh', '', '2.3kg', 'Wi-Fi 6, Bluetooth 5.2', 'USB Type-C, HDMI, USB-A', 'Không', '', '', 'Đen');
+(2, 8, 'Windows 11 Home', '14 inch', 1, 'IPS-Level', 'No', 'Matte', '1920x1080', '60Hz', 'IPS Panel', 'AMD Ryzen 5 7530U', 'Ryzen 5 7530U', 6, 12, 2.0, 4.5, '16MB', 8, 'DDR4', '3200MHz', 0, 512, 'NVMe PCIe Gen3 SSD', '1× M.2 slot', 'AMD Radeon Graphics', 'None', '2×2W speakers', '39Wh', '359×241×19.9mm', '1.4kg', 'Wi-Fi 6, Bluetooth 5.2', '1× USB‑C 3.2 Gen2 PD, 1× USB‑A 3.2 Gen2, 2× USB‑A 2.0, HDMI 2.1, Micro‑SD, Combo audio', 'Chiclet', 'White backlit', 'Multi-touch precision', 'Classic Black'),
+(3, 9, 'Windows 10 Home', '11.6 inch', 1, 'IPS', 'No', 'Anti-Glare', '1366x768', '60Hz', 'LED Backlit', 'Intel Celeron N4020', 'Celeron N4020', 2, 2, 1.1, 2.8, '4MB', 4, 'DDR4', '2400MHz', 0, 128, 'eMMC SSD', '1× M.2 slot', 'Intel UHD Graphics 600', 'None', '2×2W speakers', '38Wh', '279.1×191.2×16.9mm', '1.13kg', 'Wi-Fi 5 (802.11ac), Bluetooth 4.2', '1× USB 2.0, 1× USB 3.2 Gen1, 1× USB-C 3.2 Gen1, HDMI 1.4, Combo audio', 'Chiclet', 'None', 'Multi-touch precision', 'Peacock Blue'),
+(22, 63, 'Windows 11 Home', '15.6 inch', 1, 'IPS-Level', 'No', 'Anti-Glare', '1920x1080', '144Hz', 'IPS Panel', 'AMD Ryzen 5 7535HS', 'Ryzen 5 7535HS', 6, 12, 3.3, 4.6, '19MB', 8, 'DDR5', '4800MHz', 1, 512, 'NVMe PCIe Gen4 SSD', '1× M.2 slot', 'AMD Radeon Graphics', 'NVIDIA GeForce RTX 3050 4GB', '2×2W speakers, DTS, AI mic noise cancellation', '48Wh', '359.8 x 256 x 22.8 mm', '2.3 kg', 'Wi-Fi 6, Bluetooth 5.2', '1× USB-C 3.2 Gen2 (DP), 3× USB-A 3.2 Gen1, HDMI 2.1, RJ45 LAN, Combo audio', 'Chiclet', 'RGB backlit', 'Multi-touch precision', 'Graphite Black'),
+(23, 64, 'Windows 11 Home', '15.6 inch', 1, 'IPS-Level', 'No', 'Anti-Glare', '1920x1080', '144Hz', 'IPS Panel', 'Intel Core i5-12500H', 'Core i5-12500H', 12, 12, 2.5, 4.5, '18MB', 16, 'DDR4', '3200MHz', 2, 512, 'NVMe PCIe 3.0 SSD', '1× M.2 slot', 'Intel UHD Graphics', 'NVIDIA GeForce RTX 3050 4GB', '2×2W speakers, DTS', '48Wh', '354 x 251 x 22.4 mm', '2.20 kg', 'Wi‑Fi 6, Bluetooth 5.2', '1× USB-C 3.2 Gen2 (DP), 2× USB-A 3.2 Gen1, 1× USB-A 2.0, HDMI 2.0b, RJ45 LAN, Combo audio, 1× Thunderbolt 4', 'Chiclet', 'RGB backlit', 'Multi-touch precision', 'Mecha Gray'),
+(24, 65, 'Windows 11 Home', '15.6 inch', 1, 'IPS-Level', 'No', 'Anti-Glare', '1920x1080', '144Hz', 'IPS Panel', 'Intel Core i7-13620H', 'Core i7-13620H', 10, 16, 2.4, 4.9, '24MB', 8, 'DDR5', '4800MHz', 2, 512, 'NVMe PCIe 4.0 SSD', '1× M.2 slot', 'Intel UHD Graphics', 'NVIDIA GeForce RTX 4050 6GB', '2×2W speakers, Dolby Atmos, AI mic noise-cancel', '90Wh', '354 x 251 x 22.4–24.9 mm', '2.20 kg', 'Wi‑Fi 6, Bluetooth 5.2', '1× USB-C Gen2 (DP/PD, Thunderbolt 4), 1× USB-C Gen2, 2× USB-A 3.2 Gen1, 1× USB-A 2.0, HDMI 2.1, RJ45 LAN, Combo audio', 'Chiclet', 'RGB backlit', 'Multi-touch precision', 'Mecha Gray'),
+(25, 66, 'Windows 11 Home', '15.6 inch', 1, 'IPS-Level', 'No', 'Anti-Glare', '1920x1080', '144Hz', 'IPS Panel', 'AMD Ryzen 7 7435HS', 'Ryzen 7 7435HS', 8, 16, 3.1, 4.5, '20MB', 16, 'DDR5', '5600MHz', 2, 512, 'NVMe PCIe 4.0 SSD', '1× M.2 slot', 'N/A', 'NVIDIA GeForce RTX 2050 4GB', '2×2W speakers, DTS, AI noise-cancel', '48Wh', '359 x 256 x 22.8–24.9 mm', '2.30 kg', 'Wi-Fi 6, Bluetooth 5.3', '1× USB-C 3.2 Gen2 (DP), 3× USB-A 3.2 Gen1, HDMI 2.1, RJ45 LAN, Combo audio', 'Chiclet', 'RGB backlit', 'Multi-touch precision', 'Graphite Black'),
+(26, 67, 'Windows 11 Home', '15.6 inch', 1, 'IPS-Level', 'No', 'Anti-Glare', '1920x1080', '144Hz', 'IPS Panel', 'AMD Ryzen 7 7435HS', 'Ryzen 7 7435HS', 8, 16, 3.1, 4.5, '20MB', 16, 'DDR5', '4800MHz', 2, 512, 'NVMe PCIe 4.0 SSD', '1× M.2 slot', 'None', 'NVIDIA GeForce RTX 4050 6GB', '2×2W speakers, Dolby Atmos, AI noise-cancel', '90Wh', '354 x 251 x 22.4–24.9 mm', '2.20 kg', 'Wi‑Fi 6, Bluetooth 5.2', '1× USB-C 3.2 Gen2 (DP/PD, Thunderbolt 4), 1× USB-C Gen2, 2× USB-A 3.2 Gen1, 1× USB-A 2.0, HDMI 2.1, RJ45 LAN, Combo audio', 'Chiclet', 'RGB backlit', 'Multi-touch precision', 'Mecha Gray'),
+(27, 68, 'Windows 11 Home', '15.6 inch', 1, 'IPS-Level', 'No', 'Anti-Glare', '1920x1080', '144Hz', 'IPS Panel', 'AMD Ryzen 7 7435HS', 'Ryzen 7 7435HS', 8, 16, 3.1, 4.5, '20MB', 16, 'DDR5', '5600MHz', 2, 512, 'NVMe PCIe 4.0 SSD', '1× M.2 slot', 'None', 'NVIDIA GeForce RTX 3050 4GB', '2×2W speakers, DTS, AI noise-cancel', '48Wh', '359 x 256 x 24.5 mm', '2.30 kg', 'Wi‑Fi 6, Bluetooth 5.3', '1× USB-C 3.2 Gen2 (DP), 3× USB-A 3.2 Gen1, HDMI 2.1, RJ45 LAN, Combo audio', 'Chiclet', 'RGB backlit', 'Multi-touch precision', 'Graphite Black');
 
 -- --------------------------------------------------------
 
@@ -12488,7 +12489,8 @@ INSERT INTO `tbl_order` (`id_order`, `order_code`, `order_email`, `id_customer`,
 (60, 'lUJSe', 'dactuong126@gmail.com', 18, 36, 120000, NULL, 20120000, 2, NULL, NULL, '2025-02-05 12:32:58', '2025-02-05 12:34:15'),
 (61, 'J7ctv', 'dactuong121@gmail.com', 18, 37, 80000, NULL, 48080000, 2, NULL, NULL, '2025-02-05 12:36:10', '2025-02-05 12:36:25'),
 (62, 'Vyxi7', 'dactuong126@gmail.com', 18, 38, 80000, NULL, 57080000, 1, NULL, NULL, '2025-02-23 09:17:50', '2025-02-23 09:17:50'),
-(63, 'USvT1', 'dactuong121@gmail.com', 18, 39, 90000, NULL, 95500, 1, NULL, NULL, '2025-06-24 10:42:39', '2025-06-24 10:42:39');
+(63, 'USvT1', 'dactuong121@gmail.com', 18, 39, 90000, NULL, 95500, 1, NULL, NULL, '2025-06-24 10:42:39', '2025-06-24 10:42:39'),
+(64, 'h1x1F', 'dactuong126@gmail.com', 17, 40, 60000, NULL, 60130, 1, NULL, NULL, '2025-07-11 08:25:10', '2025-07-11 08:25:10');
 
 -- --------------------------------------------------------
 
@@ -12509,7 +12511,8 @@ CREATE TABLE `tbl_order_detail` (
 --
 
 INSERT INTO `tbl_order_detail` (`id_order_detail`, `order_code`, `order_phone_id`, `product_price`, `product_sale_quantity`) VALUES
-(84, 'USvT1', 2, 5500, 1);
+(84, 'USvT1', 2, 5500, 1),
+(85, 'h1x1F', 1, 130, 1);
 
 -- --------------------------------------------------------
 
@@ -12641,7 +12644,7 @@ INSERT INTO `tbl_products` (`product_id`, `product_code`, `product_name`, `serie
 (48, 'T019', 'Kindle Fire HD 10', 'Fire HD series', NULL, 'kindle-fire-hd-10', 4, 10, '', 'Fire HD 10', 3200000, 3500000, 3000000, 20, '2021-06-10', 12, 1, 1, '3GB/32GB'),
 (49, 'P005', 'Redmi Note 14', 'Note 14', 'NOTE_14', 'redmi-note-14', 1, 1, 'redmi14_6_128.jpg', 'Note 14', 3500000, 3900000, 3400000, 100, '2024-05-01', 12, 50, 1, '6GB - 128GB'),
 (50, 'P006', 'Redmi Note 14 Pro+ 5G', 'Note 14', 'NOTE_14', 'redmi-note-14-pro-plus-5g', 1, 1, 'redmi14_5g_8_128.jpg', 'Note 14 5G', 4200000, 4500000, 4000000, 80, '2024-05-15', 12, 20, 1, '8GB - 128GB'),
-(63, 'P101', 'Laptop ASUS TUF Gaming A15 FA506NC-HN011W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa506nc-hn011w', 2, 12, 'asus-fa506nc-hn011w.jpg', 'FA506NC-HN011W', 18000000, 19900000, 18490000, 50, '2024-04-01', 24, 10, 1, 'R5-7535HS - 8GB/512GB - 144Hz RTX 3050'),
+(63, 'LT004', 'Laptop ASUS TUF Gaming A15 FA506NC-HN011W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa506nc-hn011w', 2, 12, 'asus-fa506nc-hn011w.jpg', 'FA506NC-HN011W', 18000000, 19900000, 18490000, 50, '2024-04-01', 24, 10, 1, 'R5-7535HS - 8GB/512GB - 144Hz RTX 3050'),
 (64, 'P102', 'Laptop ASUS Gaming TUF FX507ZC4-HN095W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-gaming-tuf-fx507zc4-hn095w', 2, 12, 'asus-fx507zc4-hn095w.jpg', 'FX507ZC4-HN095W', 19000000, 21900000, 19500000, 30, '2024-06-01', 24, 5, 1, 'i5-12500H - 16GB/512GB - 144Hz RTX 3050'),
 (65, 'P103', 'Laptop ASUS Gaming TUF FX507VU-LP198W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-gaming-tuf-fx507vu-lp198w', 2, 12, 'asus-fx507vu-lp198w.jpg', 'FX507VU-LP198W', 24000000, 26900000, 24500000, 25, '2024-06-01', 24, 2, 1, 'i7-13620H - 8GB/512GB - 144Hz RTX 4050'),
 (66, 'P104', 'Laptop ASUS TUF Gaming A15 FA506NFR-HN075W', 'ASUS TUF Gaming A15', 'ASUS_TUF_GAMING_A15_VARIANTS', 'laptop-asus-tuf-gaming-a15-fa506nfr-hn075w', 2, 12, 'asus-fa506nfr-hn075w.jpg', 'FA506NFR-HN075W', 20500000, 22900000, 21200000, 40, '2024-06-01', 24, 3, 1, 'R7-7435HS - 16GB/512GB - 144Hz RTX 2050'),
@@ -12738,7 +12741,8 @@ INSERT INTO `tbl_shipping_address` (`id_shipping`, `fullname`, `order_phone`, `m
 (36, 'Trần Tường', '0951231210', '17', '150', '4858', 'ohaihsihaid', NULL, NULL),
 (37, 'Trần Tường', '0951231210', '15', '133', '4288', 'ohaihsihaid', NULL, NULL),
 (38, 'Trần Tường', '0951231214', '17', '151', '4897', '49 tân bình', NULL, NULL),
-(39, 'Trần Tường', '0951231214', '4', '42', '1294', '49 tân bình', NULL, NULL);
+(39, 'Trần Tường', '0951231214', '4', '42', '1294', '49 tân bình', NULL, NULL),
+(40, 'Dac Tuong', '0951231210', '51', '531', '21352', '49 tân bình', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13211,13 +13215,13 @@ ALTER TABLE `tbl_laptop_detail`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_detail`
 --
 ALTER TABLE `tbl_order_detail`
-  MODIFY `id_order_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_order_detail` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_phone_detail`
@@ -13247,7 +13251,7 @@ ALTER TABLE `tbl_santisticals`
 -- AUTO_INCREMENT cho bảng `tbl_shipping_address`
 --
 ALTER TABLE `tbl_shipping_address`
-  MODIFY `id_shipping` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_shipping` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_smartwatch_detail`

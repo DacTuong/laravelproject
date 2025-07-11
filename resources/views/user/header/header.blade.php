@@ -71,7 +71,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="cart-row desktop-only">
+
+                @php
+                    $cartNoHoverClass = request()->is('cart') ? 'no-hover' : '';
+                @endphp
+                <div class="cart-row desktop-only {{ $cartNoHoverClass }}">
                     <a class="cart-link" href="{{ URL::to('/cart') }}">
                         <!-- <img src="{{ URL::to('user/image/shopping-cart.png') }}" alt=""> -->
                         <i class="bi bi-cart"></i>

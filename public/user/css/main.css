@@ -151,6 +151,9 @@
 .cart-row:hover .cart-content {
     display: block;
 }
+.no-hover:hover .cart-content {
+    display: none !important;
+}
 .cart-message {
     padding: 8px 0px;
     display: flex;
