@@ -28,7 +28,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
-
+    public function AuthLoginCustomer()
+    {
+        $id_customer = Session::get('id_customer');
+        if ($id_customer) {
+            return Redirect::to('user.home'); // cần return
+        } else {
+            return Redirect::to('login-index')->send();
+        }
+    }
     protected $handlePhoneFilter;
     protected $handleLaptopFilter;
     protected $handleWatchFilter;
@@ -61,6 +69,9 @@ class HomeController extends Controller
         $this->handleTalbetFilterBrand = $handleTalbetFilterBrand;
         $this->handleWatchFilterBrand = $handleWatchFilterBrand;
     }
+
+
+
     public function index(Request $request)
     {
 
@@ -1026,6 +1037,8 @@ class HomeController extends Controller
 
     public function thong_tin_ca_nhan()
     {
+
+        $this->AuthLoginCustomer();
         $brand = Brand::get();
         $category = Category::get();
         $avg_amount = 0;
@@ -1045,7 +1058,7 @@ class HomeController extends Controller
             $avg_amount = $total_amount / $order_count;
         }
         return view('user.profile.personal_infor')->with('brands', $brand)
-            ->with('categorys', $category)
+            ->with('category', $category)
             ->with('inforcustomer', $information_customer)
             ->with('historys', $history_order)
             ->with('ordercount', $order_count)
@@ -1058,6 +1071,8 @@ class HomeController extends Controller
 
     public function wishlist()
     {
+        $this->AuthLoginCustomer();
+
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
@@ -1075,6 +1090,7 @@ class HomeController extends Controller
 
     public function data_wishlist()
     {
+        $this->AuthLoginCustomer();
         $id_user_session = Session::get('id_customer');
         $products = FavoriteModel::with(['user_favorite', 'product_favorite'])
             ->where("favorite_user_id", $id_user_session)->get();
@@ -1151,7 +1167,7 @@ class HomeController extends Controller
 
     public function setting()
     {
-
+        $this->AuthLoginCustomer();
         $brand = Brand::get();
         $category = Category::get();
         $id_user_session = Session::get('id_customer');
@@ -1159,7 +1175,7 @@ class HomeController extends Controller
 
         $informations = User::where('id_user', $id_user_session)->first();
         return view('user.profile.personal_infor')->with('brands', $brand)
-            ->with('categorys', $category)
+            ->with('category', $category)
             ->with('inforcustomer', $informations)
             ->with('informations', $informations)
             ->with('showSetting', true)

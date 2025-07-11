@@ -15,10 +15,21 @@ use App\Models\SantisticalModel;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Models\CateActicleModel;
+use Illuminate\Support\Facades\Redirect;
 
 
 class OrderController extends Controller
 {
+
+    public function AuthLoginCustomer()
+    {
+        $id_customer = Session::get('id_customer');
+        if ($id_customer) {
+            return Redirect::to('user.home'); // cần return
+        } else {
+            return Redirect::to('login-index')->send();
+        }
+    }
     // ADMIN
 
     public function print_order($order_code)
@@ -257,6 +268,7 @@ class OrderController extends Controller
 
     public function history_order(Request $request)
     {
+        $this->AuthLoginCustomer();
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
@@ -289,7 +301,7 @@ class OrderController extends Controller
 
         return view('user.shopping.history_order')
             ->with('brands', $brand)
-            ->with("categorys", $category)
+            ->with("category", $category)
             ->with("historys", $history)
             ->with('banners', $banners)
 
@@ -298,6 +310,7 @@ class OrderController extends Controller
 
     public function view_history($order_code)
     {
+        $this->AuthLoginCustomer();
         $brand = Brand::get();
         $category = Category::get();
         $banners = BannerModel::all();
@@ -348,7 +361,7 @@ class OrderController extends Controller
         }
         return view('user.shopping.view_history_order')
             ->with('brands', $brand)
-            ->with("categorys", $category)
+            ->with("category", $category)
             ->with("order_historys", $order_history) //Thông tin ở bảng order
             ->with('orderCount', $order_count_quantity)
             ->with("order_infomations", $order_infomation)   // Thông tin ở bảng order detail
@@ -363,6 +376,7 @@ class OrderController extends Controller
 
     public function getInforOrder(Request $request)
     {
+        $this->AuthLoginCustomer();
         $data = $request->all();
         $orderCode = $data['order_code'];
 
@@ -391,6 +405,7 @@ class OrderController extends Controller
 
     public function cancel_order(Request $request)
     {
+        $this->AuthLoginCustomer();
         $data = $request->all();
         $orderCode = $data['order_code'];
         $cancelReason = $data['cancel_reason'];
