@@ -105,16 +105,15 @@
                         Thêm giỏ hàng
                     </button>
 
+                    <button type="button" class="buy-now" data-id_product="{{ $product->product_id }}" name="">
+                        Mua ngay
+                    </button>
 
                     <button type="button" class="toggle-favorite" id="toggle-favorite" name="toggle-favorite"
                         data-id_product="{{ $product->product_id }}">
                         <div class="show-favorite" id="show-favorite">
-                            <i class="fa-regular fa-heart"></i>
+                            <i class="bi bi-heart"></i>
                         </div>
-                    </button>
-
-                    <button type="button" class="buy-now" data-id_product="{{ $product->product_id }}" name="">
-                        Mua ngay
                     </button>
                 </form>
             </div>

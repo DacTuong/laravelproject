@@ -65,7 +65,7 @@ class Product extends Model
 
     public function product_favorite()
     {
-        return $this->belongsTo(FavoriteModel::class, 'favorite_phone_id', 'product_id');
+        return $this->belongsTo(FavoriteModel::class, 'favorite_product_id', 'product_id');
     }
 
     public function product_banner()

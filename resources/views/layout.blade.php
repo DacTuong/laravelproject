@@ -22,6 +22,7 @@ $name = Session::get('name_customer');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- Bootstrap Icons -->
 
+
     <!-- Link font-awesome -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -452,7 +453,6 @@ $name = Session::get('name_customer');
     <script>
         $(document).ready(function() {
 
-
             $(document).on('click', '.menu-toggle', function() {
                 document.body.style.overflow = 'hidden';
                 $(".nav-menu").toggleClass("nav-menu--visible");
@@ -485,6 +485,10 @@ $name = Session::get('name_customer');
         })
     </script>
 
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
 
 

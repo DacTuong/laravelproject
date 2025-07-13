@@ -847,13 +847,13 @@ class HomeController extends Controller
         if (!$id_user) {
             return response()->json(['status' => 'error', 'message' => 'Vui lòng đăng nhập hoặc đăng ký để thêm vào yêu thích']);
         }
-        $favorite = FavoriteModel::where("favorite_phone_id", $product_favorite_id)
+        $favorite = FavoriteModel::where("favorite_product_id", $product_favorite_id)
             ->where("favorite_user_id", $id_user)->first();
         if ($favorite) {
             $favorite->delete();
         } else {
             $new_favorite = new FavoriteModel();
-            $new_favorite->favorite_phone_id = $product_favorite_id;
+            $new_favorite->favorite_product_id = $product_favorite_id;
             $new_favorite->favorite_user_id = $id_user;
             $new_favorite->save();
         }
@@ -865,13 +865,13 @@ class HomeController extends Controller
         $id_user = Session::get('id_customer');
 
 
-        $isFavorite = FavoriteModel::where("favorite_phone_id", $product_id)
+        $isFavorite = FavoriteModel::where("favorite_product_id", $product_id)
             ->where("favorite_user_id", $id_user)->exists();
         $output = '';
         if ($isFavorite) {
-            $output .= '<i class="fa-solid fa-heart"></i>';
+            $output .= '<i class="bi bi-heart-fill"></i>';
         } else {
-            $output .= '<i class="fa-regular fa-heart"></i>';
+            $output .= '<i class="bi bi-heart"></i>';
         }
         echo $output;
     }
