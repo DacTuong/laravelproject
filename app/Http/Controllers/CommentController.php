@@ -20,7 +20,7 @@ class CommentController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Vui lòng đăng nhập hoặc đăng ký để thêm vào yêu thích']);
         }
         $add_comment = new CommentModel();
-        $add_comment->id_phone_comment = $id_product;
+        $add_comment->id_product_comment = $id_product;
         $add_comment->id_user_comment = $id_user;
         $add_comment->comment_text = $comment;
         $add_comment->repped = 1;
@@ -31,13 +31,13 @@ class CommentController extends Controller
     public function get_comment(Request $request)
     {
         $id_product = $request->input('idProduct'); // Use the input() method to retrieve data
-        $comments = CommentModel::where('id_phone_comment', $id_product)
+        $comments = CommentModel::where('id_product_comment', $id_product)
             ->orderBy('id_comment', 'desc')
             ->get();
         $outputComment = "";
         foreach ($comments as $comment) {
             $commentFind = $comment->cmt_name;
-           
+
 
             $comment_rep = "";
             if ($comment->rep_comment != "") {

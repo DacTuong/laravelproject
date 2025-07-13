@@ -828,7 +828,7 @@ class HomeController extends Controller
         $banners = BannerModel::all();
 
         $get_product = Product::with(['category', 'brand'])
-            ->where('tbl_phones.product_id', $product_id)->first();
+            ->where('tbl_products.product_id', $product_id)->first();
 
         return view('user.product.review_product')
             ->with('product_infor', $get_product)
@@ -878,7 +878,7 @@ class HomeController extends Controller
     public function get_review_cmt_min($product_id)
     {
         $review_cmt = ReviewModel::with(['name_customer'])
-            ->where('id_phone_review', $product_id)
+            ->where('id_product_review', $product_id)
             ->orderBy('id_review', 'desc')
             ->limit(5)->get();
         return response()->json($review_cmt);
@@ -886,7 +886,7 @@ class HomeController extends Controller
     public function get_review_cmt_all($product_id)
     {
         $review_cmt = ReviewModel::with(['name_customer'])
-            ->where('id_phone_review', $product_id)
+            ->where('id_product_review', $product_id)
             ->orderBy('id_review', 'desc')
             ->get();
         return response()->json($review_cmt);
@@ -896,7 +896,7 @@ class HomeController extends Controller
 
     public function average_start($product_id)
     {
-        $review_product = ReviewModel::where('id_phone_review', $product_id)->get();
+        $review_product = ReviewModel::where('id_product_review', $product_id)->get();
         $average_point_product = $review_product->avg('rating');
         $count_review = $review_product->count() . ' đánh giá';
 
@@ -921,14 +921,14 @@ class HomeController extends Controller
         }
 
         // Bỏ ghi chú và xử lý thêm đánh giá
-        $review = ReviewModel::where("id_phone_review", $product_review_id)
+        $review = ReviewModel::where("id_product_review", $product_review_id)
             ->where("id_user_review", $id_user)->first();
 
         if ($review) {
             return response()->json(['status' => 'error', 'message' => 'Bạn đã đánh giá sản phẩm này trước đó!']);
         } else {
             $add_review = new ReviewModel();
-            $add_review->id_phone_review = $product_review_id;
+            $add_review->id_product_review = $product_review_id;
             $add_review->id_user_review = $id_user;
             $add_review->review_text = $text;
             $add_review->rating = $rating;
@@ -941,11 +941,11 @@ class HomeController extends Controller
 
     public function count_with_star($product_id)
     {
-        $reviews = ReviewModel::where('id_phone_review', $product_id)->get();
+        $reviews = ReviewModel::where('id_product_review', $product_id)->get();
         $reviews_total = $reviews->count();
 
         // Lấy dữ liệu thực tế từ cơ sở dữ liệu
-        $ratings_count = ReviewModel::where('id_phone_review', $product_id)
+        $ratings_count = ReviewModel::where('id_product_review', $product_id)
             ->groupBy('rating')
             ->selectRaw('rating, COUNT(*) as count')
             ->orderBy('rating', 'desc')
@@ -987,13 +987,13 @@ class HomeController extends Controller
 
         if ($star_filter == 0) {
             $review_cmt = ReviewModel::with(['name_customer'])
-                ->where('id_phone_review', $id_filter)
+                ->where('id_product_review', $id_filter)
                 ->orderBy('id_review', 'desc')
                 ->limit(5)->get();
             return response()->json($review_cmt);
         } else {
             $review_cmt = ReviewModel::with(['name_customer'])
-                ->where('id_phone_review', $id_filter)->where('rating', $star_filter)
+                ->where('id_product_review', $id_filter)->where('rating', $star_filter)
                 ->orderBy('id_review', 'desc')
                 ->limit(5)->get();
             return response()->json($review_cmt);
@@ -1009,13 +1009,13 @@ class HomeController extends Controller
 
         if ($star_filter == 0) {
             $review_cmt = ReviewModel::with(['name_customer'])
-                ->where('id_phone_review', $id_filter)
+                ->where('id_product_review', $id_filter)
                 ->orderBy('id_review', 'desc')
                 ->limit(5)->get();
             return response()->json($review_cmt);
         } else {
             $review_cmt = ReviewModel::with(['name_customer'])
-                ->where('id_phone_review', $id_filter)->where('rating', $star_filter)
+                ->where('id_product_review', $id_filter)->where('rating', $star_filter)
                 ->orderBy('id_review', 'desc')
                 ->get();
             return response()->json($review_cmt);

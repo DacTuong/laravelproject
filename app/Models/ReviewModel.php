@@ -10,7 +10,7 @@ class ReviewModel extends Model
     // use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['id_phone_review ', 'id_user_review ',  'review_text', 'rating', 'created_at', 'updated_at'];
+    protected $fillable = ['id_product_review ', 'id_user_review ',  'review_text', 'rating', 'created_at', 'updated_at'];
     protected $primaryKey = 'id_review ';
     protected $table = 'tbl_reviews';
 
