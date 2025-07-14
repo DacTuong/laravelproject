@@ -869,10 +869,11 @@
     border: 2px solid blue;
 }
 
-.v5-brand-list > div > .brand {
+.v5-brand-list > div > a {
     background-color: white;
     width: 88px;
     padding: 4px 2px;
+    text-decoration: none;
     border: none;
 }
 /* .+++++++++++++++++++++++++++Slide range++++++++++++++++++++++++++++++++. */
